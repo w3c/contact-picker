@@ -51,7 +51,7 @@ dictionary ContactPickerOptions {
 
 [Exposed=Window, SecureContext]
 partial interface Navigator {
-    Promise<sequence<ContactInfo>> selectContacts(ContactPickerOptions options);
+    Promise<FrozenArray<ContactInfo>> selectContacts(ContactPickerOptions options);
 };
 ```
 
