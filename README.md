@@ -9,7 +9,7 @@ This proposal does not address the source of the contacts. Many operating system
   * Social networks could use contact information to bootstrap a user's social graph. This is particularly important for emerging markets, where users might prefer a PWA over a native app due to storage constraints.
   * An e-mail application could allow the user to select the recipients for a message without needing their own address book.
 
-## Why is a built-in API better than JavaScript?
+## Why do we need a new built-in API?
   * Excluding the operating system, there is no canonical place where users maintain a list of their contacts. Developers would have to integrate with a variety of services to provide a comprehensive experience.
   * User agents can offer an experience to users that's consistent with other applications on the user's device. The information that will is going to be shared with the website can be clearly highlighted.
   * Contact information is sensitive. Individual contacts can have [any number of properties](https://en.wikipedia.org/wiki/VCard#Properties) associated with them. Websites seeking the e-mail address of a single user should not have access to the same information of all other contacts.
@@ -68,6 +68,16 @@ partial interface Navigator {
 Exposing contact information has a clear privacy impact. We propose a picker model so that the user agent can offer a user experience that makes it clear what information in going to be shared with the website.
 
 The API will only be available on secure contexts. Additionally, we propose that a user gesture is required in order to trigger the contact picker, to help avoid users from inadvertently seeing the picker.
+
+## Alternatives Considered
+
+##### `<input type="file" accept="text/contacts+json;items=name,tel" />`
+The Web Platform already supports a picker for external data through `<input type="file" />`, which some user agents specialize based on the mime types that are being selected.
+
+Supporting contacts this way has a number of downsides:
+  * There is much contention in file types for expressing contact information. For most use cases, a `FileReader` would be used to read and parse the file in order to access the individual properties. We can optimize for this. Libraries can be used for converting this data in another format of the developer's choosing.
+  * Feature detection is harder, and would likely need a new API such as `HTMLInputElement.isTypeSupported()` mimicking the [`MediaRecorder`](https://www.w3.org/TR/mediastream-recording/#dom-mediarecorder-istypesupported). Unlike existing specializations of file pickers, contacts would be unlikely to gracefully degrade to a general picker.
+  * Extensibility is harder, as it would rely on additional parameters being passed to the mime type.
 
 ## Potential follow-up work
   * As mentioned, more properties can be added iteratively as use cases are identified. It is a non-goal of this API to share _all_ information stored for a particular contact without filtering.
