@@ -37,7 +37,7 @@ selectRecipientsButton.addEventListener('click', async () => {
 ## Proposed WebIDL
 ```WebIDL
 interface ContactInfo {
-    readonly attribute string? name;
+    readonly attribute sequence<string>? name;
     readonly attribute sequence<string>? email;
     readonly attribute sequence<string>? tel;
 };
