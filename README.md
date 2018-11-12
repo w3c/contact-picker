@@ -37,26 +37,26 @@ selectRecipientsButton.addEventListener('click', async () => {
 ## Proposed WebIDL
 ```WebIDL
 interface ContactInfo {
-    readonly attribute FrozenArray<string>? name;
-    readonly attribute FrozenArray<string>? email;
-    readonly attribute FrozenArray<string>? tel;
+    readonly attribute FrozenArray<DOMString>? name;
+    readonly attribute FrozenArray<DOMString>? email;
+    readonly attribute FrozenArray<DOMString>? tel;
 };
 
 enum ContactProperty { "email", "name", "tel" };
 
-dictionary ContactPickerOptions {
+dictionary ContactsSelectOptions {
     sequence<ContactProperty> properties;
     boolean multiple = false;
 };
 
 [Exposed=Window, SecureContext]
-interface ContactManager {
-    Promise<FrozenArray<ContactInfo>> select(ContactPickerOptions options);
+interface ContactsManager {
+    Promise<FrozenArray<ContactInfo>> select(ContactsSelectOptions options);
 };
 
 [Exposed=Window, SecureContext]
 partial interface Navigator {
-    readonly attribute ContactManager contacts;
+    readonly attribute ContactsManager contacts;
 };
 ```
 
