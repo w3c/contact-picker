@@ -65,7 +65,7 @@ partial interface Navigator {
   * Some future might include the ability to add contacts, or even _contact management_, so having an intermediary object on `navigator` helps extensibility.
 
 ## Security and Privacy
-Exposing contact information has a clear privacy impact. We propose a picker model so that the user agent can offer a user experience that makes it clear what information in going to be shared with the website.
+Exposing contact information has a clear privacy impact. We propose a picker model so that the user agent can offer a user experience that makes it clear what information in going to be shared with the website: the spec will have a MUST requirement to ensure that the user understands and selects which contacts or information to share.
 
 The API will only be available on secure contexts. Additionally, we propose that a user gesture is required in order to trigger the contact picker, to help avoid users from inadvertently seeing the picker.
 
