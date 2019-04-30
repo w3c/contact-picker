@@ -1,0 +1,100 @@
+<pre class="metadata">
+Title: Contact Picker
+Shortname: contact-picker
+Level: 1
+Status: UD
+Group: wicg
+URL: https://beverloo.github.io/contact-api
+Editor: Peter Beverloo, Google, beverloo@google.com
+Editor: Rayan Kanso, Google, rayankans@google.com
+Abstract: An API to give one-off access to a user's contact information with full control over the shared data.
+Markup Shorthands: css no, markdown yes
+Indent: 2
+</pre>
+
+<pre class=link-defaults>
+spec:html; type:dfn; for:/; text:browsing context
+spec:html; type:dfn; for:/; text:origin
+</pre>
+
+# Introduction # {#intro}
+
+Contact pickers are frequently seen in native mobile applications for a variety of use cases, and in various desktop applications such as e-mail clients and calendars.
+
+## Use cases ## {#use-cases}
+
+* Social networks could use contact information to bootstrap a user's social graph. This is particularly important for emerging markets, where users might prefer a PWA over a native app due to storage constraints.
+* An e-mail application could allow the user to select the recipients for a message without needing their own address book.
+
+## Example ## {#example}
+
+TODO: Add examples.
+
+# Privacy Considerations # {#privacy}
+
+Exposing contact information has a clear privacy impact, in terms of exposing PII of uninvolved parties. A picker model is enforced so that the user agent can offer a user experience that makes it clear what information is going to be shared with the website.
+
+The following constraints are also enforced to reduce unintentional leaking of contacts:
+* The API is only available in a [=top-level browsing context=] which must also be a [=secure context=].
+* A user gesture is needed to initiate the API.
+
+
+# API Description # {#api}
+
+## Extensions to {{Navigator}} ## {#extensions-to-navigator}
+
+<script type="idl">
+[Exposed=(Window,SecureContext)]
+partial interface Navigator {
+    readonly attribute ContactsManager contacts;
+};
+</script>
+
+## {{ContactsManager}} ## {#contacts-manager}
+
+<script type="idl">
+dictionary ContactInfo {
+    sequence<USVString> name;
+    sequence<USVString> email;
+    sequence<USVString> tel;
+};
+
+enum ContactProperty { "email", "name", "tel" };
+
+dictionary ContactsSelectOptions {
+    required sequence<ContactProperty> properties;
+    boolean multiple = false;
+};
+
+[Exposed=(Window,SecureContext)]
+interface ContactsManager {
+    Promise<sequence<ContactInfo>> select(ContactsSelectOptions options);
+};
+</script>
+
+<div dfn-for="ContactsManager">
+
+  ### {{ContactsManager/select()}} ### {#contacts-manager-select}
+
+  <div algorithm>
+    The <dfn method>select(|options|)</dfn> method, when invoked, runs these steps:
+
+    TODO: Include the algorithm.
+
+</div>
+
+# Contact Picker # {#contact-picker}
+
+<div algorithm>
+
+A contact picker MUST be initiated with |options|, an instance of {{ContactsSelectOptions}}.
+
+To <dfn>launch</dfn> a contact picker, the user agent MUST present a user interface that follows these rules:
+
+* The UI MUST prominently display the [=browsing context=]'s [=origin=].
+* The UI MUST make it clear which `properties` of the contact will be shared.
+* The UI MUST provide an option to cancel/return without sharing any contacts.
+* If |options|' `multiple` member is false, only one contact should be pickable.
+* Only properties included in |options|' `properties` can be returned.
+
+</div>
