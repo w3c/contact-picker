@@ -1,5 +1,5 @@
 <pre class="metadata">
-Title: Contact Picker
+Title: Contact Picker API
 Shortname: contact-picker
 Level: 1
 Status: UD
@@ -19,12 +19,19 @@ spec:html; type:dfn; for:/; text:origin
 
 # Introduction # {#intro}
 
-Contact pickers are frequently seen in native mobile applications for a variety of use cases, and in various desktop applications such as e-mail clients and calendars.
+Contact pickers are frequently seen in native mobile applications for a variety of use cases, and
+in various desktop applications such as e-mail clients and calendars.
+
+This specification provides an API to bring contact pickers to the web. The API is designed to be
+privacy-sensitive, and to give the user control over the shared data.
+
+TODO: Describe differences with other implementations in terms of contact access.
 
 ## Use cases ## {#use-cases}
 
-* Social networks could use contact information to bootstrap a user's social graph. This is particularly important for emerging markets, where users might prefer a PWA over a native app due to storage constraints.
-* An e-mail application could allow the user to select the recipients for a message without needing their own address book.
+* Social networks could use contact information to bootstrap a user's social graph.
+* An e-mail application could allow the user to select the recipients for a message without needing
+  their own address book.
 
 ## Example ## {#example}
 
@@ -32,12 +39,16 @@ TODO: Add examples.
 
 # Privacy Considerations # {#privacy}
 
-Exposing contact information has a clear privacy impact, in terms of exposing PII of uninvolved parties. A picker model is enforced so that the user agent can offer a user experience that makes it clear what information is going to be shared with the website.
+Exposing contact information has a clear privacy impact, in terms of exposing PII of uninvolved
+parties. A picker model is enforced so that the user agent can offer a user experience that makes
+it clear what information is going to be shared with the website.
 
-The following constraints are also enforced to reduce unintentional leaking of contacts:
-* The API is only available in a [=top-level browsing context=] which must also be a [=secure context=].
-* A user gesture is needed to initiate the API.
-
+The following constraints are also enforced:
+* The API is only available in a [=top-level browsing context=] which must also be a
+  [=secure context=]. These restrictions ensure that the provided contact information reaches its
+  intended recipient.
+* A user gesture is needed to initiate the API, to disallow programmatic requests to the user's
+  contacts.
 
 # API Description # {#api}
 
@@ -89,7 +100,8 @@ interface ContactsManager {
 
 A contact picker MUST be initiated with |options|, an instance of {{ContactsSelectOptions}}.
 
-To <dfn>launch</dfn> a contact picker, the user agent MUST present a user interface that follows these rules:
+To <dfn>launch</dfn> a contact picker, the user agent MUST present a user interface that follows
+these rules:
 
 * The UI MUST prominently display the [=browsing context=]'s [=origin=].
 * The UI MUST make it clear which `properties` of the contact will be shared.

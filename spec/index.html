@@ -1,7 +1,7 @@
 <!doctype html><html lang="en">
  <head>
   <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-  <title>Contact Picker</title>
+  <title>Contact Picker API</title>
   <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
 <style data-fill-with="stylesheet">/******************************************************************************
  *                   Style sheet for the W3C specifications                   *
@@ -1214,7 +1214,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version 30dbdcf66519991ec52011cac10c49a7b5b449c5" name="generator">
   <link href="https://beverloo.github.io/contact-api" rel="canonical">
-  <meta content="dfc4a53b2c59dd94d620fec9390eb4a94df4d3e2" name="document-revision">
+  <meta content="e89886caa0b1114f9990fb83050a20d87fa64d7c" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1471,8 +1471,8 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
  <body class="h-entry">
   <div class="head">
    <p data-fill-with="logo"></p>
-   <h1 class="p-name no-ref" id="title">Contact Picker</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Unofficial Proposal Draft, <time class="dt-updated" datetime="2019-04-30">30 April 2019</time></span></h2>
+   <h1 class="p-name no-ref" id="title">Contact Picker API</h1>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Unofficial Proposal Draft, <time class="dt-updated" datetime="2019-05-08">8 May 2019</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1483,7 +1483,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     </dl>
    </div>
    <div data-fill-with="warning"></div>
-   <p class="copyright" data-fill-with="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2019 the Contributors to the Contact Picker Specification, published by the <a href="https://www.w3.org/community/wicg/">Web Platform Incubator Community Group</a> under the <a href="https://www.w3.org/community/about/agreements/cla/">W3C Community Contributor License Agreement (CLA)</a>.
+   <p class="copyright" data-fill-with="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2019 the Contributors to the Contact Picker API Specification, published by the <a href="https://www.w3.org/community/wicg/">Web Platform Incubator Community Group</a> under the <a href="https://www.w3.org/community/about/agreements/cla/">W3C Community Contributor License Agreement (CLA)</a>.
 A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/">summary</a> is available. </p>
    <hr title="Separator for header">
   </div>
@@ -1541,24 +1541,33 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
   </nav>
   <main>
    <h2 class="heading settled" data-level="1" id="intro"><span class="secno">1. </span><span class="content">Introduction</span><a class="self-link" href="#intro"></a></h2>
-   <p>Contact pickers are frequently seen in native mobile applications for a variety of use cases, and in various desktop applications such as e-mail clients and calendars.</p>
+   <p>Contact pickers are frequently seen in native mobile applications for a variety of use cases, and
+in various desktop applications such as e-mail clients and calendars.</p>
+   <p>This specification provides an API to bring contact pickers to the web. The API is designed to be
+privacy-sensitive, and to give the user control over the shared data.</p>
+   <p>TODO: Describe differences with other implementations in terms of contact access.</p>
    <h3 class="heading settled" data-level="1.1" id="use-cases"><span class="secno">1.1. </span><span class="content">Use cases</span><a class="self-link" href="#use-cases"></a></h3>
    <ul>
     <li data-md>
-     <p>Social networks could use contact information to bootstrap a user’s social graph. This is particularly important for emerging markets, where users might prefer a PWA over a native app due to storage constraints.</p>
+     <p>Social networks could use contact information to bootstrap a user’s social graph.</p>
     <li data-md>
-     <p>An e-mail application could allow the user to select the recipients for a message without needing their own address book.</p>
+     <p>An e-mail application could allow the user to select the recipients for a message without needing
+their own address book.</p>
    </ul>
    <h3 class="heading settled" data-level="1.2" id="example"><span class="secno">1.2. </span><span class="content">Example</span><a class="self-link" href="#example"></a></h3>
    <p>TODO: Add examples.</p>
    <h2 class="heading settled" data-level="2" id="privacy"><span class="secno">2. </span><span class="content">Privacy Considerations</span><a class="self-link" href="#privacy"></a></h2>
-   <p>Exposing contact information has a clear privacy impact, in terms of exposing PII of uninvolved parties. A picker model is enforced so that the user agent can offer a user experience that makes it clear what information is going to be shared with the website.</p>
-   <p>The following constraints are also enforced to reduce unintentional leaking of contacts:</p>
+   <p>Exposing contact information has a clear privacy impact, in terms of exposing PII of uninvolved
+parties. A picker model is enforced so that the user agent can offer a user experience that makes
+it clear what information is going to be shared with the website.</p>
+   <p>The following constraints are also enforced:</p>
    <ul>
     <li data-md>
-     <p>The API is only available in a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context" id="ref-for-top-level-browsing-context">top-level browsing context</a> which must also be a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#secure-contexts" id="ref-for-secure-contexts">secure context</a>.</p>
+     <p>The API is only available in a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context" id="ref-for-top-level-browsing-context">top-level browsing context</a> which must also be a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#secure-contexts" id="ref-for-secure-contexts">secure context</a>. These restrictions ensure that the provided contact information reaches its
+intended recipient.</p>
     <li data-md>
-     <p>A user gesture is needed to initiate the API.</p>
+     <p>A user gesture is needed to initiate the API, to disallow programmatic requests to the user’s
+contacts.</p>
    </ul>
    <h2 class="heading settled" data-level="3" id="api"><span class="secno">3. </span><span class="content">API Description</span><a class="self-link" href="#api"></a></h2>
    <h3 class="heading settled" data-level="3.1" id="extensions-to-navigator"><span class="secno">3.1. </span><span class="content">Extensions to <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/system-state.html#navigator" id="ref-for-navigator">Navigator</a></code></span><a class="self-link" href="#extensions-to-navigator"></a></h3>
@@ -1595,7 +1604,8 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
     <h2 class="heading settled" data-level="4" id="contact-picker"><span class="secno">4. </span><span class="content">Contact Picker</span><a class="self-link" href="#contact-picker"></a></h2>
     <div class="algorithm" data-algorithm="launch">
      <p>A contact picker MUST be initiated with <var>options</var>, an instance of <code class="idl"><a data-link-type="idl" href="#dictdef-contactsselectoptions" id="ref-for-dictdef-contactsselectoptions①">ContactsSelectOptions</a></code>.</p>
-     <p>To <dfn data-dfn-for="ContactsManager" data-dfn-type="dfn" data-noexport id="contactsmanager-launch">launch<a class="self-link" href="#contactsmanager-launch"></a></dfn> a contact picker, the user agent MUST present a user interface that follows these rules:</p>
+     <p>To <dfn data-dfn-for="ContactsManager" data-dfn-type="dfn" data-noexport id="contactsmanager-launch">launch<a class="self-link" href="#contactsmanager-launch"></a></dfn> a contact picker, the user agent MUST present a user interface that follows
+these rules:</p>
      <ul>
       <li data-md>
        <p>The UI MUST prominently display the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context">browsing context</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#concept-origin" id="ref-for-concept-origin">origin</a>.</p>
