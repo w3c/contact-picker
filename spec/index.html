@@ -1214,7 +1214,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version 30dbdcf66519991ec52011cac10c49a7b5b449c5" name="generator">
   <link href="https://beverloo.github.io/contact-api" rel="canonical">
-  <meta content="e89886caa0b1114f9990fb83050a20d87fa64d7c" name="document-revision">
+  <meta content="4968cd9b2d3e6cea578bd2fa9cafb8b2d2b0b8ae" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1472,11 +1472,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Contact Picker API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Unofficial Proposal Draft, <time class="dt-updated" datetime="2019-05-08">8 May 2019</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Unofficial Proposal Draft, <time class="dt-updated" datetime="2019-05-14">14 May 2019</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
      <dd><a class="u-url" href="https://beverloo.github.io/contact-api">https://beverloo.github.io/contact-api</a>
+     <dt>Issue Tracking:
+     <dd><a href="https://github.com/beverloo/contact-api/issues/">GitHub</a>
      <dt class="editor">Editors:
      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:beverloo@google.com">Peter Beverloo</a> (<span class="p-org org">Google</span>)
      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:rayankans@google.com">Rayan Kanso</a> (<span class="p-org org">Google</span>)
@@ -1599,16 +1601,53 @@ contacts.</p>
     <h4 class="heading settled" data-level="3.2.1" id="contacts-manager-select"><span class="secno">3.2.1. </span><span class="content"><code class="idl"><a data-link-type="idl" href="#dom-contactsmanager-select" id="ref-for-dom-contactsmanager-select①">select()</a></code></span><a class="self-link" href="#contacts-manager-select"></a></h4>
     <div class="algorithm" data-algorithm="select(options)">
       The <dfn class="dfn-paneled idl-code" data-dfn-for="ContactsManager" data-dfn-type="method" data-export id="dom-contactsmanager-select"><code>select(<var>options</var>)</code></dfn> method, when invoked, runs these steps: 
-     <p>TODO: Include the algorithm.</p>
+     <ol>
+      <li data-md>
+       <p>Let <var>promise</var> be a new <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-promise" id="ref-for-idl-promise">Promise</a></code>.</p>
+      <li data-md>
+       <p>Let <var>selectQueue</var> be a new <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#parallel-queue" id="ref-for-parallel-queue">parallel queue</a>.</p>
+      <li data-md>
+       <p>If the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context">browsing context</a> is not the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context" id="ref-for-top-level-browsing-context①">top-level browsing context</a>, then return <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#a-promise-rejected-with" id="ref-for-a-promise-rejected-with">a promise rejected with</a> an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror">InvalidStateError</a></code> <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException">DOMException</a></code>.</p>
+      <li data-md>
+       <p>If the algorithm is not <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#triggered-by-user-activation" id="ref-for-triggered-by-user-activation">triggered by user activation</a> then return <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#a-promise-rejected-with" id="ref-for-a-promise-rejected-with①">a promise rejected with</a> a <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#securityerror" id="ref-for-securityerror">SecurityError</a></code> <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException①">DOMException</a></code>.</p>
+      <li data-md>
+       <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#enqueue-the-following-steps" id="ref-for-enqueue-the-following-steps">Enqueue the following steps</a> to <var>selectQueue</var>:</p>
+       <ol>
+        <li data-md>
+         <p>Let <var>contacts</var> be a new <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list">list</a>.</p>
+        <li data-md>
+         <p><a data-link-type="dfn" href="#contactsmanager-launch" id="ref-for-contactsmanager-launch">Launch</a> a <code>Contact Picker</code> with <var>options</var>. If this fails, then reject <var>promise</var> with an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror①">InvalidStateError</a></code> <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException②">DOMException</a></code> and abort these steps.</p>
+        <li data-md>
+         <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate">For each</a> <var>contact</var> of the user’s chosen contacts:</p>
+         <ol>
+          <li data-md>
+           <p>Let <var>contactInfo</var> be a new <code class="idl"><a data-link-type="idl" href="#dictdef-contactinfo" id="ref-for-dictdef-contactinfo①">ContactInfo</a></code>.</p>
+          <li data-md>
+           <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate①">For each</a> <var>property</var> of <var>options</var>’ <code>property</code> member:</p>
+           <ol>
+            <li data-md>
+             <p>Append every string associated with <var>property</var> in <var>contact</var> to the <a data-link-type="dfn" href="https://heycam.github.io/webidl/#idl-sequence" id="ref-for-idl-sequence">sequence</a> named
+ after <var>property</var>’s value in <var>contactInfo</var>. 
+ TODO: Clarify shared data.</p>
+           </ol>
+          <li data-md>
+           <p>Append <var>contactInfo</var> to <var>contacts</var>.</p>
+         </ol>
+        <li data-md>
+         <p>Resolve <var>promise</var> with <var>contacts</var>.</p>
+       </ol>
+      <li data-md>
+       <p>Return <var>promise</var>.</p>
+     </ol>
     </div>
     <h2 class="heading settled" data-level="4" id="contact-picker"><span class="secno">4. </span><span class="content">Contact Picker</span><a class="self-link" href="#contact-picker"></a></h2>
     <div class="algorithm" data-algorithm="launch">
      <p>A contact picker MUST be initiated with <var>options</var>, an instance of <code class="idl"><a data-link-type="idl" href="#dictdef-contactsselectoptions" id="ref-for-dictdef-contactsselectoptions①">ContactsSelectOptions</a></code>.</p>
-     <p>To <dfn data-dfn-for="ContactsManager" data-dfn-type="dfn" data-noexport id="contactsmanager-launch">launch<a class="self-link" href="#contactsmanager-launch"></a></dfn> a contact picker, the user agent MUST present a user interface that follows
+     <p>To <dfn class="dfn-paneled" data-dfn-for="ContactsManager" data-dfn-type="dfn" data-noexport id="contactsmanager-launch">launch</dfn> a contact picker, the user agent MUST present a user interface that follows
 these rules:</p>
      <ul>
       <li data-md>
-       <p>The UI MUST prominently display the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context">browsing context</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#concept-origin" id="ref-for-concept-origin">origin</a>.</p>
+       <p>The UI MUST prominently display the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context①">browsing context</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#concept-origin" id="ref-for-concept-origin">origin</a>.</p>
       <li data-md>
        <p>The UI MUST make it clear which <code>properties</code> of the contact will be shared.</p>
       <li data-md>
@@ -1795,7 +1834,14 @@ these rules:</p>
   <aside class="dfn-panel" data-for="term-for-browsing-context">
    <a href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context">https://html.spec.whatwg.org/multipage/browsers.html#browsing-context</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-browsing-context">4. Contact Picker</a>
+    <li><a href="#ref-for-browsing-context">3.2.1. select()</a>
+    <li><a href="#ref-for-browsing-context①">4. Contact Picker</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-enqueue-the-following-steps">
+   <a href="https://html.spec.whatwg.org/multipage/infrastructure.html#enqueue-the-following-steps">https://html.spec.whatwg.org/multipage/infrastructure.html#enqueue-the-following-steps</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-enqueue-the-following-steps">3.2.1. select()</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-concept-origin">
@@ -1804,10 +1850,41 @@ these rules:</p>
     <li><a href="#ref-for-concept-origin">4. Contact Picker</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="term-for-parallel-queue">
+   <a href="https://html.spec.whatwg.org/multipage/infrastructure.html#parallel-queue">https://html.spec.whatwg.org/multipage/infrastructure.html#parallel-queue</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-parallel-queue">3.2.1. select()</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-top-level-browsing-context">
    <a href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context">https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-top-level-browsing-context">2. Privacy Considerations</a>
+    <li><a href="#ref-for-top-level-browsing-context①">3.2.1. select()</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-triggered-by-user-activation">
+   <a href="https://html.spec.whatwg.org/multipage/interaction.html#triggered-by-user-activation">https://html.spec.whatwg.org/multipage/interaction.html#triggered-by-user-activation</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-triggered-by-user-activation">3.2.1. select()</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-list-iterate">
+   <a href="https://infra.spec.whatwg.org/#list-iterate">https://infra.spec.whatwg.org/#list-iterate</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-list-iterate">3.2.1. select()</a> <a href="#ref-for-list-iterate①">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-list">
+   <a href="https://infra.spec.whatwg.org/#list">https://infra.spec.whatwg.org/#list</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-list">3.2.1. select()</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-a-promise-rejected-with">
+   <a href="https://www.w3.org/2001/tag/doc/promises-guide/#a-promise-rejected-with">https://www.w3.org/2001/tag/doc/promises-guide/#a-promise-rejected-with</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-a-promise-rejected-with">3.2.1. select()</a> <a href="#ref-for-a-promise-rejected-with①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-secure-contexts">
@@ -1816,11 +1893,35 @@ these rules:</p>
     <li><a href="#ref-for-secure-contexts">2. Privacy Considerations</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="term-for-idl-DOMException">
+   <a href="https://heycam.github.io/webidl/#idl-DOMException">https://heycam.github.io/webidl/#idl-DOMException</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-idl-DOMException">3.2.1. select()</a> <a href="#ref-for-idl-DOMException①">(2)</a> <a href="#ref-for-idl-DOMException②">(3)</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-Exposed">
    <a href="https://heycam.github.io/webidl/#Exposed">https://heycam.github.io/webidl/#Exposed</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-Exposed">3.1. Extensions to Navigator</a>
     <li><a href="#ref-for-Exposed①">3.2. ContactsManager</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-invalidstateerror">
+   <a href="https://heycam.github.io/webidl/#invalidstateerror">https://heycam.github.io/webidl/#invalidstateerror</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-invalidstateerror">3.2.1. select()</a> <a href="#ref-for-invalidstateerror①">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-idl-promise">
+   <a href="https://heycam.github.io/webidl/#idl-promise">https://heycam.github.io/webidl/#idl-promise</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-idl-promise">3.2.1. select()</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-securityerror">
+   <a href="https://heycam.github.io/webidl/#securityerror">https://heycam.github.io/webidl/#securityerror</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-securityerror">3.2.1. select()</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-idl-USVString">
@@ -1835,6 +1936,12 @@ these rules:</p>
     <li><a href="#ref-for-idl-boolean">3.2. ContactsManager</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="term-for-idl-sequence">
+   <a href="https://heycam.github.io/webidl/#idl-sequence">https://heycam.github.io/webidl/#idl-sequence</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-idl-sequence">3.2.1. select()</a>
+   </ul>
+  </aside>
   <h3 class="no-num no-ref heading settled" id="index-defined-elsewhere"><span class="content">Terms defined by reference</span><a class="self-link" href="#index-defined-elsewhere"></a></h3>
   <ul class="index">
    <li>
@@ -1842,8 +1949,22 @@ these rules:</p>
     <ul>
      <li><span class="dfn-paneled" id="term-for-navigator" style="color:initial">Navigator</span>
      <li><span class="dfn-paneled" id="term-for-browsing-context" style="color:initial">browsing context</span>
+     <li><span class="dfn-paneled" id="term-for-enqueue-the-following-steps" style="color:initial">enqueue the following steps</span>
      <li><span class="dfn-paneled" id="term-for-concept-origin" style="color:initial">origin</span>
+     <li><span class="dfn-paneled" id="term-for-parallel-queue" style="color:initial">parallel queue</span>
      <li><span class="dfn-paneled" id="term-for-top-level-browsing-context" style="color:initial">top-level browsing context</span>
+     <li><span class="dfn-paneled" id="term-for-triggered-by-user-activation" style="color:initial">triggered by user activation</span>
+    </ul>
+   <li>
+    <a data-link-type="biblio">[INFRA]</a> defines the following terms:
+    <ul>
+     <li><span class="dfn-paneled" id="term-for-list-iterate" style="color:initial">for each</span>
+     <li><span class="dfn-paneled" id="term-for-list" style="color:initial">list</span>
+    </ul>
+   <li>
+    <a data-link-type="biblio">[promises-guide]</a> defines the following terms:
+    <ul>
+     <li><span class="dfn-paneled" id="term-for-a-promise-rejected-with" style="color:initial">a promise rejected with</span>
     </ul>
    <li>
     <a data-link-type="biblio">[secure-contexts]</a> defines the following terms:
@@ -1853,9 +1974,14 @@ these rules:</p>
    <li>
     <a data-link-type="biblio">[WebIDL]</a> defines the following terms:
     <ul>
+     <li><span class="dfn-paneled" id="term-for-idl-DOMException" style="color:initial">DOMException</span>
      <li><span class="dfn-paneled" id="term-for-Exposed" style="color:initial">Exposed</span>
+     <li><span class="dfn-paneled" id="term-for-invalidstateerror" style="color:initial">InvalidStateError</span>
+     <li><span class="dfn-paneled" id="term-for-idl-promise" style="color:initial">Promise</span>
+     <li><span class="dfn-paneled" id="term-for-securityerror" style="color:initial">SecurityError</span>
      <li><span class="dfn-paneled" id="term-for-idl-USVString" style="color:initial">USVString</span>
      <li><span class="dfn-paneled" id="term-for-idl-boolean" style="color:initial">boolean</span>
+     <li><span class="dfn-paneled" id="term-for-idl-sequence" style="color:initial">sequence</span>
     </ul>
   </ul>
   <h2 class="no-num no-ref heading settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
@@ -1863,6 +1989,10 @@ these rules:</p>
   <dl>
    <dt id="biblio-html">[HTML]
    <dd>Anne van Kesteren; et al. <a href="https://html.spec.whatwg.org/multipage/">HTML Standard</a>. Living Standard. URL: <a href="https://html.spec.whatwg.org/multipage/">https://html.spec.whatwg.org/multipage/</a>
+   <dt id="biblio-infra">[INFRA]
+   <dd>Anne van Kesteren; Domenic Denicola. <a href="https://infra.spec.whatwg.org/">Infra Standard</a>. Living Standard. URL: <a href="https://infra.spec.whatwg.org/">https://infra.spec.whatwg.org/</a>
+   <dt id="biblio-promises-guide">[PROMISES-GUIDE]
+   <dd>Domenic Denicola. <a href="https://www.w3.org/2001/tag/doc/promises-guide">Writing Promise-Using Specifications</a>. 16 February 2016. TAG Finding. URL: <a href="https://www.w3.org/2001/tag/doc/promises-guide">https://www.w3.org/2001/tag/doc/promises-guide</a>
    <dt id="biblio-rfc2119">[RFC2119]
    <dd>S. Bradner. <a href="https://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>. March 1997. Best Current Practice. URL: <a href="https://tools.ietf.org/html/rfc2119">https://tools.ietf.org/html/rfc2119</a>
    <dt id="biblio-secure-contexts">[SECURE-CONTEXTS]
@@ -1891,7 +2021,7 @@ these rules:</p>
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①①"><c- g>Exposed</c-></a>=(<c- n>Window</c->,<c- n>SecureContext</c->)]
 <c- b>interface</c-> <a href="#contactsmanager"><code><c- g>ContactsManager</c-></code></a> {
-    <c- b>Promise</c->&lt;<c- b>sequence</c->&lt;<a class="n" data-link-type="idl-name" href="#dictdef-contactinfo" id="ref-for-dictdef-contactinfo①"><c- n>ContactInfo</c-></a>>> <a class="idl-code" data-link-type="method" href="#dom-contactsmanager-select" id="ref-for-dom-contactsmanager-select②"><c- g>select</c-></a>(<a class="n" data-link-type="idl-name" href="#dictdef-contactsselectoptions" id="ref-for-dictdef-contactsselectoptions②"><c- n>ContactsSelectOptions</c-></a> <a href="#dom-contactsmanager-select-options-options"><code><c- g>options</c-></code></a>);
+    <c- b>Promise</c->&lt;<c- b>sequence</c->&lt;<a class="n" data-link-type="idl-name" href="#dictdef-contactinfo" id="ref-for-dictdef-contactinfo②"><c- n>ContactInfo</c-></a>>> <a class="idl-code" data-link-type="method" href="#dom-contactsmanager-select" id="ref-for-dom-contactsmanager-select②"><c- g>select</c-></a>(<a class="n" data-link-type="idl-name" href="#dictdef-contactsselectoptions" id="ref-for-dictdef-contactsselectoptions②"><c- n>ContactsSelectOptions</c-></a> <a href="#dom-contactsmanager-select-options-options"><code><c- g>options</c-></code></a>);
 };
 
 </pre>
@@ -1899,6 +2029,7 @@ these rules:</p>
    <b><a href="#dictdef-contactinfo">#dictdef-contactinfo</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dictdef-contactinfo">3.2. ContactsManager</a>
+    <li><a href="#ref-for-dictdef-contactinfo①">3.2.1. select()</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="enumdef-contactproperty">
@@ -1926,6 +2057,12 @@ these rules:</p>
    <ul>
     <li><a href="#ref-for-dom-contactsmanager-select">3.2. ContactsManager</a>
     <li><a href="#ref-for-dom-contactsmanager-select①">3.2.1. select()</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="contactsmanager-launch">
+   <b><a href="#contactsmanager-launch">#contactsmanager-launch</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-contactsmanager-launch">3.2.1. select()</a>
    </ul>
   </aside>
 <script>/* script-var-click-highlighting */

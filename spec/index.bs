@@ -85,13 +85,30 @@ interface ContactsManager {
 
 <div dfn-for="ContactsManager">
 
-  ### {{ContactsManager/select()}} ### {#contacts-manager-select}
+### {{ContactsManager/select()}} ### {#contacts-manager-select}
 
-  <div algorithm>
-    The <dfn method>select(|options|)</dfn> method, when invoked, runs these steps:
+<div algorithm>
+  The <dfn method>select(|options|)</dfn> method, when invoked, runs these steps:
 
-    TODO: Include the algorithm.
-
+  1. Let |promise| be a new {{Promise}}.
+  1. Let |selectQueue| be a new [=parallel queue=].
+  1. If the [=browsing context=] is not the [=top-level browsing context=], then return
+     [=a promise rejected with=] an {{InvalidStateError}} {{DOMException}}.
+  1. If the algorithm is not [=triggered by user activation=] then return
+     [=a promise rejected with=] a {{SecurityError}} {{DOMException}}.
+  1. [=Enqueue the following steps=] to |selectQueue|:
+    1. Let |contacts| be a new [=/list=].
+    1. [=Launch=] a `Contact Picker` with |options|. If this fails, then reject |promise| with an
+       {{InvalidStateError}} {{DOMException}} and abort these steps.
+    1. [=list/For each=] |contact| of the user's chosen contacts:
+      1. Let |contactInfo| be a new {{ContactInfo}}.
+      1. [=list/For each=] |property| of |options|' `property` member:
+        1. Append every string associated with |property| in |contact| to the [=sequence=] named
+           after |property|'s value in |contactInfo|. 
+           TODO: Clarify shared data.
+      1. Append |contactInfo| to |contacts|.
+    1. Resolve |promise| with |contacts|.
+  1. Return |promise|.
 </div>
 
 # Contact Picker # {#contact-picker}
