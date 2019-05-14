@@ -122,8 +122,8 @@ interface ContactsManager {
   1. If the algorithm is not [=triggered by user activation=] then return
      [=a promise rejected with=] a {{SecurityError}} {{DOMException}}.
   1. [=Enqueue the following steps=] to |selectQueue|:
-    1. [=Launch=] a new [=contact picker=] with |options|. If this fails, then reject |promise| with an
-       {{InvalidStateError}} {{DOMException}} and abort these steps.
+    1. [=Launch=] a new [=contact picker=] with [=select options=] set to |options|. If this fails,
+       then reject |promise| with an {{InvalidStateError}} {{DOMException}} and abort these steps.
     1. Wait for [=contact picker=]'s [=selecting flag=] to be unset.
     1. Resolve promise with [=contact picker=]'s [=selected contacts=]. 
   1. Return |promise|.
@@ -134,19 +134,18 @@ interface ContactsManager {
 A <dfn>contact picker</dfn> instance consists of:
 * A <dfn>selecting flag</dfn>, initially set. 
 * <dfn>Selected contacts</dfn> (a [=list=] of {{ContactInfo}}s), initially empty.
+* <dfn>Select options</dfn> (a {{ContactsSelectOptions}}), initially null.
 
 <div dfn-for="contact picker">
 
 <div algorithm>
-  A contact picker MUST be initiated with |options|, an instance of {{ContactsSelectOptions}}.
-
   To <dfn>launch</dfn> a contact picker, the user agent MUST present a user interface that follows
   these rules:
 
   * The UI MUST prominently display the [=browsing context=]'s [=origin=].
   * The UI MUST make it clear which `properties` of the contact will be shared.
-  * The UI MUST provide a way to select individual contacts. If |options|' `multiple` member is
-    false, only one contact should be pickable.
+  * The UI MUST provide a way to select individual contacts. If [=select options=]' `multiple` member
+    is false, only one contact should be pickable.
   * The UI MUST provide an option to cancel/return without sharing any contacts, in which case
     [=abort contact picker=].
   * The UI MUST provide an a way for users to indicate that they are done selecting, in which case
@@ -164,9 +163,14 @@ A <dfn>contact picker</dfn> instance consists of:
 
 <div algorithm>
   To <dfn>complete contact picker</dfn>, run the following steps:
-  1. [=list/For each=] |contact| of the user's chosen contacts:
+  1. [=list/For each=] |selectedContact| of the user's chosen contacts:
     1. Let |contactInfo| be a new {{ContactInfo}}.
-    1. TODO: convert |contact| to an instance of {{ContactInfo}}.
+    1. If [=select options=]' `property` member contains \``name`\`, then:
+      1. Append all name data in |selectedContact| to |contactInfo|'s `name` member.
+    1. If [=select options=]' `property` member contains \``email`\`, then:
+      1. Append all email data in |selectedContact| to |contactInfo|'s `email` member.
+    1. If [=select options=]' `property` member contains \``tel`\`, then:
+      1. Append all email data in |selectedContact| to |contactInfo|'s `tel` member.
     1. Append |contactInfo| to [=selected contacts=].
   1. Unset [=selecting flag=]. 
 </div>
