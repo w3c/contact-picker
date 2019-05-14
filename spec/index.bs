@@ -35,7 +35,31 @@ TODO: Describe differences with other implementations in terms of contact access
 
 ## Example ## {#example}
 
-TODO: Add examples.
+<div class="example">
+  Requesting contacts as a result of a user click.
+
+  <pre class="lang-js">
+    selectRecipientsButton.addEventListener('click', async () => {
+      const contacts = await navigator.contacts.select({
+          properties: ['name', 'email'],
+          multiple: true,
+      });
+
+      if (!contacts.length) {
+        // Either no contacts were selected in the picker, or the picker could
+        // not be launched. Exposure of the API implies expected availability.
+        return;
+      }
+
+      // Use the names and e-mail addresses in |contacts| to populate the
+      // recipients field in the website's UI.
+      populateRecipients(contacts);
+    });
+  </pre>
+
+  In the above example `selectRecipientsButton` is an HTMLButtonElement, and `populateRecipients`
+  is a developer-defined function.
+</div>
 
 # Privacy Considerations # {#privacy}
 

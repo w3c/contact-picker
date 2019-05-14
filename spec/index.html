@@ -1214,7 +1214,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version 30dbdcf66519991ec52011cac10c49a7b5b449c5" name="generator">
   <link href="https://beverloo.github.io/contact-api" rel="canonical">
-  <meta content="4968cd9b2d3e6cea578bd2fa9cafb8b2d2b0b8ae" name="document-revision">
+  <meta content="2b11e2c50d2c1f40e6e7b6cf3ef4575f31ccb0ea" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1557,7 +1557,27 @@ privacy-sensitive, and to give the user control over the shared data.</p>
 their own address book.</p>
    </ul>
    <h3 class="heading settled" data-level="1.2" id="example"><span class="secno">1.2. </span><span class="content">Example</span><a class="self-link" href="#example"></a></h3>
-   <p>TODO: Add examples.</p>
+   <div class="example" id="example-f3073545">
+    <a class="self-link" href="#example-f3073545"></a> Requesting contacts as a result of a user click. 
+<pre class="lang-js highlight">selectRecipientsButton<c- p>.</c->addEventListener<c- p>(</c-><c- t>'click'</c-><c- p>,</c-> async <c- p>()</c-> <c- p>=></c-> <c- p>{</c->
+  <c- kr>const</c-> contacts <c- o>=</c-> await navigator<c- p>.</c->contacts<c- p>.</c->select<c- p>({</c->
+      properties<c- o>:</c-> <c- p>[</c-><c- t>'name'</c-><c- p>,</c-> <c- t>'email'</c-><c- p>],</c->
+      multiple<c- o>:</c-> <c- kc>true</c-><c- p>,</c->
+  <c- p>});</c->
+
+  <c- k>if</c-> <c- p>(</c-><c- o>!</c->contacts<c- p>.</c->length<c- p>)</c-> <c- p>{</c->
+    <c- c1>// Either no contacts were selected in the picker, or the picker could</c->
+    <c- c1>// not be launched. Exposure of the API implies expected availability.</c->
+    <c- k>return</c-><c- p>;</c->
+  <c- p>}</c->
+
+  <c- c1>// Use the names and e-mail addresses in |contacts| to populate the</c->
+  <c- c1>// recipients field in the website’s UI.</c->
+  populateRecipients<c- p>(</c->contacts<c- p>);</c->
+<c- p>});</c->
+</pre>
+    <p>In the above example <code>selectRecipientsButton</code> is an HTMLButtonElement, and <code>populateRecipients</code> is a developer-defined function.</p>
+   </div>
    <h2 class="heading settled" data-level="2" id="privacy"><span class="secno">2. </span><span class="content">Privacy Considerations</span><a class="self-link" href="#privacy"></a></h2>
    <p>Exposing contact information has a clear privacy impact, in terms of exposing PII of uninvolved
 parties. A picker model is enforced so that the user agent can offer a user experience that makes
