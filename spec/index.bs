@@ -122,17 +122,10 @@ interface ContactsManager {
   1. If the algorithm is not [=triggered by user activation=] then return
      [=a promise rejected with=] a {{SecurityError}} {{DOMException}}.
   1. [=Enqueue the following steps=] to |selectQueue|:
-    1. Let |contacts| be a new [=/list=].
     1. [=Launch=] a new [=contact picker=] with |options|. If this fails, then reject |promise| with an
        {{InvalidStateError}} {{DOMException}} and abort these steps.
-    1. [=list/For each=] |contact| of the user's chosen contacts:
-      1. Let |contactInfo| be a new {{ContactInfo}}.
-      1. [=list/For each=] |property| of |options|' `property` member:
-        1. Append every string associated with |property| in |contact| to the [=sequence=] named
-           after |property|'s value in |contactInfo|. 
-           TODO: Clarify shared data.
-      1. Append |contactInfo| to |contacts|.
-    1. Resolve |promise| with |contacts|.
+    1. Wait for [=contact picker=]'s [=selecting flag=] to be unset.
+    1. Resolve promise with [=contact picker=]'s [=selected contacts=]. 
   1. Return |promise|.
 </div>
 
@@ -154,20 +147,28 @@ A <dfn>contact picker</dfn> instance consists of:
   * The UI MUST make it clear which `properties` of the contact will be shared.
   * The UI MUST provide a way to select individual contacts. If |options|' `multiple` member is
     false, only one contact should be pickable.
-  * The UI MUST provide an option to cancel/return without sharing any contacts, in which case [=abort contact picker=] .
-  * The UI MUST provide an a way for users to indicate that they are done selecting, in which case [=complete contact picker=].
+  * The UI MUST provide an option to cancel/return without sharing any contacts, in which case
+    [=abort contact picker=].
+  * The UI MUST provide an a way for users to indicate that they are done selecting, in which case
+    [=complete contact picker=].
 </div>
 
 ## [=Abort contact picker=] ## {#abort-contact-picker-algorithm}
 
 <div algorithm>
-  TODO: Describe <dfn>abort contact picker</dfn>
+  To <dfn>abort contact picker</dfn>, run the following step:
+  1. Unset [=selecting flag=].
 </div>
 
 ## [=Complete contact picker=] ## {#complete-contact-picker-algorithm}
 
 <div algorithm>
-  TODO: Describe <dfn>complete contact picker</dfn>
+  To <dfn>complete contact picker</dfn>, run the following steps:
+  1. [=list/For each=] |contact| of the user's chosen contacts:
+    1. Let |contactInfo| be a new {{ContactInfo}}.
+    1. TODO: convert |contact| to an instance of {{ContactInfo}}.
+    1. Append |contactInfo| to [=selected contacts=].
+  1. Unset [=selecting flag=]. 
 </div>
 
 </div>
