@@ -13,6 +13,7 @@ Indent: 2
 </pre>
 
 <pre class=link-defaults>
+spec:infra; type:dfn; text:list
 spec:html; type:dfn; for:/; text:browsing context
 spec:html; type:dfn; for:/; text:origin
 </pre>
@@ -122,7 +123,7 @@ interface ContactsManager {
      [=a promise rejected with=] a {{SecurityError}} {{DOMException}}.
   1. [=Enqueue the following steps=] to |selectQueue|:
     1. Let |contacts| be a new [=/list=].
-    1. [=Launch=] a `Contact Picker` with |options|. If this fails, then reject |promise| with an
+    1. [=Launch=] a new [=contact picker=] with |options|. If this fails, then reject |promise| with an
        {{InvalidStateError}} {{DOMException}} and abort these steps.
     1. [=list/For each=] |contact| of the user's chosen contacts:
       1. Let |contactInfo| be a new {{ContactInfo}}.
@@ -137,17 +138,36 @@ interface ContactsManager {
 
 # Contact Picker # {#contact-picker}
 
+A <dfn>contact picker</dfn> instance consists of:
+* A <dfn>selecting flag</dfn>, initially set. 
+* <dfn>Selected contacts</dfn> (a [=list=] of {{ContactInfo}}s), initially empty.
+
+<div dfn-for="contact picker">
+
 <div algorithm>
+  A contact picker MUST be initiated with |options|, an instance of {{ContactsSelectOptions}}.
 
-A contact picker MUST be initiated with |options|, an instance of {{ContactsSelectOptions}}.
+  To <dfn>launch</dfn> a contact picker, the user agent MUST present a user interface that follows
+  these rules:
 
-To <dfn>launch</dfn> a contact picker, the user agent MUST present a user interface that follows
-these rules:
+  * The UI MUST prominently display the [=browsing context=]'s [=origin=].
+  * The UI MUST make it clear which `properties` of the contact will be shared.
+  * The UI MUST provide a way to select individual contacts. If |options|' `multiple` member is
+    false, only one contact should be pickable.
+  * The UI MUST provide an option to cancel/return without sharing any contacts, in which case [=abort contact picker=] .
+  * The UI MUST provide an a way for users to indicate that they are done selecting, in which case [=complete contact picker=].
+</div>
 
-* The UI MUST prominently display the [=browsing context=]'s [=origin=].
-* The UI MUST make it clear which `properties` of the contact will be shared.
-* The UI MUST provide an option to cancel/return without sharing any contacts.
-* If |options|' `multiple` member is false, only one contact should be pickable.
-* Only properties included in |options|' `properties` can be returned.
+## [=Abort contact picker=] ## {#abort-contact-picker-algorithm}
+
+<div algorithm>
+  TODO: Describe <dfn>abort contact picker</dfn>
+</div>
+
+## [=Complete contact picker=] ## {#complete-contact-picker-algorithm}
+
+<div algorithm>
+  TODO: Describe <dfn>complete contact picker</dfn>
+</div>
 
 </div>
