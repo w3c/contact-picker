@@ -1214,7 +1214,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version 30dbdcf66519991ec52011cac10c49a7b5b449c5" name="generator">
   <link href="https://beverloo.github.io/contact-api/spec" rel="canonical">
-  <meta content="e5be5f4d5b2eb04351021bdeb234fd50c64f88d1" name="document-revision">
+  <meta content="f097b2cd53623ee5628fb4ac895ab3fa1689e67e" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1472,7 +1472,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Contact Picker API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Unofficial Proposal Draft, <time class="dt-updated" datetime="2019-05-14">14 May 2019</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Unofficial Proposal Draft, <time class="dt-updated" datetime="2019-05-15">15 May 2019</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1562,8 +1562,8 @@ privacy-sensitive, and to give the user control over the shared data.</p>
 their own address book.</p>
    </ul>
    <h3 class="heading settled" data-level="1.2" id="example"><span class="secno">1.2. </span><span class="content">Example</span><a class="self-link" href="#example"></a></h3>
-   <div class="example" id="example-f3073545">
-    <a class="self-link" href="#example-f3073545"></a> Requesting contacts as a result of a user click. 
+   <div class="example" id="example-1faab948">
+    <a class="self-link" href="#example-1faab948"></a> Requesting contacts as a result of a user click. 
 <pre class="lang-js highlight">selectRecipientsButton<c- p>.</c->addEventListener<c- p>(</c-><c- t>'click'</c-><c- p>,</c-> async <c- p>()</c-> <c- p>=></c-> <c- p>{</c->
   <c- kr>const</c-> contacts <c- o>=</c-> await navigator<c- p>.</c->contacts<c- p>.</c->select<c- p>({</c->
       properties<c- o>:</c-> <c- p>[</c-><c- t>'name'</c-><c- p>,</c-> <c- t>'email'</c-><c- p>],</c->
@@ -1581,7 +1581,7 @@ their own address book.</p>
   populateRecipients<c- p>(</c->contacts<c- p>);</c->
 <c- p>});</c->
 </pre>
-    <p>In the above example <code>selectRecipientsButton</code> is an HTMLButtonElement, and <code>populateRecipients</code> is a developer-defined function.</p>
+    <p>In the above example <code>selectRecipientsButton</code> is a <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/form-elements.html#htmlbuttonelement" id="ref-for-htmlbuttonelement">HTMLButtonElement</a></code>, and <code>populateRecipients</code> is a developer-defined function.</p>
    </div>
    <h2 class="heading settled" data-level="2" id="privacy"><span class="secno">2. </span><span class="content">Privacy Considerations</span><a class="self-link" href="#privacy"></a></h2>
    <p>Exposing contact information has a clear privacy impact, in terms of exposing PII of uninvolved
@@ -1696,26 +1696,29 @@ is false, only one contact should be pickable.</p>
          <li data-md>
           <p>Let <var>contactInfo</var> be a new <code class="idl"><a data-link-type="idl" href="#dictdef-contactinfo" id="ref-for-dictdef-contactinfo②">ContactInfo</a></code>.</p>
          <li data-md>
-          <p>If <a data-link-type="dfn" href="#contactsmanager-select-options" id="ref-for-contactsmanager-select-options②">select options</a>' <code>property</code> member contains `<code>name</code>`, then:</p>
+          <p>If <a data-link-type="dfn" href="#contactsmanager-select-options" id="ref-for-contactsmanager-select-options②">select options</a>' <code>property</code> member <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain">contains</a> `<code>name</code>`, then:</p>
           <ol>
            <li data-md>
             <p>Append all name data in <var>selectedContact</var> to <var>contactInfo</var>’s <code>name</code> member.</p>
           </ol>
          <li data-md>
-          <p>If <a data-link-type="dfn" href="#contactsmanager-select-options" id="ref-for-contactsmanager-select-options③">select options</a>' <code>property</code> member contains `<code>email</code>`, then:</p>
+          <p>If <a data-link-type="dfn" href="#contactsmanager-select-options" id="ref-for-contactsmanager-select-options③">select options</a>' <code>property</code> member <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain①">contains</a> `<code>email</code>`, then:</p>
           <ol>
            <li data-md>
             <p>Append all email data in <var>selectedContact</var> to <var>contactInfo</var>’s <code>email</code> member.</p>
           </ol>
          <li data-md>
-          <p>If <a data-link-type="dfn" href="#contactsmanager-select-options" id="ref-for-contactsmanager-select-options④">select options</a>' <code>property</code> member contains `<code>tel</code>`, then:</p>
+          <p>If <a data-link-type="dfn" href="#contactsmanager-select-options" id="ref-for-contactsmanager-select-options④">select options</a>' <code>property</code> member <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain②">contains</a> `<code>tel</code>`, then:</p>
           <ol>
            <li data-md>
-            <p>Append all email data in <var>selectedContact</var> to <var>contactInfo</var>’s <code>tel</code> member.</p>
+            <p>Append all telephone data in <var>selectedContact</var> to <var>contactInfo</var>’s <code>tel</code> member.</p>
           </ol>
          <li data-md>
           <p>Append <var>contactInfo</var> to <a data-link-type="dfn" href="#contactsmanager-selected-contacts" id="ref-for-contactsmanager-selected-contacts①">selected contacts</a>.</p>
         </ol>
+       <li data-md>
+        <p>If <a data-link-type="dfn" href="#contactsmanager-select-options" id="ref-for-contactsmanager-select-options⑤">select options</a>' <code>multiple</code> member is false, and <a data-link-type="dfn" href="#contactsmanager-selected-contacts" id="ref-for-contactsmanager-selected-contacts②">selected contacts</a>' <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-size" id="ref-for-list-size">size</a> is
+ greater than 1, then <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-remove" id="ref-for-list-remove">remove</a> all items not equal to <a data-link-type="dfn" href="#contactsmanager-selected-contacts" id="ref-for-contactsmanager-selected-contacts③">selected contacts</a><code>[0]</code>.</p>
        <li data-md>
         <p>Unset <a data-link-type="dfn" href="#contactsmanager-selecting-flag" id="ref-for-contactsmanager-selecting-flag②">selecting flag</a>.</p>
       </ol>
@@ -1894,6 +1897,12 @@ is false, only one contact should be pickable.</p>
    <li><a href="#dom-contactinfo-tel">tel</a><span>, in §3.2</span>
    <li><a href="#dom-contactproperty-tel">"tel"</a><span>, in §3.2</span>
   </ul>
+  <aside class="dfn-panel" data-for="term-for-htmlbuttonelement">
+   <a href="https://html.spec.whatwg.org/multipage/form-elements.html#htmlbuttonelement">https://html.spec.whatwg.org/multipage/form-elements.html#htmlbuttonelement</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-htmlbuttonelement">1.2. Example</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-navigator">
    <a href="https://html.spec.whatwg.org/multipage/system-state.html#navigator">https://html.spec.whatwg.org/multipage/system-state.html#navigator</a><b>Referenced in:</b>
    <ul>
@@ -1938,6 +1947,12 @@ is false, only one contact should be pickable.</p>
     <li><a href="#ref-for-triggered-by-user-activation">3.2.1. select()</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="term-for-list-contain">
+   <a href="https://infra.spec.whatwg.org/#list-contain">https://infra.spec.whatwg.org/#list-contain</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-list-contain">4.2. Complete contact picker</a> <a href="#ref-for-list-contain①">(2)</a> <a href="#ref-for-list-contain②">(3)</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-list-iterate">
    <a href="https://infra.spec.whatwg.org/#list-iterate">https://infra.spec.whatwg.org/#list-iterate</a><b>Referenced in:</b>
    <ul>
@@ -1948,6 +1963,18 @@ is false, only one contact should be pickable.</p>
    <a href="https://infra.spec.whatwg.org/#list">https://infra.spec.whatwg.org/#list</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-list">4. Contact Picker</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-list-remove">
+   <a href="https://infra.spec.whatwg.org/#list-remove">https://infra.spec.whatwg.org/#list-remove</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-list-remove">4.2. Complete contact picker</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-list-size">
+   <a href="https://infra.spec.whatwg.org/#list-size">https://infra.spec.whatwg.org/#list-size</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-list-size">4.2. Complete contact picker</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-a-promise-rejected-with">
@@ -2010,6 +2037,7 @@ is false, only one contact should be pickable.</p>
    <li>
     <a data-link-type="biblio">[HTML]</a> defines the following terms:
     <ul>
+     <li><span class="dfn-paneled" id="term-for-htmlbuttonelement" style="color:initial">HTMLButtonElement</span>
      <li><span class="dfn-paneled" id="term-for-navigator" style="color:initial">Navigator</span>
      <li><span class="dfn-paneled" id="term-for-browsing-context" style="color:initial">browsing context</span>
      <li><span class="dfn-paneled" id="term-for-enqueue-the-following-steps" style="color:initial">enqueue the following steps</span>
@@ -2021,8 +2049,11 @@ is false, only one contact should be pickable.</p>
    <li>
     <a data-link-type="biblio">[INFRA]</a> defines the following terms:
     <ul>
+     <li><span class="dfn-paneled" id="term-for-list-contain" style="color:initial">contain</span>
      <li><span class="dfn-paneled" id="term-for-list-iterate" style="color:initial">for each</span>
      <li><span class="dfn-paneled" id="term-for-list" style="color:initial">list</span>
+     <li><span class="dfn-paneled" id="term-for-list-remove" style="color:initial">remove</span>
+     <li><span class="dfn-paneled" id="term-for-list-size" style="color:initial">size</span>
     </ul>
    <li>
     <a data-link-type="biblio">[promises-guide]</a> defines the following terms:
@@ -2140,7 +2171,7 @@ is false, only one contact should be pickable.</p>
    <b><a href="#contactsmanager-selected-contacts">#contactsmanager-selected-contacts</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-contactsmanager-selected-contacts">3.2.1. select()</a>
-    <li><a href="#ref-for-contactsmanager-selected-contacts①">4.2. Complete contact picker</a>
+    <li><a href="#ref-for-contactsmanager-selected-contacts①">4.2. Complete contact picker</a> <a href="#ref-for-contactsmanager-selected-contacts②">(2)</a> <a href="#ref-for-contactsmanager-selected-contacts③">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="contactsmanager-select-options">
@@ -2148,7 +2179,7 @@ is false, only one contact should be pickable.</p>
    <ul>
     <li><a href="#ref-for-contactsmanager-select-options">3.2.1. select()</a>
     <li><a href="#ref-for-contactsmanager-select-options①">4. Contact Picker</a>
-    <li><a href="#ref-for-contactsmanager-select-options②">4.2. Complete contact picker</a> <a href="#ref-for-contactsmanager-select-options③">(2)</a> <a href="#ref-for-contactsmanager-select-options④">(3)</a>
+    <li><a href="#ref-for-contactsmanager-select-options②">4.2. Complete contact picker</a> <a href="#ref-for-contactsmanager-select-options③">(2)</a> <a href="#ref-for-contactsmanager-select-options④">(3)</a> <a href="#ref-for-contactsmanager-select-options⑤">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="contact-picker-launch">

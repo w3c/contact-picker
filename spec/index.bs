@@ -14,6 +14,9 @@ Indent: 2
 
 <pre class=link-defaults>
 spec:infra; type:dfn; text:list
+spec:infra; type:dfn; for:list; text:contains
+spec:infra; type:dfn; for:list; text:remove
+spec:infra; type:dfn; for:list; text:size
 spec:html; type:dfn; for:/; text:browsing context
 spec:html; type:dfn; for:/; text:origin
 </pre>
@@ -58,7 +61,7 @@ TODO: Describe differences with other implementations in terms of contact access
     });
   </pre>
 
-  In the above example `selectRecipientsButton` is an HTMLButtonElement, and `populateRecipients`
+  In the above example `selectRecipientsButton` is a {{HTMLButtonElement}}, and `populateRecipients`
   is a developer-defined function.
 </div>
 
@@ -165,13 +168,15 @@ A <dfn>contact picker</dfn> instance consists of:
   To <dfn>complete contact picker</dfn>, run the following steps:
   1. [=list/For each=] |selectedContact| of the user's chosen contacts:
     1. Let |contactInfo| be a new {{ContactInfo}}.
-    1. If [=select options=]' `property` member contains \``name`\`, then:
+    1. If [=select options=]' `property` member [=contains=] \``name`\`, then:
       1. Append all name data in |selectedContact| to |contactInfo|'s `name` member.
-    1. If [=select options=]' `property` member contains \``email`\`, then:
+    1. If [=select options=]' `property` member [=contains=] \``email`\`, then:
       1. Append all email data in |selectedContact| to |contactInfo|'s `email` member.
-    1. If [=select options=]' `property` member contains \``tel`\`, then:
-      1. Append all email data in |selectedContact| to |contactInfo|'s `tel` member.
+    1. If [=select options=]' `property` member [=contains=] \``tel`\`, then:
+      1. Append all telephone data in |selectedContact| to |contactInfo|'s `tel` member.
     1. Append |contactInfo| to [=selected contacts=].
+  1. If [=select options=]' `multiple` member is false, and [=selected contacts=]' [=size=] is
+     greater than 1, then [=remove=] all items not equal to [=selected contacts=]`[0]`.
   1. Unset [=selecting flag=]. 
 </div>
 
