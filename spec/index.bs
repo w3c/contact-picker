@@ -127,7 +127,7 @@ interface ContactsManager {
   1. [=Enqueue the following steps=] to |selectQueue|:
     1. [=Launch=] a new [=contact picker=] with [=select options=] set to |options|. If this fails,
        then reject |promise| with an {{InvalidStateError}} {{DOMException}} and abort these steps.
-    1. Wait for [=contact picker=]'s [=selecting flag=] to be unset.
+    1. Wait for [=contact picker=]'s [=contacts selected flag=] to be set.
     1. Resolve promise with [=contact picker=]'s [=selected contacts=]. 
   1. Return |promise|.
 </div>
@@ -135,7 +135,7 @@ interface ContactsManager {
 # Contact Picker # {#contact-picker}
 
 A <dfn>contact picker</dfn> instance consists of:
-* A <dfn>selecting flag</dfn>, initially set. 
+* A <dfn>contacts selected flag</dfn>, initially unset. 
 * <dfn>Selected contacts</dfn> (a [=list=] of {{ContactInfo}}s), initially empty.
 * <dfn>Select options</dfn> (a {{ContactsSelectOptions}}), initially null.
 
@@ -149,17 +149,10 @@ A <dfn>contact picker</dfn> instance consists of:
   * The UI MUST make it clear which `properties` of the contact will be shared.
   * The UI MUST provide a way to select individual contacts. If [=select options=]' `multiple` member
     is false, only one contact should be pickable.
-  * The UI MUST provide an option to cancel/return without sharing any contacts, in which case
-    [=abort contact picker=].
+  * The UI MUST provide an option to cancel/return without sharing any contacts, in which case set
+    [=contacts selected flag=].
   * The UI MUST provide an a way for users to indicate that they are done selecting, in which case
     [=complete contact picker=].
-</div>
-
-## [=Abort contact picker=] ## {#abort-contact-picker-algorithm}
-
-<div algorithm>
-  To <dfn>abort contact picker</dfn>, run the following step:
-  1. Unset [=selecting flag=].
 </div>
 
 ## [=Complete contact picker=] ## {#complete-contact-picker-algorithm}
@@ -177,7 +170,7 @@ A <dfn>contact picker</dfn> instance consists of:
     1. Append |contactInfo| to [=selected contacts=].
   1. If [=select options=]' `multiple` member is false, and [=selected contacts=]' [=size=] is
      greater than 1, then [=remove=] all items not equal to [=selected contacts=]`[0]`.
-  1. Unset [=selecting flag=]. 
+  1. Set [=contacts selected flag=]. 
 </div>
 
 </div>
