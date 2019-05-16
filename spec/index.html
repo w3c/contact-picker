@@ -1214,7 +1214,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version 30dbdcf66519991ec52011cac10c49a7b5b449c5" name="generator">
   <link href="https://beverloo.github.io/contact-api/spec" rel="canonical">
-  <meta content="186969dced2ed36cade04ab268b9ef8f1d2e2e70" name="document-revision">
+  <meta content="e3f3fe6763acf4f3e3a4f9d5bba019241f69db2b" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1549,9 +1549,11 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
    <h2 class="heading settled" data-level="1" id="intro"><span class="secno">1. </span><span class="content">Introduction</span><a class="self-link" href="#intro"></a></h2>
    <p>Contact pickers are frequently seen in native mobile applications for a variety of use cases, and
 in various desktop applications such as e-mail clients and calendars.</p>
-   <p>This specification provides an API to bring contact pickers to the web. The API is designed to be
-privacy-sensitive, and to give the user control over the shared data.</p>
-   <p>TODO: Describe differences with other implementations in terms of contact access.</p>
+   <p>This specification provides an API to bring contact pickers to the web. The contact picker model
+was chosen to give full control to users over the shared data, allowing users to choose exactly
+which contacts to provide to the website. The contact picker model also gives websites one-off
+access to a user’s contacts, meaning developers have to request access to the user’s contacts every
+time they need it.</p>
    <h3 class="heading settled" data-level="1.1" id="use-cases"><span class="secno">1.1. </span><span class="content">Use cases</span><a class="self-link" href="#use-cases"></a></h3>
    <ul>
     <li data-md>
@@ -1585,7 +1587,7 @@ their own address book.</p>
    <h2 class="heading settled" data-level="2" id="privacy"><span class="secno">2. </span><span class="content">Privacy Considerations</span><a class="self-link" href="#privacy"></a></h2>
    <p>Exposing contact information has a clear privacy impact, in terms of exposing PII of uninvolved
 parties. A picker model is enforced so that the user agent can offer a user experience that makes
-it clear what information is going to be shared with the website.</p>
+it clear what information is going to be shared with the website and when.</p>
    <p>The following constraints are also enforced:</p>
    <ul>
     <li data-md>
@@ -1713,6 +1715,7 @@ is false, only one contact should be pickable.</p>
        <li data-md>
         <p>Set <a data-link-type="dfn" href="#contactsmanager-contacts-selected-flag" id="ref-for-contactsmanager-contacts-selected-flag②">contacts selected flag</a>.</p>
       </ol>
+      <p>TODO: Add more details about shared contact info.</p>
      </div>
     </div>
    </div>

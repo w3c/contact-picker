@@ -26,10 +26,11 @@ spec:html; type:dfn; for:/; text:origin
 Contact pickers are frequently seen in native mobile applications for a variety of use cases, and
 in various desktop applications such as e-mail clients and calendars.
 
-This specification provides an API to bring contact pickers to the web. The API is designed to be
-privacy-sensitive, and to give the user control over the shared data.
-
-TODO: Describe differences with other implementations in terms of contact access.
+This specification provides an API to bring contact pickers to the web. The contact picker model
+was chosen to give full control to users over the shared data, allowing users to choose exactly
+which contacts to provide to the website. The contact picker model also gives websites one-off
+access to a user's contacts, meaning developers have to request access to the user's contacts every
+time they need it.
 
 ## Use cases ## {#use-cases}
 
@@ -69,7 +70,7 @@ TODO: Describe differences with other implementations in terms of contact access
 
 Exposing contact information has a clear privacy impact, in terms of exposing PII of uninvolved
 parties. A picker model is enforced so that the user agent can offer a user experience that makes
-it clear what information is going to be shared with the website.
+it clear what information is going to be shared with the website and when.
 
 The following constraints are also enforced:
 * The API is only available in a [=top-level browsing context=] which must also be a
@@ -171,6 +172,8 @@ A <dfn>contact picker</dfn> instance consists of:
   1. If [=select options=]' `multiple` member is false, and [=selected contacts=]' [=size=] is
      greater than 1, then [=remove=] all items not equal to [=selected contacts=]`[0]`.
   1. Set [=contacts selected flag=]. 
+
+  TODO: Add more details about shared contact info.
 </div>
 
 </div>
