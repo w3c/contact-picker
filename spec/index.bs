@@ -140,6 +140,9 @@ A <dfn>contact picker</dfn> instance consists of:
 * <dfn>Selected contacts</dfn> (a [=list=] of {{ContactInfo}}s), initially empty.
 * <dfn>Select options</dfn> (a {{ContactsSelectOptions}}), initially undefined.
 
+Note: It is up to the user agent to choose the source of the contact information displayed in the
+picker.
+
 <div dfn-for="contact picker">
 
 <div algorithm>
