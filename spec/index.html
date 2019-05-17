@@ -1214,7 +1214,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version 30dbdcf66519991ec52011cac10c49a7b5b449c5" name="generator">
   <link href="https://beverloo.github.io/contact-api/spec" rel="canonical">
-  <meta content="e3f3fe6763acf4f3e3a4f9d5bba019241f69db2b" name="document-revision">
+  <meta content="5fd99a04b5420fa75a836fd739831bba5e2f4c53" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1472,7 +1472,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Contact Picker API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Unofficial Proposal Draft, <time class="dt-updated" datetime="2019-05-16">16 May 2019</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Unofficial Proposal Draft, <time class="dt-updated" datetime="2019-05-17">17 May 2019</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1549,18 +1549,18 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
    <h2 class="heading settled" data-level="1" id="intro"><span class="secno">1. </span><span class="content">Introduction</span><a class="self-link" href="#intro"></a></h2>
    <p>Contact pickers are frequently seen in native mobile applications for a variety of use cases, and
 in various desktop applications such as e-mail clients and calendars.</p>
-   <p>This specification provides an API to bring contact pickers to the web. The contact picker model
+   <p>This specification defines an API to bring contact pickers to the web. The contact picker model
 was chosen to give full control to users over the shared data, allowing users to choose exactly
 which contacts to provide to the website. The contact picker model also gives websites one-off
 access to a user’s contacts, meaning developers have to request access to the user’s contacts every
-time they need it.</p>
+time they need it. This differs from some native contact APIs, but is necessary for ensuring users'
+contacts are not accessed without their knowledge and explicit consent.</p>
    <h3 class="heading settled" data-level="1.1" id="use-cases"><span class="secno">1.1. </span><span class="content">Use cases</span><a class="self-link" href="#use-cases"></a></h3>
    <ul>
     <li data-md>
-     <p>Social networks could use contact information to bootstrap a user’s social graph.</p>
+     <p>Bootstrapping a user’s social graph for social networks.</p>
     <li data-md>
-     <p>An e-mail application could allow the user to select the recipients for a message without needing
-their own address book.</p>
+     <p>Selecting the recipients of a message within an e-mail application.</p>
    </ul>
    <h3 class="heading settled" data-level="1.2" id="example"><span class="secno">1.2. </span><span class="content">Example</span><a class="self-link" href="#example"></a></h3>
    <div class="example" id="example-1faab948">
@@ -1591,8 +1591,8 @@ it clear what information is going to be shared with the website and when.</p>
    <p>The following constraints are also enforced:</p>
    <ul>
     <li data-md>
-     <p>The API is only available in a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context" id="ref-for-top-level-browsing-context">top-level browsing context</a> which must also be a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#secure-contexts" id="ref-for-secure-contexts">secure context</a>. These restrictions ensure that the provided contact information reaches its
-intended recipient.</p>
+     <p>The API is only available in a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context" id="ref-for-top-level-browsing-context">top-level browsing context</a> which must also be a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#secure-contexts" id="ref-for-secure-contexts">secure context</a>. These restrictions help ensure that the provided contact information reaches
+its intended recipient.</p>
     <li data-md>
      <p>A user gesture is needed to initiate the API, to disallow programmatic requests to the user’s
 contacts.</p>
@@ -1633,7 +1633,7 @@ contacts.</p>
       <li data-md>
        <p>Let <var>selectQueue</var> be a new <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#parallel-queue" id="ref-for-parallel-queue">parallel queue</a>.</p>
       <li data-md>
-       <p>If the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context">browsing context</a> is not the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context" id="ref-for-top-level-browsing-context①">top-level browsing context</a>, then return <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#a-promise-rejected-with" id="ref-for-a-promise-rejected-with">a promise rejected with</a> an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror">InvalidStateError</a></code> <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException">DOMException</a></code>.</p>
+       <p>If the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context">browsing context</a> is not a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context" id="ref-for-top-level-browsing-context①">top-level browsing context</a>, then return <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#a-promise-rejected-with" id="ref-for-a-promise-rejected-with">a promise rejected with</a> an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror">InvalidStateError</a></code> <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException">DOMException</a></code>.</p>
       <li data-md>
        <p>If the algorithm is not <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#triggered-by-user-activation" id="ref-for-triggered-by-user-activation">triggered by user activation</a> then return <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#a-promise-rejected-with" id="ref-for-a-promise-rejected-with①">a promise rejected with</a> a <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#securityerror" id="ref-for-securityerror">SecurityError</a></code> <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException①">DOMException</a></code>.</p>
       <li data-md>
@@ -1659,7 +1659,7 @@ contacts.</p>
      <li data-md>
       <p><dfn class="dfn-paneled" data-dfn-for="ContactsManager" data-dfn-type="dfn" data-noexport id="contactsmanager-selected-contacts">Selected contacts</dfn> (a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list">list</a> of <code class="idl"><a data-link-type="idl" href="#dictdef-contactinfo" id="ref-for-dictdef-contactinfo①">ContactInfo</a></code>s), initially empty.</p>
      <li data-md>
-      <p><dfn class="dfn-paneled" data-dfn-for="ContactsManager" data-dfn-type="dfn" data-noexport id="contactsmanager-select-options">Select options</dfn> (a <code class="idl"><a data-link-type="idl" href="#dictdef-contactsselectoptions" id="ref-for-dictdef-contactsselectoptions①">ContactsSelectOptions</a></code>), initially null.</p>
+      <p><dfn class="dfn-paneled" data-dfn-for="ContactsManager" data-dfn-type="dfn" data-noexport id="contactsmanager-select-options">Select options</dfn> (a <code class="idl"><a data-link-type="idl" href="#dictdef-contactsselectoptions" id="ref-for-dictdef-contactsselectoptions①">ContactsSelectOptions</a></code>), initially undefined.</p>
     </ul>
     <div>
      <div class="algorithm" data-algorithm="launch">

@@ -26,17 +26,17 @@ spec:html; type:dfn; for:/; text:origin
 Contact pickers are frequently seen in native mobile applications for a variety of use cases, and
 in various desktop applications such as e-mail clients and calendars.
 
-This specification provides an API to bring contact pickers to the web. The contact picker model
+This specification defines an API to bring contact pickers to the web. The contact picker model
 was chosen to give full control to users over the shared data, allowing users to choose exactly
 which contacts to provide to the website. The contact picker model also gives websites one-off
 access to a user's contacts, meaning developers have to request access to the user's contacts every
-time they need it.
+time they need it. This differs from some native contact APIs, but is necessary for ensuring users'
+contacts are not accessed without their knowledge and explicit consent.
 
 ## Use cases ## {#use-cases}
 
-* Social networks could use contact information to bootstrap a user's social graph.
-* An e-mail application could allow the user to select the recipients for a message without needing
-  their own address book.
+* Bootstrapping a user's social graph for social networks.
+* Selecting the recipients of a message within an e-mail application.
 
 ## Example ## {#example}
 
@@ -74,8 +74,8 @@ it clear what information is going to be shared with the website and when.
 
 The following constraints are also enforced:
 * The API is only available in a [=top-level browsing context=] which must also be a
-  [=secure context=]. These restrictions ensure that the provided contact information reaches its
-  intended recipient.
+  [=secure context=]. These restrictions help ensure that the provided contact information reaches
+  its intended recipient.
 * A user gesture is needed to initiate the API, to disallow programmatic requests to the user's
   contacts.
 
@@ -121,7 +121,7 @@ interface ContactsManager {
 
   1. Let |promise| be a new {{Promise}}.
   1. Let |selectQueue| be a new [=parallel queue=].
-  1. If the [=browsing context=] is not the [=top-level browsing context=], then return
+  1. If the [=browsing context=] is not a [=top-level browsing context=], then return
      [=a promise rejected with=] an {{InvalidStateError}} {{DOMException}}.
   1. If the algorithm is not [=triggered by user activation=] then return
      [=a promise rejected with=] a {{SecurityError}} {{DOMException}}.
@@ -138,7 +138,7 @@ interface ContactsManager {
 A <dfn>contact picker</dfn> instance consists of:
 * A <dfn>contacts selected flag</dfn>, initially unset. 
 * <dfn>Selected contacts</dfn> (a [=list=] of {{ContactInfo}}s), initially empty.
-* <dfn>Select options</dfn> (a {{ContactsSelectOptions}}), initially null.
+* <dfn>Select options</dfn> (a {{ContactsSelectOptions}}), initially undefined.
 
 <div dfn-for="contact picker">
 
