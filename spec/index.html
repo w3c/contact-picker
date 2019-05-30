@@ -1214,7 +1214,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version 30dbdcf66519991ec52011cac10c49a7b5b449c5" name="generator">
   <link href="https://beverloo.github.io/contact-api/spec" rel="canonical">
-  <meta content="1783682958337fc4daef58a5431232245981b4c1" name="document-revision">
+  <meta content="48cc8dc6d5783762ace6c4d29b73725bd6e374b0" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1604,6 +1604,7 @@ contacts.</p>
     <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#contactsmanager" id="ref-for-contactsmanager"><c- n>ContactsManager</c-></a> <dfn class="idl-code" data-dfn-for="Navigator" data-dfn-type="attribute" data-export data-readonly data-type="ContactsManager" id="dom-navigator-contacts"><code><c- g>contacts</c-></code><a class="self-link" href="#dom-navigator-contacts"></a></dfn>;
 };
 </pre>
+   <p>The <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context">browsing context</a> has a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="contact-picker-is-showing-flag">contact picker is showing flag</dfn>, initially unset.</p>
    <h3 class="heading settled" data-level="3.2" id="contacts-manager"><span class="secno">3.2. </span><span class="content"><code class="idl"><a data-link-type="idl" href="#contactsmanager" id="ref-for-contactsmanager①">ContactsManager</a></code></span><a class="self-link" href="#contacts-manager"></a></h3>
 <pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-contactinfo"><code><c- g>ContactInfo</c-></code></dfn> {
     <c- b>sequence</c->&lt;<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-USVString" id="ref-for-idl-USVString"><c- b>USVString</c-></a>> <dfn class="idl-code" data-dfn-for="ContactInfo" data-dfn-type="dict-member" data-export data-type="sequence<USVString> " id="dom-contactinfo-name"><code><c- g>name</c-></code><a class="self-link" href="#dom-contactinfo-name"></a></dfn>;
@@ -1631,19 +1632,31 @@ contacts.</p>
       <li data-md>
        <p>Let <var>promise</var> be a new <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-promise" id="ref-for-idl-promise">Promise</a></code>.</p>
       <li data-md>
-       <p>If the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context">browsing context</a> is not a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context" id="ref-for-top-level-browsing-context①">top-level browsing context</a>, then return <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#a-promise-rejected-with" id="ref-for-a-promise-rejected-with">a promise rejected with</a> an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror">InvalidStateError</a></code> <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException">DOMException</a></code>.</p>
+       <p>If the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context①">browsing context</a> is not a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context" id="ref-for-top-level-browsing-context①">top-level browsing context</a>, then return <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#a-promise-rejected-with" id="ref-for-a-promise-rejected-with">a promise rejected with</a> an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror">InvalidStateError</a></code> <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException">DOMException</a></code>.</p>
       <li data-md>
        <p>If the algorithm is not <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#triggered-by-user-activation" id="ref-for-triggered-by-user-activation">triggered by user activation</a> then return <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#a-promise-rejected-with" id="ref-for-a-promise-rejected-with①">a promise rejected with</a> a <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#securityerror" id="ref-for-securityerror">SecurityError</a></code> <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException①">DOMException</a></code>.</p>
+      <li data-md>
+       <p>If <a data-link-type="dfn" href="#contact-picker-is-showing-flag" id="ref-for-contact-picker-is-showing-flag">contact picker is showing flag</a> is set then return <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#a-promise-rejected-with" id="ref-for-a-promise-rejected-with②">a promise rejected with</a> a <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror①">InvalidStateError</a></code> <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException②">DOMException</a></code>.</p>
+      <li data-md>
+       <p>Set <a data-link-type="dfn" href="#contact-picker-is-showing-flag" id="ref-for-contact-picker-is-showing-flag①">contact picker is showing flag</a>.</p>
       <li data-md>
        <p>Run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel">in parallel</a>:</p>
        <ol>
         <li data-md>
          <p><a data-link-type="dfn" href="#contact-picker-launch" id="ref-for-contact-picker-launch">Launch</a> a new <a data-link-type="dfn" href="#contactsmanager-contact-picker" id="ref-for-contactsmanager-contact-picker">contact picker</a> with <a data-link-type="dfn" href="#contactsmanager-select-options" id="ref-for-contactsmanager-select-options">select options</a> set to <var>options</var>. If this fails,
- then reject <var>promise</var> with an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror①">InvalidStateError</a></code> <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException②">DOMException</a></code> and abort these steps.</p>
+ then:</p>
+         <ol>
+          <li data-md>
+           <p>Reject <var>promise</var> with an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror②">InvalidStateError</a></code> <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException③">DOMException</a></code>.</p>
+          <li data-md>
+           <p>Unset Set <a data-link-type="dfn" href="#contact-picker-is-showing-flag" id="ref-for-contact-picker-is-showing-flag②">contact picker is showing flag</a>.</p>
+          <li data-md>
+           <p>Abort these steps.</p>
+         </ol>
         <li data-md>
          <p>Wait for <a data-link-type="dfn" href="#contactsmanager-contact-picker" id="ref-for-contactsmanager-contact-picker①">contact picker</a>'s <a data-link-type="dfn" href="#contactsmanager-contacts-selected-flag" id="ref-for-contactsmanager-contacts-selected-flag">contacts selected flag</a> to be set.</p>
         <li data-md>
-         <p>Resolve promise with <a data-link-type="dfn" href="#contactsmanager-contact-picker" id="ref-for-contactsmanager-contact-picker②">contact picker</a>'s <a data-link-type="dfn" href="#contactsmanager-selected-contacts" id="ref-for-contactsmanager-selected-contacts">selected contacts</a>.</p>
+         <p>Resolve <var>promise</var> with <a data-link-type="dfn" href="#contactsmanager-contact-picker" id="ref-for-contactsmanager-contact-picker②">contact picker</a>'s <a data-link-type="dfn" href="#contactsmanager-selected-contacts" id="ref-for-contactsmanager-selected-contacts">selected contacts</a>.</p>
        </ol>
       <li data-md>
        <p>Return <var>promise</var>.</p>
@@ -1667,7 +1680,7 @@ picker.</p>
   these rules: 
       <ul>
        <li data-md>
-        <p>The UI MUST prominently display the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context①">browsing context</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#concept-origin" id="ref-for-concept-origin">origin</a>.</p>
+        <p>The UI MUST prominently display the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context②">browsing context</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#concept-origin" id="ref-for-concept-origin">origin</a>.</p>
        <li data-md>
         <p>The UI MUST make it clear which <code>properties</code> of the contact will be shared.</p>
        <li data-md>
@@ -1872,6 +1885,7 @@ is false, only one contact should be pickable.</p>
    <li><a href="#contact-picker-complete-contact-picker">complete contact picker</a><span>, in §4.1</span>
    <li><a href="#dictdef-contactinfo">ContactInfo</a><span>, in §3.2</span>
    <li><a href="#contactsmanager-contact-picker">contact picker</a><span>, in §4</span>
+   <li><a href="#contact-picker-is-showing-flag">contact picker is showing flag</a><span>, in §3.1</span>
    <li><a href="#enumdef-contactproperty">ContactProperty</a><span>, in §3.2</span>
    <li><a href="#dom-navigator-contacts">contacts</a><span>, in §3.1</span>
    <li><a href="#contactsmanager">ContactsManager</a><span>, in §3.2</span>
@@ -1905,8 +1919,9 @@ is false, only one contact should be pickable.</p>
   <aside class="dfn-panel" data-for="term-for-browsing-context">
    <a href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context">https://html.spec.whatwg.org/multipage/browsers.html#browsing-context</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-browsing-context">3.2.1. select()</a>
-    <li><a href="#ref-for-browsing-context①">4. Contact Picker</a>
+    <li><a href="#ref-for-browsing-context">3.1. Extensions to Navigator</a>
+    <li><a href="#ref-for-browsing-context①">3.2.1. select()</a>
+    <li><a href="#ref-for-browsing-context②">4. Contact Picker</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-in-parallel">
@@ -1967,7 +1982,7 @@ is false, only one contact should be pickable.</p>
   <aside class="dfn-panel" data-for="term-for-a-promise-rejected-with">
    <a href="https://www.w3.org/2001/tag/doc/promises-guide/#a-promise-rejected-with">https://www.w3.org/2001/tag/doc/promises-guide/#a-promise-rejected-with</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-a-promise-rejected-with">3.2.1. select()</a> <a href="#ref-for-a-promise-rejected-with①">(2)</a>
+    <li><a href="#ref-for-a-promise-rejected-with">3.2.1. select()</a> <a href="#ref-for-a-promise-rejected-with①">(2)</a> <a href="#ref-for-a-promise-rejected-with②">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-secure-contexts">
@@ -1979,7 +1994,7 @@ is false, only one contact should be pickable.</p>
   <aside class="dfn-panel" data-for="term-for-idl-DOMException">
    <a href="https://heycam.github.io/webidl/#idl-DOMException">https://heycam.github.io/webidl/#idl-DOMException</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-idl-DOMException">3.2.1. select()</a> <a href="#ref-for-idl-DOMException①">(2)</a> <a href="#ref-for-idl-DOMException②">(3)</a>
+    <li><a href="#ref-for-idl-DOMException">3.2.1. select()</a> <a href="#ref-for-idl-DOMException①">(2)</a> <a href="#ref-for-idl-DOMException②">(3)</a> <a href="#ref-for-idl-DOMException③">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-Exposed">
@@ -1992,7 +2007,7 @@ is false, only one contact should be pickable.</p>
   <aside class="dfn-panel" data-for="term-for-invalidstateerror">
    <a href="https://heycam.github.io/webidl/#invalidstateerror">https://heycam.github.io/webidl/#invalidstateerror</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-invalidstateerror">3.2.1. select()</a> <a href="#ref-for-invalidstateerror①">(2)</a>
+    <li><a href="#ref-for-invalidstateerror">3.2.1. select()</a> <a href="#ref-for-invalidstateerror①">(2)</a> <a href="#ref-for-invalidstateerror②">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-idl-promise">
@@ -2104,6 +2119,12 @@ is false, only one contact should be pickable.</p>
 };
 
 </pre>
+  <aside class="dfn-panel" data-for="contact-picker-is-showing-flag">
+   <b><a href="#contact-picker-is-showing-flag">#contact-picker-is-showing-flag</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-contact-picker-is-showing-flag">3.2.1. select()</a> <a href="#ref-for-contact-picker-is-showing-flag①">(2)</a> <a href="#ref-for-contact-picker-is-showing-flag②">(3)</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="dictdef-contactinfo">
    <b><a href="#dictdef-contactinfo">#dictdef-contactinfo</a></b><b>Referenced in:</b>
    <ul>

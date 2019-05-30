@@ -90,6 +90,8 @@ partial interface Navigator {
 };
 </script>
 
+The [=browsing context=] has a <dfn>contact picker is showing flag</dfn>, initially unset.
+
 ## {{ContactsManager}} ## {#contacts-manager}
 
 <script type="idl">
@@ -124,11 +126,17 @@ interface ContactsManager {
      [=a promise rejected with=] an {{InvalidStateError}} {{DOMException}}.
   1. If the algorithm is not [=triggered by user activation=] then return
      [=a promise rejected with=] a {{SecurityError}} {{DOMException}}.
+  1. If [=contact picker is showing flag=] is set then return [=a promise rejected with=] a
+     {{InvalidStateError}} {{DOMException}}.
+  1. Set [=contact picker is showing flag=].
   1. Run the following steps [=in parallel=]:
     1. [=Launch=] a new [=contact picker=] with [=select options=] set to |options|. If this fails,
-       then reject |promise| with an {{InvalidStateError}} {{DOMException}} and abort these steps.
+       then:
+       1. Reject |promise| with an {{InvalidStateError}} {{DOMException}}.
+       1. Unset Set [=contact picker is showing flag=].
+       1. Abort these steps.
     1. Wait for [=contact picker=]'s [=contacts selected flag=] to be set.
-    1. Resolve promise with [=contact picker=]'s [=selected contacts=]. 
+    1. Resolve |promise| with [=contact picker=]'s [=selected contacts=]. 
   1. Return |promise|.
 </div>
 
