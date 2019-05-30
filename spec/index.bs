@@ -120,12 +120,11 @@ interface ContactsManager {
   The <dfn method>select(|options|)</dfn> method, when invoked, runs these steps:
 
   1. Let |promise| be a new {{Promise}}.
-  1. Let |selectQueue| be a new [=parallel queue=].
   1. If the [=browsing context=] is not a [=top-level browsing context=], then return
      [=a promise rejected with=] an {{InvalidStateError}} {{DOMException}}.
   1. If the algorithm is not [=triggered by user activation=] then return
      [=a promise rejected with=] a {{SecurityError}} {{DOMException}}.
-  1. [=Enqueue the following steps=] to |selectQueue|:
+  1. Run the following steps [=in parallel=]:
     1. [=Launch=] a new [=contact picker=] with [=select options=] set to |options|. If this fails,
        then reject |promise| with an {{InvalidStateError}} {{DOMException}} and abort these steps.
     1. Wait for [=contact picker=]'s [=contacts selected flag=] to be set.

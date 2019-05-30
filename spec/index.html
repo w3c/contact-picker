@@ -1214,7 +1214,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version 30dbdcf66519991ec52011cac10c49a7b5b449c5" name="generator">
   <link href="https://beverloo.github.io/contact-api/spec" rel="canonical">
-  <meta content="860afa8188d6a01a74c236f173114e8ca7958bf1" name="document-revision">
+  <meta content="1783682958337fc4daef58a5431232245981b4c1" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1472,7 +1472,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Contact Picker API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Unofficial Proposal Draft, <time class="dt-updated" datetime="2019-05-17">17 May 2019</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Unofficial Proposal Draft, <time class="dt-updated" datetime="2019-05-30">30 May 2019</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1631,13 +1631,11 @@ contacts.</p>
       <li data-md>
        <p>Let <var>promise</var> be a new <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-promise" id="ref-for-idl-promise">Promise</a></code>.</p>
       <li data-md>
-       <p>Let <var>selectQueue</var> be a new <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#parallel-queue" id="ref-for-parallel-queue">parallel queue</a>.</p>
-      <li data-md>
        <p>If the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context">browsing context</a> is not a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context" id="ref-for-top-level-browsing-context①">top-level browsing context</a>, then return <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#a-promise-rejected-with" id="ref-for-a-promise-rejected-with">a promise rejected with</a> an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror">InvalidStateError</a></code> <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException">DOMException</a></code>.</p>
       <li data-md>
        <p>If the algorithm is not <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#triggered-by-user-activation" id="ref-for-triggered-by-user-activation">triggered by user activation</a> then return <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#a-promise-rejected-with" id="ref-for-a-promise-rejected-with①">a promise rejected with</a> a <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#securityerror" id="ref-for-securityerror">SecurityError</a></code> <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException①">DOMException</a></code>.</p>
       <li data-md>
-       <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#enqueue-the-following-steps" id="ref-for-enqueue-the-following-steps">Enqueue the following steps</a> to <var>selectQueue</var>:</p>
+       <p>Run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel">in parallel</a>:</p>
        <ol>
         <li data-md>
          <p><a data-link-type="dfn" href="#contact-picker-launch" id="ref-for-contact-picker-launch">Launch</a> a new <a data-link-type="dfn" href="#contactsmanager-contact-picker" id="ref-for-contactsmanager-contact-picker">contact picker</a> with <a data-link-type="dfn" href="#contactsmanager-select-options" id="ref-for-contactsmanager-select-options">select options</a> set to <var>options</var>. If this fails,
@@ -1911,22 +1909,16 @@ is false, only one contact should be pickable.</p>
     <li><a href="#ref-for-browsing-context①">4. Contact Picker</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="term-for-enqueue-the-following-steps">
-   <a href="https://html.spec.whatwg.org/multipage/infrastructure.html#enqueue-the-following-steps">https://html.spec.whatwg.org/multipage/infrastructure.html#enqueue-the-following-steps</a><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="term-for-in-parallel">
+   <a href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-enqueue-the-following-steps">3.2.1. select()</a>
+    <li><a href="#ref-for-in-parallel">3.2.1. select()</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-concept-origin">
    <a href="https://html.spec.whatwg.org/multipage/origin.html#concept-origin">https://html.spec.whatwg.org/multipage/origin.html#concept-origin</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-concept-origin">4. Contact Picker</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-parallel-queue">
-   <a href="https://html.spec.whatwg.org/multipage/infrastructure.html#parallel-queue">https://html.spec.whatwg.org/multipage/infrastructure.html#parallel-queue</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-parallel-queue">3.2.1. select()</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-top-level-browsing-context">
@@ -2035,9 +2027,8 @@ is false, only one contact should be pickable.</p>
      <li><span class="dfn-paneled" id="term-for-htmlbuttonelement" style="color:initial">HTMLButtonElement</span>
      <li><span class="dfn-paneled" id="term-for-navigator" style="color:initial">Navigator</span>
      <li><span class="dfn-paneled" id="term-for-browsing-context" style="color:initial">browsing context</span>
-     <li><span class="dfn-paneled" id="term-for-enqueue-the-following-steps" style="color:initial">enqueue the following steps</span>
+     <li><span class="dfn-paneled" id="term-for-in-parallel" style="color:initial">in parallel</span>
      <li><span class="dfn-paneled" id="term-for-concept-origin" style="color:initial">origin</span>
-     <li><span class="dfn-paneled" id="term-for-parallel-queue" style="color:initial">parallel queue</span>
      <li><span class="dfn-paneled" id="term-for-top-level-browsing-context" style="color:initial">top-level browsing context</span>
      <li><span class="dfn-paneled" id="term-for-triggered-by-user-activation" style="color:initial">triggered by user activation</span>
     </ul>
