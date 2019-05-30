@@ -15,6 +15,7 @@ Indent: 2
 <pre class=link-defaults>
 spec:infra; type:dfn; text:list
 spec:infra; type:dfn; for:list; text:contains
+spec:infra; type:dfn; for:list; text:item
 spec:infra; type:dfn; for:list; text:remove
 spec:infra; type:dfn; for:list; text:size
 spec:html; type:dfn; for:/; text:browsing context
@@ -78,6 +79,46 @@ The following constraints are also enforced:
   its intended recipient.
 * A user gesture is needed to initiate the API, to disallow programmatic requests to the user's
   contacts.
+
+# Infrastructure # {#infrastructure}
+
+<dfn>Contact information</dfn> is composed of the following parts.
+<div dfn-for="contact information">
+<dl>
+  <dt>
+    <dfn>Name</dfn>
+  </dt>
+  <dd>
+    A name corresponding to the contact person.
+  </dd>
+  <dt>
+    <dfn>Phone number</dfn>
+  </dt>
+  <dd>
+    A phone number of the contact person.
+  </dd>
+    <dt>
+    <dfn>Emails</dfn>
+  </dt>
+  <dd>
+    An email of the contact person.
+  </dd>
+</div>
+</dl>
+
+## {{User contact}} ## {#user-contact}
+
+A <dfn>user contact</dfn> consists of:
+<div dfn-for="user contact">
+
+* <dfn>names</dfn>, a [=list=] of {{USVString}}s, intially empty, each [=item=] representing a
+  [=contact information/name=] of the contact.
+* <dfn>numbers</dfn>, a [=list=] of {{USVString}}s, intially empty, each [=item=] representing a
+  [=contact information/phone number=] of the contact.
+* <dfn>emails</dfn>, a [=list=] of {{USVString}}s, intially empty, each [=item=] representing a
+  [=contact information/email=] of the contact.
+
+</div>
 
 # API Description # {#api}
 
