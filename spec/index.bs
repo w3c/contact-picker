@@ -98,7 +98,7 @@ The following constraints are also enforced:
     A phone number of the contact person.
   </dd>
     <dt>
-    <dfn>Emails</dfn>
+    <dfn>Email</dfn>
   </dt>
   <dd>
     An email of the contact person.
@@ -106,7 +106,7 @@ The following constraints are also enforced:
 </div>
 </dl>
 
-## {{User contact}} ## {#user-contact}
+## User contact ## {#infrastructure-user-contact}
 
 A <dfn>user contact</dfn> consists of:
 <div dfn-for="user contact">
@@ -177,7 +177,17 @@ interface ContactsManager {
        1. Unset Set [=contact picker is showing flag=].
        1. Abort these steps.
     1. Wait for [=contact picker=]'s [=contacts selected flag=] to be set.
-    1. Resolve |promise| with [=contact picker=]'s [=selected contacts=]. 
+    1. Let |contacts| be an empty [=list=].
+    1. [=list/For each=] |selectedContact| in [=contact picker=]'s [=selected contacts=]:
+      1. Let |contact| be a new {{ContactInfo}} with:
+        : {{ContactInfo/name}}
+        :: |selectedContact|'s [=user contact/names=].
+        : {{ContactInfo/email}}
+        :: |selectedContact|'s [=user contact/emails=].
+        : {{ContactInfo/tel}}
+        :: |selectedContact|'s [=user contact/numbers=].
+      1. [=list/Append=] |contact| to |contacts|.
+    1. Resolve |promise| with |contacts|. 
   1. Return |promise|.
 </div>
 
@@ -185,7 +195,7 @@ interface ContactsManager {
 
 A <dfn>contact picker</dfn> instance consists of:
 * A <dfn>contacts selected flag</dfn>, initially unset. 
-* <dfn>Selected contacts</dfn> (a [=list=] of {{ContactInfo}}s), initially empty.
+* <dfn>Selected contacts</dfn> (a [=list=] of [=user contact=]s), initially empty.
 * <dfn>Select options</dfn> (a {{ContactsSelectOptions}}), initially undefined.
 
 Note: It is up to the user agent to choose the source of the contact information displayed in the
@@ -211,20 +221,10 @@ picker.
 
 <div algorithm>
   To <dfn>complete contact picker</dfn>, run the following steps:
-  1. [=list/For each=] |selectedContact| of the user's chosen contacts:
-    1. Let |contactInfo| be a new {{ContactInfo}}.
-    1. If [=select options=]' `property` member [=contains=] \``name`\`, then:
-      1. Append all name data in |selectedContact| to |contactInfo|'s `name` member.
-    1. If [=select options=]' `property` member [=contains=] \``email`\`, then:
-      1. Append all email data in |selectedContact| to |contactInfo|'s `email` member.
-    1. If [=select options=]' `property` member [=contains=] \``tel`\`, then:
-      1. Append all telephone data in |selectedContact| to |contactInfo|'s `tel` member.
-    1. Append |contactInfo| to [=selected contacts=].
+  1. Set [=selected contacts=] to the contacts selected in the picker.
   1. If [=select options=]' `multiple` member is false, and [=selected contacts=]' [=size=] is
      greater than 1, then [=remove=] all items not equal to [=selected contacts=]`[0]`.
   1. Set [=contacts selected flag=]. 
-
-  TODO: Add more details about shared contact info.
 </div>
 
 </div>
