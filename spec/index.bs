@@ -167,8 +167,8 @@ interface ContactsManager {
      {{InvalidStateError}} {{DOMException}}.
   1. Set [=contact picker is showing flag=].
   1. Run the following steps [=in parallel=]:
-    1. [=Launch=] a new [=contact picker=] with [=select options=] set to |options|. If this fails,
-       then:
+    1. [=Launch=] a new [=contact picker=] with [=select multiple contacts flag=] set if |options|'s
+       `multiple` member is true. If this fails, then:
        1. Reject |promise| with an {{InvalidStateError}} {{DOMException}}.
        1. Unset [=contact picker is showing flag=].
        1. Abort these steps.
@@ -177,11 +177,14 @@ interface ContactsManager {
     1. [=list/For each=] |selectedContact| in [=contact picker=]'s [=selected contacts=]:
       1. Let |contact| be a new {{ContactInfo}} with:
         : {{ContactInfo/name}}
-        :: |selectedContact|'s [=user contact/names=].
+        :: |selectedContact|'s [=user contact/names=] if |options|' `properties` member
+           [=list/contains=] "`name`", otherwise an empty [=list=].
         : {{ContactInfo/email}}
-        :: |selectedContact|'s [=user contact/emails=].
+        :: |selectedContact|'s [=user contact/emails=] if |options|' `properties` member
+           [=list/contains=] "`email`", otherwise an empty [=list=].
         : {{ContactInfo/tel}}
-        :: |selectedContact|'s [=user contact/numbers=].
+        :: |selectedContact|'s [=user contact/numbers=] if |options|' `properties` member
+           [=list/contains=] "`tel`", otherwise an empty [=list=].
       1. [=list/Append=] |contact| to |contacts|.
     1. Resolve |promise| with |contacts|. 
   1. Return |promise|.
@@ -191,8 +194,8 @@ interface ContactsManager {
 
 A <dfn>contact picker</dfn> instance consists of:
 * A <dfn>contacts selected flag</dfn>, initially unset. 
+* A <dfn>select multiple contacts flag</dfn>, intially unset.
 * <dfn>Selected contacts</dfn> (a [=list=] of [=user contact=]s), initially empty.
-* <dfn>Select options</dfn> (a {{ContactsSelectOptions}}), initially undefined.
 
 Note: It is up to the user agent to choose the source of the contact information displayed in the
 picker.
@@ -205,8 +208,8 @@ picker.
 
   * The UI MUST prominently display the [=browsing context=]'s [=origin=].
   * The UI MUST make it clear which `properties` of the contact will be shared.
-  * The UI MUST provide a way to select individual contacts. If [=select options=]' `multiple` member
-    is false, only one contact should be pickable.
+  * The UI MUST provide a way to select individual contacts. If [=select multiple contacts flag=]
+    is unset, only one contact should be pickable.
   * The UI MUST provide an option to cancel/return without sharing any contacts, in which case set
     [=contacts selected flag=].
   * The UI MUST provide an a way for users to indicate that they are done selecting, in which case
@@ -218,7 +221,7 @@ picker.
 <div algorithm>
   To <dfn>complete contact picker</dfn>, run the following steps:
   1. Set [=selected contacts=] to the contacts selected in the picker.
-  1. If [=select options=]' `multiple` member is false, and [=selected contacts=]' [=list/size=] is
+  1. If [=select multiple contacts flag=] is unset, and [=selected contacts=]' [=list/size=] is
      greater than 1, then [=list/remove=] all items not equal to [=selected contacts=]`[0]`.
   1. Set [=contacts selected flag=]. 
 </div>
