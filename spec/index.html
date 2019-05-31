@@ -1214,7 +1214,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version 30dbdcf66519991ec52011cac10c49a7b5b449c5" name="generator">
   <link href="https://beverloo.github.io/contact-api/spec" rel="canonical">
-  <meta content="ce5dfe2df241bb5a607849b365ab62e2eb253163" name="document-revision">
+  <meta content="7c1eea989b82a9410630fb1c97996665a7f81892" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1608,10 +1608,10 @@ contacts.</p>
     <dl>
      <dt> <dfn class="dfn-paneled" data-dfn-for="contact information" data-dfn-type="dfn" data-noexport id="contact-information-name">Name</dfn> 
      <dd> A name corresponding to the contact person. 
-     <dt> <dfn class="dfn-paneled" data-dfn-for="contact information" data-dfn-type="dfn" data-noexport id="contact-information-phone-number">Phone number</dfn> 
-     <dd> A phone number of the contact person. 
      <dt> <dfn class="dfn-paneled" data-dfn-for="contact information" data-dfn-type="dfn" data-noexport id="contact-information-email">Email</dfn> 
      <dd> An email of the contact person. 
+     <dt> <dfn class="dfn-paneled" data-dfn-for="contact information" data-dfn-type="dfn" data-noexport id="contact-information-phone-number">Phone number</dfn> 
+     <dd> A phone number of the contact person. 
     </dl>
    </div>
    <h3 class="heading settled" data-level="3.1" id="infrastructure-user-contact"><span class="secno">3.1. </span><span class="content">User contact</span><a class="self-link" href="#infrastructure-user-contact"></a></h3>
@@ -1621,9 +1621,11 @@ contacts.</p>
      <li data-md>
       <p><dfn class="dfn-paneled" data-dfn-for="user contact" data-dfn-type="dfn" data-noexport id="user-contact-names">names</dfn>, a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list">list</a> of <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-USVString" id="ref-for-idl-USVString">USVString</a></code>s, intially empty, each <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-item" id="ref-for-list-item">item</a> representing a <a data-link-type="dfn" href="#contact-information-name" id="ref-for-contact-information-name">name</a> of the contact.</p>
      <li data-md>
-      <p><dfn class="dfn-paneled" data-dfn-for="user contact" data-dfn-type="dfn" data-noexport id="user-contact-numbers">numbers</dfn>, a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list①">list</a> of <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-USVString" id="ref-for-idl-USVString①">USVString</a></code>s, intially empty, each <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-item" id="ref-for-list-item①">item</a> representing a <a data-link-type="dfn" href="#contact-information-phone-number" id="ref-for-contact-information-phone-number">phone number</a> of the contact.</p>
+      <p><dfn class="dfn-paneled" data-dfn-for="user contact" data-dfn-type="dfn" data-noexport id="user-contact-emails">emails</dfn>, a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list①">list</a> of <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-USVString" id="ref-for-idl-USVString①">USVString</a></code>s, intially empty, each <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-item" id="ref-for-list-item①">item</a> representing
+a <a data-link-type="dfn" href="#contact-information-email" id="ref-for-contact-information-email">email</a> of the contact.</p>
      <li data-md>
-      <p><dfn class="dfn-paneled" data-dfn-for="user contact" data-dfn-type="dfn" data-noexport id="user-contact-emails">emails</dfn>, a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list②">list</a> of <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-USVString" id="ref-for-idl-USVString②">USVString</a></code>s, intially empty, each <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-item" id="ref-for-list-item②">item</a> representing a <a data-link-type="dfn" href="#contact-information-email" id="ref-for-contact-information-email">email</a> of the contact.</p>
+      <p><dfn class="dfn-paneled" data-dfn-for="user contact" data-dfn-type="dfn" data-noexport id="user-contact-numbers">numbers</dfn>, a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list②">list</a> of <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-USVString" id="ref-for-idl-USVString②">USVString</a></code>s, intially empty, each <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-item" id="ref-for-list-item②">item</a> representing
+a <a data-link-type="dfn" href="#contact-information-phone-number" id="ref-for-contact-information-phone-number">phone number</a> of the contact.</p>
     </ul>
    </div>
    <h2 class="heading settled" data-level="4" id="api"><span class="secno">4. </span><span class="content">API Description</span><a class="self-link" href="#api"></a></h2>
@@ -2168,16 +2170,16 @@ is false, only one contact should be pickable.</p>
     <li><a href="#ref-for-contact-information-name">3.1. User contact</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="contact-information-phone-number">
-   <b><a href="#contact-information-phone-number">#contact-information-phone-number</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-contact-information-phone-number">3.1. User contact</a>
-   </ul>
-  </aside>
   <aside class="dfn-panel" data-for="contact-information-email">
    <b><a href="#contact-information-email">#contact-information-email</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-contact-information-email">3.1. User contact</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="contact-information-phone-number">
+   <b><a href="#contact-information-phone-number">#contact-information-phone-number</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-contact-information-phone-number">3.1. User contact</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="user-contact">
@@ -2192,16 +2194,16 @@ is false, only one contact should be pickable.</p>
     <li><a href="#ref-for-user-contact-names">4.2.1. select()</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="user-contact-numbers">
-   <b><a href="#user-contact-numbers">#user-contact-numbers</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-user-contact-numbers">4.2.1. select()</a>
-   </ul>
-  </aside>
   <aside class="dfn-panel" data-for="user-contact-emails">
    <b><a href="#user-contact-emails">#user-contact-emails</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-user-contact-emails">4.2.1. select()</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="user-contact-numbers">
+   <b><a href="#user-contact-numbers">#user-contact-numbers</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-user-contact-numbers">4.2.1. select()</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="contact-picker-is-showing-flag">

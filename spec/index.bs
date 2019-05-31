@@ -14,10 +14,6 @@ Indent: 2
 
 <pre class=link-defaults>
 spec:infra; type:dfn; text:list
-spec:infra; type:dfn; for:list; text:contains
-spec:infra; type:dfn; for:list; text:item
-spec:infra; type:dfn; for:list; text:remove
-spec:infra; type:dfn; for:list; text:size
 spec:html; type:dfn; for:/; text:browsing context
 spec:html; type:dfn; for:/; text:origin
 </pre>
@@ -91,11 +87,6 @@ The following constraints are also enforced:
   <dd>
     A name corresponding to the contact person.
   </dd>
-  <dt>
-    <dfn>Phone number</dfn>
-  </dt>
-  <dd>
-    A phone number of the contact person.
   </dd>
     <dt>
     <dfn>Email</dfn>
@@ -103,6 +94,11 @@ The following constraints are also enforced:
   <dd>
     An email of the contact person.
   </dd>
+  <dt>
+    <dfn>Phone number</dfn>
+  </dt>
+  <dd>
+    A phone number of the contact person.
 </div>
 </dl>
 
@@ -111,12 +107,12 @@ The following constraints are also enforced:
 A <dfn>user contact</dfn> consists of:
 <div dfn-for="user contact">
 
-* <dfn>names</dfn>, a [=list=] of {{USVString}}s, intially empty, each [=item=] representing a
+* <dfn>names</dfn>, a [=list=] of {{USVString}}s, intially empty, each [=list/item=] representing a
   [=contact information/name=] of the contact.
-* <dfn>numbers</dfn>, a [=list=] of {{USVString}}s, intially empty, each [=item=] representing a
-  [=contact information/phone number=] of the contact.
-* <dfn>emails</dfn>, a [=list=] of {{USVString}}s, intially empty, each [=item=] representing a
-  [=contact information/email=] of the contact.
+* <dfn>emails</dfn>, a [=list=] of {{USVString}}s, intially empty, each [=list/item=] representing
+  a [=contact information/email=] of the contact.
+* <dfn>numbers</dfn>, a [=list=] of {{USVString}}s, intially empty, each [=list/item=] representing
+  a [=contact information/phone number=] of the contact.
 
 </div>
 
@@ -174,7 +170,7 @@ interface ContactsManager {
     1. [=Launch=] a new [=contact picker=] with [=select options=] set to |options|. If this fails,
        then:
        1. Reject |promise| with an {{InvalidStateError}} {{DOMException}}.
-       1. Unset Set [=contact picker is showing flag=].
+       1. Unset [=contact picker is showing flag=].
        1. Abort these steps.
     1. Wait for [=contact picker=]'s [=contacts selected flag=] to be set.
     1. Let |contacts| be an empty [=list=].
@@ -222,8 +218,8 @@ picker.
 <div algorithm>
   To <dfn>complete contact picker</dfn>, run the following steps:
   1. Set [=selected contacts=] to the contacts selected in the picker.
-  1. If [=select options=]' `multiple` member is false, and [=selected contacts=]' [=size=] is
-     greater than 1, then [=remove=] all items not equal to [=selected contacts=]`[0]`.
+  1. If [=select options=]' `multiple` member is false, and [=selected contacts=]' [=list/size=] is
+     greater than 1, then [=list/remove=] all items not equal to [=selected contacts=]`[0]`.
   1. Set [=contacts selected flag=]. 
 </div>
 
