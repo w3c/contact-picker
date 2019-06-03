@@ -20,20 +20,18 @@ spec:html; type:dfn; for:/; text:origin
 
 # Introduction # {#intro}
 
-Contact pickers are frequently seen in native mobile applications for a variety of use cases, and
-in various desktop applications such as e-mail clients and calendars.
-
-This specification defines an API to bring contact pickers to the web. The contact picker model
-was chosen to give full control to users over the shared data, allowing users to choose exactly
-which contacts to provide to the website. The contact picker model also gives websites one-off
-access to a user's contacts, meaning developers have to request access to the user's contacts every
-time they need it. This differs from some native contact APIs, but is necessary for ensuring users'
-contacts are not accessed without their knowledge and explicit consent.
-
-## Use cases ## {#use-cases}
-
+Contact pickers are frequently seen in various desktop and native mobile applications for a variety
+of use cases. This specification defines an API to bring contact pickers to the web, which will
+enable new use cases for web apps, such as:
 * Bootstrapping a user's social graph for social networks.
 * Selecting the recipients of a message within an e-mail application.
+
+The contact picker model was chosen to give full control to users over the shared data, allowing
+users to choose exactly which contacts to provide to the website. The contact picker model gives
+websites one-off access to a user's contacts, meaning developers have to request access to the
+user's contacts every time they need it. This differs from some native contact APIs, but is
+necessary for ensuring users' contacts are not accessed without their knowledge and explicit
+consent.
 
 ## Example ## {#example}
 
@@ -78,41 +76,22 @@ The following constraints are also enforced:
 
 # Infrastructure # {#infrastructure}
 
-<dfn>Contact information</dfn> is composed of the following parts.
-<div dfn-for="contact information">
-<dl>
-  <dt>
-    <dfn>Name</dfn>
-  </dt>
-  <dd>
-    A name corresponding to the contact person.
-  </dd>
-  </dd>
-    <dt>
-    <dfn>Email</dfn>
-  </dt>
-  <dd>
-    An email of the contact person.
-  </dd>
-  <dt>
-    <dfn>Phone number</dfn>
-  </dt>
-  <dd>
-    A phone number of the contact person.
-</div>
-</dl>
-
 ## User contact ## {#infrastructure-user-contact}
 
 A <dfn>user contact</dfn> consists of:
 <div dfn-for="user contact">
 
-* <dfn>names</dfn>, a [=list=] of {{USVString}}s, intially empty, each [=list/item=] representing a
-  [=contact information/name=] of the contact.
-* <dfn>emails</dfn>, a [=list=] of {{USVString}}s, intially empty, each [=list/item=] representing
-  a [=contact information/email=] of the contact.
-* <dfn>numbers</dfn>, a [=list=] of {{USVString}}s, intially empty, each [=list/item=] representing
-  a [=contact information/phone number=] of the contact.
+* <dfn>names</dfn>, a [=list=] of {{USVString}}s, initially empty, each [=list/item=] representing
+  a unique name corresponding to the user.
+* <dfn>emails</dfn>, a [=list=] of {{USVString}}s, initially empty, each [=list/item=] representing
+  a unique email of the user.
+* <dfn>numbers</dfn>, a [=list=] of {{USVString}}s, initially empty, each [=list/item=]
+  representing a unique phone number of the user.
+
+Note: The lists can be of different sizes, and entries with the same index don't need to correspond
+to each other.
+
+A [=user contact=] contains data relating to a single user.
 
 </div>
 
@@ -158,14 +137,16 @@ interface ContactsManager {
 <div algorithm>
   The <dfn method>select(|options|)</dfn> method, when invoked, runs these steps:
 
-  1. Let |promise| be a new {{Promise}}.
-  1. If the [=browsing context=] is not a [=top-level browsing context=], then return
+  1. Let |relevantBrowsingContext| be the [=context object=]'s [=relevant settings object=]'s
+     [=environment settings object/responsible browsing context=].
+  1. If |relevantBrowsingContext| is not a [=top-level browsing context=], then return
      [=a promise rejected with=] an {{InvalidStateError}} {{DOMException}}.
   1. If the algorithm is not [=triggered by user activation=] then return
      [=a promise rejected with=] a {{SecurityError}} {{DOMException}}.
-  1. If [=contact picker is showing flag=] is set then return [=a promise rejected with=] a
-     {{InvalidStateError}} {{DOMException}}.
-  1. Set [=contact picker is showing flag=].
+  1. If |relevantBrowsingContext|'s [=contact picker is showing flag=] is set then return
+     [=a promise rejected with=] a {{InvalidStateError}} {{DOMException}}.
+  1. Set |relevantBrowsingContext|'s [=contact picker is showing flag=].
+  1. Let |promise| be [=a new promise=].
   1. Run the following steps [=in parallel=]:
     1. [=Launch=] a new [=contact picker=] with [=select multiple contacts flag=] set if |options|'s
        `multiple` member is true. If this fails, then:
