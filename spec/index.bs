@@ -81,11 +81,11 @@ The following constraints are also enforced:
 A <dfn>user contact</dfn> consists of:
 <div dfn-for="user contact">
 
-* <dfn>names</dfn>, a [=list=] of {{USVString}}s, initially empty, each [=list/item=] representing
+* <dfn>names</dfn>, a [=list=] of {{DOMString}}s, initially empty, each [=list/item=] representing
   a unique name corresponding to the user.
-* <dfn>emails</dfn>, a [=list=] of {{USVString}}s, initially empty, each [=list/item=] representing
+* <dfn>emails</dfn>, a [=list=] of {{DOMString}}s, initially empty, each [=list/item=] representing
   a unique email of the user.
-* <dfn>numbers</dfn>, a [=list=] of {{USVString}}s, initially empty, each [=list/item=]
+* <dfn>numbers</dfn>, a [=list=] of {{DOMString}}s, initially empty, each [=list/item=]
   representing a unique phone number of the user.
 
 Note: The lists can be of different sizes, and entries with the same index don't need to correspond
@@ -100,11 +100,19 @@ A [=user contact=] contains data relating to a single user.
 ## Extensions to {{Navigator}} ## {#extensions-to-navigator}
 
 <script type="idl">
-[Exposed=(Window,SecureContext)]
+[Exposed=Window]
 partial interface Navigator {
-    readonly attribute ContactsManager contacts;
+  [SecureContext, SameObject] readonly attribute ContactsManager contacts;
 };
 </script>
+
+<div dfn-for="Navigator">
+A {{Navigator}} has a <dfn>contacts manager</dfn> (a {{ContactsManager}}), initially a new
+{{ContactsManager}}.
+
+The <dfn attribute>contacts</dfn> attribute's getter must return the [=context object=]'s
+[=Navigator/contacts manager=].
+</div>
 
 The [=browsing context=] has a <dfn>contact picker is showing flag</dfn>, initially unset.
 
@@ -112,9 +120,9 @@ The [=browsing context=] has a <dfn>contact picker is showing flag</dfn>, initia
 
 <script type="idl">
 dictionary ContactInfo {
-    sequence<USVString> name;
-    sequence<USVString> email;
-    sequence<USVString> tel;
+    sequence<DOMString> name;
+    sequence<DOMString> email;
+    sequence<DOMString> tel;
 };
 
 enum ContactProperty { "email", "name", "tel" };
