@@ -150,6 +150,7 @@ interface ContactsManager {
   1. If |relevantBrowsingContext|'s [=contact picker is showing flag=] is set then return
      [=a promise rejected with=] an {{InvalidStateError}} {{DOMException}}.
   1. Set |relevantBrowsingContext|'s [=contact picker is showing flag=].
+  1. If |properties| is [=list/empty=], then return [=a promise rejected with=] a {{TypeError}}.
   1. Let |promise| be [=a new promise=].
   1. Run the following steps [=in parallel=]:
     1. Let |selectedContacts| be be the result of [=launching a contact picker=] with |options|' `multiple`

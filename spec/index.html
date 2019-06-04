@@ -1214,7 +1214,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version 30dbdcf66519991ec52011cac10c49a7b5b449c5" name="generator">
   <link href="https://beverloo.github.io/contact-api/spec" rel="canonical">
-  <meta content="4bb32b01dcba8510792e1a23aadc48a2f4798307" name="document-revision">
+  <meta content="317594e0a362aa60427a0e66391aa74ff79fa2d1" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1658,6 +1658,8 @@ to each other.</p>
       <li data-md>
        <p>Set <var>relevantBrowsingContext</var>’s <a data-link-type="dfn" href="#contact-picker-is-showing-flag" id="ref-for-contact-picker-is-showing-flag①">contact picker is showing flag</a>.</p>
       <li data-md>
+       <p>If <var>properties</var> is <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-empty" id="ref-for-list-empty">empty</a>, then return <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#a-promise-rejected-with" id="ref-for-a-promise-rejected-with③">a promise rejected with</a> a <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror">TypeError</a></code>.</p>
+      <li data-md>
        <p>Let <var>promise</var> be <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#a-new-promise" id="ref-for-a-new-promise">a new promise</a>.</p>
       <li data-md>
        <p>Run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel">in parallel</a>:</p>
@@ -1666,7 +1668,7 @@ to each other.</p>
          <p>Let <var>selectedContacts</var> be be the result of <a data-link-type="dfn" href="#contactsmanager-launching-a-contact-picker" id="ref-for-contactsmanager-launching-a-contact-picker">launching a contact picker</a> with <var>options</var>’ <code>multiple</code> member and <var>properties</var>. If this fails, then:</p>
          <ol>
           <li data-md>
-           <p>Return <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#a-promise-rejected-with" id="ref-for-a-promise-rejected-with③">a promise rejected with</a> an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror②">InvalidStateError</a></code> <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException③">DOMException</a></code>.</p>
+           <p>Return <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#a-promise-rejected-with" id="ref-for-a-promise-rejected-with④">a promise rejected with</a> an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror②">InvalidStateError</a></code> <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException③">DOMException</a></code>.</p>
           <li data-md>
            <p>Unset <var>relevantBrowsingContext</var>’s <a data-link-type="dfn" href="#contact-picker-is-showing-flag" id="ref-for-contact-picker-is-showing-flag②">contact picker is showing flag</a>.</p>
           <li data-md>
@@ -1985,6 +1987,12 @@ picker.</p>
     <li><a href="#ref-for-list-contain">4.2.1. select()</a> <a href="#ref-for-list-contain①">(2)</a> <a href="#ref-for-list-contain②">(3)</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="term-for-list-empty">
+   <a href="https://infra.spec.whatwg.org/#list-empty">https://infra.spec.whatwg.org/#list-empty</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-list-empty">4.2.1. select()</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-list-iterate">
    <a href="https://infra.spec.whatwg.org/#list-iterate">https://infra.spec.whatwg.org/#list-iterate</a><b>Referenced in:</b>
    <ul>
@@ -2014,7 +2022,7 @@ picker.</p>
   <aside class="dfn-panel" data-for="term-for-a-promise-rejected-with">
    <a href="https://www.w3.org/2001/tag/doc/promises-guide/#a-promise-rejected-with">https://www.w3.org/2001/tag/doc/promises-guide/#a-promise-rejected-with</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-a-promise-rejected-with">4.2.1. select()</a> <a href="#ref-for-a-promise-rejected-with①">(2)</a> <a href="#ref-for-a-promise-rejected-with②">(3)</a> <a href="#ref-for-a-promise-rejected-with③">(4)</a>
+    <li><a href="#ref-for-a-promise-rejected-with">4.2.1. select()</a> <a href="#ref-for-a-promise-rejected-with①">(2)</a> <a href="#ref-for-a-promise-rejected-with②">(3)</a> <a href="#ref-for-a-promise-rejected-with③">(4)</a> <a href="#ref-for-a-promise-rejected-with④">(5)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-secure-contexts">
@@ -2068,6 +2076,12 @@ picker.</p>
     <li><a href="#ref-for-securityerror">4.2.1. select()</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="term-for-exceptiondef-typeerror">
+   <a href="https://heycam.github.io/webidl/#exceptiondef-typeerror">https://heycam.github.io/webidl/#exceptiondef-typeerror</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-exceptiondef-typeerror">4.2.1. select()</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-idl-boolean">
    <a href="https://heycam.github.io/webidl/#idl-boolean">https://heycam.github.io/webidl/#idl-boolean</a><b>Referenced in:</b>
    <ul>
@@ -2100,6 +2114,7 @@ picker.</p>
      <li><span class="dfn-paneled" id="term-for-list-append" style="color:initial">append</span>
      <li><span class="dfn-paneled" id="term-for-boolean" style="color:initial">boolean</span>
      <li><span class="dfn-paneled" id="term-for-list-contain" style="color:initial">contain</span>
+     <li><span class="dfn-paneled" id="term-for-list-empty" style="color:initial">empty</span>
      <li><span class="dfn-paneled" id="term-for-list-iterate" style="color:initial">for each</span>
      <li><span class="dfn-paneled" id="term-for-list-item" style="color:initial">item</span>
      <li><span class="dfn-paneled" id="term-for-list" style="color:initial">list</span>
@@ -2125,6 +2140,7 @@ picker.</p>
      <li><span class="dfn-paneled" id="term-for-SameObject" style="color:initial">SameObject</span>
      <li><span class="dfn-paneled" id="term-for-SecureContext" style="color:initial">SecureContext</span>
      <li><span class="dfn-paneled" id="term-for-securityerror" style="color:initial">SecurityError</span>
+     <li><span class="dfn-paneled" id="term-for-exceptiondef-typeerror" style="color:initial">TypeError</span>
      <li><span class="dfn-paneled" id="term-for-idl-boolean" style="color:initial">boolean</span>
     </ul>
   </ul>
