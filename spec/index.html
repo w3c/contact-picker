@@ -1214,7 +1214,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version 30dbdcf66519991ec52011cac10c49a7b5b449c5" name="generator">
   <link href="https://beverloo.github.io/contact-api/spec" rel="canonical">
-  <meta content="8cfd415655ce49cdc7fea824d2adedc6a578af62" name="document-revision">
+  <meta content="4bb32b01dcba8510792e1a23aadc48a2f4798307" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1529,11 +1529,7 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
         <li><a href="#contacts-manager-select"><span class="secno">4.2.1</span> <span class="content"><code class="idl"><span>select()</span></code></span></a>
        </ol>
      </ol>
-    <li>
-     <a href="#contact-picker"><span class="secno">5</span> <span class="content">Contact Picker</span></a>
-     <ol class="toc">
-      <li><a href="#complete-contact-picker-algorithm"><span class="secno">5.1</span> <span class="content"><span>Complete contact picker</span></span></a>
-     </ol>
+    <li><a href="#contact-picker"><span class="secno">5</span> <span class="content">Contact Picker</span></a>
     <li><a href="#conformance"><span class="secno"></span> <span class="content"> Conformance</span></a>
     <li>
      <a href="#index"><span class="secno"></span> <span class="content">Index</span></a>
@@ -1658,7 +1654,7 @@ to each other.</p>
       <li data-md>
        <p>If the algorithm is not <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#triggered-by-user-activation" id="ref-for-triggered-by-user-activation">triggered by user activation</a> then return <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#a-promise-rejected-with" id="ref-for-a-promise-rejected-with①">a promise rejected with</a> a <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#securityerror" id="ref-for-securityerror">SecurityError</a></code> <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException①">DOMException</a></code>.</p>
       <li data-md>
-       <p>If <var>relevantBrowsingContext</var>’s <a data-link-type="dfn" href="#contact-picker-is-showing-flag" id="ref-for-contact-picker-is-showing-flag">contact picker is showing flag</a> is set then return <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#a-promise-rejected-with" id="ref-for-a-promise-rejected-with②">a promise rejected with</a> a <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror①">InvalidStateError</a></code> <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException②">DOMException</a></code>.</p>
+       <p>If <var>relevantBrowsingContext</var>’s <a data-link-type="dfn" href="#contact-picker-is-showing-flag" id="ref-for-contact-picker-is-showing-flag">contact picker is showing flag</a> is set then return <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#a-promise-rejected-with" id="ref-for-a-promise-rejected-with②">a promise rejected with</a> an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror①">InvalidStateError</a></code> <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException②">DOMException</a></code>.</p>
       <li data-md>
        <p>Set <var>relevantBrowsingContext</var>’s <a data-link-type="dfn" href="#contact-picker-is-showing-flag" id="ref-for-contact-picker-is-showing-flag①">contact picker is showing flag</a>.</p>
       <li data-md>
@@ -1667,21 +1663,21 @@ to each other.</p>
        <p>Run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel">in parallel</a>:</p>
        <ol>
         <li data-md>
-         <p><a data-link-type="dfn" href="#contact-picker-launch" id="ref-for-contact-picker-launch">Launch</a> a new <a data-link-type="dfn" href="#contactsmanager-contact-picker" id="ref-for-contactsmanager-contact-picker">contact picker</a> with <a data-link-type="dfn" href="#contactsmanager-select-multiple-contacts-flag" id="ref-for-contactsmanager-select-multiple-contacts-flag">select multiple contacts flag</a> set to <var>options</var>’s <code>multiple</code> member. If this fails, then:</p>
+         <p>Let <var>selectedContacts</var> be be the result of <a data-link-type="dfn" href="#contactsmanager-launching-a-contact-picker" id="ref-for-contactsmanager-launching-a-contact-picker">launching a contact picker</a> with <var>options</var>’ <code>multiple</code> member and <var>properties</var>. If this fails, then:</p>
          <ol>
           <li data-md>
-           <p>Reject <var>promise</var> with an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror②">InvalidStateError</a></code> <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException③">DOMException</a></code>.</p>
+           <p>Return <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#a-promise-rejected-with" id="ref-for-a-promise-rejected-with③">a promise rejected with</a> an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror②">InvalidStateError</a></code> <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException③">DOMException</a></code>.</p>
           <li data-md>
-           <p>Unset <a data-link-type="dfn" href="#contact-picker-is-showing-flag" id="ref-for-contact-picker-is-showing-flag②">contact picker is showing flag</a>.</p>
+           <p>Unset <var>relevantBrowsingContext</var>’s <a data-link-type="dfn" href="#contact-picker-is-showing-flag" id="ref-for-contact-picker-is-showing-flag②">contact picker is showing flag</a>.</p>
           <li data-md>
-           <p>Abort these steps.</p>
+           <p>Abort thise steps.</p>
          </ol>
         <li data-md>
-         <p>Wait for <a data-link-type="dfn" href="#contactsmanager-contact-picker" id="ref-for-contactsmanager-contact-picker①">contact picker</a>'s <a data-link-type="dfn" href="#contactsmanager-contacts-selected-flag" id="ref-for-contactsmanager-contacts-selected-flag">contacts selected flag</a> to be set.</p>
+         <p>Unset <var>relevantBrowsingContext</var>’s <a data-link-type="dfn" href="#contact-picker-is-showing-flag" id="ref-for-contact-picker-is-showing-flag③">contact picker is showing flag</a>.</p>
         <li data-md>
          <p>Let <var>contacts</var> be an empty <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list③">list</a>.</p>
         <li data-md>
-         <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate">For each</a> <var>selectedContact</var> in <a data-link-type="dfn" href="#contactsmanager-contact-picker" id="ref-for-contactsmanager-contact-picker②">contact picker</a>'s <a data-link-type="dfn" href="#contactsmanager-selected-contacts" id="ref-for-contactsmanager-selected-contacts">selected contacts</a>:</p>
+         <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate">For each</a> <var>selectedContact</var> in <var>selectedContacts</var>:</p>
          <ol>
           <li data-md>
            <p>Let <var>contact</var> be a new <code class="idl"><a data-link-type="idl" href="#dictdef-contactinfo" id="ref-for-dictdef-contactinfo①">ContactInfo</a></code> with:</p>
@@ -1710,48 +1706,31 @@ to each other.</p>
      </ol>
     </div>
     <h2 class="heading settled" data-level="5" id="contact-picker"><span class="secno">5. </span><span class="content">Contact Picker</span><a class="self-link" href="#contact-picker"></a></h2>
-    <p>A <dfn class="dfn-paneled" data-dfn-for="ContactsManager" data-dfn-type="dfn" data-noexport id="contactsmanager-contact-picker">contact picker</dfn> instance consists of:</p>
-    <ul>
-     <li data-md>
-      <p>A <dfn class="dfn-paneled" data-dfn-for="ContactsManager" data-dfn-type="dfn" data-noexport id="contactsmanager-contacts-selected-flag">contacts selected flag</dfn>, initially unset.</p>
-     <li data-md>
-      <p>A <dfn class="dfn-paneled" data-dfn-for="ContactsManager" data-dfn-type="dfn" data-noexport id="contactsmanager-select-multiple-contacts-flag">select multiple contacts flag</dfn>, intially unset.</p>
-     <li data-md>
-      <p><dfn class="dfn-paneled" data-dfn-for="ContactsManager" data-dfn-type="dfn" data-noexport id="contactsmanager-selected-contacts">Selected contacts</dfn> (a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list⑦">list</a> of <a data-link-type="dfn" href="#user-contact" id="ref-for-user-contact①">user contact</a>s), initially empty.</p>
-    </ul>
+    <div class="algorithm" data-algorithm="launching a contact picker">
+      To <dfn class="dfn-paneled" data-dfn-for="ContactsManager" data-dfn-type="dfn" data-lt="launching a contact picker" data-noexport id="contactsmanager-launching-a-contact-picker">launch</dfn> a contact picker with <var>allowMultiple</var> (a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#boolean" id="ref-for-boolean">boolean</a>), and <var>properties</var> (a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list⑦">list</a> of <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString⑥">DOMString</a></code>s), the user agent MUST present a user
+  interface that follows these rules: 
+     <ul>
+      <li data-md>
+       <p>If presenting a user interface fails or accessing the source of the contact information fails,
+then return failure.</p>
+      <li data-md>
+       <p>The UI MUST prominently display the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context①">browsing context</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#concept-origin" id="ref-for-concept-origin">origin</a>.</p>
+      <li data-md>
+       <p>The UI MUST make it clear which <code>properties</code> of the contact will be shared.</p>
+       <p class="note" role="note"><span>NOTE:</span> This information is derived from <var>properties</var>.</p>
+      <li data-md>
+       <p>The UI MUST provide a way to select individual contacts. If <var>allowMultiple</var> is false, only one
+contact should be pickable.</p>
+      <li data-md>
+       <p>The UI MUST provide an option to cancel/return without sharing any contacts, in which case
+remove the UI and return an empty <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list⑧">list</a>.</p>
+      <li data-md>
+       <p>The UI MUST provide an a way for users to indicate that they are done selecting, in which case
+remove the UI and return a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list⑨">list</a> of the selected contacts as <a data-link-type="dfn" href="#user-contact" id="ref-for-user-contact①">user contacts</a>.</p>
+     </ul>
+    </div>
     <p class="note" role="note"><span>Note:</span> It is up to the user agent to choose the source of the contact information displayed in the
 picker.</p>
-    <div>
-     <div class="algorithm" data-algorithm="launch">
-       To <dfn class="dfn-paneled" data-dfn-for="contact picker" data-dfn-type="dfn" data-noexport id="contact-picker-launch">launch</dfn> a contact picker, the user agent MUST present a user interface that follows
-  these rules: 
-      <ul>
-       <li data-md>
-        <p>The UI MUST prominently display the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context①">browsing context</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#concept-origin" id="ref-for-concept-origin">origin</a>.</p>
-       <li data-md>
-        <p>The UI MUST make it clear which <code>properties</code> of the contact will be shared.</p>
-       <li data-md>
-        <p>The UI MUST provide a way to select individual contacts. If <a data-link-type="dfn" href="#contactsmanager-select-multiple-contacts-flag" id="ref-for-contactsmanager-select-multiple-contacts-flag①">select multiple contacts flag</a> is unset, only one contact should be pickable.</p>
-       <li data-md>
-        <p>The UI MUST provide an option to cancel/return without sharing any contacts, in which case set <a data-link-type="dfn" href="#contactsmanager-contacts-selected-flag" id="ref-for-contactsmanager-contacts-selected-flag①">contacts selected flag</a>.</p>
-       <li data-md>
-        <p>The UI MUST provide an a way for users to indicate that they are done selecting, in which case <a data-link-type="dfn" href="#contact-picker-complete-contact-picker" id="ref-for-contact-picker-complete-contact-picker">complete contact picker</a>.</p>
-      </ul>
-     </div>
-     <h3 class="heading settled" data-level="5.1" id="complete-contact-picker-algorithm"><span class="secno">5.1. </span><span class="content"><a data-link-type="dfn" href="#contact-picker-complete-contact-picker" id="ref-for-contact-picker-complete-contact-picker①">Complete contact picker</a></span><a class="self-link" href="#complete-contact-picker-algorithm"></a></h3>
-     <div class="algorithm" data-algorithm="complete contact picker">
-       To <dfn class="dfn-paneled" data-dfn-for="contact picker" data-dfn-type="dfn" data-noexport id="contact-picker-complete-contact-picker">complete contact picker</dfn>, run the following steps: 
-      <ol>
-       <li data-md>
-        <p>Set <a data-link-type="dfn" href="#contactsmanager-selected-contacts" id="ref-for-contactsmanager-selected-contacts①">selected contacts</a> to the contacts selected in the picker.</p>
-       <li data-md>
-        <p>If <a data-link-type="dfn" href="#contactsmanager-select-multiple-contacts-flag" id="ref-for-contactsmanager-select-multiple-contacts-flag②">select multiple contacts flag</a> is unset, and <a data-link-type="dfn" href="#contactsmanager-selected-contacts" id="ref-for-contactsmanager-selected-contacts②">selected contacts</a>' <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-size" id="ref-for-list-size">size</a> is
- greater than 1, then <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-remove" id="ref-for-list-remove">remove</a> all items not equal to <a data-link-type="dfn" href="#contactsmanager-selected-contacts" id="ref-for-contactsmanager-selected-contacts③">selected contacts</a><code>[0]</code>.</p>
-       <li data-md>
-        <p>Set <a data-link-type="dfn" href="#contactsmanager-contacts-selected-flag" id="ref-for-contactsmanager-contacts-selected-flag②">contacts selected flag</a>.</p>
-      </ol>
-     </div>
-    </div>
    </div>
   </main>
   <div data-fill-with="conformance">
@@ -1903,27 +1882,22 @@ picker.</p>
   <h2 class="no-num no-ref heading settled" id="index"><span class="content">Index</span><a class="self-link" href="#index"></a></h2>
   <h3 class="no-num no-ref heading settled" id="index-defined-here"><span class="content">Terms defined by this specification</span><a class="self-link" href="#index-defined-here"></a></h3>
   <ul class="index">
-   <li><a href="#contact-picker-complete-contact-picker">complete contact picker</a><span>, in §5.1</span>
    <li><a href="#dictdef-contactinfo">ContactInfo</a><span>, in §4.2</span>
-   <li><a href="#contactsmanager-contact-picker">contact picker</a><span>, in §5</span>
    <li><a href="#contact-picker-is-showing-flag">contact picker is showing flag</a><span>, in §4.1</span>
    <li><a href="#enumdef-contactproperty">ContactProperty</a><span>, in §4.2</span>
    <li><a href="#dom-navigator-contacts">contacts</a><span>, in §4.1</span>
    <li><a href="#contactsmanager">ContactsManager</a><span>, in §4.2</span>
    <li><a href="#navigator-contacts-manager">contacts manager</a><span>, in §4.1</span>
-   <li><a href="#contactsmanager-contacts-selected-flag">contacts selected flag</a><span>, in §5</span>
    <li><a href="#dictdef-contactsselectoptions">ContactsSelectOptions</a><span>, in §4.2</span>
    <li><a href="#dom-contactinfo-email">email</a><span>, in §4.2</span>
    <li><a href="#dom-contactproperty-email">"email"</a><span>, in §4.2</span>
    <li><a href="#user-contact-emails">emails</a><span>, in §3.1</span>
-   <li><a href="#contact-picker-launch">launch</a><span>, in §5</span>
+   <li><a href="#contactsmanager-launching-a-contact-picker">launching a contact picker</a><span>, in §5</span>
    <li><a href="#dom-contactsselectoptions-multiple">multiple</a><span>, in §4.2</span>
    <li><a href="#dom-contactproperty-name">"name"</a><span>, in §4.2</span>
    <li><a href="#dom-contactinfo-name">name</a><span>, in §4.2</span>
    <li><a href="#user-contact-names">names</a><span>, in §3.1</span>
    <li><a href="#user-contact-numbers">numbers</a><span>, in §3.1</span>
-   <li><a href="#contactsmanager-selected-contacts">Selected contacts</a><span>, in §5</span>
-   <li><a href="#contactsmanager-select-multiple-contacts-flag">select multiple contacts flag</a><span>, in §5</span>
    <li><a href="#dom-contactsmanager-select">select(properties)</a><span>, in §4.2.1</span>
    <li><a href="#dom-contactsmanager-select">select(properties, options)</a><span>, in §4.2.1</span>
    <li><a href="#dom-contactinfo-tel">tel</a><span>, in §4.2</span>
@@ -1999,6 +1973,12 @@ picker.</p>
     <li><a href="#ref-for-list-append">4.2.1. select()</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="term-for-boolean">
+   <a href="https://infra.spec.whatwg.org/#boolean">https://infra.spec.whatwg.org/#boolean</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-boolean">5. Contact Picker</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-list-contain">
    <a href="https://infra.spec.whatwg.org/#list-contain">https://infra.spec.whatwg.org/#list-contain</a><b>Referenced in:</b>
    <ul>
@@ -2022,19 +2002,7 @@ picker.</p>
    <ul>
     <li><a href="#ref-for-list">3.1. User contact</a> <a href="#ref-for-list①">(2)</a> <a href="#ref-for-list②">(3)</a>
     <li><a href="#ref-for-list③">4.2.1. select()</a> <a href="#ref-for-list④">(2)</a> <a href="#ref-for-list⑤">(3)</a> <a href="#ref-for-list⑥">(4)</a>
-    <li><a href="#ref-for-list⑦">5. Contact Picker</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-list-remove">
-   <a href="https://infra.spec.whatwg.org/#list-remove">https://infra.spec.whatwg.org/#list-remove</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-list-remove">5.1. Complete contact picker</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-list-size">
-   <a href="https://infra.spec.whatwg.org/#list-size">https://infra.spec.whatwg.org/#list-size</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-list-size">5.1. Complete contact picker</a>
+    <li><a href="#ref-for-list⑦">5. Contact Picker</a> <a href="#ref-for-list⑧">(2)</a> <a href="#ref-for-list⑨">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-a-new-promise">
@@ -2046,7 +2014,7 @@ picker.</p>
   <aside class="dfn-panel" data-for="term-for-a-promise-rejected-with">
    <a href="https://www.w3.org/2001/tag/doc/promises-guide/#a-promise-rejected-with">https://www.w3.org/2001/tag/doc/promises-guide/#a-promise-rejected-with</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-a-promise-rejected-with">4.2.1. select()</a> <a href="#ref-for-a-promise-rejected-with①">(2)</a> <a href="#ref-for-a-promise-rejected-with②">(3)</a>
+    <li><a href="#ref-for-a-promise-rejected-with">4.2.1. select()</a> <a href="#ref-for-a-promise-rejected-with①">(2)</a> <a href="#ref-for-a-promise-rejected-with②">(3)</a> <a href="#ref-for-a-promise-rejected-with③">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-secure-contexts">
@@ -2066,6 +2034,7 @@ picker.</p>
    <ul>
     <li><a href="#ref-for-idl-DOMString">3.1. User contact</a> <a href="#ref-for-idl-DOMString①">(2)</a> <a href="#ref-for-idl-DOMString②">(3)</a>
     <li><a href="#ref-for-idl-DOMString③">4.2. ContactsManager</a> <a href="#ref-for-idl-DOMString④">(2)</a> <a href="#ref-for-idl-DOMString⑤">(3)</a>
+    <li><a href="#ref-for-idl-DOMString⑥">5. Contact Picker</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-Exposed">
@@ -2129,12 +2098,11 @@ picker.</p>
     <a data-link-type="biblio">[INFRA]</a> defines the following terms:
     <ul>
      <li><span class="dfn-paneled" id="term-for-list-append" style="color:initial">append</span>
+     <li><span class="dfn-paneled" id="term-for-boolean" style="color:initial">boolean</span>
      <li><span class="dfn-paneled" id="term-for-list-contain" style="color:initial">contain</span>
      <li><span class="dfn-paneled" id="term-for-list-iterate" style="color:initial">for each</span>
      <li><span class="dfn-paneled" id="term-for-list-item" style="color:initial">item</span>
      <li><span class="dfn-paneled" id="term-for-list" style="color:initial">list</span>
-     <li><span class="dfn-paneled" id="term-for-list-remove" style="color:initial">remove</span>
-     <li><span class="dfn-paneled" id="term-for-list-size" style="color:initial">size</span>
     </ul>
    <li>
     <a data-link-type="biblio">[promises-guide]</a> defines the following terms:
@@ -2242,7 +2210,7 @@ picker.</p>
   <aside class="dfn-panel" data-for="contact-picker-is-showing-flag">
    <b><a href="#contact-picker-is-showing-flag">#contact-picker-is-showing-flag</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-contact-picker-is-showing-flag">4.2.1. select()</a> <a href="#ref-for-contact-picker-is-showing-flag①">(2)</a> <a href="#ref-for-contact-picker-is-showing-flag②">(3)</a>
+    <li><a href="#ref-for-contact-picker-is-showing-flag">4.2.1. select()</a> <a href="#ref-for-contact-picker-is-showing-flag①">(2)</a> <a href="#ref-for-contact-picker-is-showing-flag②">(3)</a> <a href="#ref-for-contact-picker-is-showing-flag③">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dictdef-contactinfo">
@@ -2296,46 +2264,10 @@ picker.</p>
     <li><a href="#ref-for-dom-contactsmanager-select①">4.2.1. select()</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="contactsmanager-contact-picker">
-   <b><a href="#contactsmanager-contact-picker">#contactsmanager-contact-picker</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="contactsmanager-launching-a-contact-picker">
+   <b><a href="#contactsmanager-launching-a-contact-picker">#contactsmanager-launching-a-contact-picker</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-contactsmanager-contact-picker">4.2.1. select()</a> <a href="#ref-for-contactsmanager-contact-picker①">(2)</a> <a href="#ref-for-contactsmanager-contact-picker②">(3)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="contactsmanager-contacts-selected-flag">
-   <b><a href="#contactsmanager-contacts-selected-flag">#contactsmanager-contacts-selected-flag</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-contactsmanager-contacts-selected-flag">4.2.1. select()</a>
-    <li><a href="#ref-for-contactsmanager-contacts-selected-flag①">5. Contact Picker</a>
-    <li><a href="#ref-for-contactsmanager-contacts-selected-flag②">5.1. Complete contact picker</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="contactsmanager-select-multiple-contacts-flag">
-   <b><a href="#contactsmanager-select-multiple-contacts-flag">#contactsmanager-select-multiple-contacts-flag</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-contactsmanager-select-multiple-contacts-flag">4.2.1. select()</a>
-    <li><a href="#ref-for-contactsmanager-select-multiple-contacts-flag①">5. Contact Picker</a>
-    <li><a href="#ref-for-contactsmanager-select-multiple-contacts-flag②">5.1. Complete contact picker</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="contactsmanager-selected-contacts">
-   <b><a href="#contactsmanager-selected-contacts">#contactsmanager-selected-contacts</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-contactsmanager-selected-contacts">4.2.1. select()</a>
-    <li><a href="#ref-for-contactsmanager-selected-contacts①">5.1. Complete contact picker</a> <a href="#ref-for-contactsmanager-selected-contacts②">(2)</a> <a href="#ref-for-contactsmanager-selected-contacts③">(3)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="contact-picker-launch">
-   <b><a href="#contact-picker-launch">#contact-picker-launch</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-contact-picker-launch">4.2.1. select()</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="contact-picker-complete-contact-picker">
-   <b><a href="#contact-picker-complete-contact-picker">#contact-picker-complete-contact-picker</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-contact-picker-complete-contact-picker">5. Contact Picker</a>
-    <li><a href="#ref-for-contact-picker-complete-contact-picker①">5.1. Complete contact picker</a>
+    <li><a href="#ref-for-contactsmanager-launching-a-contact-picker">4.2.1. select()</a>
    </ul>
   </aside>
 <script>/* script-var-click-highlighting */
