@@ -1214,7 +1214,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version 30dbdcf66519991ec52011cac10c49a7b5b449c5" name="generator">
   <link href="https://beverloo.github.io/contact-api/spec" rel="canonical">
-  <meta content="227f360f160212629154d4b3b5e5df4d60ec5e66" name="document-revision">
+  <meta content="8cfd415655ce49cdc7fea824d2adedc6a578af62" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1472,7 +1472,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Contact Picker API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Unofficial Proposal Draft, <time class="dt-updated" datetime="2019-06-03">3 June 2019</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Unofficial Proposal Draft, <time class="dt-updated" datetime="2019-06-04">4 June 2019</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1567,13 +1567,10 @@ user’s contacts every time they need it. This differs from some native contact
 necessary for ensuring users' contacts are not accessed without their knowledge and explicit
 consent.</p>
    <h3 class="heading settled" data-level="1.1" id="example"><span class="secno">1.1. </span><span class="content">Example</span><a class="self-link" href="#example"></a></h3>
-   <div class="example" id="example-1faab948">
-    <a class="self-link" href="#example-1faab948"></a> Requesting contacts as a result of a user click. 
+   <div class="example" id="example-87f97b16">
+    <a class="self-link" href="#example-87f97b16"></a> Requesting contacts as a result of a user click. 
 <pre class="lang-js highlight">selectRecipientsButton<c- p>.</c->addEventListener<c- p>(</c-><c- t>'click'</c-><c- p>,</c-> async <c- p>()</c-> <c- p>=></c-> <c- p>{</c->
-  <c- kr>const</c-> contacts <c- o>=</c-> await navigator<c- p>.</c->contacts<c- p>.</c->select<c- p>({</c->
-      properties<c- o>:</c-> <c- p>[</c-><c- t>'name'</c-><c- p>,</c-> <c- t>'email'</c-><c- p>],</c->
-      multiple<c- o>:</c-> <c- kc>true</c-><c- p>,</c->
-  <c- p>});</c->
+  <c- kr>const</c-> contacts <c- o>=</c-> await navigator<c- p>.</c->contacts<c- p>.</c->select<c- p>([</c-><c- t>'name'</c-><c- p>,</c-> <c- t>'email'</c-><c- p>],</c-> <c- p>{</c->multiple<c- o>:</c-> <c- kc>true</c-><c- p>});</c->
 
   <c- k>if</c-> <c- p>(</c-><c- o>!</c->contacts<c- p>.</c->length<c- p>)</c-> <c- p>{</c->
     <c- c1>// Either no contacts were selected in the picker, or the picker could</c->
@@ -1641,19 +1638,18 @@ to each other.</p>
 <c- b>enum</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="enum" data-export id="enumdef-contactproperty"><code><c- g>ContactProperty</c-></code></dfn> { <dfn class="idl-code" data-dfn-for="ContactProperty" data-dfn-type="enum-value" data-export id="dom-contactproperty-email"><code><c- s>"email"</c-></code><a class="self-link" href="#dom-contactproperty-email"></a></dfn>, <dfn class="idl-code" data-dfn-for="ContactProperty" data-dfn-type="enum-value" data-export id="dom-contactproperty-name"><code><c- s>"name"</c-></code><a class="self-link" href="#dom-contactproperty-name"></a></dfn>, <dfn class="idl-code" data-dfn-for="ContactProperty" data-dfn-type="enum-value" data-export id="dom-contactproperty-tel"><code><c- s>"tel"</c-></code><a class="self-link" href="#dom-contactproperty-tel"></a></dfn> };
 
 <c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-contactsselectoptions"><code><c- g>ContactsSelectOptions</c-></code></dfn> {
-    <c- b>required</c-> <c- b>sequence</c->&lt;<a class="n" data-link-type="idl-name" href="#enumdef-contactproperty" id="ref-for-enumdef-contactproperty"><c- n>ContactProperty</c-></a>> <dfn class="idl-code" data-dfn-for="ContactsSelectOptions" data-dfn-type="dict-member" data-export data-type="sequence<ContactProperty> " id="dom-contactsselectoptions-properties"><code><c- g>properties</c-></code><a class="self-link" href="#dom-contactsselectoptions-properties"></a></dfn>;
     <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean"><c- b>boolean</c-></a> <dfn class="idl-code" data-default="false" data-dfn-for="ContactsSelectOptions" data-dfn-type="dict-member" data-export data-type="boolean " id="dom-contactsselectoptions-multiple"><code><c- g>multiple</c-></code><a class="self-link" href="#dom-contactsselectoptions-multiple"></a></dfn> = <c- b>false</c->;
 };
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①"><c- g>Exposed</c-></a>=(<c- n>Window</c->,<c- n>SecureContext</c->)]
 <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="contactsmanager"><code><c- g>ContactsManager</c-></code></dfn> {
-    <c- b>Promise</c->&lt;<c- b>sequence</c->&lt;<a class="n" data-link-type="idl-name" href="#dictdef-contactinfo" id="ref-for-dictdef-contactinfo"><c- n>ContactInfo</c-></a>>> <a class="idl-code" data-link-type="method" href="#dom-contactsmanager-select" id="ref-for-dom-contactsmanager-select"><c- g>select</c-></a>(<a class="n" data-link-type="idl-name" href="#dictdef-contactsselectoptions" id="ref-for-dictdef-contactsselectoptions"><c- n>ContactsSelectOptions</c-></a> <dfn class="idl-code" data-dfn-for="ContactsManager/select(options)" data-dfn-type="argument" data-export id="dom-contactsmanager-select-options-options"><code><c- g>options</c-></code><a class="self-link" href="#dom-contactsmanager-select-options-options"></a></dfn>);
+    <c- b>Promise</c->&lt;<c- b>sequence</c->&lt;<a class="n" data-link-type="idl-name" href="#dictdef-contactinfo" id="ref-for-dictdef-contactinfo"><c- n>ContactInfo</c-></a>>> <a class="idl-code" data-link-type="method" href="#dom-contactsmanager-select" id="ref-for-dom-contactsmanager-select"><c- g>select</c-></a>(<c- b>sequence</c->&lt;<a class="n" data-link-type="idl-name" href="#enumdef-contactproperty" id="ref-for-enumdef-contactproperty"><c- n>ContactProperty</c-></a>> <dfn class="idl-code" data-dfn-for="ContactsManager/select(properties, options), ContactsManager/select(properties)" data-dfn-type="argument" data-export id="dom-contactsmanager-select-properties-options-properties"><code><c- g>properties</c-></code><a class="self-link" href="#dom-contactsmanager-select-properties-options-properties"></a></dfn>, <c- b>optional</c-> <a class="n" data-link-type="idl-name" href="#dictdef-contactsselectoptions" id="ref-for-dictdef-contactsselectoptions"><c- n>ContactsSelectOptions</c-></a> <dfn class="idl-code" data-dfn-for="ContactsManager/select(properties, options), ContactsManager/select(properties)" data-dfn-type="argument" data-export id="dom-contactsmanager-select-properties-options-options"><code><c- g>options</c-></code><a class="self-link" href="#dom-contactsmanager-select-properties-options-options"></a></dfn>);
 };
 </pre>
    <div>
     <h4 class="heading settled" data-level="4.2.1" id="contacts-manager-select"><span class="secno">4.2.1. </span><span class="content"><code class="idl"><a data-link-type="idl" href="#dom-contactsmanager-select" id="ref-for-dom-contactsmanager-select①">select()</a></code></span><a class="self-link" href="#contacts-manager-select"></a></h4>
-    <div class="algorithm" data-algorithm="select(options)">
-      The <dfn class="dfn-paneled idl-code" data-dfn-for="ContactsManager" data-dfn-type="method" data-export id="dom-contactsmanager-select"><code>select(<var>options</var>)</code></dfn> method, when invoked, runs these steps: 
+    <div class="algorithm" data-algorithm="select(properties, options)">
+      The <dfn class="dfn-paneled idl-code" data-dfn-for="ContactsManager" data-dfn-type="method" data-export data-lt="select(properties, options)|select(properties)" id="dom-contactsmanager-select"><code>select(<var>properties</var>, <var>options</var>)</code></dfn> method, when invoked, runs these steps: 
      <ol>
       <li data-md>
        <p>Let <var>relevantBrowsingContext</var> be the <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#context-object" id="ref-for-context-object①">context object</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#relevant-settings-object" id="ref-for-relevant-settings-object">relevant settings object</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#responsible-browsing-context" id="ref-for-responsible-browsing-context">responsible browsing context</a>.</p>
@@ -1671,7 +1667,7 @@ to each other.</p>
        <p>Run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel">in parallel</a>:</p>
        <ol>
         <li data-md>
-         <p><a data-link-type="dfn" href="#contact-picker-launch" id="ref-for-contact-picker-launch">Launch</a> a new <a data-link-type="dfn" href="#contactsmanager-contact-picker" id="ref-for-contactsmanager-contact-picker">contact picker</a> with <a data-link-type="dfn" href="#contactsmanager-select-multiple-contacts-flag" id="ref-for-contactsmanager-select-multiple-contacts-flag">select multiple contacts flag</a> set if <var>options</var>’s <code>multiple</code> member is true. If this fails, then:</p>
+         <p><a data-link-type="dfn" href="#contact-picker-launch" id="ref-for-contact-picker-launch">Launch</a> a new <a data-link-type="dfn" href="#contactsmanager-contact-picker" id="ref-for-contactsmanager-contact-picker">contact picker</a> with <a data-link-type="dfn" href="#contactsmanager-select-multiple-contacts-flag" id="ref-for-contactsmanager-select-multiple-contacts-flag">select multiple contacts flag</a> set to <var>options</var>’s <code>multiple</code> member. If this fails, then:</p>
          <ol>
           <li data-md>
            <p>Reject <var>promise</var> with an <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror②">InvalidStateError</a></code> <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException③">DOMException</a></code>.</p>
@@ -1692,13 +1688,16 @@ to each other.</p>
            <dl>
             <dt data-md><code class="idl"><a data-link-type="idl" href="#dom-contactinfo-name" id="ref-for-dom-contactinfo-name">name</a></code>
             <dd data-md>
-             <p><var>selectedContact</var>’s <a data-link-type="dfn" href="#user-contact-names" id="ref-for-user-contact-names">names</a> if <var>options</var>’ <code>properties</code> member <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain">contains</a> "<code>name</code>", otherwise an empty <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list④">list</a>.</p>
+             <p><var>selectedContact</var>’s <a data-link-type="dfn" href="#user-contact-names" id="ref-for-user-contact-names">names</a> if <var>properties</var> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain">contains</a> "<code>name</code>",
+ otherwise an empty <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list④">list</a>.</p>
             <dt data-md><code class="idl"><a data-link-type="idl" href="#dom-contactinfo-email" id="ref-for-dom-contactinfo-email">email</a></code>
             <dd data-md>
-             <p><var>selectedContact</var>’s <a data-link-type="dfn" href="#user-contact-emails" id="ref-for-user-contact-emails">emails</a> if <var>options</var>’ <code>properties</code> member <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain①">contains</a> "<code>email</code>", otherwise an empty <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list⑤">list</a>.</p>
+             <p><var>selectedContact</var>’s <a data-link-type="dfn" href="#user-contact-emails" id="ref-for-user-contact-emails">emails</a> if <var>properties</var> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain①">contains</a> "<code>email</code>",
+ otherwise an empty <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list⑤">list</a>.</p>
             <dt data-md><code class="idl"><a data-link-type="idl" href="#dom-contactinfo-tel" id="ref-for-dom-contactinfo-tel">tel</a></code>
             <dd data-md>
-             <p><var>selectedContact</var>’s <a data-link-type="dfn" href="#user-contact-numbers" id="ref-for-user-contact-numbers">numbers</a> if <var>options</var>’ <code>properties</code> member <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain②">contains</a> "<code>tel</code>", otherwise an empty <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list⑥">list</a>.</p>
+             <p><var>selectedContact</var>’s <a data-link-type="dfn" href="#user-contact-numbers" id="ref-for-user-contact-numbers">numbers</a> if <var>properties</var> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain②">contains</a> "<code>tel</code>",
+ otherwise an empty <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list⑥">list</a>.</p>
            </dl>
           <li data-md>
            <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append">Append</a> <var>contact</var> to <var>contacts</var>.</p>
@@ -1923,10 +1922,10 @@ picker.</p>
    <li><a href="#dom-contactinfo-name">name</a><span>, in §4.2</span>
    <li><a href="#user-contact-names">names</a><span>, in §3.1</span>
    <li><a href="#user-contact-numbers">numbers</a><span>, in §3.1</span>
-   <li><a href="#dom-contactsselectoptions-properties">properties</a><span>, in §4.2</span>
    <li><a href="#contactsmanager-selected-contacts">Selected contacts</a><span>, in §5</span>
    <li><a href="#contactsmanager-select-multiple-contacts-flag">select multiple contacts flag</a><span>, in §5</span>
-   <li><a href="#dom-contactsmanager-select">select(options)</a><span>, in §4.2.1</span>
+   <li><a href="#dom-contactsmanager-select">select(properties)</a><span>, in §4.2.1</span>
+   <li><a href="#dom-contactsmanager-select">select(properties, options)</a><span>, in §4.2.1</span>
    <li><a href="#dom-contactinfo-tel">tel</a><span>, in §4.2</span>
    <li><a href="#dom-contactproperty-tel">"tel"</a><span>, in §4.2</span>
    <li><a href="#user-contact">user contact</a><span>, in §3.1</span>
@@ -2194,13 +2193,12 @@ picker.</p>
 <c- b>enum</c-> <a href="#enumdef-contactproperty"><code><c- g>ContactProperty</c-></code></a> { <a href="#dom-contactproperty-email"><code><c- s>"email"</c-></code></a>, <a href="#dom-contactproperty-name"><code><c- s>"name"</c-></code></a>, <a href="#dom-contactproperty-tel"><code><c- s>"tel"</c-></code></a> };
 
 <c- b>dictionary</c-> <a href="#dictdef-contactsselectoptions"><code><c- g>ContactsSelectOptions</c-></code></a> {
-    <c- b>required</c-> <c- b>sequence</c->&lt;<a class="n" data-link-type="idl-name" href="#enumdef-contactproperty" id="ref-for-enumdef-contactproperty①"><c- n>ContactProperty</c-></a>> <a data-type="sequence<ContactProperty> " href="#dom-contactsselectoptions-properties"><code><c- g>properties</c-></code></a>;
     <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean①"><c- b>boolean</c-></a> <a data-default="false" data-type="boolean " href="#dom-contactsselectoptions-multiple"><code><c- g>multiple</c-></code></a> = <c- b>false</c->;
 };
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①①"><c- g>Exposed</c-></a>=(<c- n>Window</c->,<c- n>SecureContext</c->)]
 <c- b>interface</c-> <a href="#contactsmanager"><code><c- g>ContactsManager</c-></code></a> {
-    <c- b>Promise</c->&lt;<c- b>sequence</c->&lt;<a class="n" data-link-type="idl-name" href="#dictdef-contactinfo" id="ref-for-dictdef-contactinfo②"><c- n>ContactInfo</c-></a>>> <a class="idl-code" data-link-type="method" href="#dom-contactsmanager-select" id="ref-for-dom-contactsmanager-select②"><c- g>select</c-></a>(<a class="n" data-link-type="idl-name" href="#dictdef-contactsselectoptions" id="ref-for-dictdef-contactsselectoptions①"><c- n>ContactsSelectOptions</c-></a> <a href="#dom-contactsmanager-select-options-options"><code><c- g>options</c-></code></a>);
+    <c- b>Promise</c->&lt;<c- b>sequence</c->&lt;<a class="n" data-link-type="idl-name" href="#dictdef-contactinfo" id="ref-for-dictdef-contactinfo②"><c- n>ContactInfo</c-></a>>> <a class="idl-code" data-link-type="method" href="#dom-contactsmanager-select" id="ref-for-dom-contactsmanager-select②"><c- g>select</c-></a>(<c- b>sequence</c->&lt;<a class="n" data-link-type="idl-name" href="#enumdef-contactproperty" id="ref-for-enumdef-contactproperty①"><c- n>ContactProperty</c-></a>> <a href="#dom-contactsmanager-select-properties-options-properties"><code><c- g>properties</c-></code></a>, <c- b>optional</c-> <a class="n" data-link-type="idl-name" href="#dictdef-contactsselectoptions" id="ref-for-dictdef-contactsselectoptions①"><c- n>ContactsSelectOptions</c-></a> <a href="#dom-contactsmanager-select-properties-options-options"><code><c- g>options</c-></code></a>);
 };
 
 </pre>

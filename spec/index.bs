@@ -40,10 +40,7 @@ consent.
 
   <pre class="lang-js">
     selectRecipientsButton.addEventListener('click', async () => {
-      const contacts = await navigator.contacts.select({
-          properties: ['name', 'email'],
-          multiple: true,
-      });
+      const contacts = await navigator.contacts.select(['name', 'email'], {multiple: true});
 
       if (!contacts.length) {
         // Either no contacts were selected in the picker, or the picker could
@@ -128,13 +125,12 @@ dictionary ContactInfo {
 enum ContactProperty { "email", "name", "tel" };
 
 dictionary ContactsSelectOptions {
-    required sequence<ContactProperty> properties;
     boolean multiple = false;
 };
 
 [Exposed=(Window,SecureContext)]
 interface ContactsManager {
-    Promise<sequence<ContactInfo>> select(ContactsSelectOptions options);
+    Promise<sequence<ContactInfo>> select(sequence<ContactProperty> properties, optional ContactsSelectOptions options);
 };
 </script>
 
@@ -143,7 +139,7 @@ interface ContactsManager {
 ### {{ContactsManager/select()}} ### {#contacts-manager-select}
 
 <div algorithm>
-  The <dfn method>select(|options|)</dfn> method, when invoked, runs these steps:
+  The <dfn method>select(|properties|, |options|)</dfn> method, when invoked, runs these steps:
 
   1. Let |relevantBrowsingContext| be the [=context object=]'s [=relevant settings object=]'s
      [=environment settings object/responsible browsing context=].
@@ -156,8 +152,8 @@ interface ContactsManager {
   1. Set |relevantBrowsingContext|'s [=contact picker is showing flag=].
   1. Let |promise| be [=a new promise=].
   1. Run the following steps [=in parallel=]:
-    1. [=Launch=] a new [=contact picker=] with [=select multiple contacts flag=] set if |options|'s
-       `multiple` member is true. If this fails, then:
+    1. [=Launch=] a new [=contact picker=] with [=select multiple contacts flag=] set to
+       |options|' `multiple` member. If this fails, then:
        1. Reject |promise| with an {{InvalidStateError}} {{DOMException}}.
        1. Unset [=contact picker is showing flag=].
        1. Abort these steps.
@@ -166,14 +162,14 @@ interface ContactsManager {
     1. [=list/For each=] |selectedContact| in [=contact picker=]'s [=selected contacts=]:
       1. Let |contact| be a new {{ContactInfo}} with:
         : {{ContactInfo/name}}
-        :: |selectedContact|'s [=user contact/names=] if |options|' `properties` member
-           [=list/contains=] "`name`", otherwise an empty [=list=].
+        :: |selectedContact|'s [=user contact/names=] if |properties| [=list/contains=] "`name`",
+           otherwise an empty [=list=].
         : {{ContactInfo/email}}
-        :: |selectedContact|'s [=user contact/emails=] if |options|' `properties` member
-           [=list/contains=] "`email`", otherwise an empty [=list=].
+        :: |selectedContact|'s [=user contact/emails=] if |properties| [=list/contains=] "`email`",
+           otherwise an empty [=list=].
         : {{ContactInfo/tel}}
-        :: |selectedContact|'s [=user contact/numbers=] if |options|' `properties` member
-           [=list/contains=] "`tel`", otherwise an empty [=list=].
+        :: |selectedContact|'s [=user contact/numbers=] if |properties| [=list/contains=] "`tel`",
+           otherwise an empty [=list=].
       1. [=list/Append=] |contact| to |contacts|.
     1. Resolve |promise| with |contacts|. 
   1. Return |promise|.
