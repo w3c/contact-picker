@@ -71,7 +71,21 @@ The following constraints are also enforced:
 * A user gesture is needed to initiate the API, to disallow programmatic requests to the user's
   contacts.
 
+# Realms # {#realms}
+
+All platform objects are created in the [=context object=]'s [=relevant Realm=] unless otherwise
+specified.
+
 # Infrastructure # {#infrastructure}
+
+The <dfn>contact picker task source</dfn> is a [=task source=].
+
+<div algorithm>
+  To <dfn>queue a contact picker task</dfn> on an optional |eventLoop| (an [=event loop=],
+  defaulting to the caller's [=context object=]'s [=relevant settings object=]'s
+  [=responsible event loop=]) with |steps| (steps), [=queue a task=] on |eventLoop| using the
+  [=contact picker task source=] to run |steps|.
+</div>
 
 ## User contact ## {#infrastructure-user-contact}
 
@@ -153,26 +167,27 @@ interface ContactsManager {
   1. Set |relevantBrowsingContext|'s [=contact picker is showing flag=].
   1. Let |promise| be [=a new promise=].
   1. Run the following steps [=in parallel=]:
-    1. Let |selectedContacts| be be the result of [=launching a contact picker=] with |options|' `multiple`
-       member and |properties|. If this fails, then:
+    1. Let |selectedContacts| be be the result of [=launching a contact picker=] with |options|'
+       `multiple` member and |properties|. If this fails, then:
       1. Return [=a promise rejected with=] an {{InvalidStateError}} {{DOMException}}.
       1. Unset |relevantBrowsingContext|'s [=contact picker is showing flag=].
       1. Abort thise steps.
     1. Unset |relevantBrowsingContext|'s [=contact picker is showing flag=].
-    1. Let |contacts| be an empty [=list=].
-    1. [=list/For each=] |selectedContact| in |selectedContacts|:
-      1. Let |contact| be a new {{ContactInfo}} with:
-        : {{ContactInfo/name}}
-        :: |selectedContact|'s [=user contact/names=] if |properties| [=list/contains=] "`name`",
-           otherwise an empty [=list=].
-        : {{ContactInfo/email}}
-        :: |selectedContact|'s [=user contact/emails=] if |properties| [=list/contains=] "`email`",
-           otherwise an empty [=list=].
-        : {{ContactInfo/tel}}
-        :: |selectedContact|'s [=user contact/numbers=] if |properties| [=list/contains=] "`tel`",
-           otherwise an empty [=list=].
-      1. [=list/Append=] |contact| to |contacts|.
-    1. Resolve |promise| with |contacts|. 
+    1. [=Queue a contact picker task=] to run these steps:
+      1. Let |contacts| be an empty [=list=].
+      1. [=list/For each=] |selectedContact| in |selectedContacts|:
+        1. Let |contact| be a new {{ContactInfo}} with:
+          : {{ContactInfo/name}}
+          :: |selectedContact|'s [=user contact/names=] if |properties| [=list/contains=]
+             "`name`", otherwise an empty [=list=].
+          : {{ContactInfo/email}}
+          :: |selectedContact|'s [=user contact/emails=] if |properties| [=list/contains=]
+             "`email`", otherwise an empty [=list=].
+          : {{ContactInfo/tel}}
+          :: |selectedContact|'s [=user contact/numbers=] if |properties| [=list/contains=]
+             "`tel`", otherwise an empty [=list=].
+        1. [=list/Append=] |contact| to |contacts|.
+      1. Resolve |promise| with |contacts|.
   1. Return |promise|.
 </div>
 
