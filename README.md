@@ -17,10 +17,7 @@ This proposal does not address the source of the contacts. Many operating system
 ## Example
 ```javascript
 selectRecipientsButton.addEventListener('click', async () => {
-  const contacts = await navigator.contacts.select({
-      properties: ['name', 'email'],
-      multiple: true
-  });
+  const contacts = await navigator.contacts.select(['name', 'email'], { multiple: true });
     
   if (!contacts.length) {
     // Either no contacts were selected in the picker, or the picker could
@@ -37,26 +34,25 @@ selectRecipientsButton.addEventListener('click', async () => {
 ## Proposed WebIDL
 ```WebIDL
 dictionary ContactInfo {
-    sequence<USVString> name;
-    sequence<USVString> email;
-    sequence<USVString> tel;
+    sequence<DOMString> name;
+    sequence<DOMString> email;
+    sequence<DOMString> tel;
 };
 
 enum ContactProperty { "email", "name", "tel" };
 
 dictionary ContactsSelectOptions {
-    sequence<ContactProperty> properties;
     boolean multiple = false;
 };
 
-[Exposed=Window, SecureContext]
+[Exposed=(Window,SecureContext)]
 interface ContactsManager {
-    Promise<sequence<ContactInfo>> select(ContactsSelectOptions options);
+    Promise<sequence<ContactInfo>> select(sequence<ContactProperty> properties, optional ContactsSelectOptions options);
 };
 
-[Exposed=Window, SecureContext]
+[Exposed=Window]
 partial interface Navigator {
-    readonly attribute ContactsManager contacts;
+  [SecureContext, SameObject] readonly attribute ContactsManager contacts;
 };
 ```
 
