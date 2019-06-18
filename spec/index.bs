@@ -16,6 +16,7 @@ Indent: 2
 spec:infra; type:dfn; text:list
 spec:html; type:dfn; for:/; text:browsing context
 spec:html; type:dfn; for:/; text:origin
+spec:html; type:dfn; for:/; text:valid e-mail address
 </pre>
 
 # Introduction # {#intro}
@@ -95,7 +96,7 @@ A <dfn>user contact</dfn> consists of:
 * <dfn>names</dfn>, a [=list=] of {{DOMString}}s, initially empty, each [=list/item=] representing
   a unique name corresponding to the user.
 * <dfn>emails</dfn>, a [=list=] of {{DOMString}}s, initially empty, each [=list/item=] representing
-  a unique email of the user.
+  a unique [=valid e-mail address=] of the user.
 * <dfn>numbers</dfn>, a [=list=] of {{DOMString}}s, initially empty, each [=list/item=]
   representing a unique phone number of the user.
 
