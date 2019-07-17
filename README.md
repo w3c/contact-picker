@@ -63,7 +63,7 @@ partial interface Navigator {
 ## Security and Privacy
 Exposing contact information has a clear privacy impact. We propose a picker model so that the user agent can make it clear what information in going to be shared with the website; the spec will have a MUST requirement to ensure that the user understands and selects which contacts or information to share.
 
-The API will only be available on secure contexts. Additionally, we propose that a user gesture is required to trigger the contact picker, users from inadvertently seeing the picker.
+The API will only be available on secure contexts. Additionally, we propose that a user gesture is required to trigger the contact picker, to prevent users from inadvertently seeing the picker.
 
 ## Alternatives Considered
 
