@@ -128,15 +128,30 @@ The <dfn attribute>contacts</dfn> attribute's getter must return the [=context o
 
 The [=browsing context=] has a <dfn>contact picker is showing flag</dfn>, initially unset.
 
+## {{ContactInfo}} ## {#contact-info}
+
+<script type="idl">
+[Exposed=(Window,SecureContext)]
+interface ContactInfo {
+    readonly attribute FrozenArray<DOMString>? name;
+    readonly attribute FrozenArray<DOMString>? email;
+    readonly attribute FrozenArray<DOMString>? tel;
+    [Default] object toJSON();
+};
+</script>
+
+
+<div dfn-for="ContactInfo">
+
+### {{ContactInfo/toJSON()}} ### {#contactinfo-tojson}
+
+When called, runs [[WEBIDL]]'s [=default toJSON operation=].
+
+</div>
+
 ## {{ContactsManager}} ## {#contacts-manager}
 
 <script type="idl">
-dictionary ContactInfo {
-    sequence<DOMString> name;
-    sequence<DOMString> email;
-    sequence<DOMString> tel;
-};
-
 enum ContactProperty { "email", "name", "tel" };
 
 dictionary ContactsSelectOptions {
@@ -180,13 +195,13 @@ interface ContactsManager {
         1. Let |contact| be a new {{ContactInfo}} with:
           : {{ContactInfo/name}}
           :: |selectedContact|'s [=user contact/names=] if |properties| [=list/contains=]
-             "`name`", otherwise an empty [=list=].
+             "`name`", otherwise null.
           : {{ContactInfo/email}}
           :: |selectedContact|'s [=user contact/emails=] if |properties| [=list/contains=]
-             "`email`", otherwise an empty [=list=].
+             "`email`", otherwise null.
           : {{ContactInfo/tel}}
           :: |selectedContact|'s [=user contact/numbers=] if |properties| [=list/contains=]
-             "`tel`", otherwise an empty [=list=].
+             "`tel`", otherwise null.
         1. [=list/Append=] |contact| to |contacts|.
       1. Resolve |promise| with |contacts|.
   1. Return |promise|.
