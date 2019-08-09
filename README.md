@@ -36,10 +36,12 @@ selectRecipientsButton.addEventListener('click', async () => {
 
 ## Proposed WebIDL
 ```WebIDL
-dictionary ContactInfo {
-    sequence<DOMString> name;
-    sequence<DOMString> email;
-    sequence<DOMString> tel;
+[Exposed=(Window,SecureContext)]
+interface ContactInfo {
+    readonly attribute FrozenArray<DOMString>? name;
+    readonly attribute FrozenArray<DOMString>? email;
+    readonly attribute FrozenArray<DOMString>? tel;
+    [Default] object toJSON();
 };
 
 enum ContactProperty { "email", "name", "tel" };
