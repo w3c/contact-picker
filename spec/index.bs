@@ -19,6 +19,12 @@ spec:html; type:dfn; for:/; text:origin
 spec:html; type:dfn; for:/; text:valid e-mail address
 </pre>
 
+<pre class="anchors">
+spec: payment-request; urlPrefix: https://www.w3.org/TR/payment-request/
+  type: dfn; text: physical addresses; url: physical-addresses
+  type: interface; text: PaymentAddress; url: dom-paymentaddress
+</pre>
+
 # Introduction # {#intro}
 
 Contact pickers are frequently seen in various desktop and native mobile applications for a variety
@@ -99,6 +105,8 @@ A <dfn>user contact</dfn> consists of:
   a unique [=valid e-mail address=] of the user.
 * <dfn>numbers</dfn>, a [=list=] of {{DOMString}}s, initially empty, each [=list/item=]
   representing a unique phone number of the user.
+* <dfn>addresses</dfn>, a [=list=] of {{ContactAddress}}es, initially empty, each [=list/item=]
+  representing a unique [=physical address=] of the user.
 
 Note: The lists can be of different sizes, and entries with the same index don't need to correspond
 to each other.
@@ -131,13 +139,16 @@ The [=browsing context=] has a <dfn>contact picker is showing flag</dfn>, initia
 ## {{ContactsManager}} ## {#contacts-manager}
 
 <script type="idl">
+enum ContactProperty { "address", "email", "name", "tel" };
+
+interface ContactAddress : PaymentAddress {};
+
 dictionary ContactInfo {
     sequence<DOMString> name;
     sequence<DOMString> email;
     sequence<DOMString> tel;
+    sequence<ContactAddress> address;
 };
-
-enum ContactProperty { "email", "name", "tel" };
 
 dictionary ContactsSelectOptions {
     boolean multiple = false;
@@ -187,6 +198,9 @@ interface ContactsManager {
           : {{ContactInfo/tel}}
           :: |selectedContact|'s [=user contact/numbers=] if |properties| [=list/contains=]
              "`tel`", otherwise undefined.
+          : {{ContactInfo/address}}
+          :: |selectedContact|'s [=user contact/addresses=] if |properties| [=list/contains=]
+            "`address`", otherwise undefined.
         1. [=list/Append=] |contact| to |contacts|.
       1. Resolve |promise| with |contacts|.
   1. Return |promise|.

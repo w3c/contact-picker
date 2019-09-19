@@ -1029,7 +1029,7 @@ Possible extra rowspan handling
 		}
 	/* } */
 
-	@supports (display:grid) {
+	@supports (display:grid) and (display:contents) {
 		/* Use #toc over .toc to override non-@supports rules. */
 		#toc {
 			display: grid;
@@ -1212,9 +1212,10 @@ Possible extra rowspan handling
 		}
 	}
 </style>
-  <meta content="Bikeshed version 30dbdcf66519991ec52011cac10c49a7b5b449c5" name="generator">
+  <link href="https://www.w3.org/StyleSheets/TR/2016/W3C-UD" rel="stylesheet">
+  <meta content="Bikeshed version cb5a17652cb33dffd20b8b6a876bb811c1f749a9" name="generator">
   <link href="https://wicg.github.io/contact-api/spec" rel="canonical">
-  <meta content="9fb3a89ea6e724fe33543b68922cbbe962e98876" name="document-revision">
+  <meta content="4f246ad70c858b672efa50af237ddb6431683fd8" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1472,13 +1473,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Contact Picker API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Unofficial Proposal Draft, <time class="dt-updated" datetime="2019-08-13">13 August 2019</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Unofficial Proposal Draft, <time class="dt-updated" datetime="2019-09-19">19 September 2019</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
      <dd><a class="u-url" href="https://wicg.github.io/contact-api/spec">https://wicg.github.io/contact-api/spec</a>
      <dt>Issue Tracking:
-     <dd><a href="https://github.com/beverloo/contact-api/issues/">GitHub</a>
+     <dd><a href="https://github.com/WICG/contact-api/issues/">GitHub</a>
      <dt class="editor">Editors:
      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:beverloo@google.com">Peter Beverloo</a> (<span class="p-org org">Google</span>)
      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:rayankans@google.com">Rayan Kanso</a> (<span class="p-org org">Google</span>)
@@ -1614,6 +1615,8 @@ a unique name corresponding to the user.</p>
 a unique <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/input.html#valid-e-mail-address" id="ref-for-valid-e-mail-address">valid e-mail address</a> of the user.</p>
      <li data-md>
       <p><dfn class="dfn-paneled" data-dfn-for="user contact" data-dfn-type="dfn" data-noexport id="user-contact-numbers">numbers</dfn>, a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list②">list</a> of <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString②">DOMString</a></code>s, initially empty, each <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-item" id="ref-for-list-item②">item</a> representing a unique phone number of the user.</p>
+     <li data-md>
+      <p><dfn class="dfn-paneled" data-dfn-for="user contact" data-dfn-type="dfn" data-noexport id="user-contact-addresses">addresses</dfn>, a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list③">list</a> of <code class="idl"><a data-link-type="idl" href="#contactaddress" id="ref-for-contactaddress">ContactAddress</a></code>es, initially empty, each <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-item" id="ref-for-list-item③">item</a> representing a unique <a data-link-type="dfn" href="https://www.w3.org/TR/payment-request/#physical-addresses" id="ref-for-physical-addresses">physical address</a> of the user.</p>
     </ul>
     <p class="note" role="note"><span>Note:</span> The lists can be of different sizes, and entries with the same index don’t need to correspond
 to each other.</p>
@@ -1632,13 +1635,16 @@ to each other.</p>
    </div>
    <p>The <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context">browsing context</a> has a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="contact-picker-is-showing-flag">contact picker is showing flag</dfn>, initially unset.</p>
    <h3 class="heading settled" data-level="5.2" id="contacts-manager"><span class="secno">5.2. </span><span class="content"><code class="idl"><a data-link-type="idl" href="#contactsmanager" id="ref-for-contactsmanager③">ContactsManager</a></code></span><a class="self-link" href="#contacts-manager"></a></h3>
-<pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-contactinfo"><code><c- g>ContactInfo</c-></code></dfn> {
+<pre class="idl highlight def"><c- b>enum</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="enum" data-export id="enumdef-contactproperty"><code><c- g>ContactProperty</c-></code></dfn> { <dfn class="idl-code" data-dfn-for="ContactProperty" data-dfn-type="enum-value" data-export id="dom-contactproperty-address"><code><c- s>"address"</c-></code><a class="self-link" href="#dom-contactproperty-address"></a></dfn>, <dfn class="idl-code" data-dfn-for="ContactProperty" data-dfn-type="enum-value" data-export id="dom-contactproperty-email"><code><c- s>"email"</c-></code><a class="self-link" href="#dom-contactproperty-email"></a></dfn>, <dfn class="idl-code" data-dfn-for="ContactProperty" data-dfn-type="enum-value" data-export id="dom-contactproperty-name"><code><c- s>"name"</c-></code><a class="self-link" href="#dom-contactproperty-name"></a></dfn>, <dfn class="idl-code" data-dfn-for="ContactProperty" data-dfn-type="enum-value" data-export id="dom-contactproperty-tel"><code><c- s>"tel"</c-></code><a class="self-link" href="#dom-contactproperty-tel"></a></dfn> };
+
+<c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="contactaddress"><code><c- g>ContactAddress</c-></code></dfn> : <a class="n" data-link-type="idl-name" href="https://www.w3.org/TR/payment-request/#dom-paymentaddress" id="ref-for-dom-paymentaddress"><c- n>PaymentAddress</c-></a> {};
+
+<c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-contactinfo"><code><c- g>ContactInfo</c-></code></dfn> {
     <c- b>sequence</c->&lt;<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString③"><c- b>DOMString</c-></a>> <dfn class="dfn-paneled idl-code" data-dfn-for="ContactInfo" data-dfn-type="dict-member" data-export data-type="sequence<DOMString> " id="dom-contactinfo-name"><code><c- g>name</c-></code></dfn>;
     <c- b>sequence</c->&lt;<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString④"><c- b>DOMString</c-></a>> <dfn class="dfn-paneled idl-code" data-dfn-for="ContactInfo" data-dfn-type="dict-member" data-export data-type="sequence<DOMString> " id="dom-contactinfo-email"><code><c- g>email</c-></code></dfn>;
     <c- b>sequence</c->&lt;<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString⑤"><c- b>DOMString</c-></a>> <dfn class="dfn-paneled idl-code" data-dfn-for="ContactInfo" data-dfn-type="dict-member" data-export data-type="sequence<DOMString> " id="dom-contactinfo-tel"><code><c- g>tel</c-></code></dfn>;
+    <c- b>sequence</c->&lt;<a class="n" data-link-type="idl-name" href="#contactaddress" id="ref-for-contactaddress①"><c- n>ContactAddress</c-></a>> <dfn class="dfn-paneled idl-code" data-dfn-for="ContactInfo" data-dfn-type="dict-member" data-export data-type="sequence<ContactAddress> " id="dom-contactinfo-address"><code><c- g>address</c-></code></dfn>;
 };
-
-<c- b>enum</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="enum" data-export id="enumdef-contactproperty"><code><c- g>ContactProperty</c-></code></dfn> { <dfn class="idl-code" data-dfn-for="ContactProperty" data-dfn-type="enum-value" data-export id="dom-contactproperty-email"><code><c- s>"email"</c-></code><a class="self-link" href="#dom-contactproperty-email"></a></dfn>, <dfn class="idl-code" data-dfn-for="ContactProperty" data-dfn-type="enum-value" data-export id="dom-contactproperty-name"><code><c- s>"name"</c-></code><a class="self-link" href="#dom-contactproperty-name"></a></dfn>, <dfn class="idl-code" data-dfn-for="ContactProperty" data-dfn-type="enum-value" data-export id="dom-contactproperty-tel"><code><c- s>"tel"</c-></code><a class="self-link" href="#dom-contactproperty-tel"></a></dfn> };
 
 <c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-contactsselectoptions"><code><c- g>ContactsSelectOptions</c-></code></dfn> {
     <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean"><c- b>boolean</c-></a> <dfn class="idl-code" data-default="false" data-dfn-for="ContactsSelectOptions" data-dfn-type="dict-member" data-export data-type="boolean " id="dom-contactsselectoptions-multiple"><code><c- g>multiple</c-></code><a class="self-link" href="#dom-contactsselectoptions-multiple"></a></dfn> = <c- b>false</c->;
@@ -1687,7 +1693,7 @@ to each other.</p>
          <p><a data-link-type="dfn" href="#queue-a-contact-picker-task" id="ref-for-queue-a-contact-picker-task">Queue a contact picker task</a> to run these steps:</p>
          <ol>
           <li data-md>
-           <p>Let <var>contacts</var> be an empty <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list③">list</a>.</p>
+           <p>Let <var>contacts</var> be an empty <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list④">list</a>.</p>
           <li data-md>
            <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate">For each</a> <var>selectedContact</var> in <var>selectedContacts</var>:</p>
            <ol>
@@ -1703,6 +1709,9 @@ to each other.</p>
               <dt data-md><code class="idl"><a data-link-type="idl" href="#dom-contactinfo-tel" id="ref-for-dom-contactinfo-tel">tel</a></code>
               <dd data-md>
                <p><var>selectedContact</var>’s <a data-link-type="dfn" href="#user-contact-numbers" id="ref-for-user-contact-numbers">numbers</a> if <var>properties</var> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain②">contains</a> "<code>tel</code>", otherwise undefined.</p>
+              <dt data-md><code class="idl"><a data-link-type="idl" href="#dom-contactinfo-address" id="ref-for-dom-contactinfo-address">address</a></code>
+              <dd data-md>
+               <p><var>selectedContact</var>’s <a data-link-type="dfn" href="#user-contact-addresses" id="ref-for-user-contact-addresses">addresses</a> if <var>properties</var> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain③">contains</a> "<code>address</code>", otherwise undefined.</p>
              </dl>
             <li data-md>
              <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append">Append</a> <var>contact</var> to <var>contacts</var>.</p>
@@ -1717,7 +1726,7 @@ to each other.</p>
     </div>
     <h2 class="heading settled" data-level="6" id="contact-picker"><span class="secno">6. </span><span class="content">Contact Picker</span><a class="self-link" href="#contact-picker"></a></h2>
     <div class="algorithm" data-algorithm="launching a contact picker">
-      To <dfn class="dfn-paneled" data-dfn-for="ContactsManager" data-dfn-type="dfn" data-lt="launching a contact picker" data-noexport id="contactsmanager-launching-a-contact-picker">launch</dfn> a contact picker with <var>allowMultiple</var> (a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#boolean" id="ref-for-boolean">boolean</a>), and <var>properties</var> (a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list④">list</a> of <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString⑥">DOMString</a></code>s), the user agent MUST present a user
+      To <dfn class="dfn-paneled" data-dfn-for="ContactsManager" data-dfn-type="dfn" data-lt="launching a contact picker" data-noexport id="contactsmanager-launching-a-contact-picker">launch</dfn> a contact picker with <var>allowMultiple</var> (a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#boolean" id="ref-for-boolean">boolean</a>), and <var>properties</var> (a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list⑤">list</a> of <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString⑥">DOMString</a></code>s), the user agent MUST present a user
   interface that follows these rules: 
      <ul>
       <li data-md>
@@ -1733,10 +1742,10 @@ then return failure.</p>
 contact should be pickable.</p>
       <li data-md>
        <p>The UI MUST provide an option to cancel/return without sharing any contacts, in which case
-remove the UI and return an empty <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list⑤">list</a>.</p>
+remove the UI and return an empty <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list⑥">list</a>.</p>
       <li data-md>
        <p>The UI MUST provide an a way for users to indicate that they are done selecting, in which case
-remove the UI and return a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list⑥">list</a> of the selected contacts as <a data-link-type="dfn" href="#user-contact" id="ref-for-user-contact①">user contacts</a>.</p>
+remove the UI and return a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list⑦">list</a> of the selected contacts as <a data-link-type="dfn" href="#user-contact" id="ref-for-user-contact①">user contacts</a>.</p>
      </ul>
     </div>
     <p class="note" role="note"><span>Note:</span> It is up to the user agent to choose the source of the contact information displayed in the
@@ -1892,6 +1901,10 @@ picker.</p>
   <h2 class="no-num no-ref heading settled" id="index"><span class="content">Index</span><a class="self-link" href="#index"></a></h2>
   <h3 class="no-num no-ref heading settled" id="index-defined-here"><span class="content">Terms defined by this specification</span><a class="self-link" href="#index-defined-here"></a></h3>
   <ul class="index">
+   <li><a href="#dom-contactinfo-address">address</a><span>, in §5.2</span>
+   <li><a href="#dom-contactproperty-address">"address"</a><span>, in §5.2</span>
+   <li><a href="#user-contact-addresses">addresses</a><span>, in §4.1</span>
+   <li><a href="#contactaddress">ContactAddress</a><span>, in §5.2</span>
    <li><a href="#dictdef-contactinfo">ContactInfo</a><span>, in §5.2</span>
    <li><a href="#contact-picker-is-showing-flag">contact picker is showing flag</a><span>, in §5.1</span>
    <li><a href="#contact-picker-task-source">contact picker task source</a><span>, in §4</span>
@@ -2033,7 +2046,7 @@ picker.</p>
   <aside class="dfn-panel" data-for="term-for-list-contain">
    <a href="https://infra.spec.whatwg.org/#list-contain">https://infra.spec.whatwg.org/#list-contain</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-list-contain">5.2.1. select()</a> <a href="#ref-for-list-contain①">(2)</a> <a href="#ref-for-list-contain②">(3)</a>
+    <li><a href="#ref-for-list-contain">5.2.1. select()</a> <a href="#ref-for-list-contain①">(2)</a> <a href="#ref-for-list-contain②">(3)</a> <a href="#ref-for-list-contain③">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-list-empty">
@@ -2051,15 +2064,27 @@ picker.</p>
   <aside class="dfn-panel" data-for="term-for-list-item">
    <a href="https://infra.spec.whatwg.org/#list-item">https://infra.spec.whatwg.org/#list-item</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-list-item">4.1. User contact</a> <a href="#ref-for-list-item①">(2)</a> <a href="#ref-for-list-item②">(3)</a>
+    <li><a href="#ref-for-list-item">4.1. User contact</a> <a href="#ref-for-list-item①">(2)</a> <a href="#ref-for-list-item②">(3)</a> <a href="#ref-for-list-item③">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-list">
    <a href="https://infra.spec.whatwg.org/#list">https://infra.spec.whatwg.org/#list</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-list">4.1. User contact</a> <a href="#ref-for-list①">(2)</a> <a href="#ref-for-list②">(3)</a>
-    <li><a href="#ref-for-list③">5.2.1. select()</a>
-    <li><a href="#ref-for-list④">6. Contact Picker</a> <a href="#ref-for-list⑤">(2)</a> <a href="#ref-for-list⑥">(3)</a>
+    <li><a href="#ref-for-list">4.1. User contact</a> <a href="#ref-for-list①">(2)</a> <a href="#ref-for-list②">(3)</a> <a href="#ref-for-list③">(4)</a>
+    <li><a href="#ref-for-list④">5.2.1. select()</a>
+    <li><a href="#ref-for-list⑤">6. Contact Picker</a> <a href="#ref-for-list⑥">(2)</a> <a href="#ref-for-list⑦">(3)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-dom-paymentaddress">
+   <a href="https://www.w3.org/TR/payment-request/#dom-paymentaddress">https://www.w3.org/TR/payment-request/#dom-paymentaddress</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-paymentaddress">5.2. ContactsManager</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-physical-addresses">
+   <a href="https://www.w3.org/TR/payment-request/#physical-addresses">https://www.w3.org/TR/payment-request/#physical-addresses</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-physical-addresses">4.1. User contact</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-a-new-promise">
@@ -2175,6 +2200,12 @@ picker.</p>
      <li><span class="dfn-paneled" id="term-for-list" style="color:initial">list</span>
     </ul>
    <li>
+    <a data-link-type="biblio">[payment-request]</a> defines the following terms:
+    <ul>
+     <li><span class="dfn-paneled" id="term-for-dom-paymentaddress" style="color:initial">PaymentAddress</span>
+     <li><span class="dfn-paneled" id="term-for-physical-addresses" style="color:initial">physical addresses</span>
+    </ul>
+   <li>
     <a data-link-type="biblio">[promises-guide]</a> defines the following terms:
     <ul>
      <li><span class="dfn-paneled" id="term-for-a-new-promise" style="color:initial">a new promise</span>
@@ -2208,14 +2239,16 @@ picker.</p>
    <dd>Anne van Kesteren; et al. <a href="https://html.spec.whatwg.org/multipage/">HTML Standard</a>. Living Standard. URL: <a href="https://html.spec.whatwg.org/multipage/">https://html.spec.whatwg.org/multipage/</a>
    <dt id="biblio-infra">[INFRA]
    <dd>Anne van Kesteren; Domenic Denicola. <a href="https://infra.spec.whatwg.org/">Infra Standard</a>. Living Standard. URL: <a href="https://infra.spec.whatwg.org/">https://infra.spec.whatwg.org/</a>
+   <dt id="biblio-payment-request">[PAYMENT-REQUEST]
+   <dd>Zach Koch; et al. <a href="https://www.w3.org/TR/payment-request/">Payment Request API</a>. 16 April 2019. CR. URL: <a href="https://www.w3.org/TR/payment-request/">https://www.w3.org/TR/payment-request/</a>
    <dt id="biblio-promises-guide">[PROMISES-GUIDE]
-   <dd>Domenic Denicola. <a href="https://www.w3.org/2001/tag/doc/promises-guide">Writing Promise-Using Specifications</a>. 16 February 2016. TAG Finding. URL: <a href="https://www.w3.org/2001/tag/doc/promises-guide">https://www.w3.org/2001/tag/doc/promises-guide</a>
+   <dd>Domenic Denicola. <a href="https://www.w3.org/2001/tag/doc/promises-guide">Writing Promise-Using Specifications</a>. 9 November 2018. TAG Finding. URL: <a href="https://www.w3.org/2001/tag/doc/promises-guide">https://www.w3.org/2001/tag/doc/promises-guide</a>
    <dt id="biblio-rfc2119">[RFC2119]
    <dd>S. Bradner. <a href="https://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>. March 1997. Best Current Practice. URL: <a href="https://tools.ietf.org/html/rfc2119">https://tools.ietf.org/html/rfc2119</a>
    <dt id="biblio-secure-contexts">[SECURE-CONTEXTS]
    <dd>Mike West. <a href="https://www.w3.org/TR/secure-contexts/">Secure Contexts</a>. 15 September 2016. CR. URL: <a href="https://www.w3.org/TR/secure-contexts/">https://www.w3.org/TR/secure-contexts/</a>
    <dt id="biblio-webidl">[WebIDL]
-   <dd>Cameron McCormack; Boris Zbarsky; Tobie Langel. <a href="https://heycam.github.io/webidl/">Web IDL</a>. 15 December 2016. ED. URL: <a href="https://heycam.github.io/webidl/">https://heycam.github.io/webidl/</a>
+   <dd>Boris Zbarsky. <a href="https://heycam.github.io/webidl/">Web IDL</a>. 15 December 2016. ED. URL: <a href="https://heycam.github.io/webidl/">https://heycam.github.io/webidl/</a>
   </dl>
   <h2 class="no-num no-ref heading settled" id="idl-index"><span class="content">IDL Index</span><a class="self-link" href="#idl-index"></a></h2>
 <pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed②"><c- g>Exposed</c-></a>=<c- n>Window</c->]
@@ -2223,13 +2256,16 @@ picker.</p>
   [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject" id="ref-for-SameObject①"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#contactsmanager" id="ref-for-contactsmanager④"><c- n>ContactsManager</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="ContactsManager" href="#dom-navigator-contacts" id="ref-for-dom-navigator-contacts①"><c- g>contacts</c-></a>;
 };
 
+<c- b>enum</c-> <a href="#enumdef-contactproperty"><code><c- g>ContactProperty</c-></code></a> { <a href="#dom-contactproperty-address"><code><c- s>"address"</c-></code></a>, <a href="#dom-contactproperty-email"><code><c- s>"email"</c-></code></a>, <a href="#dom-contactproperty-name"><code><c- s>"name"</c-></code></a>, <a href="#dom-contactproperty-tel"><code><c- s>"tel"</c-></code></a> };
+
+<c- b>interface</c-> <a href="#contactaddress"><code><c- g>ContactAddress</c-></code></a> : <a class="n" data-link-type="idl-name" href="https://www.w3.org/TR/payment-request/#dom-paymentaddress" id="ref-for-dom-paymentaddress①"><c- n>PaymentAddress</c-></a> {};
+
 <c- b>dictionary</c-> <a href="#dictdef-contactinfo"><code><c- g>ContactInfo</c-></code></a> {
     <c- b>sequence</c->&lt;<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString③①"><c- b>DOMString</c-></a>> <a data-type="sequence<DOMString> " href="#dom-contactinfo-name"><code><c- g>name</c-></code></a>;
     <c- b>sequence</c->&lt;<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString④①"><c- b>DOMString</c-></a>> <a data-type="sequence<DOMString> " href="#dom-contactinfo-email"><code><c- g>email</c-></code></a>;
     <c- b>sequence</c->&lt;<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString⑤①"><c- b>DOMString</c-></a>> <a data-type="sequence<DOMString> " href="#dom-contactinfo-tel"><code><c- g>tel</c-></code></a>;
+    <c- b>sequence</c->&lt;<a class="n" data-link-type="idl-name" href="#contactaddress" id="ref-for-contactaddress①①"><c- n>ContactAddress</c-></a>> <a data-type="sequence<ContactAddress> " href="#dom-contactinfo-address"><code><c- g>address</c-></code></a>;
 };
-
-<c- b>enum</c-> <a href="#enumdef-contactproperty"><code><c- g>ContactProperty</c-></code></a> { <a href="#dom-contactproperty-email"><code><c- s>"email"</c-></code></a>, <a href="#dom-contactproperty-name"><code><c- s>"name"</c-></code></a>, <a href="#dom-contactproperty-tel"><code><c- s>"tel"</c-></code></a> };
 
 <c- b>dictionary</c-> <a href="#dictdef-contactsselectoptions"><code><c- g>ContactsSelectOptions</c-></code></a> {
     <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean①"><c- b>boolean</c-></a> <a data-default="false" data-type="boolean " href="#dom-contactsselectoptions-multiple"><code><c- g>multiple</c-></code></a> = <c- b>false</c->;
@@ -2278,6 +2314,12 @@ picker.</p>
     <li><a href="#ref-for-user-contact-numbers">5.2.1. select()</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="user-contact-addresses">
+   <b><a href="#user-contact-addresses">#user-contact-addresses</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-user-contact-addresses">5.2.1. select()</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="navigator-contacts-manager">
    <b><a href="#navigator-contacts-manager">#navigator-contacts-manager</a></b><b>Referenced in:</b>
    <ul>
@@ -2294,6 +2336,19 @@ picker.</p>
    <b><a href="#contact-picker-is-showing-flag">#contact-picker-is-showing-flag</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-contact-picker-is-showing-flag">5.2.1. select()</a> <a href="#ref-for-contact-picker-is-showing-flag①">(2)</a> <a href="#ref-for-contact-picker-is-showing-flag②">(3)</a> <a href="#ref-for-contact-picker-is-showing-flag③">(4)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="enumdef-contactproperty">
+   <b><a href="#enumdef-contactproperty">#enumdef-contactproperty</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-enumdef-contactproperty">5.2. ContactsManager</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="contactaddress">
+   <b><a href="#contactaddress">#contactaddress</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-contactaddress">4.1. User contact</a>
+    <li><a href="#ref-for-contactaddress①">5.2. ContactsManager</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dictdef-contactinfo">
@@ -2321,10 +2376,10 @@ picker.</p>
     <li><a href="#ref-for-dom-contactinfo-tel">5.2.1. select()</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="enumdef-contactproperty">
-   <b><a href="#enumdef-contactproperty">#enumdef-contactproperty</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="dom-contactinfo-address">
+   <b><a href="#dom-contactinfo-address">#dom-contactinfo-address</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-enumdef-contactproperty">5.2. ContactsManager</a>
+    <li><a href="#ref-for-dom-contactinfo-address">5.2.1. select()</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dictdef-contactsselectoptions">
