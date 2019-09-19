@@ -139,7 +139,7 @@ The [=browsing context=] has a <dfn>contact picker is showing flag</dfn>, initia
 ## {{ContactsManager}} ## {#contacts-manager}
 
 <script type="idl">
-enum ContactProperty { "email", "name", "tel", "address" };
+enum ContactProperty { "address", "email", "name", "tel" };
 
 interface ContactAddress : PaymentAddress {};
 

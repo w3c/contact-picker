@@ -1215,7 +1215,7 @@ Possible extra rowspan handling
   <link href="https://www.w3.org/StyleSheets/TR/2016/W3C-UD" rel="stylesheet">
   <meta content="Bikeshed version cb5a17652cb33dffd20b8b6a876bb811c1f749a9" name="generator">
   <link href="https://wicg.github.io/contact-api/spec" rel="canonical">
-  <meta content="d839eeb3d2d39318751edba84a9a8e3ede932dd0" name="document-revision">
+  <meta content="4f246ad70c858b672efa50af237ddb6431683fd8" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1473,7 +1473,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Contact Picker API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Unofficial Proposal Draft, <time class="dt-updated" datetime="2019-09-10">10 September 2019</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Unofficial Proposal Draft, <time class="dt-updated" datetime="2019-09-19">19 September 2019</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1635,7 +1635,7 @@ to each other.</p>
    </div>
    <p>The <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context">browsing context</a> has a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="contact-picker-is-showing-flag">contact picker is showing flag</dfn>, initially unset.</p>
    <h3 class="heading settled" data-level="5.2" id="contacts-manager"><span class="secno">5.2. </span><span class="content"><code class="idl"><a data-link-type="idl" href="#contactsmanager" id="ref-for-contactsmanager③">ContactsManager</a></code></span><a class="self-link" href="#contacts-manager"></a></h3>
-<pre class="idl highlight def"><c- b>enum</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="enum" data-export id="enumdef-contactproperty"><code><c- g>ContactProperty</c-></code></dfn> { <dfn class="idl-code" data-dfn-for="ContactProperty" data-dfn-type="enum-value" data-export id="dom-contactproperty-email"><code><c- s>"email"</c-></code><a class="self-link" href="#dom-contactproperty-email"></a></dfn>, <dfn class="idl-code" data-dfn-for="ContactProperty" data-dfn-type="enum-value" data-export id="dom-contactproperty-name"><code><c- s>"name"</c-></code><a class="self-link" href="#dom-contactproperty-name"></a></dfn>, <dfn class="idl-code" data-dfn-for="ContactProperty" data-dfn-type="enum-value" data-export id="dom-contactproperty-tel"><code><c- s>"tel"</c-></code><a class="self-link" href="#dom-contactproperty-tel"></a></dfn>, <dfn class="idl-code" data-dfn-for="ContactProperty" data-dfn-type="enum-value" data-export id="dom-contactproperty-address"><code><c- s>"address"</c-></code><a class="self-link" href="#dom-contactproperty-address"></a></dfn> };
+<pre class="idl highlight def"><c- b>enum</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="enum" data-export id="enumdef-contactproperty"><code><c- g>ContactProperty</c-></code></dfn> { <dfn class="idl-code" data-dfn-for="ContactProperty" data-dfn-type="enum-value" data-export id="dom-contactproperty-address"><code><c- s>"address"</c-></code><a class="self-link" href="#dom-contactproperty-address"></a></dfn>, <dfn class="idl-code" data-dfn-for="ContactProperty" data-dfn-type="enum-value" data-export id="dom-contactproperty-email"><code><c- s>"email"</c-></code><a class="self-link" href="#dom-contactproperty-email"></a></dfn>, <dfn class="idl-code" data-dfn-for="ContactProperty" data-dfn-type="enum-value" data-export id="dom-contactproperty-name"><code><c- s>"name"</c-></code><a class="self-link" href="#dom-contactproperty-name"></a></dfn>, <dfn class="idl-code" data-dfn-for="ContactProperty" data-dfn-type="enum-value" data-export id="dom-contactproperty-tel"><code><c- s>"tel"</c-></code><a class="self-link" href="#dom-contactproperty-tel"></a></dfn> };
 
 <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="contactaddress"><code><c- g>ContactAddress</c-></code></dfn> : <a class="n" data-link-type="idl-name" href="https://www.w3.org/TR/payment-request/#dom-paymentaddress" id="ref-for-dom-paymentaddress"><c- n>PaymentAddress</c-></a> {};
 
@@ -2256,7 +2256,7 @@ picker.</p>
   [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext①"><c- g>SecureContext</c-></a>, <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject" id="ref-for-SameObject①"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#contactsmanager" id="ref-for-contactsmanager④"><c- n>ContactsManager</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="ContactsManager" href="#dom-navigator-contacts" id="ref-for-dom-navigator-contacts①"><c- g>contacts</c-></a>;
 };
 
-<c- b>enum</c-> <a href="#enumdef-contactproperty"><code><c- g>ContactProperty</c-></code></a> { <a href="#dom-contactproperty-email"><code><c- s>"email"</c-></code></a>, <a href="#dom-contactproperty-name"><code><c- s>"name"</c-></code></a>, <a href="#dom-contactproperty-tel"><code><c- s>"tel"</c-></code></a>, <a href="#dom-contactproperty-address"><code><c- s>"address"</c-></code></a> };
+<c- b>enum</c-> <a href="#enumdef-contactproperty"><code><c- g>ContactProperty</c-></code></a> { <a href="#dom-contactproperty-address"><code><c- s>"address"</c-></code></a>, <a href="#dom-contactproperty-email"><code><c- s>"email"</c-></code></a>, <a href="#dom-contactproperty-name"><code><c- s>"name"</c-></code></a>, <a href="#dom-contactproperty-tel"><code><c- s>"tel"</c-></code></a> };
 
 <c- b>interface</c-> <a href="#contactaddress"><code><c- g>ContactAddress</c-></code></a> : <a class="n" data-link-type="idl-name" href="https://www.w3.org/TR/payment-request/#dom-paymentaddress" id="ref-for-dom-paymentaddress①"><c- n>PaymentAddress</c-></a> {};
 
