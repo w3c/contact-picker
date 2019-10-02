@@ -40,7 +40,7 @@ user's contacts every time they need it. This differs from some native contact A
 necessary for ensuring users' contacts are not accessed without their knowledge and explicit
 consent.
 
-## Examples ## {#example}
+## Examples ## {#examples}
 
 <div class="example">
   Requesting contacts as a result of a user click.
@@ -220,9 +220,6 @@ interface ContactsManager {
     Promise<sequence<ContactInfo>> select(sequence<ContactProperty> properties, optional ContactsSelectOptions options);
 };
 </script>
-
-The {{ContactsManager/properties}}' getter must return a [=frozen array type|frozen array=]
-consisting of the [=contacts source=]'s [=contacts source/supported properties=].
 
 <div dfn-for="ContactsManager">
 

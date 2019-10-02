@@ -1215,7 +1215,7 @@ Possible extra rowspan handling
   <link href="https://www.w3.org/StyleSheets/TR/2016/W3C-UD" rel="stylesheet">
   <meta content="Bikeshed version cb5a17652cb33dffd20b8b6a876bb811c1f749a9" name="generator">
   <link href="https://wicg.github.io/contact-api/spec" rel="canonical">
-  <meta content="bc87714faf6a09b5cbfc967792d78defaa9bfdf2" name="document-revision">
+  <meta content="e2947f82aa8514d77238e83bac355678bb697dca" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1512,7 +1512,7 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
     <li>
      <a href="#intro"><span class="secno">1</span> <span class="content">Introduction</span></a>
      <ol class="toc">
-      <li><a href="#example"><span class="secno">1.1</span> <span class="content">Examples</span></a>
+      <li><a href="#examples"><span class="secno">1.1</span> <span class="content">Examples</span></a>
      </ol>
     <li><a href="#privacy"><span class="secno">2</span> <span class="content">Privacy Considerations</span></a>
     <li><a href="#realms"><span class="secno">3</span> <span class="content">Realms</span></a>
@@ -1567,7 +1567,7 @@ websites one-off access to a user’s contacts, meaning developers have to reque
 user’s contacts every time they need it. This differs from some native contact APIs, but is
 necessary for ensuring users' contacts are not accessed without their knowledge and explicit
 consent.</p>
-   <h3 class="heading settled" data-level="1.1" id="example"><span class="secno">1.1. </span><span class="content">Examples</span><a class="self-link" href="#example"></a></h3>
+   <h3 class="heading settled" data-level="1.1" id="examples"><span class="secno">1.1. </span><span class="content">Examples</span><a class="self-link" href="#examples"></a></h3>
    <div class="example" id="example-87f97b16">
     <a class="self-link" href="#example-87f97b16"></a> Requesting contacts as a result of a user click. 
 <pre class="lang-js highlight">selectRecipientsButton<c- p>.</c->addEventListener<c- p>(</c-><c- t>'click'</c-><c- p>,</c-> async <c- p>()</c-> <c- p>=></c-> <c- p>{</c->
@@ -1711,7 +1711,6 @@ the user agent.</p>
     <c- b>Promise</c->&lt;<c- b>sequence</c->&lt;<a class="n" data-link-type="idl-name" href="#dictdef-contactinfo" id="ref-for-dictdef-contactinfo"><c- n>ContactInfo</c-></a>>> <a class="idl-code" data-link-type="method" href="#dom-contactsmanager-select" id="ref-for-dom-contactsmanager-select"><c- g>select</c-></a>(<c- b>sequence</c->&lt;<a class="n" data-link-type="idl-name" href="#enumdef-contactproperty" id="ref-for-enumdef-contactproperty④"><c- n>ContactProperty</c-></a>> <dfn class="idl-code" data-dfn-for="ContactsManager/select(properties, options), ContactsManager/select(properties)" data-dfn-type="argument" data-export id="dom-contactsmanager-select-properties-options-properties"><code><c- g>properties</c-></code><a class="self-link" href="#dom-contactsmanager-select-properties-options-properties"></a></dfn>, <c- b>optional</c-> <a class="n" data-link-type="idl-name" href="#dictdef-contactsselectoptions" id="ref-for-dictdef-contactsselectoptions"><c- n>ContactsSelectOptions</c-></a> <dfn class="idl-code" data-dfn-for="ContactsManager/select(properties, options), ContactsManager/select(properties)" data-dfn-type="argument" data-export id="dom-contactsmanager-select-properties-options-options"><code><c- g>options</c-></code><a class="self-link" href="#dom-contactsmanager-select-properties-options-options"></a></dfn>);
 };
 </pre>
-   <p>The <code class="idl"><a data-link-type="idl">properties</a></code>' getter must return a <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-frozen-array-type" id="ref-for-dfn-frozen-array-type">frozen array</a> consisting of the <a data-link-type="dfn" href="#user-contact-contacts-source" id="ref-for-user-contact-contacts-source②">contacts source</a>'s <a data-link-type="dfn" href="#contacts-source-supported-properties" id="ref-for-contacts-source-supported-properties">supported properties</a>.</p>
    <div>
     <h4 class="heading settled" data-level="5.3.1" id="contacts-manager-getavailablecontactproperties"><span class="secno">5.3.1. </span><span class="content"><code class="idl"><a data-link-type="idl" href="#dom-contactsmanager-getavailablecontactproperties" id="ref-for-dom-contactsmanager-getavailablecontactproperties①">getAvailableContactProperties()</a></code></span><a class="self-link" href="#contacts-manager-getavailablecontactproperties"></a></h4>
     <div class="algorithm" data-algorithm="getAvailableContactProperties()">
@@ -1723,7 +1722,7 @@ the user agent.</p>
        <p>Run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel">in parallel</a>:</p>
        <ol>
         <li data-md>
-         <p>Resolve <var>promise</var> with <a data-link-type="dfn" href="#user-contact-contacts-source" id="ref-for-user-contact-contacts-source③">contacts source</a>'s <a data-link-type="dfn" href="#contacts-source-supported-properties" id="ref-for-contacts-source-supported-properties①">supported properties</a>.</p>
+         <p>Resolve <var>promise</var> with <a data-link-type="dfn" href="#user-contact-contacts-source" id="ref-for-user-contact-contacts-source②">contacts source</a>'s <a data-link-type="dfn" href="#contacts-source-supported-properties" id="ref-for-contacts-source-supported-properties">supported properties</a>.</p>
        </ol>
       <li data-md>
        <p>Return <var>promise</var>.</p>
@@ -1747,7 +1746,7 @@ the user agent.</p>
        <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate">For each</a> <var>property</var> of <var>properties</var>:</p>
        <ol>
         <li data-md>
-         <p>If <a data-link-type="dfn" href="#user-contact-contacts-source" id="ref-for-user-contact-contacts-source④">contacts source</a>'s <a data-link-type="dfn" href="#contacts-source-supported-properties" id="ref-for-contacts-source-supported-properties②">supported properties</a> does not <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain">contain</a> <var>property</var>, then return <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#a-promise-rejected-with" id="ref-for-a-promise-rejected-with④">a promise rejected with</a> a <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror①">TypeError</a></code>.</p>
+         <p>If <a data-link-type="dfn" href="#user-contact-contacts-source" id="ref-for-user-contact-contacts-source③">contacts source</a>'s <a data-link-type="dfn" href="#contacts-source-supported-properties" id="ref-for-contacts-source-supported-properties①">supported properties</a> does not <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain">contain</a> <var>property</var>, then return <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#a-promise-rejected-with" id="ref-for-a-promise-rejected-with④">a promise rejected with</a> a <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror①">TypeError</a></code>.</p>
        </ol>
       <li data-md>
        <p>Set <var>relevantBrowsingContext</var>’s <a data-link-type="dfn" href="#contact-picker-is-showing-flag" id="ref-for-contact-picker-is-showing-flag①">contact picker is showing flag</a>.</p>
@@ -1809,7 +1808,7 @@ the user agent.</p>
   interface that follows these rules: 
      <ul>
       <li data-md>
-       <p>If presenting a user interface fails or accessing the <a data-link-type="dfn" href="#user-contact-contacts-source" id="ref-for-user-contact-contacts-source⑤">contacts source</a>'s <a data-link-type="dfn" href="#contacts-source-available-contacts" id="ref-for-contacts-source-available-contacts">available contacts</a> fails, then return failure.</p>
+       <p>If presenting a user interface fails or accessing the <a data-link-type="dfn" href="#user-contact-contacts-source" id="ref-for-user-contact-contacts-source④">contacts source</a>'s <a data-link-type="dfn" href="#contacts-source-available-contacts" id="ref-for-contacts-source-available-contacts">available contacts</a> fails, then return failure.</p>
       <li data-md>
        <p>The UI MUST prominently display the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context①">browsing context</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#concept-origin" id="ref-for-concept-origin">origin</a>.</p>
       <li data-md>
@@ -2246,12 +2245,6 @@ remove the UI and return a <a data-link-type="dfn" href="https://infra.spec.what
     <li><a href="#ref-for-idl-boolean">5.3. ContactsManager</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="term-for-dfn-frozen-array-type">
-   <a href="https://heycam.github.io/webidl/#dfn-frozen-array-type">https://heycam.github.io/webidl/#dfn-frozen-array-type</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dfn-frozen-array-type">5.3. ContactsManager</a>
-   </ul>
-  </aside>
   <h3 class="no-num no-ref heading settled" id="index-defined-elsewhere"><span class="content">Terms defined by reference</span><a class="self-link" href="#index-defined-elsewhere"></a></h3>
   <ul class="index">
    <li>
@@ -2318,7 +2311,6 @@ remove the UI and return a <a data-link-type="dfn" href="https://infra.spec.what
      <li><span class="dfn-paneled" id="term-for-securityerror" style="color:initial">SecurityError</span>
      <li><span class="dfn-paneled" id="term-for-exceptiondef-typeerror" style="color:initial">TypeError</span>
      <li><span class="dfn-paneled" id="term-for-idl-boolean" style="color:initial">boolean</span>
-     <li><span class="dfn-paneled" id="term-for-dfn-frozen-array-type" style="color:initial">frozen array type</span>
     </ul>
   </ul>
   <h2 class="no-num no-ref heading settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
@@ -2422,10 +2414,9 @@ remove the UI and return a <a data-link-type="dfn" href="https://infra.spec.what
    <b><a href="#user-contact-contacts-source">#user-contact-contacts-source</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-user-contact-contacts-source">4.2. Contacts source</a> <a href="#ref-for-user-contact-contacts-source①">(2)</a>
-    <li><a href="#ref-for-user-contact-contacts-source②">5.3. ContactsManager</a>
-    <li><a href="#ref-for-user-contact-contacts-source③">5.3.1. getAvailableContactProperties()</a>
-    <li><a href="#ref-for-user-contact-contacts-source④">5.3.2. select()</a>
-    <li><a href="#ref-for-user-contact-contacts-source⑤">6. Contact Picker</a>
+    <li><a href="#ref-for-user-contact-contacts-source②">5.3.1. getAvailableContactProperties()</a>
+    <li><a href="#ref-for-user-contact-contacts-source③">5.3.2. select()</a>
+    <li><a href="#ref-for-user-contact-contacts-source④">6. Contact Picker</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="contacts-source-available-contacts">
@@ -2437,9 +2428,8 @@ remove the UI and return a <a data-link-type="dfn" href="https://infra.spec.what
   <aside class="dfn-panel" data-for="contacts-source-supported-properties">
    <b><a href="#contacts-source-supported-properties">#contacts-source-supported-properties</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-contacts-source-supported-properties">5.3. ContactsManager</a>
-    <li><a href="#ref-for-contacts-source-supported-properties①">5.3.1. getAvailableContactProperties()</a>
-    <li><a href="#ref-for-contacts-source-supported-properties②">5.3.2. select()</a>
+    <li><a href="#ref-for-contacts-source-supported-properties">5.3.1. getAvailableContactProperties()</a>
+    <li><a href="#ref-for-contacts-source-supported-properties①">5.3.2. select()</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="navigator-contacts-manager">
