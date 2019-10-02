@@ -226,7 +226,7 @@ consisting of the [=contacts source=]'s [=contacts source/supported properties=]
 
 <div dfn-for="ContactsManager">
 
-### {{ContactsManager/getAvailableContactProperties()}} ### {#contacts-manager-getproperties}
+### {{ContactsManager/getAvailableContactProperties()}} ### {#contacts-manager-getavailablecontactproperties}
 
 <div algorithm>
   The <dfn method>getAvailableContactProperties()</dfn> method, when invoked, runs these steps:

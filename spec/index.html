@@ -1215,7 +1215,7 @@ Possible extra rowspan handling
   <link href="https://www.w3.org/StyleSheets/TR/2016/W3C-UD" rel="stylesheet">
   <meta content="Bikeshed version cb5a17652cb33dffd20b8b6a876bb811c1f749a9" name="generator">
   <link href="https://wicg.github.io/contact-api/spec" rel="canonical">
-  <meta content="8a5cc50ab7e559ae590ee1513dbdf1fdfe29b7e9" name="document-revision">
+  <meta content="bc87714faf6a09b5cbfc967792d78defaa9bfdf2" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1530,7 +1530,7 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
       <li>
        <a href="#contacts-manager"><span class="secno">5.3</span> <span class="content"><code class="idl"><span>ContactsManager</span></code></span></a>
        <ol class="toc">
-        <li><a href="#contacts-manager-getproperties"><span class="secno">5.3.1</span> <span class="content"><code class="idl"><span>getAvailableContactProperties()</span></code></span></a>
+        <li><a href="#contacts-manager-getavailablecontactproperties"><span class="secno">5.3.1</span> <span class="content"><code class="idl"><span>getAvailableContactProperties()</span></code></span></a>
         <li><a href="#contacts-manager-select"><span class="secno">5.3.2</span> <span class="content"><code class="idl"><span>select()</span></code></span></a>
        </ol>
      </ol>
@@ -1713,7 +1713,7 @@ the user agent.</p>
 </pre>
    <p>The <code class="idl"><a data-link-type="idl">properties</a></code>' getter must return a <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-frozen-array-type" id="ref-for-dfn-frozen-array-type">frozen array</a> consisting of the <a data-link-type="dfn" href="#user-contact-contacts-source" id="ref-for-user-contact-contacts-source②">contacts source</a>'s <a data-link-type="dfn" href="#contacts-source-supported-properties" id="ref-for-contacts-source-supported-properties">supported properties</a>.</p>
    <div>
-    <h4 class="heading settled" data-level="5.3.1" id="contacts-manager-getproperties"><span class="secno">5.3.1. </span><span class="content"><code class="idl"><a data-link-type="idl" href="#dom-contactsmanager-getavailablecontactproperties" id="ref-for-dom-contactsmanager-getavailablecontactproperties①">getAvailableContactProperties()</a></code></span><a class="self-link" href="#contacts-manager-getproperties"></a></h4>
+    <h4 class="heading settled" data-level="5.3.1" id="contacts-manager-getavailablecontactproperties"><span class="secno">5.3.1. </span><span class="content"><code class="idl"><a data-link-type="idl" href="#dom-contactsmanager-getavailablecontactproperties" id="ref-for-dom-contactsmanager-getavailablecontactproperties①">getAvailableContactProperties()</a></code></span><a class="self-link" href="#contacts-manager-getavailablecontactproperties"></a></h4>
     <div class="algorithm" data-algorithm="getAvailableContactProperties()">
       The <dfn class="dfn-paneled idl-code" data-dfn-for="ContactsManager" data-dfn-type="method" data-export id="dom-contactsmanager-getavailablecontactproperties"><code>getAvailableContactProperties()</code></dfn> method, when invoked, runs these steps: 
      <ol>
