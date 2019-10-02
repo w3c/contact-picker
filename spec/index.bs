@@ -73,7 +73,7 @@ consent.
     selectRecipientButton.addEventListener('click', async () => {
 
       // We are unsure if addresses are supported, or can be provided by the browser.
-      if ((await navigator.contacts.getAvailableContactProperties()).includes('address')) {
+      if ((await navigator.contacts.getProperties()).includes('address')) {
         const contacts = await navigator.contacts.select(['address']);
 
         if (!contacts.length) {
@@ -216,17 +216,17 @@ dictionary ContactsSelectOptions {
 
 [Exposed=(Window,SecureContext)]
 interface ContactsManager {
-    Promise<sequence<ContactProperty>> getAvailableContactProperties();
+    Promise<sequence<ContactProperty>> getProperties();
     Promise<sequence<ContactInfo>> select(sequence<ContactProperty> properties, optional ContactsSelectOptions options);
 };
 </script>
 
 <div dfn-for="ContactsManager">
 
-### {{ContactsManager/getAvailableContactProperties()}} ### {#contacts-manager-getavailablecontactproperties}
+### {{ContactsManager/getProperties()}} ### {#contacts-manager-getproperties}
 
 <div algorithm>
-  The <dfn method>getAvailableContactProperties()</dfn> method, when invoked, runs these steps:
+  The <dfn method>getProperties()</dfn> method, when invoked, runs these steps:
 
   1. Let |promise| be [=a new promise=].
   1. Run the following steps [=in parallel=]:

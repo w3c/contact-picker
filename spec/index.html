@@ -1213,9 +1213,9 @@ Possible extra rowspan handling
 	}
 </style>
   <link href="https://www.w3.org/StyleSheets/TR/2016/W3C-UD" rel="stylesheet">
-  <meta content="Bikeshed version cb5a17652cb33dffd20b8b6a876bb811c1f749a9" name="generator">
+  <meta content="Bikeshed version 450e0499b28bb4c684052ad936ad1e7d36c4eac5" name="generator">
   <link href="https://wicg.github.io/contact-api/spec" rel="canonical">
-  <meta content="e2947f82aa8514d77238e83bac355678bb697dca" name="document-revision">
+  <meta content="391449d1470785b7476a508400df5dc9c70e7e06" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1479,7 +1479,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <dt>This version:
      <dd><a class="u-url" href="https://wicg.github.io/contact-api/spec">https://wicg.github.io/contact-api/spec</a>
      <dt>Issue Tracking:
-     <dd><a href="https://github.com/WICG/contact-api/issues/">GitHub</a>
+     <dd><a href="https://github.com/beverloo/contact-api/issues/">GitHub</a>
      <dt class="editor">Editors:
      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:beverloo@google.com">Peter Beverloo</a> (<span class="p-org org">Google</span>)
      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:rayankans@google.com">Rayan Kanso</a> (<span class="p-org org">Google</span>)
@@ -1530,7 +1530,7 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
       <li>
        <a href="#contacts-manager"><span class="secno">5.3</span> <span class="content"><code class="idl"><span>ContactsManager</span></code></span></a>
        <ol class="toc">
-        <li><a href="#contacts-manager-getavailablecontactproperties"><span class="secno">5.3.1</span> <span class="content"><code class="idl"><span>getAvailableContactProperties()</span></code></span></a>
+        <li><a href="#contacts-manager-getproperties"><span class="secno">5.3.1</span> <span class="content"><code class="idl"><span>getProperties()</span></code></span></a>
         <li><a href="#contacts-manager-select"><span class="secno">5.3.2</span> <span class="content"><code class="idl"><span>select()</span></code></span></a>
        </ol>
      </ol>
@@ -1586,12 +1586,12 @@ consent.</p>
 </pre>
     <p>In the above example <code>selectRecipientsButton</code> is a <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/form-elements.html#htmlbuttonelement" id="ref-for-htmlbuttonelement">HTMLButtonElement</a></code>, and <code>populateRecipients</code> is a developer-defined function.</p>
    </div>
-   <div class="example" id="example-b323c3f4">
-    <a class="self-link" href="#example-b323c3f4"></a> Requesting an address to deliver a gift to. 
+   <div class="example" id="example-9a5698fc">
+    <a class="self-link" href="#example-9a5698fc"></a> Requesting an address to deliver a gift to. 
 <pre class="lang-js highlight">selectRecipientButton<c- p>.</c->addEventListener<c- p>(</c-><c- t>'click'</c-><c- p>,</c-> async <c- p>()</c-> <c- p>=></c-> <c- p>{</c->
 
   <c- c1>// We are unsure if addresses are supported, or can be provided by the browser.</c->
-  <c- k>if</c-> <c- p>((</c->await navigator<c- p>.</c->contacts<c- p>.</c->getAvailableContactProperties<c- p>()).</c->includes<c- p>(</c-><c- t>'address'</c-><c- p>))</c-> <c- p>{</c->
+  <c- k>if</c-> <c- p>((</c->await navigator<c- p>.</c->contacts<c- p>.</c->getProperties<c- p>()).</c->includes<c- p>(</c-><c- t>'address'</c-><c- p>))</c-> <c- p>{</c->
     <c- kr>const</c-> contacts <c- o>=</c-> await navigator<c- p>.</c->contacts<c- p>.</c->select<c- p>([</c-><c- t>'address'</c-><c- p>]);</c->
 
     <c- k>if</c-> <c- p>(</c-><c- o>!</c->contacts<c- p>.</c->length<c- p>)</c-> <c- p>{</c->
@@ -1707,14 +1707,14 @@ the user agent.</p>
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①"><c- g>Exposed</c-></a>=(<c- n>Window</c->,<c- n>SecureContext</c->)]
 <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="contactsmanager"><code><c- g>ContactsManager</c-></code></dfn> {
-    <c- b>Promise</c->&lt;<c- b>sequence</c->&lt;<a class="n" data-link-type="idl-name" href="#enumdef-contactproperty" id="ref-for-enumdef-contactproperty③"><c- n>ContactProperty</c-></a>>> <a class="idl-code" data-link-type="method" href="#dom-contactsmanager-getavailablecontactproperties" id="ref-for-dom-contactsmanager-getavailablecontactproperties"><c- g>getAvailableContactProperties</c-></a>();
+    <c- b>Promise</c->&lt;<c- b>sequence</c->&lt;<a class="n" data-link-type="idl-name" href="#enumdef-contactproperty" id="ref-for-enumdef-contactproperty③"><c- n>ContactProperty</c-></a>>> <a class="idl-code" data-link-type="method" href="#dom-contactsmanager-getproperties" id="ref-for-dom-contactsmanager-getproperties"><c- g>getProperties</c-></a>();
     <c- b>Promise</c->&lt;<c- b>sequence</c->&lt;<a class="n" data-link-type="idl-name" href="#dictdef-contactinfo" id="ref-for-dictdef-contactinfo"><c- n>ContactInfo</c-></a>>> <a class="idl-code" data-link-type="method" href="#dom-contactsmanager-select" id="ref-for-dom-contactsmanager-select"><c- g>select</c-></a>(<c- b>sequence</c->&lt;<a class="n" data-link-type="idl-name" href="#enumdef-contactproperty" id="ref-for-enumdef-contactproperty④"><c- n>ContactProperty</c-></a>> <dfn class="idl-code" data-dfn-for="ContactsManager/select(properties, options), ContactsManager/select(properties)" data-dfn-type="argument" data-export id="dom-contactsmanager-select-properties-options-properties"><code><c- g>properties</c-></code><a class="self-link" href="#dom-contactsmanager-select-properties-options-properties"></a></dfn>, <c- b>optional</c-> <a class="n" data-link-type="idl-name" href="#dictdef-contactsselectoptions" id="ref-for-dictdef-contactsselectoptions"><c- n>ContactsSelectOptions</c-></a> <dfn class="idl-code" data-dfn-for="ContactsManager/select(properties, options), ContactsManager/select(properties)" data-dfn-type="argument" data-export id="dom-contactsmanager-select-properties-options-options"><code><c- g>options</c-></code><a class="self-link" href="#dom-contactsmanager-select-properties-options-options"></a></dfn>);
 };
 </pre>
    <div>
-    <h4 class="heading settled" data-level="5.3.1" id="contacts-manager-getavailablecontactproperties"><span class="secno">5.3.1. </span><span class="content"><code class="idl"><a data-link-type="idl" href="#dom-contactsmanager-getavailablecontactproperties" id="ref-for-dom-contactsmanager-getavailablecontactproperties①">getAvailableContactProperties()</a></code></span><a class="self-link" href="#contacts-manager-getavailablecontactproperties"></a></h4>
-    <div class="algorithm" data-algorithm="getAvailableContactProperties()">
-      The <dfn class="dfn-paneled idl-code" data-dfn-for="ContactsManager" data-dfn-type="method" data-export id="dom-contactsmanager-getavailablecontactproperties"><code>getAvailableContactProperties()</code></dfn> method, when invoked, runs these steps: 
+    <h4 class="heading settled" data-level="5.3.1" id="contacts-manager-getproperties"><span class="secno">5.3.1. </span><span class="content"><code class="idl"><a data-link-type="idl" href="#dom-contactsmanager-getproperties" id="ref-for-dom-contactsmanager-getproperties①">getProperties()</a></code></span><a class="self-link" href="#contacts-manager-getproperties"></a></h4>
+    <div class="algorithm" data-algorithm="getProperties()">
+      The <dfn class="dfn-paneled idl-code" data-dfn-for="ContactsManager" data-dfn-type="method" data-export id="dom-contactsmanager-getproperties"><code>getProperties()</code></dfn> method, when invoked, runs these steps: 
      <ol>
       <li data-md>
        <p>Let <var>promise</var> be <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#a-new-promise" id="ref-for-a-new-promise">a new promise</a>.</p>
@@ -1994,7 +1994,7 @@ remove the UI and return a <a data-link-type="dfn" href="https://infra.spec.what
    <li><a href="#dom-contactinfo-email">email</a><span>, in §5.3</span>
    <li><a href="#dom-contactproperty-email">"email"</a><span>, in §5.2</span>
    <li><a href="#user-contact-emails">emails</a><span>, in §4.1</span>
-   <li><a href="#dom-contactsmanager-getavailablecontactproperties">getAvailableContactProperties()</a><span>, in §5.3.1</span>
+   <li><a href="#dom-contactsmanager-getproperties">getProperties()</a><span>, in §5.3.1</span>
    <li><a href="#contactsmanager-launching-a-contact-picker">launching a contact picker</a><span>, in §6</span>
    <li><a href="#dom-contactsselectoptions-multiple">multiple</a><span>, in §5.3</span>
    <li><a href="#dom-contactproperty-name">"name"</a><span>, in §5.2</span>
@@ -2046,7 +2046,7 @@ remove the UI and return a <a data-link-type="dfn" href="https://infra.spec.what
   <aside class="dfn-panel" data-for="term-for-in-parallel">
    <a href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-in-parallel">5.3.1. getAvailableContactProperties()</a>
+    <li><a href="#ref-for-in-parallel">5.3.1. getProperties()</a>
     <li><a href="#ref-for-in-parallel①">5.3.2. select()</a>
    </ul>
   </aside>
@@ -2172,7 +2172,7 @@ remove the UI and return a <a data-link-type="dfn" href="https://infra.spec.what
   <aside class="dfn-panel" data-for="term-for-a-new-promise">
    <a href="https://www.w3.org/2001/tag/doc/promises-guide/#a-new-promise">https://www.w3.org/2001/tag/doc/promises-guide/#a-new-promise</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-a-new-promise">5.3.1. getAvailableContactProperties()</a>
+    <li><a href="#ref-for-a-new-promise">5.3.1. getProperties()</a>
     <li><a href="#ref-for-a-new-promise①">5.3.2. select()</a>
    </ul>
   </aside>
@@ -2356,7 +2356,7 @@ remove the UI and return a <a data-link-type="dfn" href="https://infra.spec.what
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①①"><c- g>Exposed</c-></a>=(<c- n>Window</c->,<c- n>SecureContext</c->)]
 <c- b>interface</c-> <a href="#contactsmanager"><code><c- g>ContactsManager</c-></code></a> {
-    <c- b>Promise</c->&lt;<c- b>sequence</c->&lt;<a class="n" data-link-type="idl-name" href="#enumdef-contactproperty" id="ref-for-enumdef-contactproperty③①"><c- n>ContactProperty</c-></a>>> <a class="idl-code" data-link-type="method" href="#dom-contactsmanager-getavailablecontactproperties" id="ref-for-dom-contactsmanager-getavailablecontactproperties②"><c- g>getAvailableContactProperties</c-></a>();
+    <c- b>Promise</c->&lt;<c- b>sequence</c->&lt;<a class="n" data-link-type="idl-name" href="#enumdef-contactproperty" id="ref-for-enumdef-contactproperty③①"><c- n>ContactProperty</c-></a>>> <a class="idl-code" data-link-type="method" href="#dom-contactsmanager-getproperties" id="ref-for-dom-contactsmanager-getproperties②"><c- g>getProperties</c-></a>();
     <c- b>Promise</c->&lt;<c- b>sequence</c->&lt;<a class="n" data-link-type="idl-name" href="#dictdef-contactinfo" id="ref-for-dictdef-contactinfo②"><c- n>ContactInfo</c-></a>>> <a class="idl-code" data-link-type="method" href="#dom-contactsmanager-select" id="ref-for-dom-contactsmanager-select②"><c- g>select</c-></a>(<c- b>sequence</c->&lt;<a class="n" data-link-type="idl-name" href="#enumdef-contactproperty" id="ref-for-enumdef-contactproperty④①"><c- n>ContactProperty</c-></a>> <a href="#dom-contactsmanager-select-properties-options-properties"><code><c- g>properties</c-></code></a>, <c- b>optional</c-> <a class="n" data-link-type="idl-name" href="#dictdef-contactsselectoptions" id="ref-for-dictdef-contactsselectoptions①"><c- n>ContactsSelectOptions</c-></a> <a href="#dom-contactsmanager-select-properties-options-options"><code><c- g>options</c-></code></a>);
 };
 
@@ -2414,7 +2414,7 @@ remove the UI and return a <a data-link-type="dfn" href="https://infra.spec.what
    <b><a href="#user-contact-contacts-source">#user-contact-contacts-source</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-user-contact-contacts-source">4.2. Contacts source</a> <a href="#ref-for-user-contact-contacts-source①">(2)</a>
-    <li><a href="#ref-for-user-contact-contacts-source②">5.3.1. getAvailableContactProperties()</a>
+    <li><a href="#ref-for-user-contact-contacts-source②">5.3.1. getProperties()</a>
     <li><a href="#ref-for-user-contact-contacts-source③">5.3.2. select()</a>
     <li><a href="#ref-for-user-contact-contacts-source④">6. Contact Picker</a>
    </ul>
@@ -2428,7 +2428,7 @@ remove the UI and return a <a data-link-type="dfn" href="https://infra.spec.what
   <aside class="dfn-panel" data-for="contacts-source-supported-properties">
    <b><a href="#contacts-source-supported-properties">#contacts-source-supported-properties</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-contacts-source-supported-properties">5.3.1. getAvailableContactProperties()</a>
+    <li><a href="#ref-for-contacts-source-supported-properties">5.3.1. getProperties()</a>
     <li><a href="#ref-for-contacts-source-supported-properties①">5.3.2. select()</a>
    </ul>
   </aside>
@@ -2515,11 +2515,11 @@ remove the UI and return a <a data-link-type="dfn" href="https://infra.spec.what
     <li><a href="#ref-for-contactsmanager③">5.3. ContactsManager</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="dom-contactsmanager-getavailablecontactproperties">
-   <b><a href="#dom-contactsmanager-getavailablecontactproperties">#dom-contactsmanager-getavailablecontactproperties</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="dom-contactsmanager-getproperties">
+   <b><a href="#dom-contactsmanager-getproperties">#dom-contactsmanager-getproperties</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-contactsmanager-getavailablecontactproperties">5.3. ContactsManager</a>
-    <li><a href="#ref-for-dom-contactsmanager-getavailablecontactproperties①">5.3.1. getAvailableContactProperties()</a>
+    <li><a href="#ref-for-dom-contactsmanager-getproperties">5.3. ContactsManager</a>
+    <li><a href="#ref-for-dom-contactsmanager-getproperties①">5.3.1. getProperties()</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-contactsmanager-select">
