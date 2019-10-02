@@ -221,6 +221,9 @@ interface ContactsManager {
 };
 </script>
 
+The {{ContactsManager/properties}}' getter must return a [=frozen array type|frozen array=]
+consisting of the [=contacts source=]'s [=contacts source/supported properties=].
+
 <div dfn-for="ContactsManager">
 
 ### {{ContactsManager/getAvailableContactProperties()}} ### {#contacts-manager-getproperties}
