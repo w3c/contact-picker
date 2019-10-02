@@ -53,6 +53,7 @@ dictionary ContactsSelectOptions {
 
 [Exposed=(Window,SecureContext)]
 interface ContactsManager {
+    Promise<sequence<ContactProperty>> getAvailableContactProperties();
     Promise<sequence<ContactInfo>> select(sequence<ContactProperty> properties, optional ContactsSelectOptions options);
 };
 

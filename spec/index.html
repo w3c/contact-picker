@@ -1215,7 +1215,7 @@ Possible extra rowspan handling
   <link href="https://www.w3.org/StyleSheets/TR/2016/W3C-UD" rel="stylesheet">
   <meta content="Bikeshed version cb5a17652cb33dffd20b8b6a876bb811c1f749a9" name="generator">
   <link href="https://wicg.github.io/contact-api/spec" rel="canonical">
-  <meta content="00db83fc9b0c92c9c9c350fe056fd2b507bcd82b" name="document-revision">
+  <meta content="0b414a666744cf493901ed52c6df45f171d7b881" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1473,7 +1473,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Contact Picker API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Unofficial Proposal Draft, <time class="dt-updated" datetime="2019-09-21">21 September 2019</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Unofficial Proposal Draft, <time class="dt-updated" datetime="2019-10-02">2 October 2019</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1530,7 +1530,8 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
       <li>
        <a href="#contacts-manager"><span class="secno">5.3</span> <span class="content"><code class="idl"><span>ContactsManager</span></code></span></a>
        <ol class="toc">
-        <li><a href="#contacts-manager-select"><span class="secno">5.3.1</span> <span class="content"><code class="idl"><span>select()</span></code></span></a>
+        <li><a href="#contacts-manager-getproperties"><span class="secno">5.3.1</span> <span class="content"><code class="idl"><span>getAvailableContactProperties()</span></code></span></a>
+        <li><a href="#contacts-manager-select"><span class="secno">5.3.2</span> <span class="content"><code class="idl"><span>select()</span></code></span></a>
        </ol>
      </ol>
     <li><a href="#contact-picker"><span class="secno">6</span> <span class="content">Contact Picker</span></a>
@@ -1585,12 +1586,12 @@ consent.</p>
 </pre>
     <p>In the above example <code>selectRecipientsButton</code> is a <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/form-elements.html#htmlbuttonelement" id="ref-for-htmlbuttonelement">HTMLButtonElement</a></code>, and <code>populateRecipients</code> is a developer-defined function.</p>
    </div>
-   <div class="example" id="example-f151d2b7">
-    <a class="self-link" href="#example-f151d2b7"></a> Requesting an address to deliver a gift to. 
+   <div class="example" id="example-b323c3f4">
+    <a class="self-link" href="#example-b323c3f4"></a> Requesting an address to deliver a gift to. 
 <pre class="lang-js highlight">selectRecipientButton<c- p>.</c->addEventListener<c- p>(</c-><c- t>'click'</c-><c- p>,</c-> async <c- p>()</c-> <c- p>=></c-> <c- p>{</c->
 
   <c- c1>// We are unsure if addresses are supported, or can be provided by the browser.</c->
-  <c- k>if</c-> <c- p>(</c->navigator<c- p>.</c->contacts<c- p>.</c->properties<c- p>.</c->includes<c- p>(</c-><c- t>'address'</c-><c- p>))</c-> <c- p>{</c->
+  <c- k>if</c-> <c- p>((</c->await navigator<c- p>.</c->contacts<c- p>.</c->getAvailableContactProperties<c- p>()).</c->includes<c- p>(</c-><c- t>'address'</c-><c- p>))</c-> <c- p>{</c->
     <c- kr>const</c-> contacts <c- o>=</c-> await navigator<c- p>.</c->contacts<c- p>.</c->select<c- p>([</c-><c- t>'address'</c-><c- p>]);</c->
 
     <c- k>if</c-> <c- p>(</c-><c- o>!</c->contacts<c- p>.</c->length<c- p>)</c-> <c- p>{</c->
@@ -1653,10 +1654,9 @@ the user agent.</p>
     <div>
      <ul>
       <li data-md>
-       <p><dfn class="dfn-paneled" data-dfn-for="contacts source" data-dfn-type="dfn" data-noexport id="contacts-source-available-contacts">available contacts</dfn>, a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list④">list</a> of <a data-link-type="dfn" href="#user-contact" id="ref-for-user-contact①">user contacts</a> available.</p>
+       <p><dfn class="dfn-paneled" data-dfn-for="contacts source" data-dfn-type="dfn" data-noexport id="contacts-source-available-contacts">available contacts</dfn>, a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list④">list</a> of <a data-link-type="dfn" href="#user-contact" id="ref-for-user-contact①">user contacts</a>.</p>
       <li data-md>
-       <p><dfn class="dfn-paneled" data-dfn-for="contacts source" data-dfn-type="dfn" data-noexport id="contacts-source-supported-properties">supported properties</dfn>, a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list⑤">list</a> of <code class="idl"><a data-link-type="idl" href="#enumdef-contactproperty" id="ref-for-enumdef-contactproperty">ContactProperty</a></code> values the user agent can
-access.</p>
+       <p><dfn class="dfn-paneled" data-dfn-for="contacts source" data-dfn-type="dfn" data-noexport id="contacts-source-supported-properties">supported properties</dfn>, a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list⑤">list</a> of <a data-link-type="dfn" href="#available" id="ref-for-available">available</a> <code class="idl"><a data-link-type="idl" href="#enumdef-contactproperty" id="ref-for-enumdef-contactproperty">ContactProperty</a></code> values.</p>
      </ul>
     </div>
     <p class="note" role="note"><span>Note:</span> It is up to the user agent to choose the <a data-link-type="dfn" href="#user-contact-contacts-source" id="ref-for-user-contact-contacts-source①">contacts source</a>.</p>
@@ -1676,19 +1676,20 @@ access.</p>
    <h3 class="heading settled" data-level="5.2" id="contact-property"><span class="secno">5.2. </span><span class="content"><code class="idl"><a data-link-type="idl" href="#enumdef-contactproperty" id="ref-for-enumdef-contactproperty①">ContactProperty</a></code></span><a class="self-link" href="#contact-property"></a></h3>
 <pre class="idl highlight def"><c- b>enum</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="enum" data-export id="enumdef-contactproperty"><code><c- g>ContactProperty</c-></code></dfn> { <dfn class="idl-code" data-dfn-for="ContactProperty" data-dfn-type="enum-value" data-export id="dom-contactproperty-address"><code><c- s>"address"</c-></code><a class="self-link" href="#dom-contactproperty-address"></a></dfn>, <dfn class="idl-code" data-dfn-for="ContactProperty" data-dfn-type="enum-value" data-export id="dom-contactproperty-email"><code><c- s>"email"</c-></code><a class="self-link" href="#dom-contactproperty-email"></a></dfn>, <dfn class="idl-code" data-dfn-for="ContactProperty" data-dfn-type="enum-value" data-export id="dom-contactproperty-name"><code><c- s>"name"</c-></code><a class="self-link" href="#dom-contactproperty-name"></a></dfn>, <dfn class="idl-code" data-dfn-for="ContactProperty" data-dfn-type="enum-value" data-export id="dom-contactproperty-tel"><code><c- s>"tel"</c-></code><a class="self-link" href="#dom-contactproperty-tel"></a></dfn> };
 </pre>
+   <p>A <code class="idl"><a data-link-type="idl" href="#enumdef-contactproperty" id="ref-for-enumdef-contactproperty②">ContactProperty</a></code> is considered to be <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="available">available</dfn> if its associated <a data-link-type="dfn" href="#user-contact" id="ref-for-user-contact②">user contact</a> field can be accessed by the user agent.</p>
    <dl>
     <dt data-md>"address"
     <dd data-md>
-     <p>Indicates that the user agent has access to the <a data-link-type="dfn" href="#user-contact-addresses" id="ref-for-user-contact-addresses">addresses</a> field for the <a data-link-type="dfn" href="#user-contact" id="ref-for-user-contact②">user contact</a>s provided by the <a data-link-type="dfn" href="#user-contact-contacts-source" id="ref-for-user-contact-contacts-source②">contacts source</a> (<a data-link-type="dfn" href="#contacts-source-available-contacts" id="ref-for-contacts-source-available-contacts">available contacts</a>).</p>
+     <p>Associated with <a data-link-type="dfn" href="#user-contact" id="ref-for-user-contact③">user contact</a>'s <a data-link-type="dfn" href="#user-contact-addresses" id="ref-for-user-contact-addresses">addresses</a>.</p>
     <dt data-md>"email"
     <dd data-md>
-     <p>Indicates that the user agent has access to the <a data-link-type="dfn" href="#user-contact-emails" id="ref-for-user-contact-emails">emails</a> field for the <a data-link-type="dfn" href="#user-contact" id="ref-for-user-contact③">user contact</a>s provided by the <a data-link-type="dfn" href="#user-contact-contacts-source" id="ref-for-user-contact-contacts-source③">contacts source</a> (<a data-link-type="dfn" href="#contacts-source-available-contacts" id="ref-for-contacts-source-available-contacts①">available contacts</a>).</p>
+     <p>Associated with <a data-link-type="dfn" href="#user-contact" id="ref-for-user-contact④">user contact</a>'s <a data-link-type="dfn" href="#user-contact-emails" id="ref-for-user-contact-emails">emails</a>.</p>
     <dt data-md>"name"
     <dd data-md>
-     <p>Indicates that the user agent has access to the <a data-link-type="dfn" href="#user-contact-names" id="ref-for-user-contact-names">names</a> field for the <a data-link-type="dfn" href="#user-contact" id="ref-for-user-contact④">user contact</a>s provided by the <a data-link-type="dfn" href="#user-contact-contacts-source" id="ref-for-user-contact-contacts-source④">contacts source</a> (<a data-link-type="dfn" href="#contacts-source-available-contacts" id="ref-for-contacts-source-available-contacts②">available contacts</a>).</p>
+     <p>Associated with <a data-link-type="dfn" href="#user-contact" id="ref-for-user-contact⑤">user contact</a>'s <a data-link-type="dfn" href="#user-contact-names" id="ref-for-user-contact-names">names</a>.</p>
     <dt data-md>"tel"
     <dd data-md>
-     <p>Indicates that the user agent has access to the <a data-link-type="dfn" href="#user-contact-numbers" id="ref-for-user-contact-numbers">numbers</a> field for the <a data-link-type="dfn" href="#user-contact" id="ref-for-user-contact⑤">user contact</a>s provided by the <a data-link-type="dfn" href="#user-contact-contacts-source" id="ref-for-user-contact-contacts-source⑤">contacts source</a> (<a data-link-type="dfn" href="#contacts-source-available-contacts" id="ref-for-contacts-source-available-contacts③">available contacts</a>).</p>
+     <p>Associated with <a data-link-type="dfn" href="#user-contact" id="ref-for-user-contact⑥">user contact</a>'s <a data-link-type="dfn" href="#user-contact-numbers" id="ref-for-user-contact-numbers">numbers</a>.</p>
    </dl>
    <h3 class="heading settled" data-level="5.3" id="contacts-manager"><span class="secno">5.3. </span><span class="content"><code class="idl"><a data-link-type="idl" href="#contactsmanager" id="ref-for-contactsmanager③">ContactsManager</a></code></span><a class="self-link" href="#contacts-manager"></a></h3>
 <pre class="idl highlight def"><c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="contactaddress"><code><c- g>ContactAddress</c-></code></dfn> : <a class="n" data-link-type="idl-name" href="https://www.w3.org/TR/payment-request/#dom-paymentaddress" id="ref-for-dom-paymentaddress"><c- n>PaymentAddress</c-></a> {};
@@ -1706,13 +1707,28 @@ access.</p>
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①"><c- g>Exposed</c-></a>=(<c- n>Window</c->,<c- n>SecureContext</c->)]
 <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="contactsmanager"><code><c- g>ContactsManager</c-></code></dfn> {
-    <c- b>readonly</c-> <c- b>attribute</c-> <c- b>FrozenArray</c->&lt;<a class="n" data-link-type="idl-name" href="#enumdef-contactproperty" id="ref-for-enumdef-contactproperty②"><c- n>ContactProperty</c-></a>> <dfn class="dfn-paneled idl-code" data-dfn-for="ContactsManager" data-dfn-type="attribute" data-export data-readonly data-type="FrozenArray<ContactProperty>" id="dom-contactsmanager-properties"><code><c- g>properties</c-></code></dfn>;
-    <c- b>Promise</c->&lt;<c- b>sequence</c->&lt;<a class="n" data-link-type="idl-name" href="#dictdef-contactinfo" id="ref-for-dictdef-contactinfo"><c- n>ContactInfo</c-></a>>> <a class="idl-code" data-link-type="method" href="#dom-contactsmanager-select" id="ref-for-dom-contactsmanager-select"><c- g>select</c-></a>(<c- b>sequence</c->&lt;<a class="n" data-link-type="idl-name" href="#enumdef-contactproperty" id="ref-for-enumdef-contactproperty③"><c- n>ContactProperty</c-></a>> <dfn class="idl-code" data-dfn-for="ContactsManager/select(properties, options), ContactsManager/select(properties)" data-dfn-type="argument" data-export id="dom-contactsmanager-select-properties-options-properties"><code><c- g>properties</c-></code><a class="self-link" href="#dom-contactsmanager-select-properties-options-properties"></a></dfn>, <c- b>optional</c-> <a class="n" data-link-type="idl-name" href="#dictdef-contactsselectoptions" id="ref-for-dictdef-contactsselectoptions"><c- n>ContactsSelectOptions</c-></a> <dfn class="idl-code" data-dfn-for="ContactsManager/select(properties, options), ContactsManager/select(properties)" data-dfn-type="argument" data-export id="dom-contactsmanager-select-properties-options-options"><code><c- g>options</c-></code><a class="self-link" href="#dom-contactsmanager-select-properties-options-options"></a></dfn>);
+    <c- b>Promise</c->&lt;<c- b>sequence</c->&lt;<a class="n" data-link-type="idl-name" href="#enumdef-contactproperty" id="ref-for-enumdef-contactproperty③"><c- n>ContactProperty</c-></a>>> <a class="idl-code" data-link-type="method" href="#dom-contactsmanager-getavailablecontactproperties" id="ref-for-dom-contactsmanager-getavailablecontactproperties"><c- g>getAvailableContactProperties</c-></a>();
+    <c- b>Promise</c->&lt;<c- b>sequence</c->&lt;<a class="n" data-link-type="idl-name" href="#dictdef-contactinfo" id="ref-for-dictdef-contactinfo"><c- n>ContactInfo</c-></a>>> <a class="idl-code" data-link-type="method" href="#dom-contactsmanager-select" id="ref-for-dom-contactsmanager-select"><c- g>select</c-></a>(<c- b>sequence</c->&lt;<a class="n" data-link-type="idl-name" href="#enumdef-contactproperty" id="ref-for-enumdef-contactproperty④"><c- n>ContactProperty</c-></a>> <dfn class="idl-code" data-dfn-for="ContactsManager/select(properties, options), ContactsManager/select(properties)" data-dfn-type="argument" data-export id="dom-contactsmanager-select-properties-options-properties"><code><c- g>properties</c-></code><a class="self-link" href="#dom-contactsmanager-select-properties-options-properties"></a></dfn>, <c- b>optional</c-> <a class="n" data-link-type="idl-name" href="#dictdef-contactsselectoptions" id="ref-for-dictdef-contactsselectoptions"><c- n>ContactsSelectOptions</c-></a> <dfn class="idl-code" data-dfn-for="ContactsManager/select(properties, options), ContactsManager/select(properties)" data-dfn-type="argument" data-export id="dom-contactsmanager-select-properties-options-options"><code><c- g>options</c-></code><a class="self-link" href="#dom-contactsmanager-select-properties-options-options"></a></dfn>);
 };
 </pre>
-   <p>The <code class="idl"><a data-link-type="idl" href="#dom-contactsmanager-properties" id="ref-for-dom-contactsmanager-properties">properties</a></code>' getter must return a <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-frozen-array-type" id="ref-for-dfn-frozen-array-type">frozen array</a> consisting of the <a data-link-type="dfn" href="#user-contact-contacts-source" id="ref-for-user-contact-contacts-source⑥">contacts source</a>'s <a data-link-type="dfn" href="#contacts-source-supported-properties" id="ref-for-contacts-source-supported-properties">supported properties</a>.</p>
    <div>
-    <h4 class="heading settled" data-level="5.3.1" id="contacts-manager-select"><span class="secno">5.3.1. </span><span class="content"><code class="idl"><a data-link-type="idl" href="#dom-contactsmanager-select" id="ref-for-dom-contactsmanager-select①">select()</a></code></span><a class="self-link" href="#contacts-manager-select"></a></h4>
+    <h4 class="heading settled" data-level="5.3.1" id="contacts-manager-getproperties"><span class="secno">5.3.1. </span><span class="content"><code class="idl"><a data-link-type="idl" href="#dom-contactsmanager-getavailablecontactproperties" id="ref-for-dom-contactsmanager-getavailablecontactproperties①">getAvailableContactProperties()</a></code></span><a class="self-link" href="#contacts-manager-getproperties"></a></h4>
+    <div class="algorithm" data-algorithm="getAvailableContactProperties()">
+      The <dfn class="dfn-paneled idl-code" data-dfn-for="ContactsManager" data-dfn-type="method" data-export id="dom-contactsmanager-getavailablecontactproperties"><code>getAvailableContactProperties()</code></dfn> method, when invoked, runs these steps: 
+     <ol>
+      <li data-md>
+       <p>Let <var>promise</var> be <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#a-new-promise" id="ref-for-a-new-promise">a new promise</a>.</p>
+      <li data-md>
+       <p>Run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel">in parallel</a>:</p>
+       <ol>
+        <li data-md>
+         <p>Resolve <var>promise</var> with <a data-link-type="dfn" href="#user-contact-contacts-source" id="ref-for-user-contact-contacts-source②">contacts source</a>'s <a data-link-type="dfn" href="#contacts-source-supported-properties" id="ref-for-contacts-source-supported-properties">supported properties</a>.</p>
+       </ol>
+      <li data-md>
+       <p>Return <var>promise</var>.</p>
+     </ol>
+    </div>
+    <h4 class="heading settled" data-level="5.3.2" id="contacts-manager-select"><span class="secno">5.3.2. </span><span class="content"><code class="idl"><a data-link-type="idl" href="#dom-contactsmanager-select" id="ref-for-dom-contactsmanager-select①">select()</a></code></span><a class="self-link" href="#contacts-manager-select"></a></h4>
     <div class="algorithm" data-algorithm="select(properties, options)">
       The <dfn class="dfn-paneled idl-code" data-dfn-for="ContactsManager" data-dfn-type="method" data-export data-lt="select(properties, options)|select(properties)" id="dom-contactsmanager-select"><code>select(<var>properties</var>, <var>options</var>)</code></dfn> method, when invoked, runs these steps: 
      <ol>
@@ -1730,14 +1746,14 @@ access.</p>
        <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate">For each</a> <var>property</var> of <var>properties</var>:</p>
        <ol>
         <li data-md>
-         <p>If <a data-link-type="dfn" href="#user-contact-contacts-source" id="ref-for-user-contact-contacts-source⑦">contacts source</a>'s <a data-link-type="dfn" href="#contacts-source-supported-properties" id="ref-for-contacts-source-supported-properties①">supported properties</a> does not <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain">contain</a> <var>property</var>, then return <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#a-promise-rejected-with" id="ref-for-a-promise-rejected-with④">a promise rejected with</a> a <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror①">TypeError</a></code>.</p>
+         <p>If <a data-link-type="dfn" href="#user-contact-contacts-source" id="ref-for-user-contact-contacts-source③">contacts source</a>'s <a data-link-type="dfn" href="#contacts-source-supported-properties" id="ref-for-contacts-source-supported-properties①">supported properties</a> does not <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain">contain</a> <var>property</var>, then return <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#a-promise-rejected-with" id="ref-for-a-promise-rejected-with④">a promise rejected with</a> a <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror①">TypeError</a></code>.</p>
        </ol>
       <li data-md>
        <p>Set <var>relevantBrowsingContext</var>’s <a data-link-type="dfn" href="#contact-picker-is-showing-flag" id="ref-for-contact-picker-is-showing-flag①">contact picker is showing flag</a>.</p>
       <li data-md>
-       <p>Let <var>promise</var> be <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#a-new-promise" id="ref-for-a-new-promise">a new promise</a>.</p>
+       <p>Let <var>promise</var> be <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide/#a-new-promise" id="ref-for-a-new-promise①">a new promise</a>.</p>
       <li data-md>
-       <p>Run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel">in parallel</a>:</p>
+       <p>Run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel①">in parallel</a>:</p>
        <ol>
         <li data-md>
          <p>Let <var>selectedContacts</var> be be the result of <a data-link-type="dfn" href="#contactsmanager-launching-a-contact-picker" id="ref-for-contactsmanager-launching-a-contact-picker">launching a contact picker</a> with <var>options</var>’ <code>multiple</code> member and <var>properties</var>. If this fails, then:</p>
@@ -1792,7 +1808,7 @@ access.</p>
   interface that follows these rules: 
      <ul>
       <li data-md>
-       <p>If presenting a user interface fails or accessing the <a data-link-type="dfn" href="#user-contact-contacts-source" id="ref-for-user-contact-contacts-source⑧">contacts source</a>'s <a data-link-type="dfn" href="#contacts-source-available-contacts" id="ref-for-contacts-source-available-contacts④">available contacts</a> fails, then return failure.</p>
+       <p>If presenting a user interface fails or accessing the <a data-link-type="dfn" href="#user-contact-contacts-source" id="ref-for-user-contact-contacts-source④">contacts source</a>'s <a data-link-type="dfn" href="#contacts-source-available-contacts" id="ref-for-contacts-source-available-contacts">available contacts</a> fails, then return failure.</p>
       <li data-md>
        <p>The UI MUST prominently display the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context①">browsing context</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#concept-origin" id="ref-for-concept-origin">origin</a>.</p>
       <li data-md>
@@ -1806,7 +1822,7 @@ contact should be pickable.</p>
 remove the UI and return an empty <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list⑧">list</a>.</p>
       <li data-md>
        <p>The UI MUST provide an a way for users to indicate that they are done selecting, in which case
-remove the UI and return a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list⑨">list</a> of the selected contacts as <a data-link-type="dfn" href="#user-contact" id="ref-for-user-contact⑥">user contacts</a>.</p>
+remove the UI and return a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list⑨">list</a> of the selected contacts as <a data-link-type="dfn" href="#user-contact" id="ref-for-user-contact⑦">user contacts</a>.</p>
      </ul>
     </div>
    </div>
@@ -1963,6 +1979,7 @@ remove the UI and return a <a data-link-type="dfn" href="https://infra.spec.what
    <li><a href="#dom-contactinfo-address">address</a><span>, in §5.3</span>
    <li><a href="#dom-contactproperty-address">"address"</a><span>, in §5.2</span>
    <li><a href="#user-contact-addresses">addresses</a><span>, in §4.1</span>
+   <li><a href="#available">available</a><span>, in §5.2</span>
    <li><a href="#contacts-source-available-contacts">available contacts</a><span>, in §4.2</span>
    <li><a href="#contactaddress">ContactAddress</a><span>, in §5.3</span>
    <li><a href="#dictdef-contactinfo">ContactInfo</a><span>, in §5.3</span>
@@ -1977,16 +1994,16 @@ remove the UI and return a <a data-link-type="dfn" href="https://infra.spec.what
    <li><a href="#dom-contactinfo-email">email</a><span>, in §5.3</span>
    <li><a href="#dom-contactproperty-email">"email"</a><span>, in §5.2</span>
    <li><a href="#user-contact-emails">emails</a><span>, in §4.1</span>
+   <li><a href="#dom-contactsmanager-getavailablecontactproperties">getAvailableContactProperties()</a><span>, in §5.3.1</span>
    <li><a href="#contactsmanager-launching-a-contact-picker">launching a contact picker</a><span>, in §6</span>
    <li><a href="#dom-contactsselectoptions-multiple">multiple</a><span>, in §5.3</span>
    <li><a href="#dom-contactproperty-name">"name"</a><span>, in §5.2</span>
    <li><a href="#dom-contactinfo-name">name</a><span>, in §5.3</span>
    <li><a href="#user-contact-names">names</a><span>, in §4.1</span>
    <li><a href="#user-contact-numbers">numbers</a><span>, in §4.1</span>
-   <li><a href="#dom-contactsmanager-properties">properties</a><span>, in §5.3</span>
    <li><a href="#queue-a-contact-picker-task">queue a contact picker task</a><span>, in §4</span>
-   <li><a href="#dom-contactsmanager-select">select(properties)</a><span>, in §5.3.1</span>
-   <li><a href="#dom-contactsmanager-select">select(properties, options)</a><span>, in §5.3.1</span>
+   <li><a href="#dom-contactsmanager-select">select(properties)</a><span>, in §5.3.2</span>
+   <li><a href="#dom-contactsmanager-select">select(properties, options)</a><span>, in §5.3.2</span>
    <li><a href="#contacts-source-supported-properties">supported properties</a><span>, in §4.2</span>
    <li><a href="#dom-contactinfo-tel">tel</a><span>, in §5.3</span>
    <li><a href="#dom-contactproperty-tel">"tel"</a><span>, in §5.2</span>
@@ -1998,7 +2015,7 @@ remove the UI and return a <a data-link-type="dfn" href="https://infra.spec.what
     <li><a href="#ref-for-context-object">3. Realms</a>
     <li><a href="#ref-for-context-object①">4. Infrastructure</a>
     <li><a href="#ref-for-context-object②">5.1. Extensions to Navigator</a>
-    <li><a href="#ref-for-context-object③">5.3.1. select()</a>
+    <li><a href="#ref-for-context-object③">5.3.2. select()</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-htmlbuttonelement">
@@ -2029,7 +2046,8 @@ remove the UI and return a <a data-link-type="dfn" href="https://infra.spec.what
   <aside class="dfn-panel" data-for="term-for-in-parallel">
    <a href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-in-parallel">5.3.1. select()</a>
+    <li><a href="#ref-for-in-parallel">5.3.1. getAvailableContactProperties()</a>
+    <li><a href="#ref-for-in-parallel①">5.3.2. select()</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-concept-origin">
@@ -2054,13 +2072,13 @@ remove the UI and return a <a data-link-type="dfn" href="https://infra.spec.what
    <a href="https://html.spec.whatwg.org/multipage/webappapis.html#relevant-settings-object">https://html.spec.whatwg.org/multipage/webappapis.html#relevant-settings-object</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-relevant-settings-object">4. Infrastructure</a>
-    <li><a href="#ref-for-relevant-settings-object①">5.3.1. select()</a>
+    <li><a href="#ref-for-relevant-settings-object①">5.3.2. select()</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-responsible-browsing-context">
    <a href="https://html.spec.whatwg.org/multipage/webappapis.html#responsible-browsing-context">https://html.spec.whatwg.org/multipage/webappapis.html#responsible-browsing-context</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-responsible-browsing-context">5.3.1. select()</a>
+    <li><a href="#ref-for-responsible-browsing-context">5.3.2. select()</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-responsible-event-loop">
@@ -2079,13 +2097,13 @@ remove the UI and return a <a data-link-type="dfn" href="https://infra.spec.what
    <a href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context">https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-top-level-browsing-context">2. Privacy Considerations</a>
-    <li><a href="#ref-for-top-level-browsing-context①">5.3.1. select()</a>
+    <li><a href="#ref-for-top-level-browsing-context①">5.3.2. select()</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-triggered-by-user-activation">
    <a href="https://html.spec.whatwg.org/multipage/interaction.html#triggered-by-user-activation">https://html.spec.whatwg.org/multipage/interaction.html#triggered-by-user-activation</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-triggered-by-user-activation">5.3.1. select()</a>
+    <li><a href="#ref-for-triggered-by-user-activation">5.3.2. select()</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-valid-e-mail-address">
@@ -2097,7 +2115,7 @@ remove the UI and return a <a data-link-type="dfn" href="https://infra.spec.what
   <aside class="dfn-panel" data-for="term-for-list-append">
    <a href="https://infra.spec.whatwg.org/#list-append">https://infra.spec.whatwg.org/#list-append</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-list-append">5.3.1. select()</a>
+    <li><a href="#ref-for-list-append">5.3.2. select()</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-boolean">
@@ -2109,19 +2127,19 @@ remove the UI and return a <a data-link-type="dfn" href="https://infra.spec.what
   <aside class="dfn-panel" data-for="term-for-list-contain">
    <a href="https://infra.spec.whatwg.org/#list-contain">https://infra.spec.whatwg.org/#list-contain</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-list-contain">5.3.1. select()</a> <a href="#ref-for-list-contain①">(2)</a> <a href="#ref-for-list-contain②">(3)</a> <a href="#ref-for-list-contain③">(4)</a> <a href="#ref-for-list-contain④">(5)</a>
+    <li><a href="#ref-for-list-contain">5.3.2. select()</a> <a href="#ref-for-list-contain①">(2)</a> <a href="#ref-for-list-contain②">(3)</a> <a href="#ref-for-list-contain③">(4)</a> <a href="#ref-for-list-contain④">(5)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-list-empty">
    <a href="https://infra.spec.whatwg.org/#list-empty">https://infra.spec.whatwg.org/#list-empty</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-list-empty">5.3.1. select()</a>
+    <li><a href="#ref-for-list-empty">5.3.2. select()</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-list-iterate">
    <a href="https://infra.spec.whatwg.org/#list-iterate">https://infra.spec.whatwg.org/#list-iterate</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-list-iterate">5.3.1. select()</a> <a href="#ref-for-list-iterate①">(2)</a>
+    <li><a href="#ref-for-list-iterate">5.3.2. select()</a> <a href="#ref-for-list-iterate①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-list-item">
@@ -2135,7 +2153,7 @@ remove the UI and return a <a data-link-type="dfn" href="https://infra.spec.what
    <ul>
     <li><a href="#ref-for-list">4.1. User contact</a> <a href="#ref-for-list①">(2)</a> <a href="#ref-for-list②">(3)</a> <a href="#ref-for-list③">(4)</a>
     <li><a href="#ref-for-list④">4.2. Contacts source</a> <a href="#ref-for-list⑤">(2)</a>
-    <li><a href="#ref-for-list⑥">5.3.1. select()</a>
+    <li><a href="#ref-for-list⑥">5.3.2. select()</a>
     <li><a href="#ref-for-list⑦">6. Contact Picker</a> <a href="#ref-for-list⑧">(2)</a> <a href="#ref-for-list⑨">(3)</a>
    </ul>
   </aside>
@@ -2154,13 +2172,14 @@ remove the UI and return a <a data-link-type="dfn" href="https://infra.spec.what
   <aside class="dfn-panel" data-for="term-for-a-new-promise">
    <a href="https://www.w3.org/2001/tag/doc/promises-guide/#a-new-promise">https://www.w3.org/2001/tag/doc/promises-guide/#a-new-promise</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-a-new-promise">5.3.1. select()</a>
+    <li><a href="#ref-for-a-new-promise">5.3.1. getAvailableContactProperties()</a>
+    <li><a href="#ref-for-a-new-promise①">5.3.2. select()</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-a-promise-rejected-with">
    <a href="https://www.w3.org/2001/tag/doc/promises-guide/#a-promise-rejected-with">https://www.w3.org/2001/tag/doc/promises-guide/#a-promise-rejected-with</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-a-promise-rejected-with">5.3.1. select()</a> <a href="#ref-for-a-promise-rejected-with①">(2)</a> <a href="#ref-for-a-promise-rejected-with②">(3)</a> <a href="#ref-for-a-promise-rejected-with③">(4)</a> <a href="#ref-for-a-promise-rejected-with④">(5)</a> <a href="#ref-for-a-promise-rejected-with⑤">(6)</a>
+    <li><a href="#ref-for-a-promise-rejected-with">5.3.2. select()</a> <a href="#ref-for-a-promise-rejected-with①">(2)</a> <a href="#ref-for-a-promise-rejected-with②">(3)</a> <a href="#ref-for-a-promise-rejected-with③">(4)</a> <a href="#ref-for-a-promise-rejected-with④">(5)</a> <a href="#ref-for-a-promise-rejected-with⑤">(6)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-secure-contexts">
@@ -2172,7 +2191,7 @@ remove the UI and return a <a data-link-type="dfn" href="https://infra.spec.what
   <aside class="dfn-panel" data-for="term-for-idl-DOMException">
    <a href="https://heycam.github.io/webidl/#idl-DOMException">https://heycam.github.io/webidl/#idl-DOMException</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-idl-DOMException">5.3.1. select()</a> <a href="#ref-for-idl-DOMException①">(2)</a> <a href="#ref-for-idl-DOMException②">(3)</a> <a href="#ref-for-idl-DOMException③">(4)</a>
+    <li><a href="#ref-for-idl-DOMException">5.3.2. select()</a> <a href="#ref-for-idl-DOMException①">(2)</a> <a href="#ref-for-idl-DOMException②">(3)</a> <a href="#ref-for-idl-DOMException③">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-idl-DOMString">
@@ -2193,7 +2212,7 @@ remove the UI and return a <a data-link-type="dfn" href="https://infra.spec.what
   <aside class="dfn-panel" data-for="term-for-invalidstateerror">
    <a href="https://heycam.github.io/webidl/#invalidstateerror">https://heycam.github.io/webidl/#invalidstateerror</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-invalidstateerror">5.3.1. select()</a> <a href="#ref-for-invalidstateerror①">(2)</a> <a href="#ref-for-invalidstateerror②">(3)</a>
+    <li><a href="#ref-for-invalidstateerror">5.3.2. select()</a> <a href="#ref-for-invalidstateerror①">(2)</a> <a href="#ref-for-invalidstateerror②">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-SameObject">
@@ -2211,25 +2230,19 @@ remove the UI and return a <a data-link-type="dfn" href="https://infra.spec.what
   <aside class="dfn-panel" data-for="term-for-securityerror">
    <a href="https://heycam.github.io/webidl/#securityerror">https://heycam.github.io/webidl/#securityerror</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-securityerror">5.3.1. select()</a>
+    <li><a href="#ref-for-securityerror">5.3.2. select()</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-exceptiondef-typeerror">
    <a href="https://heycam.github.io/webidl/#exceptiondef-typeerror">https://heycam.github.io/webidl/#exceptiondef-typeerror</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-exceptiondef-typeerror">5.3.1. select()</a> <a href="#ref-for-exceptiondef-typeerror①">(2)</a>
+    <li><a href="#ref-for-exceptiondef-typeerror">5.3.2. select()</a> <a href="#ref-for-exceptiondef-typeerror①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-idl-boolean">
    <a href="https://heycam.github.io/webidl/#idl-boolean">https://heycam.github.io/webidl/#idl-boolean</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-idl-boolean">5.3. ContactsManager</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-dfn-frozen-array-type">
-   <a href="https://heycam.github.io/webidl/#dfn-frozen-array-type">https://heycam.github.io/webidl/#dfn-frozen-array-type</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dfn-frozen-array-type">5.3. ContactsManager</a>
    </ul>
   </aside>
   <h3 class="no-num no-ref heading settled" id="index-defined-elsewhere"><span class="content">Terms defined by reference</span><a class="self-link" href="#index-defined-elsewhere"></a></h3>
@@ -2298,7 +2311,6 @@ remove the UI and return a <a data-link-type="dfn" href="https://infra.spec.what
      <li><span class="dfn-paneled" id="term-for-securityerror" style="color:initial">SecurityError</span>
      <li><span class="dfn-paneled" id="term-for-exceptiondef-typeerror" style="color:initial">TypeError</span>
      <li><span class="dfn-paneled" id="term-for-idl-boolean" style="color:initial">boolean</span>
-     <li><span class="dfn-paneled" id="term-for-dfn-frozen-array-type" style="color:initial">frozen array type</span>
     </ul>
   </ul>
   <h2 class="no-num no-ref heading settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
@@ -2344,8 +2356,8 @@ remove the UI and return a <a data-link-type="dfn" href="https://infra.spec.what
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①①"><c- g>Exposed</c-></a>=(<c- n>Window</c->,<c- n>SecureContext</c->)]
 <c- b>interface</c-> <a href="#contactsmanager"><code><c- g>ContactsManager</c-></code></a> {
-    <c- b>readonly</c-> <c- b>attribute</c-> <c- b>FrozenArray</c->&lt;<a class="n" data-link-type="idl-name" href="#enumdef-contactproperty" id="ref-for-enumdef-contactproperty②①"><c- n>ContactProperty</c-></a>> <a data-readonly data-type="FrozenArray<ContactProperty>" href="#dom-contactsmanager-properties"><code><c- g>properties</c-></code></a>;
-    <c- b>Promise</c->&lt;<c- b>sequence</c->&lt;<a class="n" data-link-type="idl-name" href="#dictdef-contactinfo" id="ref-for-dictdef-contactinfo②"><c- n>ContactInfo</c-></a>>> <a class="idl-code" data-link-type="method" href="#dom-contactsmanager-select" id="ref-for-dom-contactsmanager-select②"><c- g>select</c-></a>(<c- b>sequence</c->&lt;<a class="n" data-link-type="idl-name" href="#enumdef-contactproperty" id="ref-for-enumdef-contactproperty③①"><c- n>ContactProperty</c-></a>> <a href="#dom-contactsmanager-select-properties-options-properties"><code><c- g>properties</c-></code></a>, <c- b>optional</c-> <a class="n" data-link-type="idl-name" href="#dictdef-contactsselectoptions" id="ref-for-dictdef-contactsselectoptions①"><c- n>ContactsSelectOptions</c-></a> <a href="#dom-contactsmanager-select-properties-options-options"><code><c- g>options</c-></code></a>);
+    <c- b>Promise</c->&lt;<c- b>sequence</c->&lt;<a class="n" data-link-type="idl-name" href="#enumdef-contactproperty" id="ref-for-enumdef-contactproperty③①"><c- n>ContactProperty</c-></a>>> <a class="idl-code" data-link-type="method" href="#dom-contactsmanager-getavailablecontactproperties" id="ref-for-dom-contactsmanager-getavailablecontactproperties②"><c- g>getAvailableContactProperties</c-></a>();
+    <c- b>Promise</c->&lt;<c- b>sequence</c->&lt;<a class="n" data-link-type="idl-name" href="#dictdef-contactinfo" id="ref-for-dictdef-contactinfo②"><c- n>ContactInfo</c-></a>>> <a class="idl-code" data-link-type="method" href="#dom-contactsmanager-select" id="ref-for-dom-contactsmanager-select②"><c- g>select</c-></a>(<c- b>sequence</c->&lt;<a class="n" data-link-type="idl-name" href="#enumdef-contactproperty" id="ref-for-enumdef-contactproperty④①"><c- n>ContactProperty</c-></a>> <a href="#dom-contactsmanager-select-properties-options-properties"><code><c- g>properties</c-></code></a>, <c- b>optional</c-> <a class="n" data-link-type="idl-name" href="#dictdef-contactsselectoptions" id="ref-for-dictdef-contactsselectoptions①"><c- n>ContactsSelectOptions</c-></a> <a href="#dom-contactsmanager-select-properties-options-options"><code><c- g>options</c-></code></a>);
 };
 
 </pre>
@@ -2358,7 +2370,7 @@ remove the UI and return a <a data-link-type="dfn" href="https://infra.spec.what
   <aside class="dfn-panel" data-for="queue-a-contact-picker-task">
    <b><a href="#queue-a-contact-picker-task">#queue-a-contact-picker-task</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-queue-a-contact-picker-task">5.3.1. select()</a>
+    <li><a href="#ref-for-queue-a-contact-picker-task">5.3.2. select()</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="user-contact">
@@ -2366,60 +2378,58 @@ remove the UI and return a <a data-link-type="dfn" href="https://infra.spec.what
    <ul>
     <li><a href="#ref-for-user-contact">4.1. User contact</a>
     <li><a href="#ref-for-user-contact①">4.2. Contacts source</a>
-    <li><a href="#ref-for-user-contact②">5.2. ContactProperty</a> <a href="#ref-for-user-contact③">(2)</a> <a href="#ref-for-user-contact④">(3)</a> <a href="#ref-for-user-contact⑤">(4)</a>
-    <li><a href="#ref-for-user-contact⑥">6. Contact Picker</a>
+    <li><a href="#ref-for-user-contact②">5.2. ContactProperty</a> <a href="#ref-for-user-contact③">(2)</a> <a href="#ref-for-user-contact④">(3)</a> <a href="#ref-for-user-contact⑤">(4)</a> <a href="#ref-for-user-contact⑥">(5)</a>
+    <li><a href="#ref-for-user-contact⑦">6. Contact Picker</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="user-contact-names">
    <b><a href="#user-contact-names">#user-contact-names</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-user-contact-names">5.2. ContactProperty</a>
-    <li><a href="#ref-for-user-contact-names①">5.3.1. select()</a>
+    <li><a href="#ref-for-user-contact-names①">5.3.2. select()</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="user-contact-emails">
    <b><a href="#user-contact-emails">#user-contact-emails</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-user-contact-emails">5.2. ContactProperty</a>
-    <li><a href="#ref-for-user-contact-emails①">5.3.1. select()</a>
+    <li><a href="#ref-for-user-contact-emails①">5.3.2. select()</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="user-contact-numbers">
    <b><a href="#user-contact-numbers">#user-contact-numbers</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-user-contact-numbers">5.2. ContactProperty</a>
-    <li><a href="#ref-for-user-contact-numbers①">5.3.1. select()</a>
+    <li><a href="#ref-for-user-contact-numbers①">5.3.2. select()</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="user-contact-addresses">
    <b><a href="#user-contact-addresses">#user-contact-addresses</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-user-contact-addresses">5.2. ContactProperty</a>
-    <li><a href="#ref-for-user-contact-addresses①">5.3.1. select()</a>
+    <li><a href="#ref-for-user-contact-addresses①">5.3.2. select()</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="user-contact-contacts-source">
    <b><a href="#user-contact-contacts-source">#user-contact-contacts-source</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-user-contact-contacts-source">4.2. Contacts source</a> <a href="#ref-for-user-contact-contacts-source①">(2)</a>
-    <li><a href="#ref-for-user-contact-contacts-source②">5.2. ContactProperty</a> <a href="#ref-for-user-contact-contacts-source③">(2)</a> <a href="#ref-for-user-contact-contacts-source④">(3)</a> <a href="#ref-for-user-contact-contacts-source⑤">(4)</a>
-    <li><a href="#ref-for-user-contact-contacts-source⑥">5.3. ContactsManager</a>
-    <li><a href="#ref-for-user-contact-contacts-source⑦">5.3.1. select()</a>
-    <li><a href="#ref-for-user-contact-contacts-source⑧">6. Contact Picker</a>
+    <li><a href="#ref-for-user-contact-contacts-source②">5.3.1. getAvailableContactProperties()</a>
+    <li><a href="#ref-for-user-contact-contacts-source③">5.3.2. select()</a>
+    <li><a href="#ref-for-user-contact-contacts-source④">6. Contact Picker</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="contacts-source-available-contacts">
    <b><a href="#contacts-source-available-contacts">#contacts-source-available-contacts</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-contacts-source-available-contacts">5.2. ContactProperty</a> <a href="#ref-for-contacts-source-available-contacts①">(2)</a> <a href="#ref-for-contacts-source-available-contacts②">(3)</a> <a href="#ref-for-contacts-source-available-contacts③">(4)</a>
-    <li><a href="#ref-for-contacts-source-available-contacts④">6. Contact Picker</a>
+    <li><a href="#ref-for-contacts-source-available-contacts">6. Contact Picker</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="contacts-source-supported-properties">
    <b><a href="#contacts-source-supported-properties">#contacts-source-supported-properties</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-contacts-source-supported-properties">5.3. ContactsManager</a>
-    <li><a href="#ref-for-contacts-source-supported-properties①">5.3.1. select()</a>
+    <li><a href="#ref-for-contacts-source-supported-properties">5.3.1. getAvailableContactProperties()</a>
+    <li><a href="#ref-for-contacts-source-supported-properties①">5.3.2. select()</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="navigator-contacts-manager">
@@ -2437,15 +2447,21 @@ remove the UI and return a <a data-link-type="dfn" href="https://infra.spec.what
   <aside class="dfn-panel" data-for="contact-picker-is-showing-flag">
    <b><a href="#contact-picker-is-showing-flag">#contact-picker-is-showing-flag</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-contact-picker-is-showing-flag">5.3.1. select()</a> <a href="#ref-for-contact-picker-is-showing-flag①">(2)</a> <a href="#ref-for-contact-picker-is-showing-flag②">(3)</a> <a href="#ref-for-contact-picker-is-showing-flag③">(4)</a>
+    <li><a href="#ref-for-contact-picker-is-showing-flag">5.3.2. select()</a> <a href="#ref-for-contact-picker-is-showing-flag①">(2)</a> <a href="#ref-for-contact-picker-is-showing-flag②">(3)</a> <a href="#ref-for-contact-picker-is-showing-flag③">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="enumdef-contactproperty">
    <b><a href="#enumdef-contactproperty">#enumdef-contactproperty</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-enumdef-contactproperty">4.2. Contacts source</a>
-    <li><a href="#ref-for-enumdef-contactproperty①">5.2. ContactProperty</a>
-    <li><a href="#ref-for-enumdef-contactproperty②">5.3. ContactsManager</a> <a href="#ref-for-enumdef-contactproperty③">(2)</a>
+    <li><a href="#ref-for-enumdef-contactproperty①">5.2. ContactProperty</a> <a href="#ref-for-enumdef-contactproperty②">(2)</a>
+    <li><a href="#ref-for-enumdef-contactproperty③">5.3. ContactsManager</a> <a href="#ref-for-enumdef-contactproperty④">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="available">
+   <b><a href="#available">#available</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-available">4.2. Contacts source</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="contactaddress">
@@ -2459,31 +2475,31 @@ remove the UI and return a <a data-link-type="dfn" href="https://infra.spec.what
    <b><a href="#dictdef-contactinfo">#dictdef-contactinfo</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dictdef-contactinfo">5.3. ContactsManager</a>
-    <li><a href="#ref-for-dictdef-contactinfo①">5.3.1. select()</a>
+    <li><a href="#ref-for-dictdef-contactinfo①">5.3.2. select()</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-contactinfo-name">
    <b><a href="#dom-contactinfo-name">#dom-contactinfo-name</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-contactinfo-name">5.3.1. select()</a>
+    <li><a href="#ref-for-dom-contactinfo-name">5.3.2. select()</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-contactinfo-email">
    <b><a href="#dom-contactinfo-email">#dom-contactinfo-email</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-contactinfo-email">5.3.1. select()</a>
+    <li><a href="#ref-for-dom-contactinfo-email">5.3.2. select()</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-contactinfo-tel">
    <b><a href="#dom-contactinfo-tel">#dom-contactinfo-tel</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-contactinfo-tel">5.3.1. select()</a>
+    <li><a href="#ref-for-dom-contactinfo-tel">5.3.2. select()</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-contactinfo-address">
    <b><a href="#dom-contactinfo-address">#dom-contactinfo-address</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-contactinfo-address">5.3.1. select()</a>
+    <li><a href="#ref-for-dom-contactinfo-address">5.3.2. select()</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dictdef-contactsselectoptions">
@@ -2499,23 +2515,24 @@ remove the UI and return a <a data-link-type="dfn" href="https://infra.spec.what
     <li><a href="#ref-for-contactsmanager③">5.3. ContactsManager</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="dom-contactsmanager-properties">
-   <b><a href="#dom-contactsmanager-properties">#dom-contactsmanager-properties</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="dom-contactsmanager-getavailablecontactproperties">
+   <b><a href="#dom-contactsmanager-getavailablecontactproperties">#dom-contactsmanager-getavailablecontactproperties</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-contactsmanager-properties">5.3. ContactsManager</a>
+    <li><a href="#ref-for-dom-contactsmanager-getavailablecontactproperties">5.3. ContactsManager</a>
+    <li><a href="#ref-for-dom-contactsmanager-getavailablecontactproperties①">5.3.1. getAvailableContactProperties()</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-contactsmanager-select">
    <b><a href="#dom-contactsmanager-select">#dom-contactsmanager-select</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-contactsmanager-select">5.3. ContactsManager</a>
-    <li><a href="#ref-for-dom-contactsmanager-select①">5.3.1. select()</a>
+    <li><a href="#ref-for-dom-contactsmanager-select①">5.3.2. select()</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="contactsmanager-launching-a-contact-picker">
    <b><a href="#contactsmanager-launching-a-contact-picker">#contactsmanager-launching-a-contact-picker</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-contactsmanager-launching-a-contact-picker">5.3.1. select()</a>
+    <li><a href="#ref-for-contactsmanager-launching-a-contact-picker">5.3.2. select()</a>
    </ul>
   </aside>
 <script>/* script-var-click-highlighting */

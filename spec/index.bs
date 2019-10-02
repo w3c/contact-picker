@@ -73,7 +73,7 @@ consent.
     selectRecipientButton.addEventListener('click', async () => {
 
       // We are unsure if addresses are supported, or can be provided by the browser.
-      if (navigator.contacts.properties.includes('address')) {
+      if ((await navigator.contacts.getAvailableContactProperties()).includes('address')) {
         const contacts = await navigator.contacts.select(['address']);
 
         if (!contacts.length) {
@@ -150,9 +150,8 @@ the user agent.
 A [=contacts source=] consists of:
 <div dfn-for="contacts source">
 
-* <dfn>available contacts</dfn>, a [=list=] of [=user contacts=] available.
-* <dfn>supported properties</dfn>, a [=list=] of {{ContactProperty}} values the user agent can
-  access.
+* <dfn>available contacts</dfn>, a [=list=] of [=user contacts=].
+* <dfn>supported properties</dfn>, a [=list=] of [=available=] {{ContactProperty}} values.
 
 </div>
 
@@ -187,18 +186,17 @@ The [=browsing context=] has a <dfn>contact picker is showing flag</dfn>, initia
 enum ContactProperty { "address", "email", "name", "tel" };
 </script>
 
+A {{ContactProperty}} is considered to be <dfn>available</dfn> if its associated [=user contact=]
+field can be accessed by the user agent.
+
 : "address"
-:: Indicates that the user agent has access to the [=user contact/addresses=] field for the
-    [=user contact=]s provided by the [=contacts source=] ([=contacts source/available contacts=]).
+:: Associated with [=user contact=]'s [=user contact/addresses=].
 : "email"
-:: Indicates that the user agent has access to the [=user contact/emails=] field for the
-    [=user contact=]s provided by the [=contacts source=] ([=contacts source/available contacts=]).
+:: Associated with [=user contact=]'s [=user contact/emails=].
 : "name"
-:: Indicates that the user agent has access to the [=user contact/names=] field for the
-    [=user contact=]s provided by the [=contacts source=] ([=contacts source/available contacts=]).
+:: Associated with [=user contact=]'s [=user contact/names=].
 : "tel"
-:: Indicates that the user agent has access to the [=user contact/numbers=] field for the
-    [=user contact=]s provided by the [=contacts source=] ([=contacts source/available contacts=]).
+:: Associated with [=user contact=]'s [=user contact/numbers=].
 
 ## {{ContactsManager}} ## {#contacts-manager}
 
@@ -218,15 +216,24 @@ dictionary ContactsSelectOptions {
 
 [Exposed=(Window,SecureContext)]
 interface ContactsManager {
-    readonly attribute FrozenArray<ContactProperty> properties;
+    Promise<sequence<ContactProperty>> getAvailableContactProperties();
     Promise<sequence<ContactInfo>> select(sequence<ContactProperty> properties, optional ContactsSelectOptions options);
 };
 </script>
 
-The {{ContactsManager/properties}}' getter must return a [=frozen array type|frozen array=]
-consisting of the [=contacts source=]'s [=contacts source/supported properties=].
-
 <div dfn-for="ContactsManager">
+
+### {{ContactsManager/getAvailableContactProperties()}} ### {#contacts-manager-getproperties}
+
+<div algorithm>
+  The <dfn method>getAvailableContactProperties()</dfn> method, when invoked, runs these steps:
+
+  1. Let |promise| be [=a new promise=].
+  1. Run the following steps [=in parallel=]:
+      1. Resolve |promise| with [=contacts source=]'s [=contacts source/supported properties=].
+  1. Return |promise|.
+
+</div>
 
 ### {{ContactsManager/select()}} ### {#contacts-manager-select}
 
