@@ -128,19 +128,23 @@ The <dfn>contact picker task source</dfn> is a [=task source=].
 A <dfn>user contact</dfn> consists of:
 <div dfn-for="user contact">
 
-* <dfn>names</dfn>, a [=list=] of {{DOMString}}s, initially empty, each [=list/item=] representing
-  a unique name corresponding to the user.
-* <dfn>emails</dfn>, a [=list=] of {{DOMString}}s, initially empty, each [=list/item=] representing
-  a unique [=valid e-mail address=] of the user.
-* <dfn>numbers</dfn>, a [=list=] of {{DOMString}}s, initially empty, each [=list/item=]
-  representing a unique phone number of the user.
-* <dfn>addresses</dfn>, a [=list=] of {{ContactAddress}}es, initially empty, each [=list/item=]
-  representing a unique [=physical address=] of the user.
+* <dfn>names</dfn>, a [=list=] of {{DOMString}}s, each [=list/item=] representing a unique name
+  corresponding to the user.
+* <dfn>emails</dfn>, a [=list=] of {{DOMString}}s, each [=list/item=] representing a unique
+  [=valid e-mail address=] of the user.
+* <dfn>numbers</dfn>, a [=list=] of {{DOMString}}s, each [=list/item=] representing a unique phone
+  number of the user.
+* <dfn>addresses</dfn>, a [=list=] of {{ContactAddress}}es, each [=list/item=] representing a
+  unique [=physical address=] of the user.
+* <dfn>icons</dfn>, a [=list=] of {{Blob}}s, each [=list/item=] representing a unique image of the
+  user.
+    
+    NOTE: An icon {{Blob}} is image decodable and the {{Blob/type}} is an [=image mime type=].
+
+A [=user contact=] contains data relating to a single user.
 
 Note: The lists can be of different sizes, and entries with the same index don't need to correspond
 to each other.
-
-A [=user contact=] contains data relating to a single user.
 
 ## Contacts source ## {#infrastructure-contacts-source}
 
@@ -183,7 +187,7 @@ The [=browsing context=] has a <dfn>contact picker is showing flag</dfn>, initia
 ## {{ContactProperty}} ## {#contact-property}
 
 <script type="idl">
-enum ContactProperty { "address", "email", "name", "tel" };
+enum ContactProperty { "address", "email", "icon", "name", "tel" };
 </script>
 
 A {{ContactProperty}} is considered to be <dfn>available</dfn> if its associated [=user contact=]
@@ -193,6 +197,8 @@ field can be accessed by the user agent.
 :: Associated with [=user contact=]'s [=user contact/addresses=].
 : "email"
 :: Associated with [=user contact=]'s [=user contact/emails=].
+: "icon"
+:: Associated with [=user contact=]'s [=user contact/icons=].
 : "name"
 :: Associated with [=user contact=]'s [=user contact/names=].
 : "tel"
@@ -208,6 +214,7 @@ dictionary ContactInfo {
     sequence<DOMString> email;
     sequence<DOMString> tel;
     sequence<ContactAddress> address;
+    sequence<Blob> icon;
 };
 
 dictionary ContactsSelectOptions {
@@ -277,6 +284,9 @@ interface ContactsManager {
           : {{ContactInfo/address}}
           :: |selectedContact|'s [=user contact/addresses=] if |properties| [=list/contains=]
             "`address`", otherwise undefined.
+          : {{ContactInfo/icon}}
+          :: |selectedContact|'s [=user contact/icons=] if |properties| [=list/contains=]
+            "`icon`", otherwise undefined.
         1. [=list/Append=] |contact| to |contacts|.
       1. Resolve |promise| with |contacts|.
   1. Return |promise|.
