@@ -36,15 +36,16 @@ selectRecipientsButton.addEventListener('click', async () => {
 
 ## Proposed WebIDL
 ```WebIDL
-enum ContactProperty { "address", "email", "name", "tel" };
+enum ContactProperty { "address", "email", "icon", "name", "tel" };
 
 interface ContactAddress : PaymentAddress {};
 
 dictionary ContactInfo {
-    sequence<DOMString> name;
-    sequence<DOMString> email;
-    sequence<DOMString> tel;
     sequence<ContactAddress> address;
+    sequence<DOMString> email;
+    sequence<Blob> icon;
+    sequence<DOMString> name;
+    sequence<DOMString> tel;
 };
 
 dictionary ContactsSelectOptions {

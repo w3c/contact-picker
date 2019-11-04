@@ -50,8 +50,7 @@ consent.
       const contacts = await navigator.contacts.select(['name', 'email'], {multiple: true});
 
       if (!contacts.length) {
-        // Either no contacts were selected in the picker, or the picker could
-        // not be launched. Exposure of the API implies expected availability.
+        // No contacts were selected in the picker.
         return;
       }
 
@@ -77,14 +76,13 @@ consent.
         const contacts = await navigator.contacts.select(['address']);
 
         if (!contacts.length) {
-          // Either no contacts were selected in the picker, or the picker could
-          // not be launched. Exposure of the API implies expected availability.
+          // No contacts were selected in the picker.
           return;
         }
 
         // length is 1 since we didn't request multiple contacts.
         sendGiftToAddress(contacts[0].address);
-     }
+      }
 
      // Fallback to a form. 
     });
@@ -92,6 +90,47 @@ consent.
 
   In the above example `selectRecipientButton` is a {{HTMLButtonElement}}, and `sendGiftToAddress`
   is a developer-defined function.
+</div>
+
+<div class="example">
+  Requesting a name and an icon.
+
+  <pre class="lang-js">
+    selectRecipientButton.addEventListener('click', async () => {
+
+      // We are unsure if icons are supported, or can be provided by the browser.
+      if ((await navigator.contacts.getProperties()).includes('icon')) {
+        const contacts = await navigator.contacts.select(['name', 'icon']);
+
+        if (!contacts.length) {
+          // No contacts were selected in the picker.
+          return;
+        }
+
+        if (!contacts[0].name.length || !contacts[0].icon.length) {
+          // Info not found. Use fallback.
+          return;
+        }
+
+        // We only need one name and one image.
+        const name = contacts[0].name[0];
+        const imgBlob = contacts[0].icon[0];
+
+        // Display image.
+        const url = URL.createObjectURL(imgBlob);
+        imgContainer.onload = () => URL.revokeObjectURL(url);
+        imgContainer.src = url;
+
+        // Alternatively use a Bitmap.
+        const imgBitmap = await createImageBitmap(imgBlob);
+
+        // Upload icon.
+        const response = await fetch('/contacticon', {method: 'POST', body: imgBlob});
+      }
+    });
+  </pre>
+  In the above example `selectRecipientButton` is a {{HTMLButtonElement}}, and `imgContainer`
+  is a {{HTMLImageElement}}.
 </div>
 
 # Privacy Considerations # {#privacy}
@@ -128,19 +167,23 @@ The <dfn>contact picker task source</dfn> is a [=task source=].
 A <dfn>user contact</dfn> consists of:
 <div dfn-for="user contact">
 
-* <dfn>names</dfn>, a [=list=] of {{DOMString}}s, initially empty, each [=list/item=] representing
-  a unique name corresponding to the user.
-* <dfn>emails</dfn>, a [=list=] of {{DOMString}}s, initially empty, each [=list/item=] representing
-  a unique [=valid e-mail address=] of the user.
-* <dfn>numbers</dfn>, a [=list=] of {{DOMString}}s, initially empty, each [=list/item=]
-  representing a unique phone number of the user.
-* <dfn>addresses</dfn>, a [=list=] of {{ContactAddress}}es, initially empty, each [=list/item=]
-  representing a unique [=physical address=] of the user.
+* <dfn>names</dfn>, a [=list=] of {{DOMString}}s, each [=list/item=] representing a unique name
+  corresponding to the user.
+* <dfn>emails</dfn>, a [=list=] of {{DOMString}}s, each [=list/item=] representing a unique
+  [=valid e-mail address=] of the user.
+* <dfn>numbers</dfn>, a [=list=] of {{DOMString}}s, each [=list/item=] representing a unique phone
+  number of the user.
+* <dfn>addresses</dfn>, a [=list=] of {{ContactAddress}}es, each [=list/item=] representing a
+  unique [=physical address=] of the user.
+* <dfn>icons</dfn>, a [=list=] of {{Blob}}s, each [=list/item=] representing a unique image of the
+  user.
+    
+    NOTE: An icon {{Blob}}'s {{Blob/type}} is an [=image mime type=].
+
+A [=user contact=] contains data relating to a single user.
 
 Note: The lists can be of different sizes, and entries with the same index don't need to correspond
 to each other.
-
-A [=user contact=] contains data relating to a single user.
 
 ## Contacts source ## {#infrastructure-contacts-source}
 
@@ -183,7 +226,7 @@ The [=browsing context=] has a <dfn>contact picker is showing flag</dfn>, initia
 ## {{ContactProperty}} ## {#contact-property}
 
 <script type="idl">
-enum ContactProperty { "address", "email", "name", "tel" };
+enum ContactProperty { "address", "email", "icon", "name", "tel" };
 </script>
 
 A {{ContactProperty}} is considered to be <dfn>available</dfn> if its associated [=user contact=]
@@ -193,6 +236,8 @@ field can be accessed by the user agent.
 :: Associated with [=user contact=]'s [=user contact/addresses=].
 : "email"
 :: Associated with [=user contact=]'s [=user contact/emails=].
+: "icon"
+:: Associated with [=user contact=]'s [=user contact/icons=].
 : "name"
 :: Associated with [=user contact=]'s [=user contact/names=].
 : "tel"
@@ -204,10 +249,11 @@ field can be accessed by the user agent.
 interface ContactAddress : PaymentAddress {};
 
 dictionary ContactInfo {
-    sequence<DOMString> name;
-    sequence<DOMString> email;
-    sequence<DOMString> tel;
     sequence<ContactAddress> address;
+    sequence<DOMString> email;
+    sequence<Blob> icon;
+    sequence<DOMString> name;
+    sequence<DOMString> tel;
 };
 
 dictionary ContactsSelectOptions {
@@ -265,18 +311,21 @@ interface ContactsManager {
       1. Let |contacts| be an empty [=list=].
       1. [=list/For each=] |selectedContact| in |selectedContacts|:
         1. Let |contact| be a new {{ContactInfo}} with:
-          : {{ContactInfo/name}}
-          :: |selectedContact|'s [=user contact/names=] if |properties| [=list/contains=]
-             "`name`", otherwise undefined.
-          : {{ContactInfo/email}}
-          :: |selectedContact|'s [=user contact/emails=] if |properties| [=list/contains=]
-             "`email`", otherwise undefined.
-          : {{ContactInfo/tel}}
-          :: |selectedContact|'s [=user contact/numbers=] if |properties| [=list/contains=]
-             "`tel`", otherwise undefined.
           : {{ContactInfo/address}}
           :: |selectedContact|'s [=user contact/addresses=] if |properties| [=list/contains=]
             "`address`", otherwise undefined.
+          : {{ContactInfo/email}}
+          :: |selectedContact|'s [=user contact/emails=] if |properties| [=list/contains=]
+             "`email`", otherwise undefined.
+          : {{ContactInfo/icon}}
+          :: |selectedContact|'s [=user contact/icons=] if |properties| [=list/contains=]
+            "`icon`", otherwise undefined.
+          : {{ContactInfo/name}}
+          :: |selectedContact|'s [=user contact/names=] if |properties| [=list/contains=]
+             "`name`", otherwise undefined.
+          : {{ContactInfo/tel}}
+          :: |selectedContact|'s [=user contact/numbers=] if |properties| [=list/contains=]
+             "`tel`", otherwise undefined.
         1. [=list/Append=] |contact| to |contacts|.
       1. Resolve |promise| with |contacts|.
   1. Return |promise|.
