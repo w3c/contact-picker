@@ -341,10 +341,18 @@ interface ContactsManager {
   * If presenting a user interface fails or accessing the [=contacts source=]'s
     [=contacts source/available contacts=] fails, then return failure.   
   * The UI MUST prominently display the [=browsing context=]'s [=origin=].
-  * The UI MUST make it clear which `properties` of the contact will be shared.
+  * The UI MUST make it clear which `properties` of the contacts are requested.
 
     NOTE: This information is derived from |properties|.
+  
+  * The UI SHOULD provide a way for users to opt out of sharing certain contact information. 
 
+    NOTE: If the user opts out, the appropriate [=user contact=] fields should be modified before
+    returning the selected contacts. It should be indistinguishable from the returned
+    [=user contact=]s whether the user opted out from sharing some information or if the
+    information was not present to begin with.
+
+  * The UI MUST make it clear which information will be shared. 
   * The UI MUST provide a way to select individual contacts. If |allowMultiple| is false, only one
     contact should be pickable.
   * The UI MUST provide an option to cancel/return without sharing any contacts, in which case

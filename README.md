@@ -69,10 +69,22 @@ partial interface Navigator {
   * Some future might include the ability to add contacts, or even _contact management_, so having an intermediary object on `navigator` helps extensibility.
 
 ## Security and Privacy
-Exposing contact information has a clear privacy impact. We propose a picker model so that the user agent can make it clear what information is going to be shared with the website. This differs from native APIs where the permission is requested once, after which the application gets perpetual access to the user's contacts. With the picker model, access to contact information is restricted by the contacts selected by the user in the picker. Furthermore, the spec will have a MUST requirement to ensure that the user can understand which contacts (and information) will be shared.
+Exposing contact information has a clear privacy impact. The spec proposes a picker model so that the user agent can make it clear what information is going to be shared with the website. This differs from native APIs where the permission is requested once, after which the application gets perpetual access to the user's contacts. With the picker model, the website gets a one-off list of contacts selected by the user. Furthermore, The API will only be available from secure top-level contexts.
 
-## Abuse
-To prevent abuse and user annoyance, the API will have some usability restrictions. The API will only be available from secure top-level contexts. This will prevent embedded iframes from requesting user contacts and the user accidentally sharing information with an unintended destination. The picker can only be brought up if the API call was initiated by a user gesture. This will prevent websites from bringing up the picker on website load.
+## Abuse Scenarios
+
+### Sharing contacts with unintended recipients
+The first mitigation against this abuse vector is that the API is only available from top-level contexts. This means embedded iframes can't request contact information.
+
+The spec also enforces that the picker UI shows which origin the contacts will be shared with, which contacts will be shared, and what information regarding the contacts will be shared. 
+
+### Websites forcing users to share contacts
+The picker UI MUST have a cancel/return option for the user to not share any contacts. The spec also recommends that the UI have a way for users to opt out of sharing certain contact information, in a way that the website cannot know whether the user opted out.
+
+Implementers should be wary of malicious website UI that can be rendered side-by-side with the picker. The UI can pretend to be part of the user agent's UI and encourage users to share more information than they intended to. A potential workaround to avoid this would be making the picker fullscreen.
+
+### Websites spamming users with the picker
+To prevent abuse and user annoyance, the API has some usability restrictions. The picker can only be brought up if the API call was initiated by a user gesture. This means websites can't bring up the picker on website load. There can also be one instance of the picker at any given time, so websites can't request multiple stacked pickers on top of each other. 
 
 ## Alternatives Considered
 

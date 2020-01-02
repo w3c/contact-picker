@@ -1215,7 +1215,7 @@ Possible extra rowspan handling
   <link href="https://www.w3.org/StyleSheets/TR/2016/W3C-UD" rel="stylesheet">
   <meta content="Bikeshed version c80088ef848c5e5446a2eaced80623027d194593" name="generator">
   <link href="https://wicg.github.io/contact-api/spec" rel="canonical">
-  <meta content="5f5206f4a6407a08e9cedfd3625baee12ffde836" name="document-revision">
+  <meta content="13fa9c1e63896e4cbf7fbbc9389fd25f7bdbf0bd" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1473,7 +1473,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Contact Picker API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Unofficial Proposal Draft, <time class="dt-updated" datetime="2019-11-04">4 November 2019</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Unofficial Proposal Draft, <time class="dt-updated" datetime="2020-01-02">2 January 2020</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1486,7 +1486,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     </dl>
    </div>
    <div data-fill-with="warning"></div>
-   <p class="copyright" data-fill-with="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2019 the Contributors to the Contact Picker API Specification, published by the <a href="https://www.w3.org/community/wicg/">Web Platform Incubator Community Group</a> under the <a href="https://www.w3.org/community/about/agreements/cla/">W3C Community Contributor License Agreement (CLA)</a>.
+   <p class="copyright" data-fill-with="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2020 the Contributors to the Contact Picker API Specification, published by the <a href="https://www.w3.org/community/wicg/">Web Platform Incubator Community Group</a> under the <a href="https://www.w3.org/community/about/agreements/cla/">W3C Community Contributor License Agreement (CLA)</a>.
 A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/">summary</a> is available. </p>
    <hr title="Separator for header">
   </div>
@@ -1860,8 +1860,14 @@ the user agent.</p>
       <li data-md>
        <p>The UI MUST prominently display the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context①">browsing context</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#concept-origin" id="ref-for-concept-origin">origin</a>.</p>
       <li data-md>
-       <p>The UI MUST make it clear which <code>properties</code> of the contact will be shared.</p>
+       <p>The UI MUST make it clear which <code>properties</code> of the contacts are requested.</p>
        <p class="note" role="note"><span>NOTE:</span> This information is derived from <var>properties</var>.</p>
+      <li data-md>
+       <p>The UI SHOULD provide a way for users to opt out of sharing certain contact information.</p>
+       <p class="note" role="note"><span>NOTE:</span> If the user opts out, the appropriate <a data-link-type="dfn" href="#user-contact" id="ref-for-user-contact⑧">user contact</a> fields should be modified before
+returning the selected contacts. It should be indistinguishable whether the returned <a data-link-type="dfn" href="#user-contact" id="ref-for-user-contact⑨">user contact</a>s have opted-out information or the information was not present to begin with.</p>
+      <li data-md>
+       <p>The UI MUST make it clear which information will be shared.</p>
       <li data-md>
        <p>The UI MUST provide a way to select individual contacts. If <var>allowMultiple</var> is false, only one
 contact should be pickable.</p>
@@ -1870,7 +1876,7 @@ contact should be pickable.</p>
 remove the UI and return an empty <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list⑨">list</a>.</p>
       <li data-md>
        <p>The UI MUST provide an a way for users to indicate that they are done selecting, in which case
-remove the UI and return a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list①⓪">list</a> of the selected contacts as <a data-link-type="dfn" href="#user-contact" id="ref-for-user-contact⑧">user contacts</a>.</p>
+remove the UI and return a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list①⓪">list</a> of the selected contacts as <a data-link-type="dfn" href="#user-contact" id="ref-for-user-contact①⓪">user contacts</a>.</p>
      </ul>
     </div>
    </div>
@@ -2475,7 +2481,7 @@ remove the UI and return a <a data-link-type="dfn" href="https://infra.spec.what
     <li><a href="#ref-for-user-contact">4.1. User contact</a>
     <li><a href="#ref-for-user-contact①">4.2. Contacts source</a>
     <li><a href="#ref-for-user-contact②">5.2. ContactProperty</a> <a href="#ref-for-user-contact③">(2)</a> <a href="#ref-for-user-contact④">(3)</a> <a href="#ref-for-user-contact⑤">(4)</a> <a href="#ref-for-user-contact⑥">(5)</a> <a href="#ref-for-user-contact⑦">(6)</a>
-    <li><a href="#ref-for-user-contact⑧">6. Contact Picker</a>
+    <li><a href="#ref-for-user-contact⑧">6. Contact Picker</a> <a href="#ref-for-user-contact⑨">(2)</a> <a href="#ref-for-user-contact①⓪">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="user-contact-names">
