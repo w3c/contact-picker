@@ -96,6 +96,27 @@ Supporting contacts this way has a number of downsides:
   * Feature detection is harder, and would likely need a new API such as `HTMLInputElement.isTypeSupported()` mimicking the [`MediaRecorder`](https://www.w3.org/TR/mediastream-recording/#dom-mediarecorder-istypesupported). Unlike existing specializations of file pickers, contacts would be unlikely to gracefully degrade to a general picker.
   * Extensibility is harder, as it would rely on additional parameters being passed to the mime type.
 
+#### Previous Standardization Attempts
+There have been multiple standardization attempts to bring a Contacts API to the web. Here's a list of them and brief explanation of why they never materialized.
+  * https://lists.w3.org/Archives/Public/public-device-apis/2009Apr/att-0001/contacts.html
+      
+      This attempt was _donated_ by Nokia rather than being formally put on the standardization track, and it seems to have not been picked up since.
+
+  * https://www.w3.org/TR/2010/WD-contacts-api-20100121/
+      
+      This attempt was shelved in 2014 in favour of Web Intents, which never materialized.
+
+  * https://www.w3.org/TR/2015/NOTE-contacts-manager-api-20150602/
+      
+      This attempt built on top of the 2010 one by adding more programmatic access to the user's address book. This seems to be quite distantly separated from today's interest from implementations.
+
+And some proprietary attempts.
+  * https://wiki.mozilla.org/WebAPI/ContactsAPI
+      
+      This attempt was not put on the standardization track, and doesn't seem to have been picked up since.
+
+The current proposal differs in its approach to privacy, which was the main emphasis of the API when it was designed. Unlike previous attempts which allow for perpetual access after granted permission, or include a vague privacy model, this spec enforces UI restrictions which give users full control over shared data and limit abuse. For example, a picker model is enforced where the user always acts as an intermediary of the shared contact info with full control every time contacts are requested.
+
 ## Potential follow-up work
   * As mentioned, more properties can be added iteratively as use cases are identified. It is a non-goal of this API to share _all_ information stored for a particular contact without filtering.
   * A Contact Provider API can be considered to complement data available from the operating system or the user's account.
