@@ -1213,9 +1213,9 @@ Possible extra rowspan handling
 	}
 </style>
   <link href="https://www.w3.org/StyleSheets/TR/2016/W3C-UD" rel="stylesheet">
-  <meta content="Bikeshed version c80088ef848c5e5446a2eaced80623027d194593" name="generator">
+  <meta content="Bikeshed version cb5a17652cb33dffd20b8b6a876bb811c1f749a9" name="generator">
   <link href="https://wicg.github.io/contact-api/spec" rel="canonical">
-  <meta content="13fa9c1e63896e4cbf7fbbc9389fd25f7bdbf0bd" name="document-revision">
+  <meta content="635e141854512bfcb6cd3d72974cc7def2554fd1" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1473,20 +1473,20 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Contact Picker API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Unofficial Proposal Draft, <time class="dt-updated" datetime="2020-01-02">2 January 2020</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Unofficial Proposal Draft, <time class="dt-updated" datetime="2021-02-16">16 February 2021</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
      <dd><a class="u-url" href="https://wicg.github.io/contact-api/spec">https://wicg.github.io/contact-api/spec</a>
      <dt>Issue Tracking:
-     <dd><a href="https://github.com/beverloo/contact-api/issues/">GitHub</a>
+     <dd><a href="https://github.com/WICG/contact-api/issues/">GitHub</a>
      <dt class="editor">Editors:
      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:beverloo@google.com">Peter Beverloo</a> (<span class="p-org org">Google</span>)
      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:rayankans@google.com">Rayan Kanso</a> (<span class="p-org org">Google</span>)
     </dl>
    </div>
    <div data-fill-with="warning"></div>
-   <p class="copyright" data-fill-with="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2020 the Contributors to the Contact Picker API Specification, published by the <a href="https://www.w3.org/community/wicg/">Web Platform Incubator Community Group</a> under the <a href="https://www.w3.org/community/about/agreements/cla/">W3C Community Contributor License Agreement (CLA)</a>.
+   <p class="copyright" data-fill-with="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2021 the Contributors to the Contact Picker API Specification, published by the <a href="https://www.w3.org/community/wicg/">Web Platform Incubator Community Group</a> under the <a href="https://www.w3.org/community/about/agreements/cla/">W3C Community Contributor License Agreement (CLA)</a>.
 A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/">summary</a> is available. </p>
    <hr title="Separator for header">
   </div>
@@ -1753,7 +1753,7 @@ the user agent.</p>
 [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①"><c- g>Exposed</c-></a>=(<c- n>Window</c->,<c- n>SecureContext</c->)]
 <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="contactsmanager"><code><c- g>ContactsManager</c-></code></dfn> {
     <c- b>Promise</c->&lt;<c- b>sequence</c->&lt;<a class="n" data-link-type="idl-name" href="#enumdef-contactproperty" id="ref-for-enumdef-contactproperty③"><c- n>ContactProperty</c-></a>>> <a class="idl-code" data-link-type="method" href="#dom-contactsmanager-getproperties" id="ref-for-dom-contactsmanager-getproperties"><c- g>getProperties</c-></a>();
-    <c- b>Promise</c->&lt;<c- b>sequence</c->&lt;<a class="n" data-link-type="idl-name" href="#dictdef-contactinfo" id="ref-for-dictdef-contactinfo"><c- n>ContactInfo</c-></a>>> <a class="idl-code" data-link-type="method" href="#dom-contactsmanager-select" id="ref-for-dom-contactsmanager-select"><c- g>select</c-></a>(<c- b>sequence</c->&lt;<a class="n" data-link-type="idl-name" href="#enumdef-contactproperty" id="ref-for-enumdef-contactproperty④"><c- n>ContactProperty</c-></a>> <dfn class="idl-code" data-dfn-for="ContactsManager/select(properties, options), ContactsManager/select(properties)" data-dfn-type="argument" data-export id="dom-contactsmanager-select-properties-options-properties"><code><c- g>properties</c-></code><a class="self-link" href="#dom-contactsmanager-select-properties-options-properties"></a></dfn>, <c- b>optional</c-> <a class="n" data-link-type="idl-name" href="#dictdef-contactsselectoptions" id="ref-for-dictdef-contactsselectoptions"><c- n>ContactsSelectOptions</c-></a> <dfn class="idl-code" data-dfn-for="ContactsManager/select(properties, options), ContactsManager/select(properties)" data-dfn-type="argument" data-export id="dom-contactsmanager-select-properties-options-options"><code><c- g>options</c-></code><a class="self-link" href="#dom-contactsmanager-select-properties-options-options"></a></dfn>);
+    <c- b>Promise</c->&lt;<c- b>sequence</c->&lt;<a class="n" data-link-type="idl-name" href="#dictdef-contactinfo" id="ref-for-dictdef-contactinfo"><c- n>ContactInfo</c-></a>>> <a class="idl-code" data-link-type="method" href="#dom-contactsmanager-select" id="ref-for-dom-contactsmanager-select"><c- g>select</c-></a>(<c- b>sequence</c->&lt;<a class="n" data-link-type="idl-name" href="#enumdef-contactproperty" id="ref-for-enumdef-contactproperty④"><c- n>ContactProperty</c-></a>> <dfn class="idl-code" data-dfn-for="ContactsManager/select(properties, options), ContactsManager/select(properties)" data-dfn-type="argument" data-export id="dom-contactsmanager-select-properties-options-properties"><code><c- g>properties</c-></code><a class="self-link" href="#dom-contactsmanager-select-properties-options-properties"></a></dfn>, <c- b>optional</c-> <a class="n" data-link-type="idl-name" href="#dictdef-contactsselectoptions" id="ref-for-dictdef-contactsselectoptions"><c- n>ContactsSelectOptions</c-></a> <dfn class="idl-code" data-dfn-for="ContactsManager/select(properties, options), ContactsManager/select(properties)" data-dfn-type="argument" data-export id="dom-contactsmanager-select-properties-options-options"><code><c- g>options</c-></code><a class="self-link" href="#dom-contactsmanager-select-properties-options-options"></a></dfn> = {});
 };
 </pre>
    <div>
@@ -1865,7 +1865,8 @@ the user agent.</p>
       <li data-md>
        <p>The UI SHOULD provide a way for users to opt out of sharing certain contact information.</p>
        <p class="note" role="note"><span>NOTE:</span> If the user opts out, the appropriate <a data-link-type="dfn" href="#user-contact" id="ref-for-user-contact⑧">user contact</a> fields should be modified before
-returning the selected contacts. It should be indistinguishable whether the returned <a data-link-type="dfn" href="#user-contact" id="ref-for-user-contact⑨">user contact</a>s have opted-out information or the information was not present to begin with.</p>
+returning the selected contacts. It should be indistinguishable from the returned <a data-link-type="dfn" href="#user-contact" id="ref-for-user-contact⑨">user contact</a>s whether the user opted out from sharing some information or if the
+information was not present to begin with.</p>
       <li data-md>
        <p>The UI MUST make it clear which information will be shared.</p>
       <li data-md>
@@ -2459,7 +2460,7 @@ remove the UI and return a <a data-link-type="dfn" href="https://infra.spec.what
 [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①①"><c- g>Exposed</c-></a>=(<c- n>Window</c->,<c- n>SecureContext</c->)]
 <c- b>interface</c-> <a href="#contactsmanager"><code><c- g>ContactsManager</c-></code></a> {
     <c- b>Promise</c->&lt;<c- b>sequence</c->&lt;<a class="n" data-link-type="idl-name" href="#enumdef-contactproperty" id="ref-for-enumdef-contactproperty③①"><c- n>ContactProperty</c-></a>>> <a class="idl-code" data-link-type="method" href="#dom-contactsmanager-getproperties" id="ref-for-dom-contactsmanager-getproperties②"><c- g>getProperties</c-></a>();
-    <c- b>Promise</c->&lt;<c- b>sequence</c->&lt;<a class="n" data-link-type="idl-name" href="#dictdef-contactinfo" id="ref-for-dictdef-contactinfo②"><c- n>ContactInfo</c-></a>>> <a class="idl-code" data-link-type="method" href="#dom-contactsmanager-select" id="ref-for-dom-contactsmanager-select②"><c- g>select</c-></a>(<c- b>sequence</c->&lt;<a class="n" data-link-type="idl-name" href="#enumdef-contactproperty" id="ref-for-enumdef-contactproperty④①"><c- n>ContactProperty</c-></a>> <a href="#dom-contactsmanager-select-properties-options-properties"><code><c- g>properties</c-></code></a>, <c- b>optional</c-> <a class="n" data-link-type="idl-name" href="#dictdef-contactsselectoptions" id="ref-for-dictdef-contactsselectoptions①"><c- n>ContactsSelectOptions</c-></a> <a href="#dom-contactsmanager-select-properties-options-options"><code><c- g>options</c-></code></a>);
+    <c- b>Promise</c->&lt;<c- b>sequence</c->&lt;<a class="n" data-link-type="idl-name" href="#dictdef-contactinfo" id="ref-for-dictdef-contactinfo②"><c- n>ContactInfo</c-></a>>> <a class="idl-code" data-link-type="method" href="#dom-contactsmanager-select" id="ref-for-dom-contactsmanager-select②"><c- g>select</c-></a>(<c- b>sequence</c->&lt;<a class="n" data-link-type="idl-name" href="#enumdef-contactproperty" id="ref-for-enumdef-contactproperty④①"><c- n>ContactProperty</c-></a>> <a href="#dom-contactsmanager-select-properties-options-properties"><code><c- g>properties</c-></code></a>, <c- b>optional</c-> <a class="n" data-link-type="idl-name" href="#dictdef-contactsselectoptions" id="ref-for-dictdef-contactsselectoptions①"><c- n>ContactsSelectOptions</c-></a> <a href="#dom-contactsmanager-select-properties-options-options"><code><c- g>options</c-></code></a> = {});
 };
 
 </pre>
