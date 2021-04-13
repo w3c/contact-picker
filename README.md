@@ -1,6 +1,6 @@
 # Contact Picker API
 
-[Link to spec](https://wicg.github.io/contact-api/spec/)
+[Link to spec](https://wicg.github.io/contact-api/spec/index.html)
 
 This is a proposal for adding a Contact Picker API to the Web. Contact pickers are frequently seen in native mobile applications for a variety of [use cases](#use-cases), and in various desktop applications such as e-mail clients and calendars.
 
