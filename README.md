@@ -38,7 +38,19 @@ selectRecipientsButton.addEventListener('click', async () => {
 ```WebIDL
 enum ContactProperty { "address", "email", "icon", "name", "tel" };
 
-interface ContactAddress : PaymentAddress {};
+interface ContactAddress {
+  [Default] object toJSON();
+  readonly attribute DOMString city;
+  readonly attribute DOMString country;
+  readonly attribute DOMString dependentLocality;
+  readonly attribute DOMString organization;
+  readonly attribute DOMString phone;
+  readonly attribute DOMString postalCode;
+  readonly attribute DOMString recipient;
+  readonly attribute DOMString region;
+  readonly attribute DOMString sortingCode;
+  readonly attribute FrozenArray<DOMString> addressLine;
+};
 
 dictionary ContactInfo {
     sequence<ContactAddress> address;

@@ -19,12 +19,6 @@ spec:html; type:dfn; for:/; text:origin
 spec:html; type:dfn; for:/; text:valid e-mail address
 </pre>
 
-<pre class="anchors">
-spec: payment-request; urlPrefix: https://www.w3.org/TR/payment-request/
-  type: dfn; text: physical addresses; url: physical-addresses
-  type: interface; text: PaymentAddress; url: dom-paymentaddress
-</pre>
-
 # Introduction # {#intro}
 
 Contact pickers are frequently seen in various desktop and native mobile applications for a variety
@@ -162,6 +156,35 @@ The <dfn>contact picker task source</dfn> is a [=task source=].
   [=contact picker task source=] to run |steps|.
 </div>
 
+## Physical address ## {#infrastructure-physical-address}
+
+A <dfn>physical address</dfn> consists of:
+<div dfn-for="physical address">
+
+* <dfn>country</dfn>, a {{DOMString}} representing the country of the address as an
+  [[ISO3166-1]] alpha-2 code stored in its canonical uppercase form or the empty string. For
+   example, "JP".
+* <dfn>address line</dfn>, a [=list=] of {{DOMString}}s, containing the most specific part of the
+  address. It can include, for example, a street name, a house number, apartment number, a rural
+  delivery route, descriptive instructions, or a post office box number.
+* <dfn>region</dfn>, a {{DOMString}} representing the top level administrative subdivision of the
+  country. For example, this can be a state, a province, an oblast, or a prefecture.
+* <dfn>city</dfn>, a {{DOMString}} representing the city/town portion of the address.
+* <dfn>dependent locality</dfn>, a {{DOMString}} representing the dependent locality or sublocality
+  within a city. For example, neighborhoods, boroughs, districts, or UK dependent localities.
+* <dfn>postal code</dfn>, a {{DOMString}} representing the postal code or ZIP code, also known as
+  PIN code in India.
+* <dfn>sorting code</dfn>, a {{DOMString}} representing the sorting code system, such as the CEDEX
+  system used in France.
+* <dfn>organization</dfn>, a {{DOMString}} representing the organization, firm, company, or
+  institution at the address.
+* <dfn>recipient</dfn>, a {{DOMString}} representing the name of the recipient or contact person at
+  the address.
+* <dfn>phone number</dfn>, a {{DOMString}} representing the phone number of the recipient or contact
+  person at the address, optionally structured to adhere to [[E.164]].
+
+</div>
+
 ## User contact ## {#infrastructure-user-contact}
 
 A <dfn>user contact</dfn> consists of:
@@ -179,6 +202,8 @@ A <dfn>user contact</dfn> consists of:
   user.
     
     NOTE: An icon {{Blob}}'s {{Blob/type}} is an [=image mime type=].
+
+</div>
 
 A [=user contact=] contains data relating to a single user.
 
@@ -243,12 +268,66 @@ field can be accessed by the user agent.
 : "tel"
 :: Associated with [=user contact=]'s [=user contact/numbers=].
 
-## {{ContactsManager}} ## {#contacts-manager}
+## {{ContactAddress}} ## {#contact-address}
 
 <script type="idl">
 [Exposed=Window]
-interface ContactAddress : PaymentAddress {};
+interface ContactAddress {
+  [Default] object toJSON();
+  readonly attribute DOMString city;
+  readonly attribute DOMString country;
+  readonly attribute DOMString dependentLocality;
+  readonly attribute DOMString organization;
+  readonly attribute DOMString phone;
+  readonly attribute DOMString postalCode;
+  readonly attribute DOMString recipient;
+  readonly attribute DOMString region;
+  readonly attribute DOMString sortingCode;
+  readonly attribute FrozenArray<DOMString> addressLine;
+};
+</script>
 
+The {{ContactAddress}} interface represents a [=physical address=].
+
+<div dfn-for="ContactAddress">
+  A {{ContactAddress}} instance has:
+
+  * An <dfn>address</dfn> (a [=physical address=]).
+
+  The <dfn attribute>city</dfn> attribute's getter must return the [=context object=]'s
+  [=ContactAddress/address=]' [=physical address/city=].
+
+  The <dfn attribute>country</dfn> attribute's getter must return the [=context object=]'s
+  [=ContactAddress/address=]' [=physical address/country=].
+
+  The <dfn attribute>dependentLocality</dfn> attribute's getter must return the [=context object=]'s
+  [=ContactAddress/address=]' [=physical address/dependent locality=].
+
+  The <dfn attribute>organization</dfn> attribute's getter must return the [=context object=]'s
+  [=ContactAddress/address=]' [=physical address/organization=].
+  
+  The <dfn attribute>phone</dfn> attribute's getter must return the [=context object=]'s
+  [=ContactAddress/address=]' [=physical address/phone number=].
+
+  The <dfn attribute>postalCode</dfn> attribute's getter must return the [=context object=]'s
+  [=ContactAddress/address=]' [=physical address/postal code=].
+
+  The <dfn attribute>recipient</dfn> attribute's getter must return the [=context object=]'s
+  [=ContactAddress/address=]' [=physical address/recipient=].
+
+  The <dfn attribute>region</dfn> attribute's getter must return the [=context object=]'s
+  [=ContactAddress/address=]' [=physical address/region=].
+
+  The <dfn attribute>sortingCode</dfn> attribute's getter must return the [=context object=]'s
+  [=ContactAddress/address=]' [=physical address/sorting code=].
+
+  The <dfn attribute>addressLine</dfn> attribute's getter must return the [=context object=]'s
+  [=ContactAddress/address=]' [=physical address/address line=].
+</div>
+
+## {{ContactsManager}} ## {#contacts-manager}
+
+<script type="idl">
 dictionary ContactInfo {
     sequence<ContactAddress> address;
     sequence<DOMString> email;
