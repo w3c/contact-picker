@@ -34,52 +34,6 @@ selectRecipientsButton.addEventListener('click', async () => {
 });
 ```
 
-## Proposed WebIDL
-```WebIDL
-enum ContactProperty { "address", "email", "icon", "name", "tel" };
-
-interface ContactAddress {
-  [Default] object toJSON();
-  readonly attribute DOMString city;
-  readonly attribute DOMString country;
-  readonly attribute DOMString dependentLocality;
-  readonly attribute DOMString organization;
-  readonly attribute DOMString phone;
-  readonly attribute DOMString postalCode;
-  readonly attribute DOMString recipient;
-  readonly attribute DOMString region;
-  readonly attribute DOMString sortingCode;
-  readonly attribute FrozenArray<DOMString> addressLine;
-};
-
-dictionary ContactInfo {
-    sequence<ContactAddress> address;
-    sequence<DOMString> email;
-    sequence<Blob> icon;
-    sequence<DOMString> name;
-    sequence<DOMString> tel;
-};
-
-dictionary ContactsSelectOptions {
-    boolean multiple = false;
-};
-
-[Exposed=(Window,SecureContext)]
-interface ContactsManager {
-    Promise<sequence<ContactProperty>> getProperties();
-    Promise<sequence<ContactInfo>> select(sequence<ContactProperty> properties, optional ContactsSelectOptions options);
-};
-
-[Exposed=Window]
-partial interface Navigator {
-  [SecureContext, SameObject] readonly attribute ContactsManager contacts;
-};
-```
-
-  * Sequences are returned for the properties as multiple values may be available in the user's address book. User agents are encouraged to enable users to limit their selection.
-  * Support for additional properties can be added iteratively. Whether the returned data can (and should) be sanitized is a question that's unique to each property. The user agent must provide at least one property.
-  * Some future might include the ability to add contacts, or even _contact management_, so having an intermediary object on `navigator` helps extensibility.
-
 ## Security and Privacy
 Exposing contact information has a clear privacy impact. The spec proposes a picker model so that the user agent can make it clear what information is going to be shared with the website. This differs from native APIs where the permission is requested once, after which the application gets perpetual access to the user's contacts. With the picker model, the website gets a one-off list of contacts selected by the user. Furthermore, The API will only be available from secure top-level contexts.
 
