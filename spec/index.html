@@ -6,7 +6,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2016/W3C-UD" rel="stylesheet">
   <meta content="Bikeshed version 4f053d00e, updated Tue Aug 10 14:13:32 2021 -0700" name="generator">
   <link href="https://wicg.github.io/contact-api/spec" rel="canonical">
-  <meta content="cb9bffa303444e8b0b4c2da764650730dba9129c" name="document-revision">
+  <meta content="70056c40daede94917011416119125837dd1704f" name="document-revision">
 <style>/* style-autolinks */
 
 .css.css, .property.property, .descriptor.descriptor {
@@ -585,7 +585,6 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <dd><a class="u-url" href="https://wicg.github.io/contact-api/spec">https://wicg.github.io/contact-api/spec</a>
      <dt>Issue Tracking:
      <dd><a href="https://github.com/WICG/contact-api/issues/">GitHub</a>
-     <dd><a href="#issues-index">Inline In Spec</a>
      <dt class="editor">Editors:
      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:beverloo@google.com">Peter Beverloo</a> (<span class="p-org org">Google</span>)
      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:rayankans@google.com">Rayan Kanso</a> (<span class="p-org org">Google</span>)
@@ -662,7 +661,6 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
       <li><a href="#informative"><span class="secno"></span> <span class="content">Informative References</span></a>
      </ol>
     <li><a href="#idl-index"><span class="secno"></span> <span class="content">IDL Index</span></a>
-    <li><a href="#issues-index"><span class="secno"></span> <span class="content">Issues Index</span></a>
    </ol>
   </nav>
   <main>
@@ -919,7 +917,6 @@ the user agent.</p>
     <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="ContactAddress" data-dfn-type="attribute" data-export id="dom-contactaddress-sortingcode"><code>sortingCode</code></dfn> attribute’s getter must return the <a data-link-type="dfn">context object</a>'s <a data-link-type="dfn" href="#contactaddress-address" id="ref-for-contactaddress-address⑧">address</a>' <a data-link-type="dfn" href="#physical-address-sorting-code" id="ref-for-physical-address-sorting-code">sorting code</a>.</p>
     <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="ContactAddress" data-dfn-type="attribute" data-export id="dom-contactaddress-addressline"><code>addressLine</code></dfn> attribute’s getter must return the <a data-link-type="dfn">context object</a>'s <a data-link-type="dfn" href="#contactaddress-address" id="ref-for-contactaddress-address⑨">address</a>' <a data-link-type="dfn" href="#physical-address-address-line" id="ref-for-physical-address-address-line">address line</a>.</p>
    </div>
-   <p class="issue" id="issue-17939ebe"><a class="self-link" href="#issue-17939ebe"></a> Is this the right spec for the interface to live in? (<a href="https://github.com/WICG/contact-api/issues/43">issue</a>)</p>
    <h3 class="heading settled" data-level="5.4" id="contacts-manager"><span class="secno">5.4. </span><span class="content"><code class="idl"><a data-link-type="idl" href="#contactsmanager" id="ref-for-contactsmanager③">ContactsManager</a></code></span><a class="self-link" href="#contacts-manager"></a></h3>
 <pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-contactinfo"><code><c- g>ContactInfo</c-></code></dfn> {
     <a data-link-type="dfn" href="https://heycam.github.io/webidl/#idl-sequence" id="ref-for-idl-sequence"><c- b>sequence</c-></a>&lt;<a data-link-type="idl-name" href="#contactaddress" id="ref-for-contactaddress④"><c- n>ContactAddress</c-></a>> <dfn class="dfn-paneled idl-code" data-dfn-for="ContactInfo" data-dfn-type="dict-member" data-export data-type="sequence<ContactAddress> " id="dom-contactinfo-address"><code><c- g>address</c-></code></dfn>;
@@ -1578,10 +1575,6 @@ remove the UI and return a <a data-link-type="dfn" href="https://infra.spec.what
 };
 
 </pre>
-  <h2 class="no-num no-ref heading settled" id="issues-index"><span class="content">Issues Index</span><a class="self-link" href="#issues-index"></a></h2>
-  <div style="counter-reset:issue">
-   <div class="issue"> Is this the right spec for the interface to live in? (<a href="https://github.com/WICG/contact-api/issues/43">issue</a>)<a href="#issue-17939ebe"> ↵ </a></div>
-  </div>
   <aside class="dfn-panel" data-for="contact-picker-task-source">
    <b><a href="#contact-picker-task-source">#contact-picker-task-source</a></b><b>Referenced in:</b>
    <ul>
