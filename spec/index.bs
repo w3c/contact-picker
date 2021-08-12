@@ -325,8 +325,6 @@ The {{ContactAddress}} interface represents a [=physical address=].
   [=ContactAddress/address=]' [=physical address/address line=].
 </div>
 
-Issue: Is this the right spec for the interface to live in? ([issue](https://github.com/WICG/contact-api/issues/43))
-
 ## {{ContactsManager}} ## {#contacts-manager}
 
 <script type="idl">
