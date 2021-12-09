@@ -3,8 +3,8 @@ Title: Contact Picker API
 Shortname: contact-picker
 Level: 1
 Status: UD
-Group: wicg
-URL: https://wicg.github.io/contact-api/spec
+Group: webapps
+URL: https://w3c.github.io/contact-api/spec
 Editor: Peter Beverloo, Google, beverloo@google.com
 Editor: Rayan Kanso, Google, rayankans@google.com
 Abstract: An API to give one-off access to a user's contact information with full control over the shared data.
