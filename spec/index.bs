@@ -2,7 +2,8 @@
 Title: Contact Picker API
 Shortname: contact-picker
 Level: 1
-Status: UD
+Status: FPWD
+TR: https://w3c.github.io/contact-api/spec
 Group: webapps
 URL: https://w3c.github.io/contact-api/spec
 Editor: Peter Beverloo, Google, beverloo@google.com
