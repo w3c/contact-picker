@@ -6,9 +6,9 @@
   <meta content="UD" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-UD" rel="stylesheet">
   <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
-  <meta content="Bikeshed version cace53f8c, updated Tue Dec 7 12:12:54 2021 -0800" name="generator">
+  <meta content="Bikeshed version 26e85e599, updated Thu Dec 8 15:29:31 2022 -0800" name="generator">
   <link href="https://w3c.github.io/contact-api/spec" rel="canonical">
-  <meta content="ecee9044fae5314fe769e933b4eb9411aad69089" name="document-revision">
+  <meta content="2c2597dc4a72e9faf4c91fa52fba791744265ec2" name="document-revision">
 <style>/* style-autolinks */
 
 .css.css, .property.property, .descriptor.descriptor {
@@ -296,6 +296,14 @@ a.self-link:hover {
 }
 .heading > a.self-link {
     font-size: 83%;
+}
+.example > a.self-link,
+.note > a.self-link,
+.issue > a.self-link {
+    /* These blocks are overflow:auto, so positioning outside
+       doesn't work. */
+    left: auto;
+    right: 0;
 }
 li > a.self-link {
     left: calc(-1 * (3.5rem - 26px) - 2em);
@@ -590,7 +598,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Contact Picker API</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#UD">Unofficial Proposal Draft</a>, <time class="dt-updated" datetime="2021-12-21">21 December 2021</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#UD">Unofficial Proposal Draft</a>, <time class="dt-updated" datetime="2022-12-21">21 December 2022</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -598,7 +606,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
       <dt>This version:
       <dd><a class="u-url" href="https://w3c.github.io/contact-api/spec">https://w3c.github.io/contact-api/spec</a>
       <dt>Issue Tracking:
-      <dd><a href="https://github.com/w3c/contact-api/issues/">GitHub</a>
+      <dd><a href="https://github.com/w3c/contact-picker/issues/">GitHub</a>
       <dt class="editor">Editors:
       <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:beverloo@google.com">Peter Beverloo</a> (<span class="p-org org">Google</span>)
       <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:rayankans@google.com">Rayan Kanso</a> (<span class="p-org org">Google</span>)
@@ -606,7 +614,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     </div>
    </details>
    <div data-fill-with="warning"></div>
-   <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2021 <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="https://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="https://www.keio.ac.jp/">Keio</a>, <a href="https://ev.buaa.edu.cn/">Beihang</a>). W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document" rel="license">permissive document license</a> rules apply. </p>
+   <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2022 <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="https://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="https://www.keio.ac.jp/">Keio</a>, <a href="https://ev.buaa.edu.cn/">Beihang</a>). W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document" rel="license">permissive document license</a> rules apply. </p>
    <hr title="Separator for header">
   </div>
   <div class="p-summary" data-fill-with="abstract">
@@ -771,7 +779,7 @@ it clear what information is going to be shared with the website and when.</p>
    <p>The following constraints are also enforced:</p>
    <ul>
     <li data-md>
-     <p>The API is only available in a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context" id="ref-for-top-level-browsing-context">top-level browsing context</a> which must also be a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#secure-context" id="ref-for-secure-context">secure context</a>. These restrictions help ensure that the provided contact information reaches
+     <p>The API is only available in a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#top-level-browsing-context" id="ref-for-top-level-browsing-context">top-level browsing context</a> which must also be a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#secure-context" id="ref-for-secure-context">secure context</a>. These restrictions help ensure that the provided contact information reaches
 its intended recipient.</p>
     <li data-md>
      <p>A user gesture is needed to initiate the API, to disallow programmatic requests to the user’s
@@ -789,7 +797,7 @@ specified.</p>
    <div>
     <ul>
      <li data-md>
-      <p><dfn class="dfn-paneled" data-dfn-for="physical address" data-dfn-type="dfn" data-noexport id="physical-address-country">country</dfn>, a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMString" id="ref-for-idl-DOMString">DOMString</a></code> representing the country of the address as an <a data-link-type="biblio" href="#biblio-iso3166-1">[ISO3166-1]</a> alpha-2 code stored in its canonical uppercase form or the empty string. For
+      <p><dfn class="dfn-paneled" data-dfn-for="physical address" data-dfn-type="dfn" data-noexport id="physical-address-country">country</dfn>, a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMString" id="ref-for-idl-DOMString">DOMString</a></code> representing the country of the address as an <a data-link-type="biblio" href="#biblio-iso3166-1" title="Codes for the representation of names of countries and their subdivisions — Part 1: Country code">[ISO3166-1]</a> alpha-2 code stored in its canonical uppercase form or the empty string. For
  example, "JP".</p>
      <li data-md>
       <p><dfn class="dfn-paneled" data-dfn-for="physical address" data-dfn-type="dfn" data-noexport id="physical-address-address-line">address line</dfn>, a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list">list</a> of <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMString" id="ref-for-idl-DOMString①">DOMString</a></code>s, containing the most specific part of the
@@ -817,7 +825,7 @@ institution at the address.</p>
 the address.</p>
      <li data-md>
       <p><dfn class="dfn-paneled" data-dfn-for="physical address" data-dfn-type="dfn" data-noexport id="physical-address-phone-number">phone number</dfn>, a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMString" id="ref-for-idl-DOMString⑨">DOMString</a></code> representing the phone number of the recipient or contact
-person at the address, optionally structured to adhere to <a data-link-type="biblio" href="#biblio-e164">[E.164]</a>.</p>
+person at the address, optionally structured to adhere to <a data-link-type="biblio" href="#biblio-e164" title="The international public telecommunication numbering plan">[E.164]</a>.</p>
     </ul>
    </div>
    <h3 class="heading settled" data-level="4.2" id="infrastructure-user-contact"><span class="secno">4.2. </span><span class="content">User contact</span><a class="self-link" href="#infrastructure-user-contact"></a></h3>
@@ -868,7 +876,7 @@ the user agent.</p>
      A <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/system-state.html#navigator" id="ref-for-navigator②">Navigator</a></code> has a <dfn class="dfn-paneled" data-dfn-for="Navigator" data-dfn-type="dfn" data-noexport id="navigator-contacts-manager">contacts manager</dfn> (a <code class="idl"><a data-link-type="idl" href="#contactsmanager" id="ref-for-contactsmanager①">ContactsManager</a></code>), initially a new <code class="idl"><a data-link-type="idl" href="#contactsmanager" id="ref-for-contactsmanager②">ContactsManager</a></code>. 
     <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="Navigator" data-dfn-type="attribute" data-export id="dom-navigator-contacts"><code>contacts</code></dfn> attribute’s getter must return the <a data-link-type="dfn">context object</a>'s <a data-link-type="dfn" href="#navigator-contacts-manager" id="ref-for-navigator-contacts-manager">contacts manager</a>.</p>
    </div>
-   <p>The <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context">browsing context</a> has a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="contact-picker-is-showing-flag">contact picker is showing flag</dfn>, initially unset.</p>
+   <p>The <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#browsing-context" id="ref-for-browsing-context">browsing context</a> has a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="contact-picker-is-showing-flag">contact picker is showing flag</dfn>, initially unset.</p>
    <h3 class="heading settled" data-level="5.2" id="contact-property"><span class="secno">5.2. </span><span class="content"><code class="idl"><a data-link-type="idl" href="#enumdef-contactproperty" id="ref-for-enumdef-contactproperty①">ContactProperty</a></code></span><a class="self-link" href="#contact-property"></a></h3>
 <pre class="idl highlight def"><c- b>enum</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="enum" data-export id="enumdef-contactproperty"><code><c- g>ContactProperty</c-></code></dfn> { <dfn class="idl-code" data-dfn-for="ContactProperty" data-dfn-type="enum-value" data-export id="dom-contactproperty-address"><code><c- s>"address"</c-></code><a class="self-link" href="#dom-contactproperty-address"></a></dfn>, <dfn class="idl-code" data-dfn-for="ContactProperty" data-dfn-type="enum-value" data-export id="dom-contactproperty-email"><code><c- s>"email"</c-></code><a class="self-link" href="#dom-contactproperty-email"></a></dfn>, <dfn class="idl-code" data-dfn-for="ContactProperty" data-dfn-type="enum-value" data-export id="dom-contactproperty-icon"><code><c- s>"icon"</c-></code><a class="self-link" href="#dom-contactproperty-icon"></a></dfn>, <dfn class="idl-code" data-dfn-for="ContactProperty" data-dfn-type="enum-value" data-export id="dom-contactproperty-name"><code><c- s>"name"</c-></code><a class="self-link" href="#dom-contactproperty-name"></a></dfn>, <dfn class="idl-code" data-dfn-for="ContactProperty" data-dfn-type="enum-value" data-export id="dom-contactproperty-tel"><code><c- s>"tel"</c-></code><a class="self-link" href="#dom-contactproperty-tel"></a></dfn> };
 </pre>
@@ -967,7 +975,7 @@ the user agent.</p>
       <li data-md>
        <p>Let <var>relevantBrowsingContext</var> be the <a data-link-type="dfn">context object</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#relevant-settings-object" id="ref-for-relevant-settings-object①">relevant settings object</a>'s <a data-link-type="dfn">responsible browsing context</a>.</p>
       <li data-md>
-       <p>If <var>relevantBrowsingContext</var> is not a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context" id="ref-for-top-level-browsing-context①">top-level browsing context</a>, then return <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#a-promise-rejected-with" id="ref-for-a-promise-rejected-with">a promise rejected with</a> an <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#invalidstateerror" id="ref-for-invalidstateerror">InvalidStateError</a></code> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException">DOMException</a></code>.</p>
+       <p>If <var>relevantBrowsingContext</var> is not a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#top-level-browsing-context" id="ref-for-top-level-browsing-context①">top-level browsing context</a>, then return <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#a-promise-rejected-with" id="ref-for-a-promise-rejected-with">a promise rejected with</a> an <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#invalidstateerror" id="ref-for-invalidstateerror">InvalidStateError</a></code> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException">DOMException</a></code>.</p>
       <li data-md>
        <p>If the algorithm is not <a data-link-type="dfn">triggered by user activation</a> then return <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#a-promise-rejected-with" id="ref-for-a-promise-rejected-with①">a promise rejected with</a> a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#securityerror" id="ref-for-securityerror">SecurityError</a></code> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException①">DOMException</a></code>.</p>
       <li data-md>
@@ -1045,7 +1053,7 @@ the user agent.</p>
       <li data-md>
        <p>If presenting a user interface fails or accessing the <a data-link-type="dfn" href="#contacts-source" id="ref-for-contacts-source④">contacts source</a>'s <a data-link-type="dfn" href="#contacts-source-available-contacts" id="ref-for-contacts-source-available-contacts">available contacts</a> fails, then return failure.</p>
       <li data-md>
-       <p>The UI MUST prominently display the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context" id="ref-for-browsing-context①">browsing context</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#concept-request-origin" id="ref-for-concept-request-origin">origin</a>.</p>
+       <p>The UI MUST prominently display the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#browsing-context" id="ref-for-browsing-context①">browsing context</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#concept-request-origin" id="ref-for-concept-request-origin">origin</a>.</p>
       <li data-md>
        <p>The UI MUST make it clear which <code>properties</code> of the contacts are requested.</p>
        <p class="note" role="note"><span>NOTE:</span> This information is derived from <var>properties</var>.</p>
@@ -1081,7 +1089,7 @@ remove the UI and return a <a data-link-type="dfn" href="https://infra.spec.what
     However, for readability,
     these words do not appear in all uppercase letters in this specification. </p>
    <p>All of the text of this specification is normative
-    except sections explicitly marked as non-normative, examples, and notes. <a data-link-type="biblio" href="#biblio-rfc2119">[RFC2119]</a> </p>
+    except sections explicitly marked as non-normative, examples, and notes. <a data-link-type="biblio" href="#biblio-rfc2119" title="Key words for use in RFCs to Indicate Requirement Levels">[RFC2119]</a> </p>
    <p>Examples in this specification are introduced with the words “for example”
     or are set apart from the normative text
     with <code>class="example"</code>,
@@ -1094,7 +1102,7 @@ remove the UI and return a <a data-link-type="dfn" href="https://infra.spec.what
     and are set apart from the normative text
     with <code>class="note"</code>,
     like this: </p>
-   <p class="note" role="note">Note, this is an informative note. </p>
+   <p class="note" role="note">Note, this is an informative note.</p>
    <h3 class="no-ref no-num heading settled" id="w3c-conformant-algorithms"><span class="content">Conformant Algorithms</span><a class="self-link" href="#w3c-conformant-algorithms"></a></h3>
    <p>Requirements phrased in the imperative as part of algorithms
     (such as "strip any leading space characters"
@@ -1229,7 +1237,7 @@ remove the UI and return a <a data-link-type="dfn" href="https://infra.spec.what
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-browsing-context">
-   <a href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context">https://html.spec.whatwg.org/multipage/browsers.html#browsing-context</a><b>Referenced in:</b>
+   <a href="https://html.spec.whatwg.org/multipage/document-sequences.html#browsing-context">https://html.spec.whatwg.org/multipage/document-sequences.html#browsing-context</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-browsing-context">5.1. Extensions to Navigator</a>
     <li><a href="#ref-for-browsing-context①">6. Contact Picker</a>
@@ -1292,7 +1300,7 @@ remove the UI and return a <a data-link-type="dfn" href="https://infra.spec.what
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-top-level-browsing-context">
-   <a href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context">https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context</a><b>Referenced in:</b>
+   <a href="https://html.spec.whatwg.org/multipage/document-sequences.html#top-level-browsing-context">https://html.spec.whatwg.org/multipage/document-sequences.html#top-level-browsing-context</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-top-level-browsing-context">2. Privacy Considerations</a>
     <li><a href="#ref-for-top-level-browsing-context①">5.4.2. select()</a>
@@ -1521,7 +1529,7 @@ remove the UI and return a <a data-link-type="dfn" href="https://infra.spec.what
   <h3 class="no-num no-ref heading settled" id="normative"><span class="content">Normative References</span><a class="self-link" href="#normative"></a></h3>
   <dl>
    <dt id="biblio-fileapi">[FileAPI]
-   <dd>Marijn Kruisselbrink; Arun Ranganathan. <a href="https://www.w3.org/TR/FileAPI/"><cite>File API</cite></a>. 4 June 2021. WD. URL: <a href="https://www.w3.org/TR/FileAPI/">https://www.w3.org/TR/FileAPI/</a>
+   <dd>Marijn Kruisselbrink. <a href="https://w3c.github.io/FileAPI/"><cite>File API</cite></a>. URL: <a href="https://w3c.github.io/FileAPI/">https://w3c.github.io/FileAPI/</a>
    <dt id="biblio-html">[HTML]
    <dd>Anne van Kesteren; et al. <a href="https://html.spec.whatwg.org/multipage/"><cite>HTML Standard</cite></a>. Living Standard. URL: <a href="https://html.spec.whatwg.org/multipage/">https://html.spec.whatwg.org/multipage/</a>
    <dt id="biblio-infra">[INFRA]
@@ -1961,12 +1969,13 @@ document.body.addEventListener("click", function(e) {
 </script>
 <script>/* script-var-click-highlighting */
 
-    document.addEventListener("click", e=>{
-        if(e.target.nodeName == "VAR") {
-            highlightSameAlgoVars(e.target);
-        }
-    });
+    "use strict";
     {
+        document.addEventListener("click", e=>{
+            if(e.target.nodeName == "VAR") {
+                highlightSameAlgoVars(e.target);
+            }
+        });
         const indexCounts = new Map();
         const indexNames = new Map();
         function highlightSameAlgoVars(v) {
