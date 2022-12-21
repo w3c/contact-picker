@@ -1,6 +1,6 @@
 # Contact Picker API
 
-[Link to spec](https://w3c.github.io/contact-api/spec/index.html)
+[Link to spec](https://w3c.github.io/contact-picker/spec/index.html)
 
 This is a proposal for adding a Contact Picker API to the Web. Contact pickers are frequently seen in native mobile applications for a variety of [use cases](#use-cases), and in various desktop applications such as e-mail clients and calendars.
 
