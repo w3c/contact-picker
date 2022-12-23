@@ -2,11 +2,12 @@
 Title: Contact Picker API
 Shortname: contact-picker
 Level: 1
-Status: UD
-Group: webapps
-URL: https://w3c.github.io/contact-api/spec
-Editor: Peter Beverloo, Google, beverloo@google.com
-Editor: Rayan Kanso, Google, rayankans@google.com
+Status: ED
+Group: dap
+ED: https://w3c.github.io/contact-api/
+TR: https://www.w3.org/TR/contact-picker-1/
+Editor: Peter Beverloo 44819, Google, beverloo@google.com
+Editor: Rayan Kanso 115452, Google, rayankans@google.com
 Abstract: An API to give one-off access to a user's contact information with full control over the shared data.
 Markup Shorthands: css no, markdown yes
 Indent: 2
