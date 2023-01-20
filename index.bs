@@ -1,7 +1,6 @@
 <pre class="metadata">
 Title: Contact Picker API
 Shortname: contact-picker
-Level: 1
 Status: ED
 Group: dap
 ED: https://w3c.github.io/contact-picker/
