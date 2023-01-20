@@ -3,6 +3,8 @@ on:
   pull_request: {}
   push:
     branches: [main]
+    paths:
+      - 'index.bs'
 
 jobs:
   main:
@@ -12,7 +14,12 @@ jobs:
       - uses: actions/checkout@v2
       - uses: w3c/spec-prod@v2
         with:
-          SOURCE: spec/index.bs
+          SOURCE: index.bs
+          DESTINATION: index.html
           TOOLCHAIN: bikeshed
+          W3C_ECHIDNA_TOKEN: ${{ secrets.W3C_TR_TOKEN }}
+          W3C_WG_DECISION_URL: https://lists.w3.org/Archives/Public/public-device-apis/2021May/0008.html
           GH_PAGES_BRANCH: gh-pages
           BUILD_FAIL_ON: nothing
+          W3C_BUILD_OVERRIDE: |
+            status: WD
