@@ -3,6 +3,7 @@ Title: Contact Picker API
 Shortname: contact-picker
 Status: ED
 Group: dap
+Level: none
 ED: https://w3c.github.io/contact-picker/
 TR: https://www.w3.org/TR/contact-picker/
 Editor: Peter Beverloo 44819, Google, beverloo@google.com
