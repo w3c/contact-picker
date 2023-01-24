@@ -37,6 +37,15 @@ user's contacts every time they need it. This differs from some native contact A
 necessary for ensuring users' contacts are not accessed without their knowledge and explicit
 consent.
 
+Note: There has been multiple earlier attempts to standardize a Contacts API for the web and this
+API strives to learn from this rich history. Earlier attempts include Mozilla's
+[Contacts API](https://wiki.mozilla.org/WebAPI/ContactsAPI),
+[Contacts API](https://lists.w3.org/Archives/Public/public-device-apis/2009Apr/att-0001/contacts.html)
+W3C Member submission and standardization efforts by W3C Working Groups:
+[Contacts API](https://www.w3.org/TR/2010/WD-contacts-api-20100121/),
+[Pick Contacts Intent](https://www.w3.org/TR/2014/NOTE-contacts-api-20140114/), and
+[Contacts Manager API](https://www.w3.org/TR/2015/NOTE-contacts-manager-api-20150602/).
+
 ## Examples ## {#examples}
 
 <div class="example">
