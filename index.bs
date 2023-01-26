@@ -45,6 +45,13 @@ W3C Member submission and standardization efforts by W3C Working Groups:
 [Contacts API](https://www.w3.org/TR/2010/WD-contacts-api-20100121/),
 [Pick Contacts Intent](https://www.w3.org/TR/2014/NOTE-contacts-api-20140114/), and
 [Contacts Manager API](https://www.w3.org/TR/2015/NOTE-contacts-manager-api-20150602/).
+The Contact Picker API differs in its approach to privacy, which was the main emphasis of the API
+when it was designed. Unlike previous attempts which allow for perpetual access after granted
+permission, or include a vague privacy model, this spec enforces UI restrictions which give users
+full control over shared data and limit abuse. For example, a picker model is enforced where the
+user always acts as an intermediary of the shared contact info with full control every time
+contacts are requested. For more historical context, please refer to the Status of the Document
+sections of the earlier attempts.
 
 ## Examples ## {#examples}
 
