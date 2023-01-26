@@ -145,7 +145,7 @@ The following constraints are also enforced:
 
 # Realms # {#realms}
 
-All platform objects are created in the [=context object=]'s [=relevant Realm=] unless otherwise
+All platform objects are created in the [=this=]'s [=relevant Realm=] unless otherwise
 specified.
 
 # Infrastructure # {#infrastructure}
@@ -154,7 +154,7 @@ The <dfn>contact picker task source</dfn> is a [=task source=].
 
 <div algorithm>
   To <dfn>queue a contact picker task</dfn> on an optional |eventLoop| (an [=event loop=],
-  defaulting to the caller's [=context object=]'s [=relevant settings object=]'s
+  defaulting to the caller's [=this=]'s [=relevant settings object=]'s
   [=responsible event loop=]) with |steps| (steps), [=queue a task=] on |eventLoop| using the
   [=contact picker task source=] to run |steps|.
 </div>
@@ -245,7 +245,7 @@ partial interface Navigator {
 A {{Navigator}} has a <dfn>contacts manager</dfn> (a {{ContactsManager}}), initially a new
 {{ContactsManager}}.
 
-The <dfn attribute>contacts</dfn> attribute's getter must return the [=context object=]'s
+The <dfn attribute>contacts</dfn> attribute's getter must return the [=this=]'s
 [=Navigator/contacts manager=].
 </div>
 
@@ -297,34 +297,34 @@ The {{ContactAddress}} interface represents a [=physical address=].
 
   * An <dfn>address</dfn> (a [=physical address=]).
 
-  The <dfn attribute>city</dfn> attribute's getter must return the [=context object=]'s
+  The <dfn attribute>city</dfn> attribute's getter must return the [=this=]'s
   [=ContactAddress/address=]' [=physical address/city=].
 
-  The <dfn attribute>country</dfn> attribute's getter must return the [=context object=]'s
+  The <dfn attribute>country</dfn> attribute's getter must return the [=this=]'s
   [=ContactAddress/address=]' [=physical address/country=].
 
-  The <dfn attribute>dependentLocality</dfn> attribute's getter must return the [=context object=]'s
+  The <dfn attribute>dependentLocality</dfn> attribute's getter must return the [=this=]'s
   [=ContactAddress/address=]' [=physical address/dependent locality=].
 
-  The <dfn attribute>organization</dfn> attribute's getter must return the [=context object=]'s
+  The <dfn attribute>organization</dfn> attribute's getter must return the [=this=]'s
   [=ContactAddress/address=]' [=physical address/organization=].
   
-  The <dfn attribute>phone</dfn> attribute's getter must return the [=context object=]'s
+  The <dfn attribute>phone</dfn> attribute's getter must return the [=this=]'s
   [=ContactAddress/address=]' [=physical address/phone number=].
 
-  The <dfn attribute>postalCode</dfn> attribute's getter must return the [=context object=]'s
+  The <dfn attribute>postalCode</dfn> attribute's getter must return the [=this=]'s
   [=ContactAddress/address=]' [=physical address/postal code=].
 
-  The <dfn attribute>recipient</dfn> attribute's getter must return the [=context object=]'s
+  The <dfn attribute>recipient</dfn> attribute's getter must return the [=this=]'s
   [=ContactAddress/address=]' [=physical address/recipient=].
 
-  The <dfn attribute>region</dfn> attribute's getter must return the [=context object=]'s
+  The <dfn attribute>region</dfn> attribute's getter must return the [=this=]'s
   [=ContactAddress/address=]' [=physical address/region=].
 
-  The <dfn attribute>sortingCode</dfn> attribute's getter must return the [=context object=]'s
+  The <dfn attribute>sortingCode</dfn> attribute's getter must return the [=this=]'s
   [=ContactAddress/address=]' [=physical address/sorting code=].
 
-  The <dfn attribute>addressLine</dfn> attribute's getter must return the [=context object=]'s
+  The <dfn attribute>addressLine</dfn> attribute's getter must return the [=this=]'s
   [=ContactAddress/address=]' [=physical address/address line=].
 </div>
 
@@ -369,7 +369,7 @@ interface ContactsManager {
 <div algorithm>
   The <dfn method>select(|properties|, |options|)</dfn> method, when invoked, runs these steps:
 
-  1. Let |relevantBrowsingContext| be the [=context object=]'s [=relevant settings object=]'s
+  1. Let |relevantBrowsingContext| be the [=this=]'s [=relevant settings object=]'s
      [=environment settings object/responsible browsing context=].
   1. If |relevantBrowsingContext| is not a [=top-level browsing context=], then return
      [=a promise rejected with=] an {{InvalidStateError}} {{DOMException}}.
