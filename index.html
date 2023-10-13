@@ -5,11 +5,10 @@
   <title>Contact Picker API</title>
   <meta content="ED" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
-  <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
-  <meta content="Bikeshed version 077497365, updated Thu Mar 2 15:15:29 2023 -0800" name="generator">
+  <meta content="Bikeshed version 82ce88815, updated Thu Sep 7 16:33:55 2023 -0700" name="generator">
   <link href="https://www.w3.org/TR/contact-picker/" rel="canonical">
-  <meta content="e27a608965a6f95203f330995f412b0d6f9bd6d1" name="document-revision">
-<style>/* style-autolinks */
+  <meta content="c3867750f068f5a8e18c53b2f1b3b64f0cd113ec" name="document-revision">
+<style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
     font-size: inherit;
@@ -70,8 +69,16 @@ pre .property::before, pre .property::after {
 [data-link-type=biblio] {
     white-space: pre;
 }
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --selflink-text: black;
+        --selflink-bg: silver;
+        --selflink-hover-text: white;
+    }
+}
 </style>
-<style>/* style-colors */
+<style>/* Boilerplate: style-colors */
 
 /* Any --*-text not paired with a --*-bg is assumed to have a transparent bg */
 :root {
@@ -180,231 +187,6 @@ pre .property::before, pre .property::after {
 
     --editedrec-bg: darkorange;
 }
-</style>
-<style>/* style-counters */
-body {
-    counter-reset: example figure issue;
-}
-.issue {
-    counter-increment: issue;
-}
-.issue:not(.no-marker)::before {
-    content: "Issue " counter(issue);
-}
-
-.example {
-    counter-increment: example;
-}
-.example:not(.no-marker)::before {
-    content: "Example " counter(example);
-}
-.invalid.example:not(.no-marker)::before,
-.illegal.example:not(.no-marker)::before {
-    content: "Invalid Example" counter(example);
-}
-
-figcaption {
-    counter-increment: figure;
-}
-figcaption:not(.no-marker)::before {
-    content: "Figure " counter(figure) " ";
-}
-</style>
-<style>/* style-dfn-panel */
-:root {
-    --dfnpanel-bg: #ddd;
-    --dfnpanel-text: var(--text);
-}
-.dfn-panel {
-    position: absolute;
-    z-index: 35;
-    width: 20em;
-    min-width: min-content;
-    max-width: 300px;
-    height: auto;
-    max-height: 500px;
-    overflow: auto;
-    padding: 0.5em 0.75em;
-    font: small Helvetica Neue, sans-serif, Droid Sans Fallback;
-    background: var(--dfnpanel-bg);
-    color: var(--dfnpanel-text);
-    border: outset 0.2em;
-    white-space: normal; /* in case it's moved into a pre */
-}
-.dfn-panel:not(.on) { display: none; }
-.dfn-panel * { margin: 0; padding: 0; text-indent: 0; }
-.dfn-panel > b { display: block; }
-.dfn-panel a { color: var(--dfnpanel-text); }
-.dfn-panel a:not(:hover) { text-decoration: none !important; border-bottom: none !important; }
-.dfn-panel > b + b { margin-top: 0.25em; }
-.dfn-panel ul { padding: 0; }
-.dfn-panel li { list-style: inside; }
-.dfn-panel.activated {
-    display: inline-block;
-    position: fixed;
-    left: .5em;
-    bottom: 2em;
-    margin: 0 auto;
-    max-width: calc(100vw - 1.5em - .4em - .5em);
-    max-height: 30vh;
-}
-
-.dfn-paneled { cursor: pointer; }
-</style>
-<style>/* style-issues */
-a[href].issue-return {
-    float: right;
-    float: inline-end;
-    color: var(--issueheading-text);
-    font-weight: bold;
-    text-decoration: none;
-}
-</style>
-<style>/* style-md-lists */
-/* This is a weird hack for me not yet following the commonmark spec
-   regarding paragraph and lists. */
-[data-md] > :first-child {
-    margin-top: 0;
-}
-[data-md] > :last-child {
-    margin-bottom: 0;
-}
-</style>
-<style>/* style-selflinks */
-
-:root {
-    --selflink-text: white;
-    --selflink-bg: gray;
-    --selflink-hover-text: black;
-}
-.heading, .issue, .note, .example, li, dt {
-    position: relative;
-}
-a.self-link {
-    position: absolute;
-    top: 0;
-    left: calc(-1 * (3.5rem - 26px));
-    width: calc(3.5rem - 26px);
-    height: 2em;
-    text-align: center;
-    border: none;
-    transition: opacity .2s;
-    opacity: .5;
-}
-a.self-link:hover {
-    opacity: 1;
-}
-.heading > a.self-link {
-    font-size: 83%;
-}
-.example > a.self-link,
-.note > a.self-link,
-.issue > a.self-link {
-    /* These blocks are overflow:auto, so positioning outside
-       doesn't work. */
-    left: auto;
-    right: 0;
-}
-li > a.self-link {
-    left: calc(-1 * (3.5rem - 26px) - 2em);
-}
-dfn > a.self-link {
-    top: auto;
-    left: auto;
-    opacity: 0;
-    width: 1.5em;
-    height: 1.5em;
-    background: var(--selflink-bg);
-    color: var(--selflink-text);
-    font-style: normal;
-    transition: opacity .2s, background-color .2s, color .2s;
-}
-dfn:hover > a.self-link {
-    opacity: 1;
-}
-dfn > a.self-link:hover {
-    color: var(--selflink-hover-text);
-}
-
-a.self-link::before            { content: "¶"; }
-.heading > a.self-link::before { content: "§"; }
-dfn > a.self-link::before      { content: "#"; }
-</style>
-<style>/* style-syntax-highlighting */
-
-            pre.idl.highlight {
-                background: var(--borderedblock-bg, var(--def-bg));
-            }
-            
-code.highlight { padding: .1em; border-radius: .3em; }
-pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em 0; overflow: auto; border-radius: 0; }
-
-.highlight:not(.idl) { background: rgba(0, 0, 0, .03); }
-c-[a] { color: #990055 } /* Keyword.Declaration */
-c-[b] { color: #990055 } /* Keyword.Type */
-c-[c] { color: #708090 } /* Comment */
-c-[d] { color: #708090 } /* Comment.Multiline */
-c-[e] { color: #0077aa } /* Name.Attribute */
-c-[f] { color: #669900 } /* Name.Tag */
-c-[g] { color: #222222 } /* Name.Variable */
-c-[k] { color: #990055 } /* Keyword */
-c-[l] { color: #000000 } /* Literal */
-c-[m] { color: #000000 } /* Literal.Number */
-c-[n] { color: #0077aa } /* Name */
-c-[o] { color: #999999 } /* Operator */
-c-[p] { color: #999999 } /* Punctuation */
-c-[s] { color: #a67f59 } /* Literal.String */
-c-[t] { color: #a67f59 } /* Literal.String.Single */
-c-[u] { color: #a67f59 } /* Literal.String.Double */
-c-[cp] { color: #708090 } /* Comment.Preproc */
-c-[c1] { color: #708090 } /* Comment.Single */
-c-[cs] { color: #708090 } /* Comment.Special */
-c-[kc] { color: #990055 } /* Keyword.Constant */
-c-[kn] { color: #990055 } /* Keyword.Namespace */
-c-[kp] { color: #990055 } /* Keyword.Pseudo */
-c-[kr] { color: #990055 } /* Keyword.Reserved */
-c-[ld] { color: #000000 } /* Literal.Date */
-c-[nc] { color: #0077aa } /* Name.Class */
-c-[no] { color: #0077aa } /* Name.Constant */
-c-[nd] { color: #0077aa } /* Name.Decorator */
-c-[ni] { color: #0077aa } /* Name.Entity */
-c-[ne] { color: #0077aa } /* Name.Exception */
-c-[nf] { color: #0077aa } /* Name.Function */
-c-[nl] { color: #0077aa } /* Name.Label */
-c-[nn] { color: #0077aa } /* Name.Namespace */
-c-[py] { color: #0077aa } /* Name.Property */
-c-[ow] { color: #999999 } /* Operator.Word */
-c-[mb] { color: #000000 } /* Literal.Number.Bin */
-c-[mf] { color: #000000 } /* Literal.Number.Float */
-c-[mh] { color: #000000 } /* Literal.Number.Hex */
-c-[mi] { color: #000000 } /* Literal.Number.Integer */
-c-[mo] { color: #000000 } /* Literal.Number.Oct */
-c-[sb] { color: #a67f59 } /* Literal.String.Backtick */
-c-[sc] { color: #a67f59 } /* Literal.String.Char */
-c-[sd] { color: #a67f59 } /* Literal.String.Doc */
-c-[se] { color: #a67f59 } /* Literal.String.Escape */
-c-[sh] { color: #a67f59 } /* Literal.String.Heredoc */
-c-[si] { color: #a67f59 } /* Literal.String.Interpol */
-c-[sx] { color: #a67f59 } /* Literal.String.Other */
-c-[sr] { color: #a67f59 } /* Literal.String.Regex */
-c-[ss] { color: #a67f59 } /* Literal.String.Symbol */
-c-[vc] { color: #0077aa } /* Name.Variable.Class */
-c-[vg] { color: #0077aa } /* Name.Variable.Global */
-c-[vi] { color: #0077aa } /* Name.Variable.Instance */
-c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
-</style>
-<style>/* style-var-click-highlighting */
-
-    var { cursor: pointer; }
-    var.selected0 { background-color: #F4D200; box-shadow: 0 0 0 2px #F4D200; }
-    var.selected1 { background-color: #FF87A2; box-shadow: 0 0 0 2px #FF87A2; }
-    var.selected2 { background-color: #96E885; box-shadow: 0 0 0 2px #96E885; }
-    var.selected3 { background-color: #3EEED2; box-shadow: 0 0 0 2px #3EEED2; }
-    var.selected4 { background-color: #EACFB6; box-shadow: 0 0 0 2px #EACFB6; }
-    var.selected5 { background-color: #82DDFF; box-shadow: 0 0 0 2px #82DDFF; }
-    var.selected6 { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
-    </style>
-<style>/* style-darkmode */
 
 @media (prefers-color-scheme: dark) {
     :root {
@@ -517,21 +299,287 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
        which is quite common in practice... */
     img { background: white; }
 }
-
-@media (prefers-color-scheme: dark) {
-    :root {
-        --selflink-text: black;
-        --selflink-bg: silver;
-        --selflink-hover-text: white;
-    }
+</style>
+<style>/* Boilerplate: style-counters */
+body {
+    counter-reset: example figure issue;
+}
+.issue {
+    counter-increment: issue;
+}
+.issue:not(.no-marker)::before {
+    content: "Issue " counter(issue);
 }
 
+.example {
+    counter-increment: example;
+}
+.example:not(.no-marker)::before {
+    content: "Example " counter(example);
+}
+.invalid.example:not(.no-marker)::before,
+.illegal.example:not(.no-marker)::before {
+    content: "Invalid Example" counter(example);
+}
+
+figcaption {
+    counter-increment: figure;
+}
+figcaption:not(.no-marker)::before {
+    content: "Figure " counter(figure) " ";
+}
+</style>
+<style>/* Boilerplate: style-dfn-panel */
+:root {
+    --dfnpanel-bg: #ddd;
+    --dfnpanel-text: var(--text);
+}
 @media (prefers-color-scheme: dark) {
     :root {
         --dfnpanel-bg: #222;
         --dfnpanel-text: var(--text);
     }
 }
+.dfn-panel {
+    position: absolute;
+    z-index: 35;
+    width: 20em;
+    width: 300px;
+    height: auto;
+    max-height: 500px;
+    overflow: auto;
+    padding: 0.5em 0.75em;
+    font: small Helvetica Neue, sans-serif, Droid Sans Fallback;
+    background: var(--dfnpanel-bg);
+    color: var(--dfnpanel-text);
+    border: outset 0.2em;
+    white-space: normal; /* in case it's moved into a pre */
+}
+.dfn-panel:not(.on) { display: none; }
+.dfn-panel * { margin: 0; padding: 0; text-indent: 0; }
+.dfn-panel > b { display: block; }
+.dfn-panel a { color: var(--dfnpanel-text); }
+.dfn-panel a:not(:hover) { text-decoration: none !important; border-bottom: none !important; }
+.dfn-panel > b + b { margin-top: 0.25em; }
+.dfn-panel ul { padding: 0 0 0 1em; list-style: none; }
+.dfn-panel li a {
+    white-space: pre;
+    display: inline-block;
+    max-width: calc(300px - 1.5em - 1em);
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dfn-panel.activated {
+    display: inline-block;
+    position: fixed;
+    left: .5em;
+    bottom: 2em;
+    margin: 0 auto;
+    max-width: calc(100vw - 1.5em - .4em - .5em);
+    max-height: 30vh;
+}
+
+.dfn-paneled[role="button"] { cursor: pointer; }
+</style>
+<style>/* Boilerplate: style-dfn-panel */
+:root {
+    --dfnpanel-bg: #ddd;
+    --dfnpanel-text: var(--text);
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+        --dfnpanel-bg: #222;
+        --dfnpanel-text: var(--text);
+    }
+}
+.dfn-panel {
+    position: absolute;
+    z-index: 35;
+    width: 20em;
+    width: 300px;
+    height: auto;
+    max-height: 500px;
+    overflow: auto;
+    padding: 0.5em 0.75em;
+    font: small Helvetica Neue, sans-serif, Droid Sans Fallback;
+    background: var(--dfnpanel-bg);
+    color: var(--dfnpanel-text);
+    border: outset 0.2em;
+    white-space: normal; /* in case it's moved into a pre */
+}
+.dfn-panel:not(.on) { display: none; }
+.dfn-panel * { margin: 0; padding: 0; text-indent: 0; }
+.dfn-panel > b { display: block; }
+.dfn-panel a { color: var(--dfnpanel-text); }
+.dfn-panel a:not(:hover) { text-decoration: none !important; border-bottom: none !important; }
+.dfn-panel > b + b { margin-top: 0.25em; }
+.dfn-panel ul { padding: 0 0 0 1em; list-style: none; }
+.dfn-panel li a {
+    white-space: pre;
+    display: inline-block;
+    max-width: calc(300px - 1.5em - 1em);
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dfn-panel.activated {
+    display: inline-block;
+    position: fixed;
+    left: .5em;
+    bottom: 2em;
+    margin: 0 auto;
+    max-width: calc(100vw - 1.5em - .4em - .5em);
+    max-height: 30vh;
+}
+
+.dfn-paneled[role="button"] { cursor: pointer; }
+</style>
+<style>/* Boilerplate: style-issues */
+a[href].issue-return {
+    float: right;
+    float: inline-end;
+    color: var(--issueheading-text);
+    font-weight: bold;
+    text-decoration: none;
+}
+</style>
+<style>/* Boilerplate: style-md-lists */
+/* This is a weird hack for me not yet following the commonmark spec
+   regarding paragraph and lists. */
+[data-md] > :first-child {
+    margin-top: 0;
+}
+[data-md] > :last-child {
+    margin-bottom: 0;
+}
+</style>
+<style>/* Boilerplate: style-selflinks */
+
+:root {
+    --selflink-text: white;
+    --selflink-bg: gray;
+    --selflink-hover-text: black;
+}
+.heading, .issue, .note, .example, li, dt {
+    position: relative;
+}
+a.self-link {
+    position: absolute;
+    top: 0;
+    left: calc(-1 * (3.5rem - 26px));
+    width: calc(3.5rem - 26px);
+    height: 2em;
+    text-align: center;
+    border: none;
+    transition: opacity .2s;
+    opacity: .5;
+}
+a.self-link:hover {
+    opacity: 1;
+}
+.heading > a.self-link {
+    font-size: 83%;
+}
+.example > a.self-link,
+.note > a.self-link,
+.issue > a.self-link {
+    /* These blocks are overflow:auto, so positioning outside
+       doesn't work. */
+    left: auto;
+    right: 0;
+}
+li > a.self-link {
+    left: calc(-1 * (3.5rem - 26px) - 2em);
+}
+dfn > a.self-link {
+    top: auto;
+    left: auto;
+    opacity: 0;
+    width: 1.5em;
+    height: 1.5em;
+    background: var(--selflink-bg);
+    color: var(--selflink-text);
+    font-style: normal;
+    transition: opacity .2s, background-color .2s, color .2s;
+}
+dfn:hover > a.self-link {
+    opacity: 1;
+}
+dfn > a.self-link:hover {
+    color: var(--selflink-hover-text);
+}
+
+a.self-link::before            { content: "¶"; }
+.heading > a.self-link::before { content: "§"; }
+dfn > a.self-link::before      { content: "#"; }
+</style>
+<style>/* Boilerplate: style-syntax-highlighting */
+
+            pre.idl.highlight {
+                background: var(--borderedblock-bg, var(--def-bg));
+            }
+            
+</style>
+<style>/* Boilerplate: style-syntax-highlighting */
+
+code.highlight { padding: .1em; border-radius: .3em; }
+pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em 0; overflow: auto; border-radius: 0; }
+
+.highlight:not(.idl) { background: rgba(0, 0, 0, .03); }
+c-[a] { color: #990055 } /* Keyword.Declaration */
+c-[b] { color: #990055 } /* Keyword.Type */
+c-[c] { color: #708090 } /* Comment */
+c-[d] { color: #708090 } /* Comment.Multiline */
+c-[e] { color: #0077aa } /* Name.Attribute */
+c-[f] { color: #669900 } /* Name.Tag */
+c-[g] { color: #222222 } /* Name.Variable */
+c-[k] { color: #990055 } /* Keyword */
+c-[l] { color: #000000 } /* Literal */
+c-[m] { color: #000000 } /* Literal.Number */
+c-[n] { color: #0077aa } /* Name */
+c-[o] { color: #999999 } /* Operator */
+c-[p] { color: #999999 } /* Punctuation */
+c-[s] { color: #a67f59 } /* Literal.String */
+c-[t] { color: #a67f59 } /* Literal.String.Single */
+c-[u] { color: #a67f59 } /* Literal.String.Double */
+c-[cp] { color: #708090 } /* Comment.Preproc */
+c-[c1] { color: #708090 } /* Comment.Single */
+c-[cs] { color: #708090 } /* Comment.Special */
+c-[kc] { color: #990055 } /* Keyword.Constant */
+c-[kn] { color: #990055 } /* Keyword.Namespace */
+c-[kp] { color: #990055 } /* Keyword.Pseudo */
+c-[kr] { color: #990055 } /* Keyword.Reserved */
+c-[ld] { color: #000000 } /* Literal.Date */
+c-[nc] { color: #0077aa } /* Name.Class */
+c-[no] { color: #0077aa } /* Name.Constant */
+c-[nd] { color: #0077aa } /* Name.Decorator */
+c-[ni] { color: #0077aa } /* Name.Entity */
+c-[ne] { color: #0077aa } /* Name.Exception */
+c-[nf] { color: #0077aa } /* Name.Function */
+c-[nl] { color: #0077aa } /* Name.Label */
+c-[nn] { color: #0077aa } /* Name.Namespace */
+c-[py] { color: #0077aa } /* Name.Property */
+c-[ow] { color: #999999 } /* Operator.Word */
+c-[mb] { color: #000000 } /* Literal.Number.Bin */
+c-[mf] { color: #000000 } /* Literal.Number.Float */
+c-[mh] { color: #000000 } /* Literal.Number.Hex */
+c-[mi] { color: #000000 } /* Literal.Number.Integer */
+c-[mo] { color: #000000 } /* Literal.Number.Oct */
+c-[sb] { color: #a67f59 } /* Literal.String.Backtick */
+c-[sc] { color: #a67f59 } /* Literal.String.Char */
+c-[sd] { color: #a67f59 } /* Literal.String.Doc */
+c-[se] { color: #a67f59 } /* Literal.String.Escape */
+c-[sh] { color: #a67f59 } /* Literal.String.Heredoc */
+c-[si] { color: #a67f59 } /* Literal.String.Interpol */
+c-[sx] { color: #a67f59 } /* Literal.String.Other */
+c-[sr] { color: #a67f59 } /* Literal.String.Regex */
+c-[ss] { color: #a67f59 } /* Literal.String.Symbol */
+c-[vc] { color: #0077aa } /* Name.Variable.Class */
+c-[vg] { color: #0077aa } /* Name.Variable.Global */
+c-[vi] { color: #0077aa } /* Name.Variable.Instance */
+c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
+
 
 @media (prefers-color-scheme: dark) {
     .highlight:not(.idl) { background: rgba(255, 255, 255, .05); }
@@ -596,11 +644,32 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     c-[il] { color: #657b83 } /* Literal.Number.Integer.Long */
 }
 </style>
+<style>/* Boilerplate: style-var-click-highlighting */
+/*
+Colors were chosen in Lab using https://nixsensor.com/free-color-converter/
+D50 2deg illuminant, L in [0,100], a and b in [-128, 128]
+0 = lab(85,0,85)
+1 = lab(85,80,30)
+2 = lab(85,-40,40)
+3 = lab(85,-50,0)
+4 = lab(85,5,15)
+5 = lab(85,-10,-50)
+6 = lab(85,35,-15)
+*/
+var { cursor: pointer; }
+var.selected0 { background-color: #F4D200; box-shadow: 0 0 0 2px #F4D200; }
+var.selected1 { background-color: #FF87A2; box-shadow: 0 0 0 2px #FF87A2; }
+var.selected2 { background-color: #96E885; box-shadow: 0 0 0 2px #96E885; }
+var.selected3 { background-color: #3EEED2; box-shadow: 0 0 0 2px #3EEED2; }
+var.selected4 { background-color: #EACFB6; box-shadow: 0 0 0 2px #EACFB6; }
+var.selected5 { background-color: #82DDFF; box-shadow: 0 0 0 2px #82DDFF; }
+var.selected6 { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
+</style>
  <body class="h-entry">
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Contact Picker API</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-03-08">8 March 2023</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-10-13">13 October 2023</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -612,14 +681,15 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
       <dt>Feedback:
       <dd><span><a href="mailto:public-device-apis@w3.org?subject=%5Bcontact-picker%5D%20YOUR%20TOPIC%20HERE">public-device-apis@w3.org</a> with subject line “<kbd>[contact-picker] <i data-lt>… message topic …</i></kbd>” (<a href="https://lists.w3.org/Archives/Public/public-device-apis/" rel="discussion">archives</a>)</span>
       <dd><a href="https://github.com/w3c/contact-picker/issues/">GitHub</a>
-      <dt class="editor">Editors:
+      <dt class="editor">Editor:
       <dd class="editor p-author h-card vcard" data-editor-id="44819"><a class="p-name fn u-email email" href="mailto:beverloo@google.com">Peter Beverloo</a> (<span class="p-org org">Google</span>)
+      <dt class="editor">Former Editor:
       <dd class="editor p-author h-card vcard" data-editor-id="115452"><a class="p-name fn u-email email" href="mailto:rayankans@google.com">Rayan Kanso</a> (<span class="p-org org">Google</span>)
      </dl>
     </div>
    </details>
    <div data-fill-with="warning"></div>
-   <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2023 <a href="https://www.w3.org/">World Wide Web Consortium</a>. <abbr title="World Wide Web Consortium">W3C</abbr><sup>®</sup> <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document" rel="license">permissive document license</a> rules apply. </p>
+   <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2023 <a href="https://www.w3.org/">World Wide Web Consortium</a>. <abbr title="World Wide Web Consortium">W3C</abbr><sup>®</sup> <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/Consortium/Legal/copyright-software" rel="license" title="W3C Software and Document License">permissive document license</a> rules apply. </p>
    <hr title="Separator for header">
   </div>
   <div class="p-summary" data-fill-with="abstract">
@@ -646,7 +716,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   these pages also include instructions for disclosing a patent.
 	An individual who has actual knowledge of a patent which the individual believes contains <a href="https://www.w3.org/Consortium/Patent-Policy/#def-essential">Essential Claim(s)</a> must disclose the information in accordance 
 	with <a href="https://www.w3.org/Consortium/Patent-Policy/#sec-Disclosure">section 6 of the W3C Patent Policy</a>. </p>
-   <p> This document is governed by the <a href="https://www.w3.org/2021/Process-20211102/" id="w3c_process_revision">2 November 2021 W3C Process Document</a>. </p>
+   <p> This document is governed by the <a href="https://www.w3.org/2023/Process-20230612/" id="w3c_process_revision">12 June 2023 W3C Process Document</a>. </p>
    <p></p>
   </div>
   <div data-fill-with="at-risk"></div>
@@ -1138,20 +1208,22 @@ sections of the earlier attempts.</p>
     with <code>class="note"</code>,
     like this: </p>
    <p class="note" role="note">Note, this is an informative note.</p>
-   <h3 class="no-ref no-num heading settled" id="w3c-conformant-algorithms"><span class="content">Conformant Algorithms</span><a class="self-link" href="#w3c-conformant-algorithms"></a></h3>
-   <p>Requirements phrased in the imperative as part of algorithms
+   <section>
+    <h3 class="no-ref no-num heading settled" id="w3c-conformant-algorithms"><span class="content">Conformant Algorithms</span><a class="self-link" href="#w3c-conformant-algorithms"></a></h3>
+    <p>Requirements phrased in the imperative as part of algorithms
     (such as "strip any leading space characters"
     or "return false and abort these steps")
     are to be interpreted with the meaning of the key word
     ("must", "should", "may", etc)
     used in introducing the algorithm. </p>
-   <p>Conformance requirements phrased as algorithms or specific steps
+    <p>Conformance requirements phrased as algorithms or specific steps
     can be implemented in any manner,
     so long as the end result is equivalent.
     In particular, the algorithms defined in this specification
     are intended to be easy to understand
     and are not intended to be performant.
     Implementers are encouraged to optimize. </p>
+   </section>
   </div>
 <script src="https://www.w3.org/scripts/TR/2021/fixup.js"></script>
   <h2 class="no-num no-ref heading settled" id="index"><span class="content">Index</span><a class="self-link" href="#index"></a></h2>
@@ -1240,335 +1312,68 @@ sections of the earlier attempts.</p>
    <li><a href="#dom-contactaddress-tojson">toJSON()</a><span>, in § 5.3</span>
    <li><a href="#user-contact">user contact</a><span>, in § 4.2</span>
   </ul>
-  <aside aria-labelledby="infopaneltitle-for-881ec0d5093da41de02778af72e8496c" class="dfn-panel" data-for="881ec0d5093da41de02778af72e8496c" id="infopanel-for-881ec0d5093da41de02778af72e8496c">
-   <span id="infopaneltitle-for-881ec0d5093da41de02778af72e8496c" style="display:none">Info about the 'Blob' external reference.</span><a href="https://w3c.github.io/FileAPI/#dfn-Blob">https://w3c.github.io/FileAPI/#dfn-Blob</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dfn-Blob">4.2. User contact</a> <a href="#ref-for-dfn-Blob①">(2)</a>
-    <li><a href="#ref-for-dfn-Blob②">5.4. ContactsManager</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-f7081366b4772d18aefa3db823f45861" class="dfn-panel" data-for="f7081366b4772d18aefa3db823f45861" id="infopanel-for-f7081366b4772d18aefa3db823f45861">
-   <span id="infopaneltitle-for-f7081366b4772d18aefa3db823f45861" style="display:none">Info about the 'type' external reference.</span><a href="https://w3c.github.io/FileAPI/#dfn-type">https://w3c.github.io/FileAPI/#dfn-type</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dfn-type">4.2. User contact</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-3d8a5fc79380be386c0775eaf943a6b2" class="dfn-panel" data-for="3d8a5fc79380be386c0775eaf943a6b2" id="infopanel-for-3d8a5fc79380be386c0775eaf943a6b2">
-   <span id="infopaneltitle-for-3d8a5fc79380be386c0775eaf943a6b2" style="display:none">Info about the 'HTMLButtonElement' external reference.</span><a href="https://html.spec.whatwg.org/multipage/form-elements.html#htmlbuttonelement">https://html.spec.whatwg.org/multipage/form-elements.html#htmlbuttonelement</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-htmlbuttonelement">1.1. Examples</a> <a href="#ref-for-htmlbuttonelement①">(2)</a> <a href="#ref-for-htmlbuttonelement②">(3)</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-8bd1567bfeee6a7f042b4739599829fd" class="dfn-panel" data-for="8bd1567bfeee6a7f042b4739599829fd" id="infopanel-for-8bd1567bfeee6a7f042b4739599829fd">
-   <span id="infopaneltitle-for-8bd1567bfeee6a7f042b4739599829fd" style="display:none">Info about the 'HTMLImageElement' external reference.</span><a href="https://html.spec.whatwg.org/multipage/embedded-content.html#htmlimageelement">https://html.spec.whatwg.org/multipage/embedded-content.html#htmlimageelement</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-htmlimageelement">1.1. Examples</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-3c82b19be23a00eb4bb6896ec20cd7aa" class="dfn-panel" data-for="3c82b19be23a00eb4bb6896ec20cd7aa" id="infopanel-for-3c82b19be23a00eb4bb6896ec20cd7aa">
-   <span id="infopaneltitle-for-3c82b19be23a00eb4bb6896ec20cd7aa" style="display:none">Info about the 'Navigator' external reference.</span><a href="https://html.spec.whatwg.org/multipage/system-state.html#navigator">https://html.spec.whatwg.org/multipage/system-state.html#navigator</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-navigator">5.1. Extensions to Navigator</a> <a href="#ref-for-navigator①">(2)</a> <a href="#ref-for-navigator②">(3)</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-5db590bc82ac7edd15fc4ebd1b0c25f0" class="dfn-panel" data-for="5db590bc82ac7edd15fc4ebd1b0c25f0" id="infopanel-for-5db590bc82ac7edd15fc4ebd1b0c25f0">
-   <span id="infopaneltitle-for-5db590bc82ac7edd15fc4ebd1b0c25f0" style="display:none">Info about the 'browsing context' external reference.</span><a href="https://html.spec.whatwg.org/multipage/document-sequences.html#browsing-context">https://html.spec.whatwg.org/multipage/document-sequences.html#browsing-context</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-browsing-context">5.1. Extensions to Navigator</a>
-    <li><a href="#ref-for-browsing-context①">6. Contact Picker</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-88e9715f297564aa1cfabdf015c4f240" class="dfn-panel" data-for="88e9715f297564aa1cfabdf015c4f240" id="infopanel-for-88e9715f297564aa1cfabdf015c4f240">
-   <span id="infopaneltitle-for-88e9715f297564aa1cfabdf015c4f240" style="display:none">Info about the 'event loop' external reference.</span><a href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-agent-event-loop">https://html.spec.whatwg.org/multipage/webappapis.html#concept-agent-event-loop</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-agent-event-loop">4. Infrastructure</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-3a2763fcaa6bc82693554cf36780c0dd" class="dfn-panel" data-for="3a2763fcaa6bc82693554cf36780c0dd" id="infopanel-for-3a2763fcaa6bc82693554cf36780c0dd">
-   <span id="infopaneltitle-for-3a2763fcaa6bc82693554cf36780c0dd" style="display:none">Info about the 'in parallel' external reference.</span><a href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-in-parallel">5.4.1. getProperties()</a>
-    <li><a href="#ref-for-in-parallel①">5.4.2. select()</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-e66f9f7d45934e77669cb907bd0c7636" class="dfn-panel" data-for="e66f9f7d45934e77669cb907bd0c7636" id="infopanel-for-e66f9f7d45934e77669cb907bd0c7636">
-   <span id="infopaneltitle-for-e66f9f7d45934e77669cb907bd0c7636" style="display:none">Info about the 'origin' external reference.</span><a href="https://html.spec.whatwg.org/multipage/browsers.html#concept-origin">https://html.spec.whatwg.org/multipage/browsers.html#concept-origin</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-origin">6. Contact Picker</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-da7ed5f190c4eedd375552d6f7876301" class="dfn-panel" data-for="da7ed5f190c4eedd375552d6f7876301" id="infopanel-for-da7ed5f190c4eedd375552d6f7876301">
-   <span id="infopaneltitle-for-da7ed5f190c4eedd375552d6f7876301" style="display:none">Info about the 'queue a task' external reference.</span><a href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task">https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-queue-a-task">4. Infrastructure</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-8ee6ba3007ddbcc1bac5ed5548b8cb0e" class="dfn-panel" data-for="8ee6ba3007ddbcc1bac5ed5548b8cb0e" id="infopanel-for-8ee6ba3007ddbcc1bac5ed5548b8cb0e">
-   <span id="infopaneltitle-for-8ee6ba3007ddbcc1bac5ed5548b8cb0e" style="display:none">Info about the 'relevant realm' external reference.</span><a href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm">https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-relevant-realm">3. Realms</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-bfb9cb6617f81a424ab20212af73bae3" class="dfn-panel" data-for="bfb9cb6617f81a424ab20212af73bae3" id="infopanel-for-bfb9cb6617f81a424ab20212af73bae3">
-   <span id="infopaneltitle-for-bfb9cb6617f81a424ab20212af73bae3" style="display:none">Info about the 'relevant settings object' external reference.</span><a href="https://html.spec.whatwg.org/multipage/webappapis.html#relevant-settings-object">https://html.spec.whatwg.org/multipage/webappapis.html#relevant-settings-object</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-relevant-settings-object">4. Infrastructure</a>
-    <li><a href="#ref-for-relevant-settings-object①">5.4.2. select()</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-9975dcbf6edcaa4e4545626d4ec14e5c" class="dfn-panel" data-for="9975dcbf6edcaa4e4545626d4ec14e5c" id="infopanel-for-9975dcbf6edcaa4e4545626d4ec14e5c">
-   <span id="infopaneltitle-for-9975dcbf6edcaa4e4545626d4ec14e5c" style="display:none">Info about the 'responsible event loop' external reference.</span><a href="https://html.spec.whatwg.org/multipage/webappapis.html#responsible-event-loop">https://html.spec.whatwg.org/multipage/webappapis.html#responsible-event-loop</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-responsible-event-loop">4. Infrastructure</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-613400696de3e8f8a5001430db03abe8" class="dfn-panel" data-for="613400696de3e8f8a5001430db03abe8" id="infopanel-for-613400696de3e8f8a5001430db03abe8">
-   <span id="infopaneltitle-for-613400696de3e8f8a5001430db03abe8" style="display:none">Info about the 'secure context' external reference.</span><a href="https://html.spec.whatwg.org/multipage/webappapis.html#secure-context">https://html.spec.whatwg.org/multipage/webappapis.html#secure-context</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-secure-context">2. Privacy Considerations</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-8022a5f0b9910c35c5215fd070e93d09" class="dfn-panel" data-for="8022a5f0b9910c35c5215fd070e93d09" id="infopanel-for-8022a5f0b9910c35c5215fd070e93d09">
-   <span id="infopaneltitle-for-8022a5f0b9910c35c5215fd070e93d09" style="display:none">Info about the 'task source' external reference.</span><a href="https://html.spec.whatwg.org/multipage/webappapis.html#task-source">https://html.spec.whatwg.org/multipage/webappapis.html#task-source</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-task-source">4. Infrastructure</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-c104b697744f6f246969dcc26b898f11" class="dfn-panel" data-for="c104b697744f6f246969dcc26b898f11" id="infopanel-for-c104b697744f6f246969dcc26b898f11">
-   <span id="infopaneltitle-for-c104b697744f6f246969dcc26b898f11" style="display:none">Info about the 'top-level browsing context' external reference.</span><a href="https://html.spec.whatwg.org/multipage/document-sequences.html#top-level-browsing-context">https://html.spec.whatwg.org/multipage/document-sequences.html#top-level-browsing-context</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-top-level-browsing-context">2. Privacy Considerations</a>
-    <li><a href="#ref-for-top-level-browsing-context①">5.4.2. select()</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-fcfc8b0ed220faa237969aed00e2586d" class="dfn-panel" data-for="fcfc8b0ed220faa237969aed00e2586d" id="infopanel-for-fcfc8b0ed220faa237969aed00e2586d">
-   <span id="infopaneltitle-for-fcfc8b0ed220faa237969aed00e2586d" style="display:none">Info about the 'append' external reference.</span><a href="https://infra.spec.whatwg.org/#list-append">https://infra.spec.whatwg.org/#list-append</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-list-append">5.4.2. select()</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-0d4cc8e47c65b15b2be5e5e730a09d3c" class="dfn-panel" data-for="0d4cc8e47c65b15b2be5e5e730a09d3c" id="infopanel-for-0d4cc8e47c65b15b2be5e5e730a09d3c">
-   <span id="infopaneltitle-for-0d4cc8e47c65b15b2be5e5e730a09d3c" style="display:none">Info about the 'boolean' external reference.</span><a href="https://infra.spec.whatwg.org/#boolean">https://infra.spec.whatwg.org/#boolean</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-boolean">6. Contact Picker</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-eb75379b05abc264a531a791358e1eba" class="dfn-panel" data-for="eb75379b05abc264a531a791358e1eba" id="infopanel-for-eb75379b05abc264a531a791358e1eba">
-   <span id="infopaneltitle-for-eb75379b05abc264a531a791358e1eba" style="display:none">Info about the 'contain' external reference.</span><a href="https://infra.spec.whatwg.org/#list-contain">https://infra.spec.whatwg.org/#list-contain</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-list-contain">5.4.2. select()</a> <a href="#ref-for-list-contain①">(2)</a> <a href="#ref-for-list-contain②">(3)</a> <a href="#ref-for-list-contain③">(4)</a> <a href="#ref-for-list-contain④">(5)</a> <a href="#ref-for-list-contain⑤">(6)</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-de8dad85bc31aef3359c7c7dbd918fe7" class="dfn-panel" data-for="de8dad85bc31aef3359c7c7dbd918fe7" id="infopanel-for-de8dad85bc31aef3359c7c7dbd918fe7">
-   <span id="infopaneltitle-for-de8dad85bc31aef3359c7c7dbd918fe7" style="display:none">Info about the 'empty' external reference.</span><a href="https://infra.spec.whatwg.org/#list-empty">https://infra.spec.whatwg.org/#list-empty</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-list-empty">5.4.2. select()</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-8b9e78ceedde26e69095bd6f6cce47bf" class="dfn-panel" data-for="8b9e78ceedde26e69095bd6f6cce47bf" id="infopanel-for-8b9e78ceedde26e69095bd6f6cce47bf">
-   <span id="infopaneltitle-for-8b9e78ceedde26e69095bd6f6cce47bf" style="display:none">Info about the 'for each' external reference.</span><a href="https://infra.spec.whatwg.org/#list-iterate">https://infra.spec.whatwg.org/#list-iterate</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-list-iterate">5.4.2. select()</a> <a href="#ref-for-list-iterate①">(2)</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-c783a9adeafb412d3bdeaeb1c6a29d96" class="dfn-panel" data-for="c783a9adeafb412d3bdeaeb1c6a29d96" id="infopanel-for-c783a9adeafb412d3bdeaeb1c6a29d96">
-   <span id="infopaneltitle-for-c783a9adeafb412d3bdeaeb1c6a29d96" style="display:none">Info about the 'item' external reference.</span><a href="https://infra.spec.whatwg.org/#list-item">https://infra.spec.whatwg.org/#list-item</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-list-item">4.2. User contact</a> <a href="#ref-for-list-item①">(2)</a> <a href="#ref-for-list-item②">(3)</a> <a href="#ref-for-list-item③">(4)</a> <a href="#ref-for-list-item④">(5)</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-fafd38d2108e357bcc9a6fd7f3cd04a7" class="dfn-panel" data-for="fafd38d2108e357bcc9a6fd7f3cd04a7" id="infopanel-for-fafd38d2108e357bcc9a6fd7f3cd04a7">
-   <span id="infopaneltitle-for-fafd38d2108e357bcc9a6fd7f3cd04a7" style="display:none">Info about the 'list' external reference.</span><a href="https://infra.spec.whatwg.org/#list">https://infra.spec.whatwg.org/#list</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-list">4.1. Physical address</a>
-    <li><a href="#ref-for-list①">4.2. User contact</a> <a href="#ref-for-list②">(2)</a> <a href="#ref-for-list③">(3)</a> <a href="#ref-for-list④">(4)</a> <a href="#ref-for-list⑤">(5)</a>
-    <li><a href="#ref-for-list⑥">4.3. Contacts source</a> <a href="#ref-for-list⑦">(2)</a>
-    <li><a href="#ref-for-list⑧">5.4.2. select()</a>
-    <li><a href="#ref-for-list⑨">6. Contact Picker</a> <a href="#ref-for-list①⓪">(2)</a> <a href="#ref-for-list①①">(3)</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-e91fab573e469aa2b057ec914b7f91a7" class="dfn-panel" data-for="e91fab573e469aa2b057ec914b7f91a7" id="infopanel-for-e91fab573e469aa2b057ec914b7f91a7">
-   <span id="infopaneltitle-for-e91fab573e469aa2b057ec914b7f91a7" style="display:none">Info about the 'image mime type' external reference.</span><a href="https://mimesniff.spec.whatwg.org/#image-mime-type">https://mimesniff.spec.whatwg.org/#image-mime-type</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-image-mime-type">4.2. User contact</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-0ab204fb9cc9a746edaff83c0db0740a" class="dfn-panel" data-for="0ab204fb9cc9a746edaff83c0db0740a" id="infopanel-for-0ab204fb9cc9a746edaff83c0db0740a">
-   <span id="infopaneltitle-for-0ab204fb9cc9a746edaff83c0db0740a" style="display:none">Info about the 'DOMException' external reference.</span><a href="https://webidl.spec.whatwg.org/#idl-DOMException">https://webidl.spec.whatwg.org/#idl-DOMException</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-idl-DOMException">5.4.2. select()</a> <a href="#ref-for-idl-DOMException①">(2)</a> <a href="#ref-for-idl-DOMException②">(3)</a> <a href="#ref-for-idl-DOMException③">(4)</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-d0f238a61de9310f1738a214749fab18" class="dfn-panel" data-for="d0f238a61de9310f1738a214749fab18" id="infopanel-for-d0f238a61de9310f1738a214749fab18">
-   <span id="infopaneltitle-for-d0f238a61de9310f1738a214749fab18" style="display:none">Info about the 'DOMString' external reference.</span><a href="https://webidl.spec.whatwg.org/#idl-DOMString">https://webidl.spec.whatwg.org/#idl-DOMString</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-idl-DOMString">4.1. Physical address</a> <a href="#ref-for-idl-DOMString①">(2)</a> <a href="#ref-for-idl-DOMString②">(3)</a> <a href="#ref-for-idl-DOMString③">(4)</a> <a href="#ref-for-idl-DOMString④">(5)</a> <a href="#ref-for-idl-DOMString⑤">(6)</a> <a href="#ref-for-idl-DOMString⑥">(7)</a> <a href="#ref-for-idl-DOMString⑦">(8)</a> <a href="#ref-for-idl-DOMString⑧">(9)</a> <a href="#ref-for-idl-DOMString⑨">(10)</a>
-    <li><a href="#ref-for-idl-DOMString①⓪">4.2. User contact</a> <a href="#ref-for-idl-DOMString①①">(2)</a> <a href="#ref-for-idl-DOMString①②">(3)</a>
-    <li><a href="#ref-for-idl-DOMString①③">5.3. ContactAddress</a> <a href="#ref-for-idl-DOMString①④">(2)</a> <a href="#ref-for-idl-DOMString①⑤">(3)</a> <a href="#ref-for-idl-DOMString①⑥">(4)</a> <a href="#ref-for-idl-DOMString①⑦">(5)</a> <a href="#ref-for-idl-DOMString①⑧">(6)</a> <a href="#ref-for-idl-DOMString①⑨">(7)</a> <a href="#ref-for-idl-DOMString②⓪">(8)</a> <a href="#ref-for-idl-DOMString②①">(9)</a> <a href="#ref-for-idl-DOMString②②">(10)</a>
-    <li><a href="#ref-for-idl-DOMString②③">5.4. ContactsManager</a> <a href="#ref-for-idl-DOMString②④">(2)</a> <a href="#ref-for-idl-DOMString②⑤">(3)</a>
-    <li><a href="#ref-for-idl-DOMString②⑥">6. Contact Picker</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-38e3defe39e14c3dcfa5f72e6dd22349" class="dfn-panel" data-for="38e3defe39e14c3dcfa5f72e6dd22349" id="infopanel-for-38e3defe39e14c3dcfa5f72e6dd22349">
-   <span id="infopaneltitle-for-38e3defe39e14c3dcfa5f72e6dd22349" style="display:none">Info about the 'Default' external reference.</span><a href="https://webidl.spec.whatwg.org/#Default">https://webidl.spec.whatwg.org/#Default</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-Default">5.3. ContactAddress</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-dde049eb112f043fc45407ec0d4cb457" class="dfn-panel" data-for="dde049eb112f043fc45407ec0d4cb457" id="infopanel-for-dde049eb112f043fc45407ec0d4cb457">
-   <span id="infopaneltitle-for-dde049eb112f043fc45407ec0d4cb457" style="display:none">Info about the 'Exposed' external reference.</span><a href="https://webidl.spec.whatwg.org/#Exposed">https://webidl.spec.whatwg.org/#Exposed</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-Exposed">5.1. Extensions to Navigator</a>
-    <li><a href="#ref-for-Exposed①">5.3. ContactAddress</a>
-    <li><a href="#ref-for-Exposed②">5.4. ContactsManager</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-30e8367dc9a547b9096d98ba691987d9" class="dfn-panel" data-for="30e8367dc9a547b9096d98ba691987d9" id="infopanel-for-30e8367dc9a547b9096d98ba691987d9">
-   <span id="infopaneltitle-for-30e8367dc9a547b9096d98ba691987d9" style="display:none">Info about the 'FrozenArray' external reference.</span><a href="https://webidl.spec.whatwg.org/#idl-frozen-array">https://webidl.spec.whatwg.org/#idl-frozen-array</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-idl-frozen-array">5.3. ContactAddress</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-e2a06375a2fb70c61a8b4cd0abe9d4f1" class="dfn-panel" data-for="e2a06375a2fb70c61a8b4cd0abe9d4f1" id="infopanel-for-e2a06375a2fb70c61a8b4cd0abe9d4f1">
-   <span id="infopaneltitle-for-e2a06375a2fb70c61a8b4cd0abe9d4f1" style="display:none">Info about the 'InvalidStateError' external reference.</span><a href="https://webidl.spec.whatwg.org/#invalidstateerror">https://webidl.spec.whatwg.org/#invalidstateerror</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-invalidstateerror">5.4.2. select()</a> <a href="#ref-for-invalidstateerror①">(2)</a> <a href="#ref-for-invalidstateerror②">(3)</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-93669c631ec1ef8e696b4c083bdbe12c" class="dfn-panel" data-for="93669c631ec1ef8e696b4c083bdbe12c" id="infopanel-for-93669c631ec1ef8e696b4c083bdbe12c">
-   <span id="infopaneltitle-for-93669c631ec1ef8e696b4c083bdbe12c" style="display:none">Info about the 'Promise' external reference.</span><a href="https://webidl.spec.whatwg.org/#idl-promise">https://webidl.spec.whatwg.org/#idl-promise</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-idl-promise">5.4. ContactsManager</a> <a href="#ref-for-idl-promise①">(2)</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-f572762cd4679aeacd36722d99d2b741" class="dfn-panel" data-for="f572762cd4679aeacd36722d99d2b741" id="infopanel-for-f572762cd4679aeacd36722d99d2b741">
-   <span id="infopaneltitle-for-f572762cd4679aeacd36722d99d2b741" style="display:none">Info about the 'SameObject' external reference.</span><a href="https://webidl.spec.whatwg.org/#SameObject">https://webidl.spec.whatwg.org/#SameObject</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-SameObject">5.1. Extensions to Navigator</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-cdf224ec60dc3b08449a2fbdf3a90406" class="dfn-panel" data-for="cdf224ec60dc3b08449a2fbdf3a90406" id="infopanel-for-cdf224ec60dc3b08449a2fbdf3a90406">
-   <span id="infopaneltitle-for-cdf224ec60dc3b08449a2fbdf3a90406" style="display:none">Info about the 'SecureContext' external reference.</span><a href="https://webidl.spec.whatwg.org/#SecureContext">https://webidl.spec.whatwg.org/#SecureContext</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-SecureContext">5.1. Extensions to Navigator</a>
-    <li><a href="#ref-for-SecureContext①">5.4. ContactsManager</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-bfd589348b877ef78380edc0886321f0" class="dfn-panel" data-for="bfd589348b877ef78380edc0886321f0" id="infopanel-for-bfd589348b877ef78380edc0886321f0">
-   <span id="infopaneltitle-for-bfd589348b877ef78380edc0886321f0" style="display:none">Info about the 'SecurityError' external reference.</span><a href="https://webidl.spec.whatwg.org/#securityerror">https://webidl.spec.whatwg.org/#securityerror</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-securityerror">5.4.2. select()</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-3f9c3eac015894a734faa8068fd8c2a1" class="dfn-panel" data-for="3f9c3eac015894a734faa8068fd8c2a1" id="infopanel-for-3f9c3eac015894a734faa8068fd8c2a1">
-   <span id="infopaneltitle-for-3f9c3eac015894a734faa8068fd8c2a1" style="display:none">Info about the 'TypeError' external reference.</span><a href="https://webidl.spec.whatwg.org/#exceptiondef-typeerror">https://webidl.spec.whatwg.org/#exceptiondef-typeerror</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-exceptiondef-typeerror">5.4.2. select()</a> <a href="#ref-for-exceptiondef-typeerror①">(2)</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-bbe33fc7ac016834e4aaddbfd1b084a1" class="dfn-panel" data-for="bbe33fc7ac016834e4aaddbfd1b084a1" id="infopanel-for-bbe33fc7ac016834e4aaddbfd1b084a1">
-   <span id="infopaneltitle-for-bbe33fc7ac016834e4aaddbfd1b084a1" style="display:none">Info about the 'a new promise' external reference.</span><a href="https://webidl.spec.whatwg.org/#a-new-promise">https://webidl.spec.whatwg.org/#a-new-promise</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-a-new-promise">5.4.1. getProperties()</a>
-    <li><a href="#ref-for-a-new-promise①">5.4.2. select()</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-cf8339c4a39778ea039900ab8a77d2fe" class="dfn-panel" data-for="cf8339c4a39778ea039900ab8a77d2fe" id="infopanel-for-cf8339c4a39778ea039900ab8a77d2fe">
-   <span id="infopaneltitle-for-cf8339c4a39778ea039900ab8a77d2fe" style="display:none">Info about the 'a promise rejected with' external reference.</span><a href="https://webidl.spec.whatwg.org/#a-promise-rejected-with">https://webidl.spec.whatwg.org/#a-promise-rejected-with</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-a-promise-rejected-with">5.4.2. select()</a> <a href="#ref-for-a-promise-rejected-with①">(2)</a> <a href="#ref-for-a-promise-rejected-with②">(3)</a> <a href="#ref-for-a-promise-rejected-with③">(4)</a> <a href="#ref-for-a-promise-rejected-with④">(5)</a> <a href="#ref-for-a-promise-rejected-with⑤">(6)</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-f8062b07e25ed0281f5cbfb9a54070b4" class="dfn-panel" data-for="f8062b07e25ed0281f5cbfb9a54070b4" id="infopanel-for-f8062b07e25ed0281f5cbfb9a54070b4">
-   <span id="infopaneltitle-for-f8062b07e25ed0281f5cbfb9a54070b4" style="display:none">Info about the 'boolean' external reference.</span><a href="https://webidl.spec.whatwg.org/#idl-boolean">https://webidl.spec.whatwg.org/#idl-boolean</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-idl-boolean">5.4. ContactsManager</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-5039223412f0d0a24ee17570f82d3d59" class="dfn-panel" data-for="5039223412f0d0a24ee17570f82d3d59" id="infopanel-for-5039223412f0d0a24ee17570f82d3d59">
-   <span id="infopaneltitle-for-5039223412f0d0a24ee17570f82d3d59" style="display:none">Info about the 'object' external reference.</span><a href="https://webidl.spec.whatwg.org/#idl-object">https://webidl.spec.whatwg.org/#idl-object</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-idl-object">5.3. ContactAddress</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-38ab7db52e46bed36993204c29f67202" class="dfn-panel" data-for="38ab7db52e46bed36993204c29f67202" id="infopanel-for-38ab7db52e46bed36993204c29f67202">
-   <span id="infopaneltitle-for-38ab7db52e46bed36993204c29f67202" style="display:none">Info about the 'sequence' external reference.</span><a href="https://webidl.spec.whatwg.org/#idl-sequence">https://webidl.spec.whatwg.org/#idl-sequence</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-idl-sequence">5.4. ContactsManager</a> <a href="#ref-for-idl-sequence①">(2)</a> <a href="#ref-for-idl-sequence②">(3)</a> <a href="#ref-for-idl-sequence③">(4)</a> <a href="#ref-for-idl-sequence④">(5)</a> <a href="#ref-for-idl-sequence⑤">(6)</a> <a href="#ref-for-idl-sequence⑥">(7)</a> <a href="#ref-for-idl-sequence⑦">(8)</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-be0933df03cd63338f98de217c4158c7" class="dfn-panel" data-for="be0933df03cd63338f98de217c4158c7" id="infopanel-for-be0933df03cd63338f98de217c4158c7">
-   <span id="infopaneltitle-for-be0933df03cd63338f98de217c4158c7" style="display:none">Info about the 'this' external reference.</span><a href="https://webidl.spec.whatwg.org/#this">https://webidl.spec.whatwg.org/#this</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-this">3. Realms</a>
-    <li><a href="#ref-for-this①">4. Infrastructure</a>
-    <li><a href="#ref-for-this②">5.1. Extensions to Navigator</a>
-    <li><a href="#ref-for-this③">5.3. ContactAddress</a> <a href="#ref-for-this④">(2)</a> <a href="#ref-for-this⑤">(3)</a> <a href="#ref-for-this⑥">(4)</a> <a href="#ref-for-this⑦">(5)</a> <a href="#ref-for-this⑧">(6)</a> <a href="#ref-for-this⑨">(7)</a> <a href="#ref-for-this①⓪">(8)</a> <a href="#ref-for-this①①">(9)</a> <a href="#ref-for-this①②">(10)</a>
-    <li><a href="#ref-for-this①③">5.4.2. select()</a>
-   </ul>
-  </aside>
   <h3 class="no-num no-ref heading settled" id="index-defined-elsewhere"><span class="content">Terms defined by reference</span><a class="self-link" href="#index-defined-elsewhere"></a></h3>
   <ul class="index">
    <li>
     <a data-link-type="biblio">[FileAPI]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="881ec0d5093da41de02778af72e8496c">Blob</span>
-     <li><span class="dfn-paneled" id="f7081366b4772d18aefa3db823f45861">type</span>
+     <li><span class="dfn-paneled" id="b7d73f5b">Blob</span>
+     <li><span class="dfn-paneled" id="e303c02d">type</span>
     </ul>
    <li>
     <a data-link-type="biblio">[HTML]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="3d8a5fc79380be386c0775eaf943a6b2">HTMLButtonElement</span>
-     <li><span class="dfn-paneled" id="8bd1567bfeee6a7f042b4739599829fd">HTMLImageElement</span>
-     <li><span class="dfn-paneled" id="3c82b19be23a00eb4bb6896ec20cd7aa">Navigator</span>
-     <li><span class="dfn-paneled" id="5db590bc82ac7edd15fc4ebd1b0c25f0">browsing context</span>
-     <li><span class="dfn-paneled" id="88e9715f297564aa1cfabdf015c4f240">event loop</span>
-     <li><span class="dfn-paneled" id="3a2763fcaa6bc82693554cf36780c0dd">in parallel</span>
-     <li><span class="dfn-paneled" id="e66f9f7d45934e77669cb907bd0c7636">origin</span>
-     <li><span class="dfn-paneled" id="da7ed5f190c4eedd375552d6f7876301">queue a task</span>
-     <li><span class="dfn-paneled" id="8ee6ba3007ddbcc1bac5ed5548b8cb0e">relevant realm</span>
-     <li><span class="dfn-paneled" id="bfb9cb6617f81a424ab20212af73bae3">relevant settings object</span>
-     <li><span class="dfn-paneled" id="9975dcbf6edcaa4e4545626d4ec14e5c">responsible event loop</span>
-     <li><span class="dfn-paneled" id="613400696de3e8f8a5001430db03abe8">secure context</span>
-     <li><span class="dfn-paneled" id="8022a5f0b9910c35c5215fd070e93d09">task source</span>
-     <li><span class="dfn-paneled" id="c104b697744f6f246969dcc26b898f11">top-level browsing context</span>
+     <li><span class="dfn-paneled" id="739f34ec">HTMLButtonElement</span>
+     <li><span class="dfn-paneled" id="c5891539">HTMLImageElement</span>
+     <li><span class="dfn-paneled" id="be0c27b2">Navigator</span>
+     <li><span class="dfn-paneled" id="0d0390b4">browsing context</span>
+     <li><span class="dfn-paneled" id="b78d6a64">event loop</span>
+     <li><span class="dfn-paneled" id="a72449dd">in parallel</span>
+     <li><span class="dfn-paneled" id="086e3aff">origin</span>
+     <li><span class="dfn-paneled" id="9a517a7d">queue a task</span>
+     <li><span class="dfn-paneled" id="5991ccfb">relevant realm</span>
+     <li><span class="dfn-paneled" id="9c4c1e66">relevant settings object</span>
+     <li><span class="dfn-paneled" id="e3288657">responsible event loop</span>
+     <li><span class="dfn-paneled" id="65181da8">secure context</span>
+     <li><span class="dfn-paneled" id="c3b2d08c">task source</span>
+     <li><span class="dfn-paneled" id="ae2a6342">top-level browsing context</span>
     </ul>
    <li>
     <a data-link-type="biblio">[INFRA]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="fcfc8b0ed220faa237969aed00e2586d">append</span>
-     <li><span class="dfn-paneled" id="0d4cc8e47c65b15b2be5e5e730a09d3c">boolean</span>
-     <li><span class="dfn-paneled" id="eb75379b05abc264a531a791358e1eba">contain</span>
-     <li><span class="dfn-paneled" id="de8dad85bc31aef3359c7c7dbd918fe7">empty</span>
-     <li><span class="dfn-paneled" id="8b9e78ceedde26e69095bd6f6cce47bf">for each</span>
-     <li><span class="dfn-paneled" id="c783a9adeafb412d3bdeaeb1c6a29d96">item</span>
-     <li><span class="dfn-paneled" id="fafd38d2108e357bcc9a6fd7f3cd04a7">list</span>
+     <li><span class="dfn-paneled" id="53275e46">append</span>
+     <li><span class="dfn-paneled" id="36858240">boolean</span>
+     <li><span class="dfn-paneled" id="ae8def21">contain</span>
+     <li><span class="dfn-paneled" id="03afaf9c">empty</span>
+     <li><span class="dfn-paneled" id="16d07e10">for each</span>
+     <li><span class="dfn-paneled" id="5afbefcd">item</span>
+     <li><span class="dfn-paneled" id="649608b9">list</span>
     </ul>
    <li>
     <a data-link-type="biblio">[MIMESNIFF]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="e91fab573e469aa2b057ec914b7f91a7">image mime type</span>
+     <li><span class="dfn-paneled" id="01ce2efd">image mime type</span>
     </ul>
    <li>
     <a data-link-type="biblio">[WEBIDL]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="0ab204fb9cc9a746edaff83c0db0740a">DOMException</span>
-     <li><span class="dfn-paneled" id="d0f238a61de9310f1738a214749fab18">DOMString</span>
-     <li><span class="dfn-paneled" id="38e3defe39e14c3dcfa5f72e6dd22349">Default</span>
-     <li><span class="dfn-paneled" id="dde049eb112f043fc45407ec0d4cb457">Exposed</span>
-     <li><span class="dfn-paneled" id="30e8367dc9a547b9096d98ba691987d9">FrozenArray</span>
-     <li><span class="dfn-paneled" id="e2a06375a2fb70c61a8b4cd0abe9d4f1">InvalidStateError</span>
-     <li><span class="dfn-paneled" id="93669c631ec1ef8e696b4c083bdbe12c">Promise</span>
-     <li><span class="dfn-paneled" id="f572762cd4679aeacd36722d99d2b741">SameObject</span>
-     <li><span class="dfn-paneled" id="cdf224ec60dc3b08449a2fbdf3a90406">SecureContext</span>
-     <li><span class="dfn-paneled" id="bfd589348b877ef78380edc0886321f0">SecurityError</span>
-     <li><span class="dfn-paneled" id="3f9c3eac015894a734faa8068fd8c2a1">TypeError</span>
-     <li><span class="dfn-paneled" id="bbe33fc7ac016834e4aaddbfd1b084a1">a new promise</span>
-     <li><span class="dfn-paneled" id="cf8339c4a39778ea039900ab8a77d2fe">a promise rejected with</span>
-     <li><span class="dfn-paneled" id="f8062b07e25ed0281f5cbfb9a54070b4">boolean</span>
-     <li><span class="dfn-paneled" id="5039223412f0d0a24ee17570f82d3d59">object</span>
-     <li><span class="dfn-paneled" id="38ab7db52e46bed36993204c29f67202">sequence</span>
-     <li><span class="dfn-paneled" id="be0933df03cd63338f98de217c4158c7">this</span>
+     <li><span class="dfn-paneled" id="dca2de17">DOMException</span>
+     <li><span class="dfn-paneled" id="8855a9aa">DOMString</span>
+     <li><span class="dfn-paneled" id="f4531911">Default</span>
+     <li><span class="dfn-paneled" id="889e932f">Exposed</span>
+     <li><span class="dfn-paneled" id="dcf5fafa">FrozenArray</span>
+     <li><span class="dfn-paneled" id="797018a7">InvalidStateError</span>
+     <li><span class="dfn-paneled" id="bdbd19d1">Promise</span>
+     <li><span class="dfn-paneled" id="a5c91173">SameObject</span>
+     <li><span class="dfn-paneled" id="b75bb3bd">SecureContext</span>
+     <li><span class="dfn-paneled" id="c3e881ef">SecurityError</span>
+     <li><span class="dfn-paneled" id="82ca3efc">TypeError</span>
+     <li><span class="dfn-paneled" id="dacde8b5">a new promise</span>
+     <li><span class="dfn-paneled" id="d0b4a948">a promise rejected with</span>
+     <li><span class="dfn-paneled" id="5372cca8">boolean</span>
+     <li><span class="dfn-paneled" id="efd1ec5d">object</span>
+     <li><span class="dfn-paneled" id="9cce47fd">sequence</span>
+     <li><span class="dfn-paneled" id="4013a022">this</span>
     </ul>
   </ul>
   <h2 class="no-num no-ref heading settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
@@ -1636,342 +1441,68 @@ sections of the earlier attempts.</p>
 };
 
 </pre>
-  <aside aria-labelledby="infopaneltitle-for-contact-picker-task-source" class="dfn-panel" data-for="contact-picker-task-source" id="infopanel-for-contact-picker-task-source">
-   <span id="infopaneltitle-for-contact-picker-task-source" style="display:none">Info about the 'contact picker task source' definition.</span><b><a href="#contact-picker-task-source">#contact-picker-task-source</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-contact-picker-task-source">4. Infrastructure</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-queue-a-contact-picker-task" class="dfn-panel" data-for="queue-a-contact-picker-task" id="infopanel-for-queue-a-contact-picker-task">
-   <span id="infopaneltitle-for-queue-a-contact-picker-task" style="display:none">Info about the 'queue a contact picker task' definition.</span><b><a href="#queue-a-contact-picker-task">#queue-a-contact-picker-task</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-queue-a-contact-picker-task">5.4.2. select()</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-physical-address" class="dfn-panel" data-for="physical-address" id="infopanel-for-physical-address">
-   <span id="infopaneltitle-for-physical-address" style="display:none">Info about the 'physical address' definition.</span><b><a href="#physical-address">#physical-address</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-physical-address">4.2. User contact</a>
-    <li><a href="#ref-for-physical-address①">5.3. ContactAddress</a> <a href="#ref-for-physical-address②">(2)</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-physical-address-country" class="dfn-panel" data-for="physical-address-country" id="infopanel-for-physical-address-country">
-   <span id="infopaneltitle-for-physical-address-country" style="display:none">Info about the 'country' definition.</span><b><a href="#physical-address-country">#physical-address-country</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-physical-address-country">5.3. ContactAddress</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-physical-address-address-line" class="dfn-panel" data-for="physical-address-address-line" id="infopanel-for-physical-address-address-line">
-   <span id="infopaneltitle-for-physical-address-address-line" style="display:none">Info about the 'address line' definition.</span><b><a href="#physical-address-address-line">#physical-address-address-line</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-physical-address-address-line">5.3. ContactAddress</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-physical-address-region" class="dfn-panel" data-for="physical-address-region" id="infopanel-for-physical-address-region">
-   <span id="infopaneltitle-for-physical-address-region" style="display:none">Info about the 'region' definition.</span><b><a href="#physical-address-region">#physical-address-region</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-physical-address-region">5.3. ContactAddress</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-physical-address-city" class="dfn-panel" data-for="physical-address-city" id="infopanel-for-physical-address-city">
-   <span id="infopaneltitle-for-physical-address-city" style="display:none">Info about the 'city' definition.</span><b><a href="#physical-address-city">#physical-address-city</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-physical-address-city">5.3. ContactAddress</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-physical-address-dependent-locality" class="dfn-panel" data-for="physical-address-dependent-locality" id="infopanel-for-physical-address-dependent-locality">
-   <span id="infopaneltitle-for-physical-address-dependent-locality" style="display:none">Info about the 'dependent locality' definition.</span><b><a href="#physical-address-dependent-locality">#physical-address-dependent-locality</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-physical-address-dependent-locality">5.3. ContactAddress</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-physical-address-postal-code" class="dfn-panel" data-for="physical-address-postal-code" id="infopanel-for-physical-address-postal-code">
-   <span id="infopaneltitle-for-physical-address-postal-code" style="display:none">Info about the 'postal code' definition.</span><b><a href="#physical-address-postal-code">#physical-address-postal-code</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-physical-address-postal-code">5.3. ContactAddress</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-physical-address-sorting-code" class="dfn-panel" data-for="physical-address-sorting-code" id="infopanel-for-physical-address-sorting-code">
-   <span id="infopaneltitle-for-physical-address-sorting-code" style="display:none">Info about the 'sorting code' definition.</span><b><a href="#physical-address-sorting-code">#physical-address-sorting-code</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-physical-address-sorting-code">5.3. ContactAddress</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-physical-address-organization" class="dfn-panel" data-for="physical-address-organization" id="infopanel-for-physical-address-organization">
-   <span id="infopaneltitle-for-physical-address-organization" style="display:none">Info about the 'organization' definition.</span><b><a href="#physical-address-organization">#physical-address-organization</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-physical-address-organization">5.3. ContactAddress</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-physical-address-recipient" class="dfn-panel" data-for="physical-address-recipient" id="infopanel-for-physical-address-recipient">
-   <span id="infopaneltitle-for-physical-address-recipient" style="display:none">Info about the 'recipient' definition.</span><b><a href="#physical-address-recipient">#physical-address-recipient</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-physical-address-recipient">5.3. ContactAddress</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-physical-address-phone-number" class="dfn-panel" data-for="physical-address-phone-number" id="infopanel-for-physical-address-phone-number">
-   <span id="infopaneltitle-for-physical-address-phone-number" style="display:none">Info about the 'phone number' definition.</span><b><a href="#physical-address-phone-number">#physical-address-phone-number</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-physical-address-phone-number">5.3. ContactAddress</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-user-contact" class="dfn-panel" data-for="user-contact" id="infopanel-for-user-contact">
-   <span id="infopaneltitle-for-user-contact" style="display:none">Info about the 'user contact' definition.</span><b><a href="#user-contact">#user-contact</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-user-contact">4.2. User contact</a>
-    <li><a href="#ref-for-user-contact①">4.3. Contacts source</a>
-    <li><a href="#ref-for-user-contact②">5.2. ContactProperty</a> <a href="#ref-for-user-contact③">(2)</a> <a href="#ref-for-user-contact④">(3)</a> <a href="#ref-for-user-contact⑤">(4)</a> <a href="#ref-for-user-contact⑥">(5)</a> <a href="#ref-for-user-contact⑦">(6)</a>
-    <li><a href="#ref-for-user-contact⑧">6. Contact Picker</a> <a href="#ref-for-user-contact⑨">(2)</a> <a href="#ref-for-user-contact①⓪">(3)</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-user-contact-names" class="dfn-panel" data-for="user-contact-names" id="infopanel-for-user-contact-names">
-   <span id="infopaneltitle-for-user-contact-names" style="display:none">Info about the 'names' definition.</span><b><a href="#user-contact-names">#user-contact-names</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-user-contact-names">5.2. ContactProperty</a>
-    <li><a href="#ref-for-user-contact-names①">5.4.2. select()</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-user-contact-emails" class="dfn-panel" data-for="user-contact-emails" id="infopanel-for-user-contact-emails">
-   <span id="infopaneltitle-for-user-contact-emails" style="display:none">Info about the 'emails' definition.</span><b><a href="#user-contact-emails">#user-contact-emails</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-user-contact-emails">5.2. ContactProperty</a>
-    <li><a href="#ref-for-user-contact-emails①">5.4.2. select()</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-user-contact-numbers" class="dfn-panel" data-for="user-contact-numbers" id="infopanel-for-user-contact-numbers">
-   <span id="infopaneltitle-for-user-contact-numbers" style="display:none">Info about the 'numbers' definition.</span><b><a href="#user-contact-numbers">#user-contact-numbers</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-user-contact-numbers">5.2. ContactProperty</a>
-    <li><a href="#ref-for-user-contact-numbers①">5.4.2. select()</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-user-contact-addresses" class="dfn-panel" data-for="user-contact-addresses" id="infopanel-for-user-contact-addresses">
-   <span id="infopaneltitle-for-user-contact-addresses" style="display:none">Info about the 'addresses' definition.</span><b><a href="#user-contact-addresses">#user-contact-addresses</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-user-contact-addresses">5.2. ContactProperty</a>
-    <li><a href="#ref-for-user-contact-addresses①">5.4.2. select()</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-user-contact-icons" class="dfn-panel" data-for="user-contact-icons" id="infopanel-for-user-contact-icons">
-   <span id="infopaneltitle-for-user-contact-icons" style="display:none">Info about the 'icons' definition.</span><b><a href="#user-contact-icons">#user-contact-icons</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-user-contact-icons">5.2. ContactProperty</a>
-    <li><a href="#ref-for-user-contact-icons①">5.4.2. select()</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-contacts-source" class="dfn-panel" data-for="contacts-source" id="infopanel-for-contacts-source">
-   <span id="infopaneltitle-for-contacts-source" style="display:none">Info about the 'contacts source' definition.</span><b><a href="#contacts-source">#contacts-source</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-contacts-source">4.3. Contacts source</a> <a href="#ref-for-contacts-source①">(2)</a>
-    <li><a href="#ref-for-contacts-source②">5.4.1. getProperties()</a>
-    <li><a href="#ref-for-contacts-source③">5.4.2. select()</a>
-    <li><a href="#ref-for-contacts-source④">6. Contact Picker</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-contacts-source-available-contacts" class="dfn-panel" data-for="contacts-source-available-contacts" id="infopanel-for-contacts-source-available-contacts">
-   <span id="infopaneltitle-for-contacts-source-available-contacts" style="display:none">Info about the 'available contacts' definition.</span><b><a href="#contacts-source-available-contacts">#contacts-source-available-contacts</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-contacts-source-available-contacts">6. Contact Picker</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-contacts-source-supported-properties" class="dfn-panel" data-for="contacts-source-supported-properties" id="infopanel-for-contacts-source-supported-properties">
-   <span id="infopaneltitle-for-contacts-source-supported-properties" style="display:none">Info about the 'supported properties' definition.</span><b><a href="#contacts-source-supported-properties">#contacts-source-supported-properties</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-contacts-source-supported-properties">5.4.1. getProperties()</a>
-    <li><a href="#ref-for-contacts-source-supported-properties①">5.4.2. select()</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-navigator-contacts-manager" class="dfn-panel" data-for="navigator-contacts-manager" id="infopanel-for-navigator-contacts-manager">
-   <span id="infopaneltitle-for-navigator-contacts-manager" style="display:none">Info about the 'contacts manager' definition.</span><b><a href="#navigator-contacts-manager">#navigator-contacts-manager</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-navigator-contacts-manager">5.1. Extensions to Navigator</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-dom-navigator-contacts" class="dfn-panel" data-for="dom-navigator-contacts" id="infopanel-for-dom-navigator-contacts">
-   <span id="infopaneltitle-for-dom-navigator-contacts" style="display:none">Info about the 'contacts' definition.</span><b><a href="#dom-navigator-contacts">#dom-navigator-contacts</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-navigator-contacts">5.1. Extensions to Navigator</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-contact-picker-is-showing-flag" class="dfn-panel" data-for="contact-picker-is-showing-flag" id="infopanel-for-contact-picker-is-showing-flag">
-   <span id="infopaneltitle-for-contact-picker-is-showing-flag" style="display:none">Info about the 'contact picker is showing flag' definition.</span><b><a href="#contact-picker-is-showing-flag">#contact-picker-is-showing-flag</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-contact-picker-is-showing-flag">5.4.2. select()</a> <a href="#ref-for-contact-picker-is-showing-flag①">(2)</a> <a href="#ref-for-contact-picker-is-showing-flag②">(3)</a> <a href="#ref-for-contact-picker-is-showing-flag③">(4)</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-enumdef-contactproperty" class="dfn-panel" data-for="enumdef-contactproperty" id="infopanel-for-enumdef-contactproperty">
-   <span id="infopaneltitle-for-enumdef-contactproperty" style="display:none">Info about the 'ContactProperty' definition.</span><b><a href="#enumdef-contactproperty">#enumdef-contactproperty</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-enumdef-contactproperty">4.3. Contacts source</a>
-    <li><a href="#ref-for-enumdef-contactproperty①">5.2. ContactProperty</a> <a href="#ref-for-enumdef-contactproperty②">(2)</a>
-    <li><a href="#ref-for-enumdef-contactproperty③">5.4. ContactsManager</a> <a href="#ref-for-enumdef-contactproperty④">(2)</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-available" class="dfn-panel" data-for="available" id="infopanel-for-available">
-   <span id="infopaneltitle-for-available" style="display:none">Info about the 'available' definition.</span><b><a href="#available">#available</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-available">4.3. Contacts source</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-contactaddress" class="dfn-panel" data-for="contactaddress" id="infopanel-for-contactaddress">
-   <span id="infopaneltitle-for-contactaddress" style="display:none">Info about the 'ContactAddress' definition.</span><b><a href="#contactaddress">#contactaddress</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-contactaddress">4.2. User contact</a>
-    <li><a href="#ref-for-contactaddress①">5.3. ContactAddress</a> <a href="#ref-for-contactaddress②">(2)</a> <a href="#ref-for-contactaddress③">(3)</a>
-    <li><a href="#ref-for-contactaddress④">5.4. ContactsManager</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-contactaddress-address" class="dfn-panel" data-for="contactaddress-address" id="infopanel-for-contactaddress-address">
-   <span id="infopaneltitle-for-contactaddress-address" style="display:none">Info about the 'address' definition.</span><b><a href="#contactaddress-address">#contactaddress-address</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-contactaddress-address">5.3. ContactAddress</a> <a href="#ref-for-contactaddress-address①">(2)</a> <a href="#ref-for-contactaddress-address②">(3)</a> <a href="#ref-for-contactaddress-address③">(4)</a> <a href="#ref-for-contactaddress-address④">(5)</a> <a href="#ref-for-contactaddress-address⑤">(6)</a> <a href="#ref-for-contactaddress-address⑥">(7)</a> <a href="#ref-for-contactaddress-address⑦">(8)</a> <a href="#ref-for-contactaddress-address⑧">(9)</a> <a href="#ref-for-contactaddress-address⑨">(10)</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-dom-contactaddress-city" class="dfn-panel" data-for="dom-contactaddress-city" id="infopanel-for-dom-contactaddress-city">
-   <span id="infopaneltitle-for-dom-contactaddress-city" style="display:none">Info about the 'city' definition.</span><b><a href="#dom-contactaddress-city">#dom-contactaddress-city</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-contactaddress-city">5.3. ContactAddress</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-dom-contactaddress-country" class="dfn-panel" data-for="dom-contactaddress-country" id="infopanel-for-dom-contactaddress-country">
-   <span id="infopaneltitle-for-dom-contactaddress-country" style="display:none">Info about the 'country' definition.</span><b><a href="#dom-contactaddress-country">#dom-contactaddress-country</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-contactaddress-country">5.3. ContactAddress</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-dom-contactaddress-dependentlocality" class="dfn-panel" data-for="dom-contactaddress-dependentlocality" id="infopanel-for-dom-contactaddress-dependentlocality">
-   <span id="infopaneltitle-for-dom-contactaddress-dependentlocality" style="display:none">Info about the 'dependentLocality' definition.</span><b><a href="#dom-contactaddress-dependentlocality">#dom-contactaddress-dependentlocality</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-contactaddress-dependentlocality">5.3. ContactAddress</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-dom-contactaddress-organization" class="dfn-panel" data-for="dom-contactaddress-organization" id="infopanel-for-dom-contactaddress-organization">
-   <span id="infopaneltitle-for-dom-contactaddress-organization" style="display:none">Info about the 'organization' definition.</span><b><a href="#dom-contactaddress-organization">#dom-contactaddress-organization</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-contactaddress-organization">5.3. ContactAddress</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-dom-contactaddress-phone" class="dfn-panel" data-for="dom-contactaddress-phone" id="infopanel-for-dom-contactaddress-phone">
-   <span id="infopaneltitle-for-dom-contactaddress-phone" style="display:none">Info about the 'phone' definition.</span><b><a href="#dom-contactaddress-phone">#dom-contactaddress-phone</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-contactaddress-phone">5.3. ContactAddress</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-dom-contactaddress-postalcode" class="dfn-panel" data-for="dom-contactaddress-postalcode" id="infopanel-for-dom-contactaddress-postalcode">
-   <span id="infopaneltitle-for-dom-contactaddress-postalcode" style="display:none">Info about the 'postalCode' definition.</span><b><a href="#dom-contactaddress-postalcode">#dom-contactaddress-postalcode</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-contactaddress-postalcode">5.3. ContactAddress</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-dom-contactaddress-recipient" class="dfn-panel" data-for="dom-contactaddress-recipient" id="infopanel-for-dom-contactaddress-recipient">
-   <span id="infopaneltitle-for-dom-contactaddress-recipient" style="display:none">Info about the 'recipient' definition.</span><b><a href="#dom-contactaddress-recipient">#dom-contactaddress-recipient</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-contactaddress-recipient">5.3. ContactAddress</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-dom-contactaddress-region" class="dfn-panel" data-for="dom-contactaddress-region" id="infopanel-for-dom-contactaddress-region">
-   <span id="infopaneltitle-for-dom-contactaddress-region" style="display:none">Info about the 'region' definition.</span><b><a href="#dom-contactaddress-region">#dom-contactaddress-region</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-contactaddress-region">5.3. ContactAddress</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-dom-contactaddress-sortingcode" class="dfn-panel" data-for="dom-contactaddress-sortingcode" id="infopanel-for-dom-contactaddress-sortingcode">
-   <span id="infopaneltitle-for-dom-contactaddress-sortingcode" style="display:none">Info about the 'sortingCode' definition.</span><b><a href="#dom-contactaddress-sortingcode">#dom-contactaddress-sortingcode</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-contactaddress-sortingcode">5.3. ContactAddress</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-dom-contactaddress-addressline" class="dfn-panel" data-for="dom-contactaddress-addressline" id="infopanel-for-dom-contactaddress-addressline">
-   <span id="infopaneltitle-for-dom-contactaddress-addressline" style="display:none">Info about the 'addressLine' definition.</span><b><a href="#dom-contactaddress-addressline">#dom-contactaddress-addressline</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-contactaddress-addressline">5.3. ContactAddress</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-dictdef-contactinfo" class="dfn-panel" data-for="dictdef-contactinfo" id="infopanel-for-dictdef-contactinfo">
-   <span id="infopaneltitle-for-dictdef-contactinfo" style="display:none">Info about the 'ContactInfo' definition.</span><b><a href="#dictdef-contactinfo">#dictdef-contactinfo</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dictdef-contactinfo">5.4. ContactsManager</a>
-    <li><a href="#ref-for-dictdef-contactinfo①">5.4.2. select()</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-dom-contactinfo-address" class="dfn-panel" data-for="dom-contactinfo-address" id="infopanel-for-dom-contactinfo-address">
-   <span id="infopaneltitle-for-dom-contactinfo-address" style="display:none">Info about the 'address' definition.</span><b><a href="#dom-contactinfo-address">#dom-contactinfo-address</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-contactinfo-address">5.4.2. select()</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-dom-contactinfo-email" class="dfn-panel" data-for="dom-contactinfo-email" id="infopanel-for-dom-contactinfo-email">
-   <span id="infopaneltitle-for-dom-contactinfo-email" style="display:none">Info about the 'email' definition.</span><b><a href="#dom-contactinfo-email">#dom-contactinfo-email</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-contactinfo-email">5.4.2. select()</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-dom-contactinfo-icon" class="dfn-panel" data-for="dom-contactinfo-icon" id="infopanel-for-dom-contactinfo-icon">
-   <span id="infopaneltitle-for-dom-contactinfo-icon" style="display:none">Info about the 'icon' definition.</span><b><a href="#dom-contactinfo-icon">#dom-contactinfo-icon</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-contactinfo-icon">5.4.2. select()</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-dom-contactinfo-name" class="dfn-panel" data-for="dom-contactinfo-name" id="infopanel-for-dom-contactinfo-name">
-   <span id="infopaneltitle-for-dom-contactinfo-name" style="display:none">Info about the 'name' definition.</span><b><a href="#dom-contactinfo-name">#dom-contactinfo-name</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-contactinfo-name">5.4.2. select()</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-dom-contactinfo-tel" class="dfn-panel" data-for="dom-contactinfo-tel" id="infopanel-for-dom-contactinfo-tel">
-   <span id="infopaneltitle-for-dom-contactinfo-tel" style="display:none">Info about the 'tel' definition.</span><b><a href="#dom-contactinfo-tel">#dom-contactinfo-tel</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-contactinfo-tel">5.4.2. select()</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-dictdef-contactsselectoptions" class="dfn-panel" data-for="dictdef-contactsselectoptions" id="infopanel-for-dictdef-contactsselectoptions">
-   <span id="infopaneltitle-for-dictdef-contactsselectoptions" style="display:none">Info about the 'ContactsSelectOptions' definition.</span><b><a href="#dictdef-contactsselectoptions">#dictdef-contactsselectoptions</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dictdef-contactsselectoptions">5.4. ContactsManager</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-contactsmanager" class="dfn-panel" data-for="contactsmanager" id="infopanel-for-contactsmanager">
-   <span id="infopaneltitle-for-contactsmanager" style="display:none">Info about the 'ContactsManager' definition.</span><b><a href="#contactsmanager">#contactsmanager</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-contactsmanager">5.1. Extensions to Navigator</a> <a href="#ref-for-contactsmanager①">(2)</a> <a href="#ref-for-contactsmanager②">(3)</a>
-    <li><a href="#ref-for-contactsmanager③">5.4. ContactsManager</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-dom-contactsmanager-getproperties" class="dfn-panel" data-for="dom-contactsmanager-getproperties" id="infopanel-for-dom-contactsmanager-getproperties">
-   <span id="infopaneltitle-for-dom-contactsmanager-getproperties" style="display:none">Info about the 'getProperties()' definition.</span><b><a href="#dom-contactsmanager-getproperties">#dom-contactsmanager-getproperties</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-contactsmanager-getproperties">5.4. ContactsManager</a>
-    <li><a href="#ref-for-dom-contactsmanager-getproperties①">5.4.1. getProperties()</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-dom-contactsmanager-select" class="dfn-panel" data-for="dom-contactsmanager-select" id="infopanel-for-dom-contactsmanager-select">
-   <span id="infopaneltitle-for-dom-contactsmanager-select" style="display:none">Info about the 'select(properties, options)' definition.</span><b><a href="#dom-contactsmanager-select">#dom-contactsmanager-select</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-contactsmanager-select">5.4. ContactsManager</a>
-    <li><a href="#ref-for-dom-contactsmanager-select①">5.4.2. select()</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-contactsmanager-launching-a-contact-picker" class="dfn-panel" data-for="contactsmanager-launching-a-contact-picker" id="infopanel-for-contactsmanager-launching-a-contact-picker">
-   <span id="infopaneltitle-for-contactsmanager-launching-a-contact-picker" style="display:none">Info about the 'launch' definition.</span><b><a href="#contactsmanager-launching-a-contact-picker">#contactsmanager-launching-a-contact-picker</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-contactsmanager-launching-a-contact-picker">5.4.2. select()</a>
-   </ul>
-  </aside>
-<script>/* script-dfn-panel */
+<script>/* Boilerplate: script-dfn-panel */
 "use strict";
 {
-    function queryAll(sel) {
-        return [].slice.call(document.querySelectorAll(sel));
+    const dfnsJson = window.dfnsJson || {};
+
+    function genDfnPanel({dfnID, url, dfnText, refSections, external}) {
+        return mk.aside({
+            class: "dfn-panel",
+            id: `infopanel-for-${dfnID}`,
+            "data-for": dfnID,
+            "aria-labelled-by":`infopaneltitle-for-${dfnID}`,
+            },
+            mk.span({id:`infopaneltitle-for-${dfnID}`, style:"display:none"},
+                `Info about the '${dfnText}' ${external?"external":""} reference.`),
+            mk.a({href:url}, url),
+            mk.b({}, "Referenced in:"),
+            mk.ul({},
+                ...refSections.map(section=>
+                    mk.li({},
+                        ...section.refs.map((ref, refI)=>
+                            [
+                                mk.a({
+                                    href: `#${ref.id}`
+                                    },
+                                    (refI == 0) ? section.title : `(${refI + 1})`
+                                ),
+                                " ",
+                            ]
+                        ),
+                    ),
+                ),
+            ),
+        );
     }
 
-    // Add popup behavior to all dfns to show the corresponding dfn-panel.
-    var dfns = document.querySelectorAll('.dfn-paneled');
-    for (let dfn of dfns) { insertDfnPopupAction(dfn); }
+    function genAllDfnPanels() {
+        for(const panelData of Object.values(window.dfnpanelData)) {
+            const dfnID = panelData.dfnID;
+            const dfn = document.getElementById(dfnID);
+            if(!dfn) {
+                console.log(`Can't find dfn#${dfnID}.`, panelData);
+            } else {
+                const panel = genDfnPanel(panelData);
+                append(document.body, panel);
+                insertDfnPopupAction(dfn, panel)
+            }
+        }
+    }
 
-    document.body.addEventListener("click", (e) => {
-        // If not handled already, just hide all dfn panels.
-        hideAllDfnPanels();
-    });
+    document.addEventListener("DOMContentLoaded", ()=>{
+        genAllDfnPanels();
+
+        // Add popup behavior to all dfns to show the corresponding dfn-panel.
+        var dfns = queryAll('.dfn-paneled');
+        for(let dfn of dfns) { ; }
+
+        document.body.addEventListener("click", (e) => {
+            // If not handled already, just hide all dfn panels.
+            hideAllDfnPanels();
+        });
+    })
+
 
     function hideAllDfnPanels() {
         // Turn off any currently "on" or "activated" panels.
@@ -2021,134 +1552,586 @@ sections of the earlier attempts.</p>
         }
     }
 
-    function insertDfnPopupAction(dfn) {
+    function insertDfnPopupAction(dfn, dfnPanel) {
         // Find dfn panel
-        const dfnPanel = document.querySelector(`.dfn-panel[data-for='${dfn.id}']`);
-        if (dfnPanel) {
-            const panelWrapper = document.createElement('span');
-            panelWrapper.appendChild(dfnPanel);
-            panelWrapper.style.position = "relative";
-            panelWrapper.style.height = "0px";
-            dfn.insertAdjacentElement("afterend", panelWrapper);
-            dfn.setAttribute('role', 'button');
-            dfn.setAttribute('aria-expanded', 'false')
-            dfn.tabIndex = 0;
-            dfn.classList.add('has-dfn-panel');
-            dfn.addEventListener('click', (event) => {
-                showDfnPanel(dfnPanel, dfn);
+        const panelWrapper = document.createElement('span');
+        panelWrapper.appendChild(dfnPanel);
+        panelWrapper.style.position = "relative";
+        panelWrapper.style.height = "0px";
+        dfn.insertAdjacentElement("afterend", panelWrapper);
+        dfn.setAttribute('role', 'button');
+        dfn.setAttribute('aria-expanded', 'false')
+        dfn.tabIndex = 0;
+        dfn.classList.add('has-dfn-panel');
+        dfn.addEventListener('click', (event) => {
+            showDfnPanel(dfnPanel, dfn);
+            event.stopPropagation();
+        });
+        dfn.addEventListener('keypress', (event) => {
+            const kc = event.keyCode;
+            // 32->Space, 13->Enter
+            if(kc == 32 || kc == 13) {
+                toggleDfnPanel(dfnPanel, dfn);
                 event.stopPropagation();
-            });
-            dfn.addEventListener('keypress', (event) => {
-                const kc = event.keyCode;
-                // 32->Space, 13->Enter
-                if(kc == 32 || kc == 13) {
-                    toggleDfnPanel(dfnPanel, dfn);
-                    event.stopPropagation();
-                    event.preventDefault();
-                }
-            });
+                event.preventDefault();
+            }
+        });
 
-            dfnPanel.addEventListener('click', (event) => {
+        dfnPanel.addEventListener('click', (event) => {
+            if (event.target.nodeName == 'A') {
                 pinDfnPanel(dfnPanel);
+            }
+            event.stopPropagation();
+        });
+
+        dfnPanel.addEventListener('keydown', (event) => {
+            if(event.keyCode == 27) { // Escape key
+                hideDfnPanel(dfnPanel, dfn);
                 event.stopPropagation();
-            });
-
-            dfnPanel.addEventListener('keydown', (event) => {
-                if(event.keyCode == 27) { // Escape key
-                    hideDfnPanel(dfnPanel, dfn);
-                    event.stopPropagation();
-                    event.preventDefault();
-                }
-            })
-
-        } else {
-            console.log("Couldn't find .dfn-panel[data-for='" + dfn.id + "']");
-        }
+                event.preventDefault();
+            }
+        })
     }
 }
 </script>
-<script>/* script-var-click-highlighting */
+<script>/* Boilerplate: script-dfn-panel */
+"use strict";
+{
+    const dfnsJson = window.dfnsJson || {};
 
-    "use strict";
-    {
-        document.addEventListener("click", e=>{
-            if(e.target.nodeName == "VAR") {
-                highlightSameAlgoVars(e.target);
-            }
-        });
-        const indexCounts = new Map();
-        const indexNames = new Map();
-        function highlightSameAlgoVars(v) {
-            // Find the algorithm container.
-            let algoContainer = null;
-            let searchEl = v;
-            while(algoContainer == null && searchEl != document.body) {
-                searchEl = searchEl.parentNode;
-                if(searchEl.hasAttribute("data-algorithm")) {
-                    algoContainer = searchEl;
-                }
-            }
+    function genDfnPanel({dfnID, url, dfnText, refSections, external}) {
+        return mk.aside({
+            class: "dfn-panel",
+            id: `infopanel-for-${dfnID}`,
+            "data-for": dfnID,
+            "aria-labelled-by":`infopaneltitle-for-${dfnID}`,
+            },
+            mk.span({id:`infopaneltitle-for-${dfnID}`, style:"display:none"},
+                `Info about the '${dfnText}' ${external?"external":""} reference.`),
+            mk.a({href:url}, url),
+            mk.b({}, "Referenced in:"),
+            mk.ul({},
+                ...refSections.map(section=>
+                    mk.li({},
+                        ...section.refs.map((ref, refI)=>
+                            [
+                                mk.a({
+                                    href: `#${ref.id}`
+                                    },
+                                    (refI == 0) ? section.title : `(${refI + 1})`
+                                ),
+                                " ",
+                            ]
+                        ),
+                    ),
+                ),
+            ),
+        );
+    }
 
-            // Not highlighting document-global vars,
-            // too likely to be unrelated.
-            if(algoContainer == null) return;
-
-            const algoName = algoContainer.getAttribute("data-algorithm");
-            const varName = getVarName(v);
-            const addClass = !v.classList.contains("selected");
-            let highlightClass = null;
-            if(addClass) {
-                const index = chooseHighlightIndex(algoName, varName);
-                indexCounts.get(algoName)[index] += 1;
-                indexNames.set(algoName+"///"+varName, index);
-                highlightClass = nameFromIndex(index);
+    function genAllDfnPanels() {
+        for(const panelData of Object.values(window.dfnpanelData)) {
+            const dfnID = panelData.dfnID;
+            const dfn = document.getElementById(dfnID);
+            if(!dfn) {
+                console.log(`Can't find dfn#${dfnID}.`, panelData);
             } else {
-                const index = previousHighlightIndex(algoName, varName);
-                indexCounts.get(algoName)[index] -= 1;
-                highlightClass = nameFromIndex(index);
+                const panel = genDfnPanel(panelData);
+                append(document.body, panel);
+                insertDfnPopupAction(dfn, panel)
             }
-
-            // Find all same-name vars, and toggle their class appropriately.
-            for(const el of algoContainer.querySelectorAll("var")) {
-                if(getVarName(el) == varName) {
-                    el.classList.toggle("selected", addClass);
-                    el.classList.toggle(highlightClass, addClass);
-                }
-            }
-        }
-        function getVarName(el) {
-            return el.textContent.replace(/(\s|\xa0)+/, " ").trim();
-        }
-        function chooseHighlightIndex(algoName, varName) {
-            let indexes = null;
-            if(indexCounts.has(algoName)) {
-                indexes = indexCounts.get(algoName);
-            } else {
-                // 7 classes right now
-                indexes = [0,0,0,0,0,0,0];
-                indexCounts.set(algoName, indexes);
-            }
-
-            // If the element was recently unclicked,
-            // *and* that color is still unclaimed,
-            // give it back the same color.
-            const lastIndex = previousHighlightIndex(algoName, varName);
-            if(indexes[lastIndex] === 0) return lastIndex;
-
-            // Find the earliest index with the lowest count.
-            const minCount = Math.min.apply(null, indexes);
-            let index = null;
-            for(var i = 0; i < indexes.length; i++) {
-                if(indexes[i] == minCount) {
-                    return i;
-                }
-            }
-        }
-        function previousHighlightIndex(algoName, varName) {
-            return indexNames.get(algoName+"///"+varName);
-        }
-        function nameFromIndex(index) {
-            return "selected" + index;
         }
     }
-    </script>
+
+    document.addEventListener("DOMContentLoaded", ()=>{
+        genAllDfnPanels();
+
+        // Add popup behavior to all dfns to show the corresponding dfn-panel.
+        var dfns = queryAll('.dfn-paneled');
+        for(let dfn of dfns) { ; }
+
+        document.body.addEventListener("click", (e) => {
+            // If not handled already, just hide all dfn panels.
+            hideAllDfnPanels();
+        });
+    })
+
+
+    function hideAllDfnPanels() {
+        // Turn off any currently "on" or "activated" panels.
+        queryAll(".dfn-panel.on, .dfn-panel.activated").forEach(el=>hideDfnPanel(el));
+    }
+
+    function showDfnPanel(dfnPanel, dfn) {
+        hideAllDfnPanels(); // Only display one at this time.
+        dfn.setAttribute("aria-expanded", "true");
+        dfnPanel.classList.add("on");
+        dfnPanel.style.left = "5px";
+        dfnPanel.style.top = "0px";
+        const panelRect = dfnPanel.getBoundingClientRect();
+        const panelWidth = panelRect.right - panelRect.left;
+        if (panelRect.right > document.body.scrollWidth) {
+            // Panel's overflowing the screen.
+            // Just drop it below the dfn and flip it rightward instead.
+            // This still wont' fix things if the screen is *really* wide,
+            // but fixing that's a lot harder without 'anchor()'.
+            dfnPanel.style.top = "1.5em";
+            dfnPanel.style.left = "auto";
+            dfnPanel.style.right = "0px";
+        }
+    }
+
+    function pinDfnPanel(dfnPanel) {
+        // Switch it to "activated" state, which pins it.
+        dfnPanel.classList.add("activated");
+        dfnPanel.style.left = null;
+        dfnPanel.style.top = null;
+    }
+
+    function hideDfnPanel(dfnPanel, dfn) {
+        if(!dfn) {
+            dfn = document.getElementById(dfnPanel.getAttribute("data-for"));
+        }
+        dfn.setAttribute("aria-expanded", "false")
+        dfnPanel.classList.remove("on");
+        dfnPanel.classList.remove("activated");
+    }
+
+    function toggleDfnPanel(dfnPanel, dfn) {
+        if(dfnPanel.classList.contains("on")) {
+            hideDfnPanel(dfnPanel, dfn);
+        } else {
+            showDfnPanel(dfnPanel, dfn);
+        }
+    }
+
+    function insertDfnPopupAction(dfn, dfnPanel) {
+        // Find dfn panel
+        const panelWrapper = document.createElement('span');
+        panelWrapper.appendChild(dfnPanel);
+        panelWrapper.style.position = "relative";
+        panelWrapper.style.height = "0px";
+        dfn.insertAdjacentElement("afterend", panelWrapper);
+        dfn.setAttribute('role', 'button');
+        dfn.setAttribute('aria-expanded', 'false')
+        dfn.tabIndex = 0;
+        dfn.classList.add('has-dfn-panel');
+        dfn.addEventListener('click', (event) => {
+            showDfnPanel(dfnPanel, dfn);
+            event.stopPropagation();
+        });
+        dfn.addEventListener('keypress', (event) => {
+            const kc = event.keyCode;
+            // 32->Space, 13->Enter
+            if(kc == 32 || kc == 13) {
+                toggleDfnPanel(dfnPanel, dfn);
+                event.stopPropagation();
+                event.preventDefault();
+            }
+        });
+
+        dfnPanel.addEventListener('click', (event) => {
+            if (event.target.nodeName == 'A') {
+                pinDfnPanel(dfnPanel);
+            }
+            event.stopPropagation();
+        });
+
+        dfnPanel.addEventListener('keydown', (event) => {
+            if(event.keyCode == 27) { // Escape key
+                hideDfnPanel(dfnPanel, dfn);
+                event.stopPropagation();
+                event.preventDefault();
+            }
+        })
+    }
+}
+</script>
+<script>/* Boilerplate: script-dfn-panel-json */
+window.dfnpanelData = {};
+window.dfnpanelData['b7d73f5b'] = {"dfnID": "b7d73f5b", "url": "https://w3c.github.io/FileAPI/#dfn-Blob", "dfnText": "Blob", "refSections": [{"refs": [{"id": "ref-for-dfn-Blob"}, {"id": "ref-for-dfn-Blob\u2460"}], "title": "4.2. User contact"}, {"refs": [{"id": "ref-for-dfn-Blob\u2461"}], "title": "5.4. ContactsManager"}], "external": true};
+window.dfnpanelData['e303c02d'] = {"dfnID": "e303c02d", "url": "https://w3c.github.io/FileAPI/#dfn-type", "dfnText": "type", "refSections": [{"refs": [{"id": "ref-for-dfn-type"}], "title": "4.2. User contact"}], "external": true};
+window.dfnpanelData['739f34ec'] = {"dfnID": "739f34ec", "url": "https://html.spec.whatwg.org/multipage/form-elements.html#htmlbuttonelement", "dfnText": "HTMLButtonElement", "refSections": [{"refs": [{"id": "ref-for-htmlbuttonelement"}, {"id": "ref-for-htmlbuttonelement\u2460"}, {"id": "ref-for-htmlbuttonelement\u2461"}], "title": "1.1. Examples"}], "external": true};
+window.dfnpanelData['c5891539'] = {"dfnID": "c5891539", "url": "https://html.spec.whatwg.org/multipage/embedded-content.html#htmlimageelement", "dfnText": "HTMLImageElement", "refSections": [{"refs": [{"id": "ref-for-htmlimageelement"}], "title": "1.1. Examples"}], "external": true};
+window.dfnpanelData['be0c27b2'] = {"dfnID": "be0c27b2", "url": "https://html.spec.whatwg.org/multipage/system-state.html#navigator", "dfnText": "Navigator", "refSections": [{"refs": [{"id": "ref-for-navigator"}, {"id": "ref-for-navigator\u2460"}, {"id": "ref-for-navigator\u2461"}], "title": "5.1. Extensions to Navigator"}], "external": true};
+window.dfnpanelData['0d0390b4'] = {"dfnID": "0d0390b4", "url": "https://html.spec.whatwg.org/multipage/document-sequences.html#browsing-context", "dfnText": "browsing context", "refSections": [{"refs": [{"id": "ref-for-browsing-context"}], "title": "5.1. Extensions to Navigator"}, {"refs": [{"id": "ref-for-browsing-context\u2460"}], "title": "6. Contact Picker"}], "external": true};
+window.dfnpanelData['b78d6a64'] = {"dfnID": "b78d6a64", "url": "https://html.spec.whatwg.org/multipage/webappapis.html#concept-agent-event-loop", "dfnText": "event loop", "refSections": [{"refs": [{"id": "ref-for-concept-agent-event-loop"}], "title": "4. Infrastructure"}], "external": true};
+window.dfnpanelData['a72449dd'] = {"dfnID": "a72449dd", "url": "https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel", "dfnText": "in parallel", "refSections": [{"refs": [{"id": "ref-for-in-parallel"}], "title": "5.4.1. getProperties()"}, {"refs": [{"id": "ref-for-in-parallel\u2460"}], "title": "5.4.2. select()"}], "external": true};
+window.dfnpanelData['086e3aff'] = {"dfnID": "086e3aff", "url": "https://html.spec.whatwg.org/multipage/browsers.html#concept-origin", "dfnText": "origin", "refSections": [{"refs": [{"id": "ref-for-concept-origin"}], "title": "6. Contact Picker"}], "external": true};
+window.dfnpanelData['9a517a7d'] = {"dfnID": "9a517a7d", "url": "https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task", "dfnText": "queue a task", "refSections": [{"refs": [{"id": "ref-for-queue-a-task"}], "title": "4. Infrastructure"}], "external": true};
+window.dfnpanelData['5991ccfb'] = {"dfnID": "5991ccfb", "url": "https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm", "dfnText": "relevant realm", "refSections": [{"refs": [{"id": "ref-for-concept-relevant-realm"}], "title": "3. Realms"}], "external": true};
+window.dfnpanelData['9c4c1e66'] = {"dfnID": "9c4c1e66", "url": "https://html.spec.whatwg.org/multipage/webappapis.html#relevant-settings-object", "dfnText": "relevant settings object", "refSections": [{"refs": [{"id": "ref-for-relevant-settings-object"}], "title": "4. Infrastructure"}, {"refs": [{"id": "ref-for-relevant-settings-object\u2460"}], "title": "5.4.2. select()"}], "external": true};
+window.dfnpanelData['e3288657'] = {"dfnID": "e3288657", "url": "https://html.spec.whatwg.org/multipage/webappapis.html#responsible-event-loop", "dfnText": "responsible event loop", "refSections": [{"refs": [{"id": "ref-for-responsible-event-loop"}], "title": "4. Infrastructure"}], "external": true};
+window.dfnpanelData['65181da8'] = {"dfnID": "65181da8", "url": "https://html.spec.whatwg.org/multipage/webappapis.html#secure-context", "dfnText": "secure context", "refSections": [{"refs": [{"id": "ref-for-secure-context"}], "title": "2. Privacy Considerations"}], "external": true};
+window.dfnpanelData['c3b2d08c'] = {"dfnID": "c3b2d08c", "url": "https://html.spec.whatwg.org/multipage/webappapis.html#task-source", "dfnText": "task source", "refSections": [{"refs": [{"id": "ref-for-task-source"}], "title": "4. Infrastructure"}], "external": true};
+window.dfnpanelData['ae2a6342'] = {"dfnID": "ae2a6342", "url": "https://html.spec.whatwg.org/multipage/document-sequences.html#top-level-browsing-context", "dfnText": "top-level browsing context", "refSections": [{"refs": [{"id": "ref-for-top-level-browsing-context"}], "title": "2. Privacy Considerations"}, {"refs": [{"id": "ref-for-top-level-browsing-context\u2460"}], "title": "5.4.2. select()"}], "external": true};
+window.dfnpanelData['53275e46'] = {"dfnID": "53275e46", "url": "https://infra.spec.whatwg.org/#list-append", "dfnText": "append", "refSections": [{"refs": [{"id": "ref-for-list-append"}], "title": "5.4.2. select()"}], "external": true};
+window.dfnpanelData['36858240'] = {"dfnID": "36858240", "url": "https://infra.spec.whatwg.org/#boolean", "dfnText": "boolean", "refSections": [{"refs": [{"id": "ref-for-boolean"}], "title": "6. Contact Picker"}], "external": true};
+window.dfnpanelData['ae8def21'] = {"dfnID": "ae8def21", "url": "https://infra.spec.whatwg.org/#list-contain", "dfnText": "contain", "refSections": [{"refs": [{"id": "ref-for-list-contain"}, {"id": "ref-for-list-contain\u2460"}, {"id": "ref-for-list-contain\u2461"}, {"id": "ref-for-list-contain\u2462"}, {"id": "ref-for-list-contain\u2463"}, {"id": "ref-for-list-contain\u2464"}], "title": "5.4.2. select()"}], "external": true};
+window.dfnpanelData['03afaf9c'] = {"dfnID": "03afaf9c", "url": "https://infra.spec.whatwg.org/#list-empty", "dfnText": "empty", "refSections": [{"refs": [{"id": "ref-for-list-empty"}], "title": "5.4.2. select()"}], "external": true};
+window.dfnpanelData['16d07e10'] = {"dfnID": "16d07e10", "url": "https://infra.spec.whatwg.org/#list-iterate", "dfnText": "for each", "refSections": [{"refs": [{"id": "ref-for-list-iterate"}, {"id": "ref-for-list-iterate\u2460"}], "title": "5.4.2. select()"}], "external": true};
+window.dfnpanelData['5afbefcd'] = {"dfnID": "5afbefcd", "url": "https://infra.spec.whatwg.org/#list-item", "dfnText": "item", "refSections": [{"refs": [{"id": "ref-for-list-item"}, {"id": "ref-for-list-item\u2460"}, {"id": "ref-for-list-item\u2461"}, {"id": "ref-for-list-item\u2462"}, {"id": "ref-for-list-item\u2463"}], "title": "4.2. User contact"}], "external": true};
+window.dfnpanelData['649608b9'] = {"dfnID": "649608b9", "url": "https://infra.spec.whatwg.org/#list", "dfnText": "list", "refSections": [{"refs": [{"id": "ref-for-list"}], "title": "4.1. Physical address"}, {"refs": [{"id": "ref-for-list\u2460"}, {"id": "ref-for-list\u2461"}, {"id": "ref-for-list\u2462"}, {"id": "ref-for-list\u2463"}, {"id": "ref-for-list\u2464"}], "title": "4.2. User contact"}, {"refs": [{"id": "ref-for-list\u2465"}, {"id": "ref-for-list\u2466"}], "title": "4.3. Contacts source"}, {"refs": [{"id": "ref-for-list\u2467"}], "title": "5.4.2. select()"}, {"refs": [{"id": "ref-for-list\u2468"}, {"id": "ref-for-list\u2460\u24ea"}, {"id": "ref-for-list\u2460\u2460"}], "title": "6. Contact Picker"}], "external": true};
+window.dfnpanelData['01ce2efd'] = {"dfnID": "01ce2efd", "url": "https://mimesniff.spec.whatwg.org/#image-mime-type", "dfnText": "image mime type", "refSections": [{"refs": [{"id": "ref-for-image-mime-type"}], "title": "4.2. User contact"}], "external": true};
+window.dfnpanelData['dca2de17'] = {"dfnID": "dca2de17", "url": "https://webidl.spec.whatwg.org/#idl-DOMException", "dfnText": "DOMException", "refSections": [{"refs": [{"id": "ref-for-idl-DOMException"}, {"id": "ref-for-idl-DOMException\u2460"}, {"id": "ref-for-idl-DOMException\u2461"}, {"id": "ref-for-idl-DOMException\u2462"}], "title": "5.4.2. select()"}], "external": true};
+window.dfnpanelData['8855a9aa'] = {"dfnID": "8855a9aa", "url": "https://webidl.spec.whatwg.org/#idl-DOMString", "dfnText": "DOMString", "refSections": [{"refs": [{"id": "ref-for-idl-DOMString"}, {"id": "ref-for-idl-DOMString\u2460"}, {"id": "ref-for-idl-DOMString\u2461"}, {"id": "ref-for-idl-DOMString\u2462"}, {"id": "ref-for-idl-DOMString\u2463"}, {"id": "ref-for-idl-DOMString\u2464"}, {"id": "ref-for-idl-DOMString\u2465"}, {"id": "ref-for-idl-DOMString\u2466"}, {"id": "ref-for-idl-DOMString\u2467"}, {"id": "ref-for-idl-DOMString\u2468"}], "title": "4.1. Physical address"}, {"refs": [{"id": "ref-for-idl-DOMString\u2460\u24ea"}, {"id": "ref-for-idl-DOMString\u2460\u2460"}, {"id": "ref-for-idl-DOMString\u2460\u2461"}], "title": "4.2. User contact"}, {"refs": [{"id": "ref-for-idl-DOMString\u2460\u2462"}, {"id": "ref-for-idl-DOMString\u2460\u2463"}, {"id": "ref-for-idl-DOMString\u2460\u2464"}, {"id": "ref-for-idl-DOMString\u2460\u2465"}, {"id": "ref-for-idl-DOMString\u2460\u2466"}, {"id": "ref-for-idl-DOMString\u2460\u2467"}, {"id": "ref-for-idl-DOMString\u2460\u2468"}, {"id": "ref-for-idl-DOMString\u2461\u24ea"}, {"id": "ref-for-idl-DOMString\u2461\u2460"}, {"id": "ref-for-idl-DOMString\u2461\u2461"}], "title": "5.3. ContactAddress"}, {"refs": [{"id": "ref-for-idl-DOMString\u2461\u2462"}, {"id": "ref-for-idl-DOMString\u2461\u2463"}, {"id": "ref-for-idl-DOMString\u2461\u2464"}], "title": "5.4. ContactsManager"}, {"refs": [{"id": "ref-for-idl-DOMString\u2461\u2465"}], "title": "6. Contact Picker"}], "external": true};
+window.dfnpanelData['f4531911'] = {"dfnID": "f4531911", "url": "https://webidl.spec.whatwg.org/#Default", "dfnText": "Default", "refSections": [{"refs": [{"id": "ref-for-Default"}], "title": "5.3. ContactAddress"}], "external": true};
+window.dfnpanelData['889e932f'] = {"dfnID": "889e932f", "url": "https://webidl.spec.whatwg.org/#Exposed", "dfnText": "Exposed", "refSections": [{"refs": [{"id": "ref-for-Exposed"}], "title": "5.1. Extensions to Navigator"}, {"refs": [{"id": "ref-for-Exposed\u2460"}], "title": "5.3. ContactAddress"}, {"refs": [{"id": "ref-for-Exposed\u2461"}], "title": "5.4. ContactsManager"}], "external": true};
+window.dfnpanelData['dcf5fafa'] = {"dfnID": "dcf5fafa", "url": "https://webidl.spec.whatwg.org/#idl-frozen-array", "dfnText": "FrozenArray", "refSections": [{"refs": [{"id": "ref-for-idl-frozen-array"}], "title": "5.3. ContactAddress"}], "external": true};
+window.dfnpanelData['797018a7'] = {"dfnID": "797018a7", "url": "https://webidl.spec.whatwg.org/#invalidstateerror", "dfnText": "InvalidStateError", "refSections": [{"refs": [{"id": "ref-for-invalidstateerror"}, {"id": "ref-for-invalidstateerror\u2460"}, {"id": "ref-for-invalidstateerror\u2461"}], "title": "5.4.2. select()"}], "external": true};
+window.dfnpanelData['bdbd19d1'] = {"dfnID": "bdbd19d1", "url": "https://webidl.spec.whatwg.org/#idl-promise", "dfnText": "Promise", "refSections": [{"refs": [{"id": "ref-for-idl-promise"}, {"id": "ref-for-idl-promise\u2460"}], "title": "5.4. ContactsManager"}], "external": true};
+window.dfnpanelData['a5c91173'] = {"dfnID": "a5c91173", "url": "https://webidl.spec.whatwg.org/#SameObject", "dfnText": "SameObject", "refSections": [{"refs": [{"id": "ref-for-SameObject"}], "title": "5.1. Extensions to Navigator"}], "external": true};
+window.dfnpanelData['b75bb3bd'] = {"dfnID": "b75bb3bd", "url": "https://webidl.spec.whatwg.org/#SecureContext", "dfnText": "SecureContext", "refSections": [{"refs": [{"id": "ref-for-SecureContext"}], "title": "5.1. Extensions to Navigator"}, {"refs": [{"id": "ref-for-SecureContext\u2460"}], "title": "5.4. ContactsManager"}], "external": true};
+window.dfnpanelData['c3e881ef'] = {"dfnID": "c3e881ef", "url": "https://webidl.spec.whatwg.org/#securityerror", "dfnText": "SecurityError", "refSections": [{"refs": [{"id": "ref-for-securityerror"}], "title": "5.4.2. select()"}], "external": true};
+window.dfnpanelData['82ca3efc'] = {"dfnID": "82ca3efc", "url": "https://webidl.spec.whatwg.org/#exceptiondef-typeerror", "dfnText": "TypeError", "refSections": [{"refs": [{"id": "ref-for-exceptiondef-typeerror"}, {"id": "ref-for-exceptiondef-typeerror\u2460"}], "title": "5.4.2. select()"}], "external": true};
+window.dfnpanelData['dacde8b5'] = {"dfnID": "dacde8b5", "url": "https://webidl.spec.whatwg.org/#a-new-promise", "dfnText": "a new promise", "refSections": [{"refs": [{"id": "ref-for-a-new-promise"}], "title": "5.4.1. getProperties()"}, {"refs": [{"id": "ref-for-a-new-promise\u2460"}], "title": "5.4.2. select()"}], "external": true};
+window.dfnpanelData['d0b4a948'] = {"dfnID": "d0b4a948", "url": "https://webidl.spec.whatwg.org/#a-promise-rejected-with", "dfnText": "a promise rejected with", "refSections": [{"refs": [{"id": "ref-for-a-promise-rejected-with"}, {"id": "ref-for-a-promise-rejected-with\u2460"}, {"id": "ref-for-a-promise-rejected-with\u2461"}, {"id": "ref-for-a-promise-rejected-with\u2462"}, {"id": "ref-for-a-promise-rejected-with\u2463"}, {"id": "ref-for-a-promise-rejected-with\u2464"}], "title": "5.4.2. select()"}], "external": true};
+window.dfnpanelData['5372cca8'] = {"dfnID": "5372cca8", "url": "https://webidl.spec.whatwg.org/#idl-boolean", "dfnText": "boolean", "refSections": [{"refs": [{"id": "ref-for-idl-boolean"}], "title": "5.4. ContactsManager"}], "external": true};
+window.dfnpanelData['efd1ec5d'] = {"dfnID": "efd1ec5d", "url": "https://webidl.spec.whatwg.org/#idl-object", "dfnText": "object", "refSections": [{"refs": [{"id": "ref-for-idl-object"}], "title": "5.3. ContactAddress"}], "external": true};
+window.dfnpanelData['9cce47fd'] = {"dfnID": "9cce47fd", "url": "https://webidl.spec.whatwg.org/#idl-sequence", "dfnText": "sequence", "refSections": [{"refs": [{"id": "ref-for-idl-sequence"}, {"id": "ref-for-idl-sequence\u2460"}, {"id": "ref-for-idl-sequence\u2461"}, {"id": "ref-for-idl-sequence\u2462"}, {"id": "ref-for-idl-sequence\u2463"}, {"id": "ref-for-idl-sequence\u2464"}, {"id": "ref-for-idl-sequence\u2465"}, {"id": "ref-for-idl-sequence\u2466"}], "title": "5.4. ContactsManager"}], "external": true};
+window.dfnpanelData['4013a022'] = {"dfnID": "4013a022", "url": "https://webidl.spec.whatwg.org/#this", "dfnText": "this", "refSections": [{"refs": [{"id": "ref-for-this"}], "title": "3. Realms"}, {"refs": [{"id": "ref-for-this\u2460"}], "title": "4. Infrastructure"}, {"refs": [{"id": "ref-for-this\u2461"}], "title": "5.1. Extensions to Navigator"}, {"refs": [{"id": "ref-for-this\u2462"}, {"id": "ref-for-this\u2463"}, {"id": "ref-for-this\u2464"}, {"id": "ref-for-this\u2465"}, {"id": "ref-for-this\u2466"}, {"id": "ref-for-this\u2467"}, {"id": "ref-for-this\u2468"}, {"id": "ref-for-this\u2460\u24ea"}, {"id": "ref-for-this\u2460\u2460"}, {"id": "ref-for-this\u2460\u2461"}], "title": "5.3. ContactAddress"}, {"refs": [{"id": "ref-for-this\u2460\u2462"}], "title": "5.4.2. select()"}], "external": true};
+window.dfnpanelData['contact-picker-task-source'] = {"dfnID": "contact-picker-task-source", "url": "#contact-picker-task-source", "dfnText": "contact picker task source", "refSections": [{"refs": [{"id": "ref-for-contact-picker-task-source"}], "title": "4. Infrastructure"}], "external": false};
+window.dfnpanelData['queue-a-contact-picker-task'] = {"dfnID": "queue-a-contact-picker-task", "url": "#queue-a-contact-picker-task", "dfnText": "queue a contact picker task", "refSections": [{"refs": [{"id": "ref-for-queue-a-contact-picker-task"}], "title": "5.4.2. select()"}], "external": false};
+window.dfnpanelData['physical-address'] = {"dfnID": "physical-address", "url": "#physical-address", "dfnText": "physical address", "refSections": [{"refs": [{"id": "ref-for-physical-address"}], "title": "4.2. User contact"}, {"refs": [{"id": "ref-for-physical-address\u2460"}, {"id": "ref-for-physical-address\u2461"}], "title": "5.3. ContactAddress"}], "external": false};
+window.dfnpanelData['physical-address-country'] = {"dfnID": "physical-address-country", "url": "#physical-address-country", "dfnText": "country", "refSections": [{"refs": [{"id": "ref-for-physical-address-country"}], "title": "5.3. ContactAddress"}], "external": false};
+window.dfnpanelData['physical-address-address-line'] = {"dfnID": "physical-address-address-line", "url": "#physical-address-address-line", "dfnText": "address line", "refSections": [{"refs": [{"id": "ref-for-physical-address-address-line"}], "title": "5.3. ContactAddress"}], "external": false};
+window.dfnpanelData['physical-address-region'] = {"dfnID": "physical-address-region", "url": "#physical-address-region", "dfnText": "region", "refSections": [{"refs": [{"id": "ref-for-physical-address-region"}], "title": "5.3. ContactAddress"}], "external": false};
+window.dfnpanelData['physical-address-city'] = {"dfnID": "physical-address-city", "url": "#physical-address-city", "dfnText": "city", "refSections": [{"refs": [{"id": "ref-for-physical-address-city"}], "title": "5.3. ContactAddress"}], "external": false};
+window.dfnpanelData['physical-address-dependent-locality'] = {"dfnID": "physical-address-dependent-locality", "url": "#physical-address-dependent-locality", "dfnText": "dependent locality", "refSections": [{"refs": [{"id": "ref-for-physical-address-dependent-locality"}], "title": "5.3. ContactAddress"}], "external": false};
+window.dfnpanelData['physical-address-postal-code'] = {"dfnID": "physical-address-postal-code", "url": "#physical-address-postal-code", "dfnText": "postal code", "refSections": [{"refs": [{"id": "ref-for-physical-address-postal-code"}], "title": "5.3. ContactAddress"}], "external": false};
+window.dfnpanelData['physical-address-sorting-code'] = {"dfnID": "physical-address-sorting-code", "url": "#physical-address-sorting-code", "dfnText": "sorting code", "refSections": [{"refs": [{"id": "ref-for-physical-address-sorting-code"}], "title": "5.3. ContactAddress"}], "external": false};
+window.dfnpanelData['physical-address-organization'] = {"dfnID": "physical-address-organization", "url": "#physical-address-organization", "dfnText": "organization", "refSections": [{"refs": [{"id": "ref-for-physical-address-organization"}], "title": "5.3. ContactAddress"}], "external": false};
+window.dfnpanelData['physical-address-recipient'] = {"dfnID": "physical-address-recipient", "url": "#physical-address-recipient", "dfnText": "recipient", "refSections": [{"refs": [{"id": "ref-for-physical-address-recipient"}], "title": "5.3. ContactAddress"}], "external": false};
+window.dfnpanelData['physical-address-phone-number'] = {"dfnID": "physical-address-phone-number", "url": "#physical-address-phone-number", "dfnText": "phone number", "refSections": [{"refs": [{"id": "ref-for-physical-address-phone-number"}], "title": "5.3. ContactAddress"}], "external": false};
+window.dfnpanelData['user-contact'] = {"dfnID": "user-contact", "url": "#user-contact", "dfnText": "user contact", "refSections": [{"refs": [{"id": "ref-for-user-contact"}], "title": "4.2. User contact"}, {"refs": [{"id": "ref-for-user-contact\u2460"}], "title": "4.3. Contacts source"}, {"refs": [{"id": "ref-for-user-contact\u2461"}, {"id": "ref-for-user-contact\u2462"}, {"id": "ref-for-user-contact\u2463"}, {"id": "ref-for-user-contact\u2464"}, {"id": "ref-for-user-contact\u2465"}, {"id": "ref-for-user-contact\u2466"}], "title": "5.2. ContactProperty"}, {"refs": [{"id": "ref-for-user-contact\u2467"}, {"id": "ref-for-user-contact\u2468"}, {"id": "ref-for-user-contact\u2460\u24ea"}], "title": "6. Contact Picker"}], "external": false};
+window.dfnpanelData['user-contact-names'] = {"dfnID": "user-contact-names", "url": "#user-contact-names", "dfnText": "names", "refSections": [{"refs": [{"id": "ref-for-user-contact-names"}], "title": "5.2. ContactProperty"}, {"refs": [{"id": "ref-for-user-contact-names\u2460"}], "title": "5.4.2. select()"}], "external": false};
+window.dfnpanelData['user-contact-emails'] = {"dfnID": "user-contact-emails", "url": "#user-contact-emails", "dfnText": "emails", "refSections": [{"refs": [{"id": "ref-for-user-contact-emails"}], "title": "5.2. ContactProperty"}, {"refs": [{"id": "ref-for-user-contact-emails\u2460"}], "title": "5.4.2. select()"}], "external": false};
+window.dfnpanelData['user-contact-numbers'] = {"dfnID": "user-contact-numbers", "url": "#user-contact-numbers", "dfnText": "numbers", "refSections": [{"refs": [{"id": "ref-for-user-contact-numbers"}], "title": "5.2. ContactProperty"}, {"refs": [{"id": "ref-for-user-contact-numbers\u2460"}], "title": "5.4.2. select()"}], "external": false};
+window.dfnpanelData['user-contact-addresses'] = {"dfnID": "user-contact-addresses", "url": "#user-contact-addresses", "dfnText": "addresses", "refSections": [{"refs": [{"id": "ref-for-user-contact-addresses"}], "title": "5.2. ContactProperty"}, {"refs": [{"id": "ref-for-user-contact-addresses\u2460"}], "title": "5.4.2. select()"}], "external": false};
+window.dfnpanelData['user-contact-icons'] = {"dfnID": "user-contact-icons", "url": "#user-contact-icons", "dfnText": "icons", "refSections": [{"refs": [{"id": "ref-for-user-contact-icons"}], "title": "5.2. ContactProperty"}, {"refs": [{"id": "ref-for-user-contact-icons\u2460"}], "title": "5.4.2. select()"}], "external": false};
+window.dfnpanelData['contacts-source'] = {"dfnID": "contacts-source", "url": "#contacts-source", "dfnText": "contacts source", "refSections": [{"refs": [{"id": "ref-for-contacts-source"}, {"id": "ref-for-contacts-source\u2460"}], "title": "4.3. Contacts source"}, {"refs": [{"id": "ref-for-contacts-source\u2461"}], "title": "5.4.1. getProperties()"}, {"refs": [{"id": "ref-for-contacts-source\u2462"}], "title": "5.4.2. select()"}, {"refs": [{"id": "ref-for-contacts-source\u2463"}], "title": "6. Contact Picker"}], "external": false};
+window.dfnpanelData['contacts-source-available-contacts'] = {"dfnID": "contacts-source-available-contacts", "url": "#contacts-source-available-contacts", "dfnText": "available contacts", "refSections": [{"refs": [{"id": "ref-for-contacts-source-available-contacts"}], "title": "6. Contact Picker"}], "external": false};
+window.dfnpanelData['contacts-source-supported-properties'] = {"dfnID": "contacts-source-supported-properties", "url": "#contacts-source-supported-properties", "dfnText": "supported properties", "refSections": [{"refs": [{"id": "ref-for-contacts-source-supported-properties"}], "title": "5.4.1. getProperties()"}, {"refs": [{"id": "ref-for-contacts-source-supported-properties\u2460"}], "title": "5.4.2. select()"}], "external": false};
+window.dfnpanelData['navigator-contacts-manager'] = {"dfnID": "navigator-contacts-manager", "url": "#navigator-contacts-manager", "dfnText": "contacts manager", "refSections": [{"refs": [{"id": "ref-for-navigator-contacts-manager"}], "title": "5.1. Extensions to Navigator"}], "external": false};
+window.dfnpanelData['dom-navigator-contacts'] = {"dfnID": "dom-navigator-contacts", "url": "#dom-navigator-contacts", "dfnText": "contacts", "refSections": [{"refs": [{"id": "ref-for-dom-navigator-contacts"}], "title": "5.1. Extensions to Navigator"}], "external": false};
+window.dfnpanelData['contact-picker-is-showing-flag'] = {"dfnID": "contact-picker-is-showing-flag", "url": "#contact-picker-is-showing-flag", "dfnText": "contact picker is showing flag", "refSections": [{"refs": [{"id": "ref-for-contact-picker-is-showing-flag"}, {"id": "ref-for-contact-picker-is-showing-flag\u2460"}, {"id": "ref-for-contact-picker-is-showing-flag\u2461"}, {"id": "ref-for-contact-picker-is-showing-flag\u2462"}], "title": "5.4.2. select()"}], "external": false};
+window.dfnpanelData['enumdef-contactproperty'] = {"dfnID": "enumdef-contactproperty", "url": "#enumdef-contactproperty", "dfnText": "ContactProperty", "refSections": [{"refs": [{"id": "ref-for-enumdef-contactproperty"}], "title": "4.3. Contacts source"}, {"refs": [{"id": "ref-for-enumdef-contactproperty\u2460"}, {"id": "ref-for-enumdef-contactproperty\u2461"}], "title": "5.2. ContactProperty"}, {"refs": [{"id": "ref-for-enumdef-contactproperty\u2462"}, {"id": "ref-for-enumdef-contactproperty\u2463"}], "title": "5.4. ContactsManager"}], "external": false};
+window.dfnpanelData['available'] = {"dfnID": "available", "url": "#available", "dfnText": "available", "refSections": [{"refs": [{"id": "ref-for-available"}], "title": "4.3. Contacts source"}], "external": false};
+window.dfnpanelData['contactaddress'] = {"dfnID": "contactaddress", "url": "#contactaddress", "dfnText": "ContactAddress", "refSections": [{"refs": [{"id": "ref-for-contactaddress"}], "title": "4.2. User contact"}, {"refs": [{"id": "ref-for-contactaddress\u2460"}, {"id": "ref-for-contactaddress\u2461"}, {"id": "ref-for-contactaddress\u2462"}], "title": "5.3. ContactAddress"}, {"refs": [{"id": "ref-for-contactaddress\u2463"}], "title": "5.4. ContactsManager"}], "external": false};
+window.dfnpanelData['contactaddress-address'] = {"dfnID": "contactaddress-address", "url": "#contactaddress-address", "dfnText": "address", "refSections": [{"refs": [{"id": "ref-for-contactaddress-address"}, {"id": "ref-for-contactaddress-address\u2460"}, {"id": "ref-for-contactaddress-address\u2461"}, {"id": "ref-for-contactaddress-address\u2462"}, {"id": "ref-for-contactaddress-address\u2463"}, {"id": "ref-for-contactaddress-address\u2464"}, {"id": "ref-for-contactaddress-address\u2465"}, {"id": "ref-for-contactaddress-address\u2466"}, {"id": "ref-for-contactaddress-address\u2467"}, {"id": "ref-for-contactaddress-address\u2468"}], "title": "5.3. ContactAddress"}], "external": false};
+window.dfnpanelData['dom-contactaddress-city'] = {"dfnID": "dom-contactaddress-city", "url": "#dom-contactaddress-city", "dfnText": "city", "refSections": [{"refs": [{"id": "ref-for-dom-contactaddress-city"}], "title": "5.3. ContactAddress"}], "external": false};
+window.dfnpanelData['dom-contactaddress-country'] = {"dfnID": "dom-contactaddress-country", "url": "#dom-contactaddress-country", "dfnText": "country", "refSections": [{"refs": [{"id": "ref-for-dom-contactaddress-country"}], "title": "5.3. ContactAddress"}], "external": false};
+window.dfnpanelData['dom-contactaddress-dependentlocality'] = {"dfnID": "dom-contactaddress-dependentlocality", "url": "#dom-contactaddress-dependentlocality", "dfnText": "dependentLocality", "refSections": [{"refs": [{"id": "ref-for-dom-contactaddress-dependentlocality"}], "title": "5.3. ContactAddress"}], "external": false};
+window.dfnpanelData['dom-contactaddress-organization'] = {"dfnID": "dom-contactaddress-organization", "url": "#dom-contactaddress-organization", "dfnText": "organization", "refSections": [{"refs": [{"id": "ref-for-dom-contactaddress-organization"}], "title": "5.3. ContactAddress"}], "external": false};
+window.dfnpanelData['dom-contactaddress-phone'] = {"dfnID": "dom-contactaddress-phone", "url": "#dom-contactaddress-phone", "dfnText": "phone", "refSections": [{"refs": [{"id": "ref-for-dom-contactaddress-phone"}], "title": "5.3. ContactAddress"}], "external": false};
+window.dfnpanelData['dom-contactaddress-postalcode'] = {"dfnID": "dom-contactaddress-postalcode", "url": "#dom-contactaddress-postalcode", "dfnText": "postalCode", "refSections": [{"refs": [{"id": "ref-for-dom-contactaddress-postalcode"}], "title": "5.3. ContactAddress"}], "external": false};
+window.dfnpanelData['dom-contactaddress-recipient'] = {"dfnID": "dom-contactaddress-recipient", "url": "#dom-contactaddress-recipient", "dfnText": "recipient", "refSections": [{"refs": [{"id": "ref-for-dom-contactaddress-recipient"}], "title": "5.3. ContactAddress"}], "external": false};
+window.dfnpanelData['dom-contactaddress-region'] = {"dfnID": "dom-contactaddress-region", "url": "#dom-contactaddress-region", "dfnText": "region", "refSections": [{"refs": [{"id": "ref-for-dom-contactaddress-region"}], "title": "5.3. ContactAddress"}], "external": false};
+window.dfnpanelData['dom-contactaddress-sortingcode'] = {"dfnID": "dom-contactaddress-sortingcode", "url": "#dom-contactaddress-sortingcode", "dfnText": "sortingCode", "refSections": [{"refs": [{"id": "ref-for-dom-contactaddress-sortingcode"}], "title": "5.3. ContactAddress"}], "external": false};
+window.dfnpanelData['dom-contactaddress-addressline'] = {"dfnID": "dom-contactaddress-addressline", "url": "#dom-contactaddress-addressline", "dfnText": "addressLine", "refSections": [{"refs": [{"id": "ref-for-dom-contactaddress-addressline"}], "title": "5.3. ContactAddress"}], "external": false};
+window.dfnpanelData['dictdef-contactinfo'] = {"dfnID": "dictdef-contactinfo", "url": "#dictdef-contactinfo", "dfnText": "ContactInfo", "refSections": [{"refs": [{"id": "ref-for-dictdef-contactinfo"}], "title": "5.4. ContactsManager"}, {"refs": [{"id": "ref-for-dictdef-contactinfo\u2460"}], "title": "5.4.2. select()"}], "external": false};
+window.dfnpanelData['dom-contactinfo-address'] = {"dfnID": "dom-contactinfo-address", "url": "#dom-contactinfo-address", "dfnText": "address", "refSections": [{"refs": [{"id": "ref-for-dom-contactinfo-address"}], "title": "5.4.2. select()"}], "external": false};
+window.dfnpanelData['dom-contactinfo-email'] = {"dfnID": "dom-contactinfo-email", "url": "#dom-contactinfo-email", "dfnText": "email", "refSections": [{"refs": [{"id": "ref-for-dom-contactinfo-email"}], "title": "5.4.2. select()"}], "external": false};
+window.dfnpanelData['dom-contactinfo-icon'] = {"dfnID": "dom-contactinfo-icon", "url": "#dom-contactinfo-icon", "dfnText": "icon", "refSections": [{"refs": [{"id": "ref-for-dom-contactinfo-icon"}], "title": "5.4.2. select()"}], "external": false};
+window.dfnpanelData['dom-contactinfo-name'] = {"dfnID": "dom-contactinfo-name", "url": "#dom-contactinfo-name", "dfnText": "name", "refSections": [{"refs": [{"id": "ref-for-dom-contactinfo-name"}], "title": "5.4.2. select()"}], "external": false};
+window.dfnpanelData['dom-contactinfo-tel'] = {"dfnID": "dom-contactinfo-tel", "url": "#dom-contactinfo-tel", "dfnText": "tel", "refSections": [{"refs": [{"id": "ref-for-dom-contactinfo-tel"}], "title": "5.4.2. select()"}], "external": false};
+window.dfnpanelData['dictdef-contactsselectoptions'] = {"dfnID": "dictdef-contactsselectoptions", "url": "#dictdef-contactsselectoptions", "dfnText": "ContactsSelectOptions", "refSections": [{"refs": [{"id": "ref-for-dictdef-contactsselectoptions"}], "title": "5.4. ContactsManager"}], "external": false};
+window.dfnpanelData['contactsmanager'] = {"dfnID": "contactsmanager", "url": "#contactsmanager", "dfnText": "ContactsManager", "refSections": [{"refs": [{"id": "ref-for-contactsmanager"}, {"id": "ref-for-contactsmanager\u2460"}, {"id": "ref-for-contactsmanager\u2461"}], "title": "5.1. Extensions to Navigator"}, {"refs": [{"id": "ref-for-contactsmanager\u2462"}], "title": "5.4. ContactsManager"}], "external": false};
+window.dfnpanelData['dom-contactsmanager-getproperties'] = {"dfnID": "dom-contactsmanager-getproperties", "url": "#dom-contactsmanager-getproperties", "dfnText": "getProperties()", "refSections": [{"refs": [{"id": "ref-for-dom-contactsmanager-getproperties"}], "title": "5.4. ContactsManager"}, {"refs": [{"id": "ref-for-dom-contactsmanager-getproperties\u2460"}], "title": "5.4.1. getProperties()"}], "external": false};
+window.dfnpanelData['dom-contactsmanager-select'] = {"dfnID": "dom-contactsmanager-select", "url": "#dom-contactsmanager-select", "dfnText": "select(properties, options)", "refSections": [{"refs": [{"id": "ref-for-dom-contactsmanager-select"}], "title": "5.4. ContactsManager"}, {"refs": [{"id": "ref-for-dom-contactsmanager-select\u2460"}], "title": "5.4.2. select()"}], "external": false};
+window.dfnpanelData['contactsmanager-launching-a-contact-picker'] = {"dfnID": "contactsmanager-launching-a-contact-picker", "url": "#contactsmanager-launching-a-contact-picker", "dfnText": "launch", "refSections": [{"refs": [{"id": "ref-for-contactsmanager-launching-a-contact-picker"}], "title": "5.4.2. select()"}], "external": false};
+</script>
+<script>/* Boilerplate: script-dom-helper */
+function query(sel) { return document.querySelector(sel); }
+
+function queryAll(sel) { return [...document.querySelectorAll(sel)]; }
+
+function iter(obj) {
+	if(!obj) return [];
+	var it = obj[Symbol.iterator];
+	if(it) return it;
+	return Object.entries(obj);
+}
+
+function mk(tagname, attrs, ...children) {
+	const el = document.createElement(tagname);
+	for(const [k,v] of iter(attrs)) {
+		if(k.slice(0,3) == "_on") {
+			const eventName = k.slice(3);
+			el.addEventListener(eventName, v);
+		} else if(k[0] == "_") {
+			// property, not attribute
+			el[k.slice(1)] = v;
+		} else {
+			if(v === false || v == null) {
+        continue;
+      } else if(v === true) {
+        el.setAttribute(k, "");
+        continue;
+      } else {
+  			el.setAttribute(k, v);
+      }
+		}
+	}
+	append(el, children);
+	return el;
+}
+
+/* Create shortcuts for every known HTML element */
+[
+  "a",
+  "abbr",
+  "acronym",
+  "address",
+  "applet",
+  "area",
+  "article",
+  "aside",
+  "audio",
+  "b",
+  "base",
+  "basefont",
+  "bdo",
+  "big",
+  "blockquote",
+  "body",
+  "br",
+  "button",
+  "canvas",
+  "caption",
+  "center",
+  "cite",
+  "code",
+  "col",
+  "colgroup",
+  "datalist",
+  "dd",
+  "del",
+  "details",
+  "dfn",
+  "dialog",
+  "div",
+  "dl",
+  "dt",
+  "em",
+  "embed",
+  "fieldset",
+  "figcaption",
+  "figure",
+  "font",
+  "footer",
+  "form",
+  "frame",
+  "frameset",
+  "head",
+  "header",
+  "h1",
+  "h2",
+  "h3",
+  "h4",
+  "h5",
+  "h6",
+  "hr",
+  "html",
+  "i",
+  "iframe",
+  "img",
+  "input",
+  "ins",
+  "kbd",
+  "label",
+  "legend",
+  "li",
+  "link",
+  "main",
+  "map",
+  "mark",
+  "meta",
+  "meter",
+  "nav",
+  "nobr",
+  "noscript",
+  "object",
+  "ol",
+  "optgroup",
+  "option",
+  "output",
+  "p",
+  "param",
+  "pre",
+  "progress",
+  "q",
+  "s",
+  "samp",
+  "script",
+  "section",
+  "select",
+  "small",
+  "source",
+  "span",
+  "strike",
+  "strong",
+  "style",
+  "sub",
+  "summary",
+  "sup",
+  "table",
+  "tbody",
+  "td",
+  "template",
+  "textarea",
+  "tfoot",
+  "th",
+  "thead",
+  "time",
+  "title",
+  "tr",
+  "u",
+  "ul",
+  "var",
+  "video",
+  "wbr",
+  "xmp",
+].forEach(tagname=>{
+	mk[tagname] = (...args) => mk(tagname, ...args);
+});
+
+function* nodesFromChildList(children) {
+	for(const child of children.flat(Infinity)) {
+		if(child instanceof Node) {
+			yield child;
+		} else {
+			yield new Text(child);
+		}
+	}
+}
+function append(el, ...children) {
+	for(const child of nodesFromChildList(children)) {
+		if(el instanceof Node) el.appendChild(child);
+		else el.push(child);
+	}
+	return el;
+}
+
+function insertAfter(el, ...children) {
+	for(const child of nodesFromChildList(children)) {
+		el.parentNode.insertBefore(child, el.nextSibling);
+	}
+	return el;
+}
+
+function clearContents(el) {
+	el.innerHTML = "";
+	return el;
+}
+
+function parseHTML(markup) {
+	if(markup.toLowerCase().trim().indexOf('<!doctype') === 0) {
+		const doc = document.implementation.createHTMLDocument("");
+		doc.documentElement.innerHTML = markup;
+		return doc;
+	} else {
+		const el = mk.template({});
+		el.innerHTML = markup;
+		return el.content;
+	}
+}
+</script>
+<script>/* Boilerplate: script-var-click-highlighting */
+/*
+Color-choosing design:
+
+Colors are ordered by goodness.
+Each color has a usage count (initially zero).
+Each variable has a last-used color.
+
+* If the var has a last-used color, and that color's usage is 0,
+    return that color.
+* Otherwise, return the lowest-indexed color with the lowest usage.
+    Increment the color's usage and set it as the last-used color
+    for that var.
+* On unclicking, decrement usage of the color.
+*/
+"use strict";
+{
+    document.addEventListener("click", e=>{
+        if(e.target.nodeName == "VAR") {
+            highlightSameAlgoVars(e.target);
+        }
+    });
+    const indexCounts = new Map();
+    const indexNames = new Map();
+    function highlightSameAlgoVars(v) {
+        // Find the algorithm container.
+        let algoContainer = null;
+        let searchEl = v;
+        while(algoContainer == null && searchEl != document.body) {
+            searchEl = searchEl.parentNode;
+            if(searchEl.hasAttribute("data-algorithm")) {
+                algoContainer = searchEl;
+            }
+        }
+
+        // Not highlighting document-global vars,
+        // too likely to be unrelated.
+        if(algoContainer == null) return;
+
+        const algoName = algoContainer.getAttribute("data-algorithm");
+        const varName = getVarName(v);
+        const addClass = !v.classList.contains("selected");
+        let highlightClass = null;
+        if(addClass) {
+            const index = chooseHighlightIndex(algoName, varName);
+            indexCounts.get(algoName)[index] += 1;
+            indexNames.set(algoName+"///"+varName, index);
+            highlightClass = nameFromIndex(index);
+        } else {
+            const index = previousHighlightIndex(algoName, varName);
+            indexCounts.get(algoName)[index] -= 1;
+            highlightClass = nameFromIndex(index);
+        }
+
+        // Find all same-name vars, and toggle their class appropriately.
+        for(const el of algoContainer.querySelectorAll("var")) {
+            if(getVarName(el) == varName) {
+                el.classList.toggle("selected", addClass);
+                el.classList.toggle(highlightClass, addClass);
+            }
+        }
+    }
+    function getVarName(el) {
+        return el.textContent.replace(/(\s|\xa0)+/, " ").trim();
+    }
+    function chooseHighlightIndex(algoName, varName) {
+        let indexes = null;
+        if(indexCounts.has(algoName)) {
+            indexes = indexCounts.get(algoName);
+        } else {
+            // 7 classes right now
+            indexes = [0,0,0,0,0,0,0];
+            indexCounts.set(algoName, indexes);
+        }
+
+        // If the element was recently unclicked,
+        // *and* that color is still unclaimed,
+        // give it back the same color.
+        const lastIndex = previousHighlightIndex(algoName, varName);
+        if(indexes[lastIndex] === 0) return lastIndex;
+
+        // Find the earliest index with the lowest count.
+        const minCount = Math.min.apply(null, indexes);
+        let index = null;
+        for(var i = 0; i < indexes.length; i++) {
+            if(indexes[i] == minCount) {
+                return i;
+            }
+        }
+    }
+    function previousHighlightIndex(algoName, varName) {
+        return indexNames.get(algoName+"///"+varName);
+    }
+    function nameFromIndex(index) {
+        return "selected" + index;
+    }
+}
+</script>
