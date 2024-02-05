@@ -235,7 +235,7 @@ Note: It is up to the user agent to choose the [=contacts source=].
 ## Extensions to {{Navigator}} ## {#extensions-to-navigator}
 
 <script type="idl">
-[Exposed=Window]
+[Exposed=Window, SecureContext]
 partial interface Navigator {
   [SecureContext, SameObject] readonly attribute ContactsManager contacts;
 };
@@ -343,7 +343,7 @@ dictionary ContactsSelectOptions {
     boolean multiple = false;
 };
 
-[Exposed=Window,SecureContext]
+[Exposed=Window, SecureContext]
 interface ContactsManager {
     Promise<sequence<ContactProperty>> getProperties();
     Promise<sequence<ContactInfo>> select(sequence<ContactProperty> properties, optional ContactsSelectOptions options = {});
