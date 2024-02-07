@@ -235,7 +235,7 @@ Note: It is up to the user agent to choose the [=contacts source=].
 ## Extensions to {{Navigator}} ## {#extensions-to-navigator}
 
 <script type="idl">
-[Exposed=Window, SecureContext]
+[Exposed=Window]
 partial interface Navigator {
   [SecureContext, SameObject] readonly attribute ContactsManager contacts;
 };
