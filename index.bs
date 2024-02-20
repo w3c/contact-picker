@@ -137,11 +137,14 @@ parties. A picker model is enforced so that the user agent can offer a user expe
 it clear what information is going to be shared with the website and when.
 
 The following constraints are also enforced:
-* The API is only available in a [=top-level browsing context=] which must also be a
-  [=secure context=]. These restrictions help ensure that the provided contact information reaches
-  its intended recipient.
 * A user gesture is needed to initiate the API, to disallow programmatic requests to the user's
   contacts.
+
+# Security Considerations # {#security-considerations}
+
+* The API is only available in a [=navigable/top-level traversables=], which must also be a
+  [=secure context=]. These restrictions help ensure that the provided contact information reaches
+  its intended recipient.
 
 # Realms # {#realms}
 
@@ -444,7 +447,7 @@ interface ContactsManager {
     remove the UI and return a [=list=] of the selected contacts as [=user contacts=].
 </div>
 
-# Acknowledgments
+# Acknowledgments # {#acknowledgments}
 
 There has been multiple earlier attempts to standardize a Contacts API for the web and this
 API strives to learn from this rich history. Earlier attempts include Mozilla's
