@@ -18,8 +18,8 @@ text macro: JOINTWEBAPPS yes
 <pre class=link-defaults>
 spec:infra; type:dfn; text:list
 spec:html; type:dfn; for:/; text:browsing context
-spec:html; type:dfn; for:/; text:origin
-spec:html; type:dfn; for:/; text:valid e-mail address
+spec:html; type:dfn; for:/; text:valid email address
+spec:html; type:dfn; for:environment settings object; text:origin
 </pre>
 
 # Introduction # {#intro}
@@ -137,10 +137,10 @@ parties. A picker model is enforced so that the user agent can offer a user expe
 it clear what information is going to be shared with the website and when.
 
 The following constraints are also enforced:
-* The API is only available in a [=top-level browsing context=] which must also be a
+* The API is only available in a [=navigable/top-level traversable=], which must also be a
   [=secure context=]. These restrictions help ensure that the provided contact information reaches
   its intended recipient.
-* A user gesture is needed to initiate the API, to disallow programmatic requests to the user's
+* [=Transient activation=] is needed to initiate the API, to disallow programmatic requests to the user's
   contacts.
 
 # Realms # {#realms}
@@ -153,7 +153,7 @@ specified.
 The <dfn>contact picker task source</dfn> is a [=task source=].
 
 <div algorithm>
-  To <dfn>queue a contact picker task</dfn> on an optional |eventLoop| (an [=event loop=],
+  To <dfn>queue a contact picker task</dfn> on an optional |eventLoop| (an [=/event loop=],
   defaulting to the caller's [=this=]'s [=relevant settings object=]'s
   [=responsible event loop=]) with |steps| (steps), [=queue a task=] on |eventLoop| using the
   [=contact picker task source=] to run |steps|.
@@ -249,7 +249,7 @@ The <dfn attribute>contacts</dfn> attribute's getter must return the [=this=]'s
 [=Navigator/contacts manager=].
 </div>
 
-The [=browsing context=] has a <dfn>contact picker is showing flag</dfn>, initially unset.
+The [=Window/navigable=] has a <dfn>contact picker is showing flag</dfn>, initially unset.
 
 ## {{ContactProperty}} ## {#contact-property}
 
@@ -369,27 +369,29 @@ interface ContactsManager {
 <div algorithm>
   The <dfn method>select(|properties|, |options|)</dfn> method, when invoked, runs these steps:
 
-  1. Let |relevantBrowsingContext| be the [=this=]'s [=relevant settings object=]'s
-     [=environment settings object/responsible browsing context=].
-  1. If |relevantBrowsingContext| is not a [=top-level browsing context=], then return
+  1. Let |global| be the [=this=]'s [=relevant global object=].
+  1. Let |navigable| be |global|'s [=Window/navigable=].
+  1. If |navigable| is not a [=navigable/top-level traversable=], then return
      [=a promise rejected with=] an {{InvalidStateError}} {{DOMException}}.
-  1. If the algorithm is not [=triggered by user activation=] then return
+  1. If |global| does not have [=transient activation=], then return
      [=a promise rejected with=] a {{SecurityError}} {{DOMException}}.
-  1. If |relevantBrowsingContext|'s [=contact picker is showing flag=] is set then return
+  1. Otherwise, [=consume user activation=] of the |global|.
+  1. If |navigable|'s [=contact picker is showing flag=] is set then return
      [=a promise rejected with=] an {{InvalidStateError}} {{DOMException}}.
   1. If |properties| is [=list/empty=], then return [=a promise rejected with=] a {{TypeError}}.
   1. [=list/For each=] |property| of |properties|:
     1. If [=contacts source=]'s [=contacts source/supported properties=] does not [=list/contain=]
         |property|, then return [=a promise rejected with=] a {{TypeError}}.
-  1. Set |relevantBrowsingContext|'s [=contact picker is showing flag=].
+  1. Set |navigable|'s [=contact picker is showing flag=].
   1. Let |promise| be [=a new promise=].
   1. Run the following steps [=in parallel=]:
     1. Let |selectedContacts| be be the result of [=launching a contact picker=] with |options|'
        `multiple` member and |properties|. If this fails, then:
-      1. Return [=a promise rejected with=] an {{InvalidStateError}} {{DOMException}}.
-      1. Unset |relevantBrowsingContext|'s [=contact picker is showing flag=].
-      1. Abort these steps.
-    1. Unset |relevantBrowsingContext|'s [=contact picker is showing flag=].
+      1. [=Queue a contact picker task=] to run these steps:
+        1. [=Reject=] |promise| an {{InvalidStateError}} {{DOMException}}.
+        1. Unset |navigable|'s [=contact picker is showing flag=].
+        1. Abort these steps.
+    1. Unset |navigable|'s [=contact picker is showing flag=].
     1. [=Queue a contact picker task=] to run these steps:
       1. Let |contacts| be an empty [=list=].
       1. [=list/For each=] |selectedContact| in |selectedContacts|:
@@ -422,13 +424,13 @@ interface ContactsManager {
   interface that follows these rules:
 
   * If presenting a user interface fails or accessing the [=contacts source=]'s
-    [=contacts source/available contacts=] fails, then return failure.   
-  * The UI MUST prominently display the [=browsing context=]'s [=origin=].
+    [=contacts source/available contacts=] fails, then return failure.
+  * The UI MUST prominently display the [=navigable/top-level traversable=]'s [=origin=].
   * The UI MUST make it clear which `properties` of the contacts are requested.
 
     NOTE: This information is derived from |properties|.
-  
-  * The UI SHOULD provide a way for users to opt out of sharing certain contact information. 
+
+  * The UI SHOULD provide a way for users to opt out of sharing certain contact information.
 
     NOTE: If the user opts out, the appropriate [=user contact=] fields should be modified before
     returning the selected contacts. It should be indistinguishable from the returned
