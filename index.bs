@@ -161,29 +161,29 @@ The <dfn>contact picker task source</dfn> is a [=task source=].
 
 ## Physical address ## {#infrastructure-physical-address}
 
-A <dfn>physical address</dfn> consists of:
+A <dfn export>physical address</dfn> consists of:
 <div dfn-for="physical address">
 
-* <dfn>country</dfn>, a {{DOMString}} representing the country of the address as an
+* <dfn for="physical address" export>country</dfn>, a {{DOMString}} representing the country of the address as an
   [[ISO3166-1]] alpha-2 code stored in its canonical uppercase form or the empty string. For
    example, "JP".
-* <dfn>address line</dfn>, a [=list=] of {{DOMString}}s, containing the most specific part of the
+* <dfn for="physical address" export>address line</dfn>, a [=list=] of {{DOMString}}s, containing the most specific part of the
   address. It can include, for example, a street name, a house number, apartment number, a rural
   delivery route, descriptive instructions, or a post office box number.
-* <dfn>region</dfn>, a {{DOMString}} representing the top level administrative subdivision of the
+* <dfn for="physical address" export>region</dfn>, a {{DOMString}} representing the top level administrative subdivision of the
   country. For example, this can be a state, a province, an oblast, or a prefecture.
-* <dfn>city</dfn>, a {{DOMString}} representing the city/town portion of the address.
-* <dfn>dependent locality</dfn>, a {{DOMString}} representing the dependent locality or sublocality
+* <dfn for="physical address" export>city</dfn>, a {{DOMString}} representing the city/town portion of the address.
+* <dfn for="physical address" export>dependent locality</dfn>, a {{DOMString}} representing the dependent locality or sublocality
   within a city. For example, neighborhoods, boroughs, districts, or UK dependent localities.
-* <dfn>postal code</dfn>, a {{DOMString}} representing the postal code or ZIP code, also known as
+* <dfn for="physical address" export>postal code</dfn>, a {{DOMString}} representing the postal code or ZIP code, also known as
   PIN code in India.
-* <dfn>sorting code</dfn>, a {{DOMString}} representing the sorting code system, such as the CEDEX
+* <dfn for="physical address" export>sorting code</dfn>, a {{DOMString}} representing the sorting code system, such as the CEDEX
   system used in France.
-* <dfn>organization</dfn>, a {{DOMString}} representing the organization, firm, company, or
+* <dfn for="physical address" export>organization</dfn>, a {{DOMString}} representing the organization, firm, company, or
   institution at the address.
-* <dfn>recipient</dfn>, a {{DOMString}} representing the name of the recipient or contact person at
+* <dfn for="physical address" export>recipient</dfn>, a {{DOMString}} representing the name of the recipient or contact person at
   the address.
-* <dfn>phone number</dfn>, a {{DOMString}} representing the phone number of the recipient or contact
+* <dfn for="physical address" export>phone number</dfn>, a {{DOMString}} representing the phone number of the recipient or contact
   person at the address, optionally structured to adhere to [[E.164]].
 
 </div>
@@ -193,15 +193,15 @@ A <dfn>physical address</dfn> consists of:
 A <dfn>user contact</dfn> consists of:
 <div dfn-for="user contact">
 
-* <dfn>names</dfn>, a [=list=] of {{DOMString}}s, each [=list/item=] representing a unique name
+* <dfn for="user contact">names</dfn>, a [=list=] of {{DOMString}}s, each [=list/item=] representing a unique name
   corresponding to the user.
-* <dfn>emails</dfn>, a [=list=] of {{DOMString}}s, each [=list/item=] representing a unique
-  [=valid e-mail address=] of the user.
-* <dfn>numbers</dfn>, a [=list=] of {{DOMString}}s, each [=list/item=] representing a unique phone
+* <dfn for="user contact">emails</dfn>, a [=list=] of {{DOMString}}s, each [=list/item=] representing a unique
+  [=valid email address=] of the user.
+* <dfn for="user contact">numbers</dfn>, a [=list=] of {{DOMString}}s, each [=list/item=] representing a unique phone
   number of the user.
-* <dfn>addresses</dfn>, a [=list=] of {{ContactAddress}}es, each [=list/item=] representing a
+* <dfn for="user contact">addresses</dfn>, a [=list=] of {{ContactAddress}}es, each [=list/item=] representing a
   unique [=physical address=] of the user.
-* <dfn>icons</dfn>, a [=list=] of {{Blob}}s, each [=list/item=] representing a unique image of the
+* <dfn for="user contact">icons</dfn>, a [=list=] of {{Blob}}s, each [=list/item=] representing a unique image of the
   user.
     
     NOTE: An icon {{Blob}}'s {{Blob/type}} is an [=image mime type=].
