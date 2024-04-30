@@ -7,7 +7,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
   <meta content="Bikeshed version 82ce88815, updated Thu Sep 7 16:33:55 2023 -0700" name="generator">
   <link href="https://www.w3.org/TR/contact-picker/" rel="canonical">
-  <meta content="b82998af9312ec8d4a9d5d6d6a4a05c5e8d299f9" name="document-revision">
+  <meta content="d46cfe1dc45e61d5856a079651c9cc7accf5e299" name="document-revision">
 <style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
@@ -669,7 +669,7 @@ var.selected6 { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Contact Picker API</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-02-27">27 February 2024</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-04-30">30 April 2024</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -702,13 +702,14 @@ var.selected6 { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
 	It is provided for discussion only and may change at any moment.
 	Its publication here does not imply endorsement of its contents by W3C.
 	Don’t cite this document other than as work in progress. </p>
-   <p> If you wish to make comments regarding this document, please send them to <a href="mailto:public-device-apis@w3.org?Subject=%5Bcontact-picker%5D%20PUT%20SUBJECT%20HERE">public-device-apis@w3.org</a> (<a href="mailto:public-device-apis-request@w3.org?subject=subscribe">subscribe</a>, <a href="https://lists.w3.org/Archives/Public/public-device-apis/">archives</a>).
+   <p> If you wish to make comments regarding this document, please send them to <a href="mailto:public-device-apis@w3.org?Subject=%5Bcontact-picker%5D%20PUT%20SUBJECT%20HERE">public-device-apis@w3.org</a> (<a href="mailto:public-device-apis-request@w3.org?subject=subscribe">subscribe</a>, <a href="https://lists.w3.org/Archives/Public/public-device-apis/">archives</a>) <span> and <a href="mailto:public-webapps@w3.org?Subject=%5Borientation-event%5D%20PUT%20SUBJECT%20HERE">public-webapps@w3.org</a> (<a href="mailto:public-webapps-request@w3.org?subject=subscribe">subscribe</a>, <a href="https://lists.w3.org/Archives/Public/public-webapps/">archives</a>) </span> .
 	When sending e-mail,
 	please put the text “contact-picker” in the subject,
 	preferably like this:
 	“[contact-picker] <em>…summary of comment…</em>”.
 	All comments are welcome. </p>
-   <p> This document was produced by the <a href="https://www.w3.org/groups/wg/das">Devices and Sensors Working Group</a>. </p>
+   <p> This document was published by the <a href="https://www.w3.org/groups/wg/das">Devices and Sensors Working Group</a> and
+	the <a href="https://www.w3.org/groups/wg/webapps">Web Applications Working Group</a>. </p>
    <p> This document was produced by groups operating under
 	the <a href="https://www.w3.org/Consortium/Patent-Policy/">W3C Patent Policy</a>.
 	W3C maintains a <a href="https://www.w3.org/groups/wg/das/ipr" rel="disclosure">public list of any patent disclosures (Devices and Sensors)</a> and
@@ -874,10 +875,10 @@ it clear what information is going to be shared with the website and when.</p>
    <p>The following constraints are also enforced:</p>
    <ul>
     <li data-md>
-     <p>The API is only available in a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#top-level-browsing-context" id="ref-for-top-level-browsing-context">top-level browsing context</a> which must also be a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#secure-context" id="ref-for-secure-context">secure context</a>. These restrictions help ensure that the provided contact information reaches
+     <p>The API is only available in a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#nav-top" id="ref-for-nav-top">top-level traversable</a>, which must also be a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#secure-context" id="ref-for-secure-context">secure context</a>. These restrictions help ensure that the provided contact information reaches
 its intended recipient.</p>
     <li data-md>
-     <p>A user gesture is needed to initiate the API, to disallow programmatic requests to the user’s
+     <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#transient-activation" id="ref-for-transient-activation">Transient activation</a> is needed to initiate the API, to disallow programmatic requests to the user’s
 contacts.</p>
    </ul>
    <h2 class="heading settled" data-level="3" id="realms"><span class="secno">3. </span><span class="content">Realms</span><a class="self-link" href="#realms"></a></h2>
@@ -885,7 +886,7 @@ contacts.</p>
 specified.</p>
    <h2 class="heading settled" data-level="4" id="infrastructure"><span class="secno">4. </span><span class="content">Infrastructure</span><a class="self-link" href="#infrastructure"></a></h2>
    <p>The <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="contact-picker-task-source">contact picker task source</dfn> is a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#task-source" id="ref-for-task-source">task source</a>.</p>
-   <div class="algorithm" data-algorithm="queue a contact picker task"> To <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="queue-a-contact-picker-task">queue a contact picker task</dfn> on an optional <var>eventLoop</var> (an <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-agent-event-loop" id="ref-for-concept-agent-event-loop">event loop</a>,
+   <div class="algorithm" data-algorithm="queue a contact picker task"> To <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="queue-a-contact-picker-task">queue a contact picker task</dfn> on an optional <var>eventLoop</var> (an <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-loop" id="ref-for-event-loop">event loop</a>,
   defaulting to the caller’s <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this①">this</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#relevant-settings-object" id="ref-for-relevant-settings-object">relevant settings object</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#responsible-event-loop" id="ref-for-responsible-event-loop">responsible event loop</a>) with <var>steps</var> (steps), <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task" id="ref-for-queue-a-task">queue a task</a> on <var>eventLoop</var> using the <a data-link-type="dfn" href="#contact-picker-task-source" id="ref-for-contact-picker-task-source">contact picker task source</a> to run <var>steps</var>. </div>
    <h3 class="heading settled" data-level="4.1" id="infrastructure-physical-address"><span class="secno">4.1. </span><span class="content">Physical address</span><a class="self-link" href="#infrastructure-physical-address"></a></h3>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="physical-address">physical address</dfn> consists of:</p>
@@ -931,7 +932,7 @@ person at the address, optionally structured to adhere to <a data-link-type="bib
       <p><dfn class="dfn-paneled" data-dfn-for="user contact" data-dfn-type="dfn" data-noexport id="user-contact-names">names</dfn>, a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list①">list</a> of <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMString" id="ref-for-idl-DOMString①⓪">DOMString</a></code>s, each <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-item" id="ref-for-list-item">item</a> representing a unique name
 corresponding to the user.</p>
      <li data-md>
-      <p><dfn class="dfn-paneled" data-dfn-for="user contact" data-dfn-type="dfn" data-noexport id="user-contact-emails">emails</dfn>, a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list②">list</a> of <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMString" id="ref-for-idl-DOMString①①">DOMString</a></code>s, each <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-item" id="ref-for-list-item①">item</a> representing a unique <a data-link-type="dfn">valid email address</a> of the user.</p>
+      <p><dfn class="dfn-paneled" data-dfn-for="user contact" data-dfn-type="dfn" data-noexport id="user-contact-emails">emails</dfn>, a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list②">list</a> of <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMString" id="ref-for-idl-DOMString①①">DOMString</a></code>s, each <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-item" id="ref-for-list-item①">item</a> representing a unique <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/input.html#valid-e-mail-address" id="ref-for-valid-e-mail-address">valid email address</a> of the user.</p>
      <li data-md>
       <p><dfn class="dfn-paneled" data-dfn-for="user contact" data-dfn-type="dfn" data-noexport id="user-contact-numbers">numbers</dfn>, a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list③">list</a> of <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMString" id="ref-for-idl-DOMString①②">DOMString</a></code>s, each <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-item" id="ref-for-list-item②">item</a> representing a unique phone
 number of the user.</p>
@@ -971,7 +972,7 @@ the user agent.</p>
      A <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/system-state.html#navigator" id="ref-for-navigator②">Navigator</a></code> has a <dfn class="dfn-paneled" data-dfn-for="Navigator" data-dfn-type="dfn" data-noexport id="navigator-contacts-manager">contacts manager</dfn> (a <code class="idl"><a data-link-type="idl" href="#contactsmanager" id="ref-for-contactsmanager①">ContactsManager</a></code>), initially a new <code class="idl"><a data-link-type="idl" href="#contactsmanager" id="ref-for-contactsmanager②">ContactsManager</a></code>. 
     <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="Navigator" data-dfn-type="attribute" data-export id="dom-navigator-contacts"><code>contacts</code></dfn> attribute’s getter must return the <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this②">this</a>'s <a data-link-type="dfn" href="#navigator-contacts-manager" id="ref-for-navigator-contacts-manager">contacts manager</a>.</p>
    </div>
-   <p>The <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#browsing-context" id="ref-for-browsing-context">browsing context</a> has a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="contact-picker-is-showing-flag">contact picker is showing flag</dfn>, initially unset.</p>
+   <p>The <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/nav-history-apis.html#window-navigable" id="ref-for-window-navigable">navigable</a> has a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="contact-picker-is-showing-flag">contact picker is showing flag</dfn>, initially unset.</p>
    <h3 class="heading settled" data-level="5.2" id="contact-property"><span class="secno">5.2. </span><span class="content"><code class="idl"><a data-link-type="idl" href="#enumdef-contactproperty" id="ref-for-enumdef-contactproperty①">ContactProperty</a></code></span><a class="self-link" href="#contact-property"></a></h3>
 <pre class="idl highlight def"><c- b>enum</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="enum" data-export id="enumdef-contactproperty"><code><c- g>ContactProperty</c-></code></dfn> { <dfn class="idl-code" data-dfn-for="ContactProperty" data-dfn-type="enum-value" data-export id="dom-contactproperty-address"><code><c- s>"address"</c-></code><a class="self-link" href="#dom-contactproperty-address"></a></dfn>, <dfn class="idl-code" data-dfn-for="ContactProperty" data-dfn-type="enum-value" data-export id="dom-contactproperty-email"><code><c- s>"email"</c-></code><a class="self-link" href="#dom-contactproperty-email"></a></dfn>, <dfn class="idl-code" data-dfn-for="ContactProperty" data-dfn-type="enum-value" data-export id="dom-contactproperty-icon"><code><c- s>"icon"</c-></code><a class="self-link" href="#dom-contactproperty-icon"></a></dfn>, <dfn class="idl-code" data-dfn-for="ContactProperty" data-dfn-type="enum-value" data-export id="dom-contactproperty-name"><code><c- s>"name"</c-></code><a class="self-link" href="#dom-contactproperty-name"></a></dfn>, <dfn class="idl-code" data-dfn-for="ContactProperty" data-dfn-type="enum-value" data-export id="dom-contactproperty-tel"><code><c- s>"tel"</c-></code><a class="self-link" href="#dom-contactproperty-tel"></a></dfn> };
 </pre>
@@ -1068,13 +1069,17 @@ the user agent.</p>
       The <dfn class="dfn-paneled idl-code" data-dfn-for="ContactsManager" data-dfn-type="method" data-export data-lt="select(properties, options)|select(properties)" id="dom-contactsmanager-select"><code>select(<var>properties</var>, <var>options</var>)</code></dfn> method, when invoked, runs these steps: 
      <ol>
       <li data-md>
-       <p>Let <var>relevantBrowsingContext</var> be the <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this①③">this</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#relevant-settings-object" id="ref-for-relevant-settings-object①">relevant settings object</a>'s <a data-link-type="dfn">responsible browsing context</a>.</p>
+       <p>Let <var>global</var> be the <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this①③">this</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-concept-relevant-global">relevant global object</a>.</p>
       <li data-md>
-       <p>If <var>relevantBrowsingContext</var> is not a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#top-level-browsing-context" id="ref-for-top-level-browsing-context①">top-level browsing context</a>, then return <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#a-promise-rejected-with" id="ref-for-a-promise-rejected-with">a promise rejected with</a> an <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#invalidstateerror" id="ref-for-invalidstateerror">InvalidStateError</a></code> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException">DOMException</a></code>.</p>
+       <p>Let <var>navigable</var> be <var>global</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/nav-history-apis.html#window-navigable" id="ref-for-window-navigable①">navigable</a>.</p>
       <li data-md>
-       <p>If the algorithm is not <a data-link-type="dfn">triggered by user activation</a> then return <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#a-promise-rejected-with" id="ref-for-a-promise-rejected-with①">a promise rejected with</a> a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#securityerror" id="ref-for-securityerror">SecurityError</a></code> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException①">DOMException</a></code>.</p>
+       <p>If <var>navigable</var> is not a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#nav-top" id="ref-for-nav-top①">top-level traversable</a>, then return <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#a-promise-rejected-with" id="ref-for-a-promise-rejected-with">a promise rejected with</a> an <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#invalidstateerror" id="ref-for-invalidstateerror">InvalidStateError</a></code> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException">DOMException</a></code>.</p>
       <li data-md>
-       <p>If <var>relevantBrowsingContext</var>’s <a data-link-type="dfn" href="#contact-picker-is-showing-flag" id="ref-for-contact-picker-is-showing-flag">contact picker is showing flag</a> is set then return <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#a-promise-rejected-with" id="ref-for-a-promise-rejected-with②">a promise rejected with</a> an <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#invalidstateerror" id="ref-for-invalidstateerror①">InvalidStateError</a></code> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException②">DOMException</a></code>.</p>
+       <p>If <var>global</var> does not have <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#transient-activation" id="ref-for-transient-activation①">transient activation</a>, then return <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#a-promise-rejected-with" id="ref-for-a-promise-rejected-with①">a promise rejected with</a> a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#securityerror" id="ref-for-securityerror">SecurityError</a></code> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException①">DOMException</a></code>.</p>
+      <li data-md>
+       <p>Otherwise, <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#consume-user-activation" id="ref-for-consume-user-activation">consume user activation</a> of the <var>global</var>.</p>
+      <li data-md>
+       <p>If <var>navigable</var>’s <a data-link-type="dfn" href="#contact-picker-is-showing-flag" id="ref-for-contact-picker-is-showing-flag">contact picker is showing flag</a> is set then return <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#a-promise-rejected-with" id="ref-for-a-promise-rejected-with②">a promise rejected with</a> an <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#invalidstateerror" id="ref-for-invalidstateerror①">InvalidStateError</a></code> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException②">DOMException</a></code>.</p>
       <li data-md>
        <p>If <var>properties</var> is <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-empty" id="ref-for-list-empty">empty</a>, then return <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#a-promise-rejected-with" id="ref-for-a-promise-rejected-with③">a promise rejected with</a> a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror">TypeError</a></code>.</p>
       <li data-md>
@@ -1084,7 +1089,7 @@ the user agent.</p>
          <p>If <a data-link-type="dfn" href="#contacts-source" id="ref-for-contacts-source③">contacts source</a>'s <a data-link-type="dfn" href="#contacts-source-supported-properties" id="ref-for-contacts-source-supported-properties①">supported properties</a> does not <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain">contain</a> <var>property</var>, then return <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#a-promise-rejected-with" id="ref-for-a-promise-rejected-with④">a promise rejected with</a> a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror①">TypeError</a></code>.</p>
        </ol>
       <li data-md>
-       <p>Set <var>relevantBrowsingContext</var>’s <a data-link-type="dfn" href="#contact-picker-is-showing-flag" id="ref-for-contact-picker-is-showing-flag①">contact picker is showing flag</a>.</p>
+       <p>Set <var>navigable</var>’s <a data-link-type="dfn" href="#contact-picker-is-showing-flag" id="ref-for-contact-picker-is-showing-flag①">contact picker is showing flag</a>.</p>
       <li data-md>
        <p>Let <var>promise</var> be <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#a-new-promise" id="ref-for-a-new-promise①">a new promise</a>.</p>
       <li data-md>
@@ -1094,16 +1099,20 @@ the user agent.</p>
          <p>Let <var>selectedContacts</var> be be the result of <a data-link-type="dfn" href="#contactsmanager-launching-a-contact-picker" id="ref-for-contactsmanager-launching-a-contact-picker">launching a contact picker</a> with <var>options</var>’ <code>multiple</code> member and <var>properties</var>. If this fails, then:</p>
          <ol>
           <li data-md>
-           <p>Return <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#a-promise-rejected-with" id="ref-for-a-promise-rejected-with⑤">a promise rejected with</a> an <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#invalidstateerror" id="ref-for-invalidstateerror②">InvalidStateError</a></code> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException③">DOMException</a></code>.</p>
-          <li data-md>
-           <p>Unset <var>relevantBrowsingContext</var>’s <a data-link-type="dfn" href="#contact-picker-is-showing-flag" id="ref-for-contact-picker-is-showing-flag②">contact picker is showing flag</a>.</p>
-          <li data-md>
-           <p>Abort these steps.</p>
+           <p><a data-link-type="dfn" href="#queue-a-contact-picker-task" id="ref-for-queue-a-contact-picker-task">Queue a contact picker task</a> to run these steps:</p>
+           <ol>
+            <li data-md>
+             <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#reject" id="ref-for-reject">Reject</a> <var>promise</var> an <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#invalidstateerror" id="ref-for-invalidstateerror②">InvalidStateError</a></code> <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException③">DOMException</a></code>.</p>
+            <li data-md>
+             <p>Unset <var>navigable</var>’s <a data-link-type="dfn" href="#contact-picker-is-showing-flag" id="ref-for-contact-picker-is-showing-flag②">contact picker is showing flag</a>.</p>
+            <li data-md>
+             <p>Abort these steps.</p>
+           </ol>
          </ol>
         <li data-md>
-         <p>Unset <var>relevantBrowsingContext</var>’s <a data-link-type="dfn" href="#contact-picker-is-showing-flag" id="ref-for-contact-picker-is-showing-flag③">contact picker is showing flag</a>.</p>
+         <p>Unset <var>navigable</var>’s <a data-link-type="dfn" href="#contact-picker-is-showing-flag" id="ref-for-contact-picker-is-showing-flag③">contact picker is showing flag</a>.</p>
         <li data-md>
-         <p><a data-link-type="dfn" href="#queue-a-contact-picker-task" id="ref-for-queue-a-contact-picker-task">Queue a contact picker task</a> to run these steps:</p>
+         <p><a data-link-type="dfn" href="#queue-a-contact-picker-task" id="ref-for-queue-a-contact-picker-task①">Queue a contact picker task</a> to run these steps:</p>
          <ol>
           <li data-md>
            <p>Let <var>contacts</var> be an empty <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list⑧">list</a>.</p>
@@ -1148,7 +1157,7 @@ the user agent.</p>
       <li data-md>
        <p>If presenting a user interface fails or accessing the <a data-link-type="dfn" href="#contacts-source" id="ref-for-contacts-source④">contacts source</a>'s <a data-link-type="dfn" href="#contacts-source-available-contacts" id="ref-for-contacts-source-available-contacts">available contacts</a> fails, then return failure.</p>
       <li data-md>
-       <p>The UI MUST prominently display the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#browsing-context" id="ref-for-browsing-context①">browsing context</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#concept-origin" id="ref-for-concept-origin">origin</a>.</p>
+       <p>The UI MUST prominently display the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#nav-top" id="ref-for-nav-top②">top-level traversable</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-origin" id="ref-for-concept-settings-object-origin">origin</a>.</p>
       <li data-md>
        <p>The UI MUST make it clear which <code>properties</code> of the contacts are requested.</p>
        <p class="note" role="note"><span class="marker">NOTE:</span> This information is derived from <var>properties</var>.</p>
@@ -1326,17 +1335,21 @@ sections of the earlier attempts.</p>
      <li><span class="dfn-paneled" id="739f34ec">HTMLButtonElement</span>
      <li><span class="dfn-paneled" id="c5891539">HTMLImageElement</span>
      <li><span class="dfn-paneled" id="be0c27b2">Navigator</span>
-     <li><span class="dfn-paneled" id="0d0390b4">browsing context</span>
-     <li><span class="dfn-paneled" id="b78d6a64">event loop</span>
+     <li><span class="dfn-paneled" id="aca22383">consume user activation</span>
+     <li><span class="dfn-paneled" id="c6d19e56">event loop</span>
      <li><span class="dfn-paneled" id="a72449dd">in parallel</span>
-     <li><span class="dfn-paneled" id="086e3aff">origin</span>
+     <li><span class="dfn-paneled" id="228be966">navigable</span>
+     <li><span class="dfn-paneled" id="43ac8374">origin</span>
      <li><span class="dfn-paneled" id="9a517a7d">queue a task</span>
+     <li><span class="dfn-paneled" id="e99bd18e">relevant global object</span>
      <li><span class="dfn-paneled" id="5991ccfb">relevant realm</span>
      <li><span class="dfn-paneled" id="9c4c1e66">relevant settings object</span>
      <li><span class="dfn-paneled" id="e3288657">responsible event loop</span>
      <li><span class="dfn-paneled" id="65181da8">secure context</span>
      <li><span class="dfn-paneled" id="c3b2d08c">task source</span>
-     <li><span class="dfn-paneled" id="ae2a6342">top-level browsing context</span>
+     <li><span class="dfn-paneled" id="30717154">top-level traversable</span>
+     <li><span class="dfn-paneled" id="47fe679e">transient activation</span>
+     <li><span class="dfn-paneled" id="f4d8f1e1">valid email address</span>
     </ul>
    <li>
     <a data-link-type="biblio">[INFRA]</a> defines the following terms:
@@ -1372,6 +1385,7 @@ sections of the earlier attempts.</p>
      <li><span class="dfn-paneled" id="d0b4a948">a promise rejected with</span>
      <li><span class="dfn-paneled" id="5372cca8">boolean</span>
      <li><span class="dfn-paneled" id="efd1ec5d">object</span>
+     <li><span class="dfn-paneled" id="b262501e">reject</span>
      <li><span class="dfn-paneled" id="9cce47fd">sequence</span>
      <li><span class="dfn-paneled" id="4013a022">this</span>
     </ul>
@@ -1754,17 +1768,21 @@ window.dfnpanelData['e303c02d'] = {"dfnID": "e303c02d", "url": "https://w3c.gith
 window.dfnpanelData['739f34ec'] = {"dfnID": "739f34ec", "url": "https://html.spec.whatwg.org/multipage/form-elements.html#htmlbuttonelement", "dfnText": "HTMLButtonElement", "refSections": [{"refs": [{"id": "ref-for-htmlbuttonelement"}, {"id": "ref-for-htmlbuttonelement\u2460"}, {"id": "ref-for-htmlbuttonelement\u2461"}], "title": "1.1. Examples"}], "external": true};
 window.dfnpanelData['c5891539'] = {"dfnID": "c5891539", "url": "https://html.spec.whatwg.org/multipage/embedded-content.html#htmlimageelement", "dfnText": "HTMLImageElement", "refSections": [{"refs": [{"id": "ref-for-htmlimageelement"}], "title": "1.1. Examples"}], "external": true};
 window.dfnpanelData['be0c27b2'] = {"dfnID": "be0c27b2", "url": "https://html.spec.whatwg.org/multipage/system-state.html#navigator", "dfnText": "Navigator", "refSections": [{"refs": [{"id": "ref-for-navigator"}, {"id": "ref-for-navigator\u2460"}, {"id": "ref-for-navigator\u2461"}], "title": "5.1. Extensions to Navigator"}], "external": true};
-window.dfnpanelData['0d0390b4'] = {"dfnID": "0d0390b4", "url": "https://html.spec.whatwg.org/multipage/document-sequences.html#browsing-context", "dfnText": "browsing context", "refSections": [{"refs": [{"id": "ref-for-browsing-context"}], "title": "5.1. Extensions to Navigator"}, {"refs": [{"id": "ref-for-browsing-context\u2460"}], "title": "6. Contact Picker"}], "external": true};
-window.dfnpanelData['b78d6a64'] = {"dfnID": "b78d6a64", "url": "https://html.spec.whatwg.org/multipage/webappapis.html#concept-agent-event-loop", "dfnText": "event loop", "refSections": [{"refs": [{"id": "ref-for-concept-agent-event-loop"}], "title": "4. Infrastructure"}], "external": true};
+window.dfnpanelData['aca22383'] = {"dfnID": "aca22383", "url": "https://html.spec.whatwg.org/multipage/interaction.html#consume-user-activation", "dfnText": "consume user activation", "refSections": [{"refs": [{"id": "ref-for-consume-user-activation"}], "title": "5.4.2. select()"}], "external": true};
+window.dfnpanelData['c6d19e56'] = {"dfnID": "c6d19e56", "url": "https://html.spec.whatwg.org/multipage/webappapis.html#event-loop", "dfnText": "event loop", "refSections": [{"refs": [{"id": "ref-for-event-loop"}], "title": "4. Infrastructure"}], "external": true};
 window.dfnpanelData['a72449dd'] = {"dfnID": "a72449dd", "url": "https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel", "dfnText": "in parallel", "refSections": [{"refs": [{"id": "ref-for-in-parallel"}], "title": "5.4.1. getProperties()"}, {"refs": [{"id": "ref-for-in-parallel\u2460"}], "title": "5.4.2. select()"}], "external": true};
-window.dfnpanelData['086e3aff'] = {"dfnID": "086e3aff", "url": "https://html.spec.whatwg.org/multipage/browsers.html#concept-origin", "dfnText": "origin", "refSections": [{"refs": [{"id": "ref-for-concept-origin"}], "title": "6. Contact Picker"}], "external": true};
+window.dfnpanelData['228be966'] = {"dfnID": "228be966", "url": "https://html.spec.whatwg.org/multipage/nav-history-apis.html#window-navigable", "dfnText": "navigable", "refSections": [{"refs": [{"id": "ref-for-window-navigable"}], "title": "5.1. Extensions to Navigator"}, {"refs": [{"id": "ref-for-window-navigable\u2460"}], "title": "5.4.2. select()"}], "external": true};
+window.dfnpanelData['43ac8374'] = {"dfnID": "43ac8374", "url": "https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-origin", "dfnText": "origin", "refSections": [{"refs": [{"id": "ref-for-concept-settings-object-origin"}], "title": "6. Contact Picker"}], "external": true};
 window.dfnpanelData['9a517a7d'] = {"dfnID": "9a517a7d", "url": "https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task", "dfnText": "queue a task", "refSections": [{"refs": [{"id": "ref-for-queue-a-task"}], "title": "4. Infrastructure"}], "external": true};
+window.dfnpanelData['e99bd18e'] = {"dfnID": "e99bd18e", "url": "https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global", "dfnText": "relevant global object", "refSections": [{"refs": [{"id": "ref-for-concept-relevant-global"}], "title": "5.4.2. select()"}], "external": true};
 window.dfnpanelData['5991ccfb'] = {"dfnID": "5991ccfb", "url": "https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm", "dfnText": "relevant realm", "refSections": [{"refs": [{"id": "ref-for-concept-relevant-realm"}], "title": "3. Realms"}], "external": true};
-window.dfnpanelData['9c4c1e66'] = {"dfnID": "9c4c1e66", "url": "https://html.spec.whatwg.org/multipage/webappapis.html#relevant-settings-object", "dfnText": "relevant settings object", "refSections": [{"refs": [{"id": "ref-for-relevant-settings-object"}], "title": "4. Infrastructure"}, {"refs": [{"id": "ref-for-relevant-settings-object\u2460"}], "title": "5.4.2. select()"}], "external": true};
+window.dfnpanelData['9c4c1e66'] = {"dfnID": "9c4c1e66", "url": "https://html.spec.whatwg.org/multipage/webappapis.html#relevant-settings-object", "dfnText": "relevant settings object", "refSections": [{"refs": [{"id": "ref-for-relevant-settings-object"}], "title": "4. Infrastructure"}], "external": true};
 window.dfnpanelData['e3288657'] = {"dfnID": "e3288657", "url": "https://html.spec.whatwg.org/multipage/webappapis.html#responsible-event-loop", "dfnText": "responsible event loop", "refSections": [{"refs": [{"id": "ref-for-responsible-event-loop"}], "title": "4. Infrastructure"}], "external": true};
 window.dfnpanelData['65181da8'] = {"dfnID": "65181da8", "url": "https://html.spec.whatwg.org/multipage/webappapis.html#secure-context", "dfnText": "secure context", "refSections": [{"refs": [{"id": "ref-for-secure-context"}], "title": "2. Privacy Considerations"}], "external": true};
 window.dfnpanelData['c3b2d08c'] = {"dfnID": "c3b2d08c", "url": "https://html.spec.whatwg.org/multipage/webappapis.html#task-source", "dfnText": "task source", "refSections": [{"refs": [{"id": "ref-for-task-source"}], "title": "4. Infrastructure"}], "external": true};
-window.dfnpanelData['ae2a6342'] = {"dfnID": "ae2a6342", "url": "https://html.spec.whatwg.org/multipage/document-sequences.html#top-level-browsing-context", "dfnText": "top-level browsing context", "refSections": [{"refs": [{"id": "ref-for-top-level-browsing-context"}], "title": "2. Privacy Considerations"}, {"refs": [{"id": "ref-for-top-level-browsing-context\u2460"}], "title": "5.4.2. select()"}], "external": true};
+window.dfnpanelData['30717154'] = {"dfnID": "30717154", "url": "https://html.spec.whatwg.org/multipage/document-sequences.html#nav-top", "dfnText": "top-level traversable", "refSections": [{"refs": [{"id": "ref-for-nav-top"}], "title": "2. Privacy Considerations"}, {"refs": [{"id": "ref-for-nav-top\u2460"}], "title": "5.4.2. select()"}, {"refs": [{"id": "ref-for-nav-top\u2461"}], "title": "6. Contact Picker"}], "external": true};
+window.dfnpanelData['47fe679e'] = {"dfnID": "47fe679e", "url": "https://html.spec.whatwg.org/multipage/interaction.html#transient-activation", "dfnText": "transient activation", "refSections": [{"refs": [{"id": "ref-for-transient-activation"}], "title": "2. Privacy Considerations"}, {"refs": [{"id": "ref-for-transient-activation\u2460"}], "title": "5.4.2. select()"}], "external": true};
+window.dfnpanelData['f4d8f1e1'] = {"dfnID": "f4d8f1e1", "url": "https://html.spec.whatwg.org/multipage/input.html#valid-e-mail-address", "dfnText": "valid email address", "refSections": [{"refs": [{"id": "ref-for-valid-e-mail-address"}], "title": "4.2. User contact"}], "external": true};
 window.dfnpanelData['53275e46'] = {"dfnID": "53275e46", "url": "https://infra.spec.whatwg.org/#list-append", "dfnText": "append", "refSections": [{"refs": [{"id": "ref-for-list-append"}], "title": "5.4.2. select()"}], "external": true};
 window.dfnpanelData['36858240'] = {"dfnID": "36858240", "url": "https://infra.spec.whatwg.org/#boolean", "dfnText": "boolean", "refSections": [{"refs": [{"id": "ref-for-boolean"}], "title": "6. Contact Picker"}], "external": true};
 window.dfnpanelData['ae8def21'] = {"dfnID": "ae8def21", "url": "https://infra.spec.whatwg.org/#list-contain", "dfnText": "contain", "refSections": [{"refs": [{"id": "ref-for-list-contain"}, {"id": "ref-for-list-contain\u2460"}, {"id": "ref-for-list-contain\u2461"}, {"id": "ref-for-list-contain\u2462"}, {"id": "ref-for-list-contain\u2463"}, {"id": "ref-for-list-contain\u2464"}], "title": "5.4.2. select()"}], "external": true};
@@ -1785,13 +1803,14 @@ window.dfnpanelData['b75bb3bd'] = {"dfnID": "b75bb3bd", "url": "https://webidl.s
 window.dfnpanelData['c3e881ef'] = {"dfnID": "c3e881ef", "url": "https://webidl.spec.whatwg.org/#securityerror", "dfnText": "SecurityError", "refSections": [{"refs": [{"id": "ref-for-securityerror"}], "title": "5.4.2. select()"}], "external": true};
 window.dfnpanelData['82ca3efc'] = {"dfnID": "82ca3efc", "url": "https://webidl.spec.whatwg.org/#exceptiondef-typeerror", "dfnText": "TypeError", "refSections": [{"refs": [{"id": "ref-for-exceptiondef-typeerror"}, {"id": "ref-for-exceptiondef-typeerror\u2460"}], "title": "5.4.2. select()"}], "external": true};
 window.dfnpanelData['dacde8b5'] = {"dfnID": "dacde8b5", "url": "https://webidl.spec.whatwg.org/#a-new-promise", "dfnText": "a new promise", "refSections": [{"refs": [{"id": "ref-for-a-new-promise"}], "title": "5.4.1. getProperties()"}, {"refs": [{"id": "ref-for-a-new-promise\u2460"}], "title": "5.4.2. select()"}], "external": true};
-window.dfnpanelData['d0b4a948'] = {"dfnID": "d0b4a948", "url": "https://webidl.spec.whatwg.org/#a-promise-rejected-with", "dfnText": "a promise rejected with", "refSections": [{"refs": [{"id": "ref-for-a-promise-rejected-with"}, {"id": "ref-for-a-promise-rejected-with\u2460"}, {"id": "ref-for-a-promise-rejected-with\u2461"}, {"id": "ref-for-a-promise-rejected-with\u2462"}, {"id": "ref-for-a-promise-rejected-with\u2463"}, {"id": "ref-for-a-promise-rejected-with\u2464"}], "title": "5.4.2. select()"}], "external": true};
+window.dfnpanelData['d0b4a948'] = {"dfnID": "d0b4a948", "url": "https://webidl.spec.whatwg.org/#a-promise-rejected-with", "dfnText": "a promise rejected with", "refSections": [{"refs": [{"id": "ref-for-a-promise-rejected-with"}, {"id": "ref-for-a-promise-rejected-with\u2460"}, {"id": "ref-for-a-promise-rejected-with\u2461"}, {"id": "ref-for-a-promise-rejected-with\u2462"}, {"id": "ref-for-a-promise-rejected-with\u2463"}], "title": "5.4.2. select()"}], "external": true};
 window.dfnpanelData['5372cca8'] = {"dfnID": "5372cca8", "url": "https://webidl.spec.whatwg.org/#idl-boolean", "dfnText": "boolean", "refSections": [{"refs": [{"id": "ref-for-idl-boolean"}], "title": "5.4. ContactsManager"}], "external": true};
 window.dfnpanelData['efd1ec5d'] = {"dfnID": "efd1ec5d", "url": "https://webidl.spec.whatwg.org/#idl-object", "dfnText": "object", "refSections": [{"refs": [{"id": "ref-for-idl-object"}], "title": "5.3. ContactAddress"}], "external": true};
+window.dfnpanelData['b262501e'] = {"dfnID": "b262501e", "url": "https://webidl.spec.whatwg.org/#reject", "dfnText": "reject", "refSections": [{"refs": [{"id": "ref-for-reject"}], "title": "5.4.2. select()"}], "external": true};
 window.dfnpanelData['9cce47fd'] = {"dfnID": "9cce47fd", "url": "https://webidl.spec.whatwg.org/#idl-sequence", "dfnText": "sequence", "refSections": [{"refs": [{"id": "ref-for-idl-sequence"}, {"id": "ref-for-idl-sequence\u2460"}, {"id": "ref-for-idl-sequence\u2461"}, {"id": "ref-for-idl-sequence\u2462"}, {"id": "ref-for-idl-sequence\u2463"}, {"id": "ref-for-idl-sequence\u2464"}, {"id": "ref-for-idl-sequence\u2465"}, {"id": "ref-for-idl-sequence\u2466"}], "title": "5.4. ContactsManager"}], "external": true};
 window.dfnpanelData['4013a022'] = {"dfnID": "4013a022", "url": "https://webidl.spec.whatwg.org/#this", "dfnText": "this", "refSections": [{"refs": [{"id": "ref-for-this"}], "title": "3. Realms"}, {"refs": [{"id": "ref-for-this\u2460"}], "title": "4. Infrastructure"}, {"refs": [{"id": "ref-for-this\u2461"}], "title": "5.1. Extensions to Navigator"}, {"refs": [{"id": "ref-for-this\u2462"}, {"id": "ref-for-this\u2463"}, {"id": "ref-for-this\u2464"}, {"id": "ref-for-this\u2465"}, {"id": "ref-for-this\u2466"}, {"id": "ref-for-this\u2467"}, {"id": "ref-for-this\u2468"}, {"id": "ref-for-this\u2460\u24ea"}, {"id": "ref-for-this\u2460\u2460"}, {"id": "ref-for-this\u2460\u2461"}], "title": "5.3. ContactAddress"}, {"refs": [{"id": "ref-for-this\u2460\u2462"}], "title": "5.4.2. select()"}], "external": true};
 window.dfnpanelData['contact-picker-task-source'] = {"dfnID": "contact-picker-task-source", "url": "#contact-picker-task-source", "dfnText": "contact picker task source", "refSections": [{"refs": [{"id": "ref-for-contact-picker-task-source"}], "title": "4. Infrastructure"}], "external": false};
-window.dfnpanelData['queue-a-contact-picker-task'] = {"dfnID": "queue-a-contact-picker-task", "url": "#queue-a-contact-picker-task", "dfnText": "queue a contact picker task", "refSections": [{"refs": [{"id": "ref-for-queue-a-contact-picker-task"}], "title": "5.4.2. select()"}], "external": false};
+window.dfnpanelData['queue-a-contact-picker-task'] = {"dfnID": "queue-a-contact-picker-task", "url": "#queue-a-contact-picker-task", "dfnText": "queue a contact picker task", "refSections": [{"refs": [{"id": "ref-for-queue-a-contact-picker-task"}, {"id": "ref-for-queue-a-contact-picker-task\u2460"}], "title": "5.4.2. select()"}], "external": false};
 window.dfnpanelData['physical-address'] = {"dfnID": "physical-address", "url": "#physical-address", "dfnText": "physical address", "refSections": [{"refs": [{"id": "ref-for-physical-address"}], "title": "4.2. User contact"}, {"refs": [{"id": "ref-for-physical-address\u2460"}, {"id": "ref-for-physical-address\u2461"}], "title": "5.3. ContactAddress"}], "external": false};
 window.dfnpanelData['physical-address-country'] = {"dfnID": "physical-address-country", "url": "#physical-address-country", "dfnText": "country", "refSections": [{"refs": [{"id": "ref-for-physical-address-country"}], "title": "5.3. ContactAddress"}], "external": false};
 window.dfnpanelData['physical-address-address-line'] = {"dfnID": "physical-address-address-line", "url": "#physical-address-address-line", "dfnText": "address line", "refSections": [{"refs": [{"id": "ref-for-physical-address-address-line"}], "title": "5.3. ContactAddress"}], "external": false};
