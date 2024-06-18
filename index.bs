@@ -81,7 +81,7 @@ consent.
         sendGiftToAddress(contacts[0].address);
       }
 
-     // Fallback to a form. 
+     // Fallback to a form.
     });
   </pre>
 
@@ -210,7 +210,7 @@ A <dfn>user contact</dfn> consists of:
   unique [=physical address=] of the user.
 * <dfn for="user contact">icons</dfn>, a [=list=] of {{Blob}}s, each [=list/item=] representing a unique image of the
   user.
-    
+
     NOTE: An icon {{Blob}}'s {{Blob/type}} is an [=image mime type=].
 
 </div>
@@ -315,7 +315,7 @@ The {{ContactAddress}} interface represents a [=physical address=].
 
   The <dfn attribute>organization</dfn> attribute's getter must return the [=this=]'s
   [=ContactAddress/address=]' [=physical address/organization=].
-  
+
   The <dfn attribute>phone</dfn> attribute's getter must return the [=this=]'s
   [=ContactAddress/address=]' [=physical address/phone number=].
 
@@ -444,7 +444,7 @@ interface ContactsManager {
     [=user contact=]s whether the user opted out from sharing some information or if the
     information was not present to begin with.
 
-  * The UI MUST make it clear which information will be shared. 
+  * The UI MUST make it clear which information will be shared.
   * The UI MUST provide a way to select individual contacts. If |allowMultiple| is false, only one
     contact should be pickable.
   * The UI MUST provide an option to cancel/return without sharing any contacts, in which case
