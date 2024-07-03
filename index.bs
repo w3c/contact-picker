@@ -494,9 +494,9 @@ Unfortunately, even with the |redactList|,
      and beyond the scope of this specification.
 
   1. If |redactList| doesn't [=list/contain=] "country",
-     set |details|["country"] to the user-provided country as an upper case [[ISO3166-1]] alpha-2 code.
+     set |details|["country"] to the user-provided [=physical address/country=] as an upper case [[ISO3166-1]] alpha-2 code.
   1. If |redactList| doesn't [=list/contain=] "phone",
-     set |details|["phone"] to the user-provided phone number.
+     set |details|["phone"] to the user-provided [=physical address/phone number=].
 
      NOTE: To maintain users' privacy,
      implementers need to be mindful
@@ -507,13 +507,13 @@ Unfortunately, even with the |redactList|,
      to not provide the end user's phone number without the end user's consent.
 
   1. If |redactList| doesn't [=list/contain=] "city",
-     set |details|["city"] to the user-provided city.
+     set |details|["city"] to the user-provided [=physical address/city=].
   1. If |redactList| doesn't [=list/contain=] "dependentLocality",
-     set |details|["dependentLocality"] to the user-provided dependent locality.
+     set |details|["dependentLocality"] to the user-provided [=physical address/dependent locality=].
   1. If |redactList| doesn't [=list/contain=] "organization",
-     set |details|["organization"] to the user-provided recipient organization.
+     set |details|["organization"] to the user-provided recipient [=physical address/organization=].
   1. If |redactList| doesn't [=list/contain=] "postalCode",
-     set |details|["postalCode"] to the user-provided postal code.
+     set |details|["postalCode"] to the user-provided [=physical address/postal code=].
      Optionally, redact part of |details|["postalCode"].
 
      NOTE: [=physical address/Postal codes=]
@@ -529,9 +529,9 @@ Unfortunately, even with the |redactList|,
      in the interest of protecting users' privacy.
 
   1. If |redactList| doesn't [=list/contain=] "recipient",
-     set |details|["recipient"] to the user-provided recipient of the contact information.
+     set |details|["recipient"] to the user-provided [=physical address/recipient=] of the contact information.
   1. If |redactList| doesn't [=list/contain=] "region",
-     set |details|["region"] to the user-provided region.
+     set |details|["region"] to the user-provided [=physical address/region=].
 
      NOTE: In some countries (e.g., Belgium)
      it is uncommon for users to include a [=physical address/region=]
@@ -547,8 +547,8 @@ Unfortunately, even with the |redactList|,
      (e.g., be valid for communication or service delivery).
 
   1. If |redactList| doesn't [=list/contain=] "sortingCode",
-     set |details|["sortingCode"] to the user-provided sorting code.
-  1. Return a newly constructed {{ContactAddress}} using |details|.
+     set |details|["sortingCode"] to the user-provided [=physical address/sorting code=].
+  1. Return a newly created {{ContactAddress}} whose attribute's value's match those in |details|.
 </div>
 
 
