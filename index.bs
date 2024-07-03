@@ -457,7 +457,7 @@ interface ContactsManager {
 
 The steps to <dfn export>create a `ContactAddress` from user-provided input</dfn>
 are given by the following algorithm.
-The algorithm optionally takes a [=list=] |redactList:list|.
+The algorithm optionally takes a [=list=] |redactList|.
 If the |redactList| is not passed, it defaults to an [=list/empty=] [=list=].
 
 NOTE: The |redactList| optionally gives user agents
