@@ -7,7 +7,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
   <meta content="Bikeshed version 82ce88815, updated Thu Sep 7 16:33:55 2023 -0700" name="generator">
   <link href="https://www.w3.org/TR/contact-picker/" rel="canonical">
-  <meta content="e5047b80d972465f7255ef9628a0c379454942e4" name="document-revision">
+  <meta content="6ae0aa07f5aae3017f2f307fe6e33b8765ba9681" name="document-revision">
 <style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
@@ -669,7 +669,7 @@ var.selected6 { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Contact Picker API</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-06-18">18 June 2024</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-07-08">8 July 2024</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -702,22 +702,20 @@ var.selected6 { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
 	It is provided for discussion only and may change at any moment.
 	Its publication here does not imply endorsement of its contents by W3C.
 	Don’t cite this document other than as work in progress. </p>
-   <p> If you wish to make comments regarding this document, please send them to <a href="mailto:public-device-apis@w3.org?Subject=%5Bcontact-picker%5D%20PUT%20SUBJECT%20HERE">public-device-apis@w3.org</a> (<a href="mailto:public-device-apis-request@w3.org?subject=subscribe">subscribe</a>, <a href="https://lists.w3.org/Archives/Public/public-device-apis/">archives</a>) <span> and <a href="mailto:public-webapps@w3.org?Subject=%5Borientation-event%5D%20PUT%20SUBJECT%20HERE">public-webapps@w3.org</a> (<a href="mailto:public-webapps-request@w3.org?subject=subscribe">subscribe</a>, <a href="https://lists.w3.org/Archives/Public/public-webapps/">archives</a>) </span> .
-	When sending e-mail,
-	please put the text “contact-picker” in the subject,
-	preferably like this:
-	“[contact-picker] <em>…summary of comment…</em>”.
-	All comments are welcome. </p>
+   <p> If you wish to make comments regarding this document, please <a href="https://github.com/w3c/contact-picker/issues/new">file an issue on the specification repository</a>. </p>
    <p> This document was published by the <a href="https://www.w3.org/groups/wg/das">Devices and Sensors Working Group</a> and
 	the <a href="https://www.w3.org/groups/wg/webapps">Web Applications Working Group</a>. </p>
    <p> This document was produced by groups operating under
-	the <a href="https://www.w3.org/Consortium/Patent-Policy/">W3C Patent Policy</a>.
+	the <a href="https://www.w3.org/policies/patent-policy/">W3C Patent Policy</a>.
 	W3C maintains a <a href="https://www.w3.org/groups/wg/das/ipr" rel="disclosure">public list of any patent disclosures (Devices and Sensors)</a> and
 	a <a href="https://www.w3.org/groups/wg/webapps/ipr" rel="disclosure">public list of any patent disclosures (Web Applications)</a> made in connection with the deliverables of each group;
   these pages also include instructions for disclosing a patent.
-	An individual who has actual knowledge of a patent which the individual believes contains <a href="https://www.w3.org/Consortium/Patent-Policy/#def-essential">Essential Claim(s)</a> must disclose the information in accordance 
-	with <a href="https://www.w3.org/Consortium/Patent-Policy/#sec-Disclosure">section 6 of the W3C Patent Policy</a>. </p>
-   <p> This document is governed by the <a href="https://www.w3.org/2023/Process-20231103/" id="w3c_process_revision">03 November 2023 W3C Process Document</a>. </p>
+	An individual who has actual knowledge of a patent which the individual believes contains <a href="https://www.w3.org/policies/patent-policy/#def-essential">Essential Claim(s)</a> must disclose the information in accordance 
+	with <a href="https://www.w3.org/policies/patent-policy/#sec-Disclosure">section 6 of the W3C Patent Policy</a>. </p>
+   <p> For general working group announcements, administrivia, and non-technical matters
+  email either <a href="mailto:public-device-apis@w3.org">public-device-apis@w3.org</a> (<a href="mailto:public-device-apis-request@w3.org?subject=subscribe">subscribe</a>, <a href="https://lists.w3.org/Archives/Public/public-device-apis/">archives</a>) 
+  or <a href="mailto:public-webapps@w3.org">public-webapps@w3.org</a> (<a href="mailto:public-webapps-request@w3.org?subject=subscribe">subscribe</a>, <a href="https://lists.w3.org/Archives/Public/public-webapps/">archives</a>). </p>
+   <p> This document is governed by the <a href="https://www.w3.org/policies/process/20231103/" id="w3c_process_revision">03 November 2023 W3C Process Document</a>. </p>
    <p></p>
   </div>
   <div data-fill-with="at-risk"></div>
@@ -753,7 +751,8 @@ var.selected6 { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
        </ol>
      </ol>
     <li><a href="#contact-picker"><span class="secno">7</span> <span class="content">Contact Picker</span></a>
-    <li><a href="#acknowledgments"><span class="secno">8</span> <span class="content">Acknowledgments</span></a>
+    <li><a href="#creating-contactaddress"><span class="secno">8</span> <span class="content">Creating a <code>ContactAddress</code> from user-provided input</span></a>
+    <li><a href="#acknowledgments"><span class="secno">9</span> <span class="content">Acknowledgments</span></a>
     <li>
      <a href="#w3c-conformance"><span class="secno"></span> <span class="content">Conformance</span></a>
      <ol class="toc">
@@ -1188,7 +1187,101 @@ remove the UI and return an empty <a data-link-type="dfn" href="https://infra.sp
 remove the UI and return a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list①①">list</a> of the selected contacts as <a data-link-type="dfn" href="#user-contact" id="ref-for-user-contact①⓪">user contacts</a>.</p>
      </ul>
     </div>
-    <h2 class="heading settled" data-level="8" id="acknowledgments"><span class="secno">8. </span><span class="content">Acknowledgments</span><a class="self-link" href="#acknowledgments"></a></h2>
+    <h2 class="heading settled" data-level="8" id="creating-contactaddress"><span class="secno">8. </span><span class="content">Creating a <code>ContactAddress</code> from user-provided input</span><a class="self-link" href="#creating-contactaddress"></a></h2>
+    <p>The steps to <dfn data-dfn-for="ContactsManager" data-dfn-type="dfn" data-export id="contactsmanager-create-a-contactaddress-from-user-provided-input">create a <code>ContactAddress</code> from user-provided input<a class="self-link" href="#contactsmanager-create-a-contactaddress-from-user-provided-input"></a></dfn> are given by the following algorithm.
+The algorithm optionally takes a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list①②">list</a> <var>redactList</var>.
+If the <var>redactList</var> is not passed, it defaults to an <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-empty" id="ref-for-list-empty①">empty</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list①③">list</a>.</p>
+    <p class="note" role="note"><span class="marker">NOTE:</span> The <var>redactList</var> optionally gives user agents
+  the possibility to limit the amount of personal information
+  about the recipient that the API shares with the requesting application.
+The resulting <code class="idl"><a data-link-type="idl" href="#contactaddress" id="ref-for-contactaddress⑤">ContactAddress</a></code> object provides enough information
+  to perform necessary operations
+  such as communication or service delivery,
+  but, in most cases,
+  not enough information to physically locate and uniquely identify the recipient.
+Unfortunately, even with the <var>redactList</var>,
+  recipient anonymity cannot be assured.
+  This is because in some countries
+  postal codes are so fine-grained that they can uniquely identify a recipient.</p>
+    <div class="algorithm">
+     <ol>
+      <li data-md>
+       <p>Let <var>details</var> be the <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map">map</a> «
+  "addressLine" → empty <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list①④">list</a>,
+  "country" → "",
+  "phone" → "",
+  "city" → "",
+  "dependentLocality" → "",
+  "organization" → "",
+  "postalCode" → "",
+  "recipient" → "",
+  "region" → "",
+  "sortingCode" → ""
+ ».</p>
+      <li data-md>
+       <p>If <var>redactList</var> doesn’t <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain⑥">contain</a> "addressLine",
+ set <var>details</var>["addressLine"] to the result of splitting the user-provided address line into a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list①⑤">list</a>.</p>
+       <p class="note" role="note"><span class="marker">NOTE:</span> How to split an address line is locale dependent
+ and beyond the scope of this specification.</p>
+      <li data-md>
+       <p>If <var>redactList</var> doesn’t <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain⑦">contain</a> "country",
+ set <var>details</var>["country"] to the user-provided <a data-link-type="dfn" href="#physical-address-country" id="ref-for-physical-address-country①">country</a> as an upper case <a data-link-type="biblio" href="#biblio-iso3166-1" title="Codes for the representation of names of countries and their subdivisions — Part 1: Country code">[ISO3166-1]</a> alpha-2 code.</p>
+      <li data-md>
+       <p>If <var>redactList</var> doesn’t <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain⑧">contain</a> "phone",
+ set <var>details</var>["phone"] to the user-provided <a data-link-type="dfn" href="#physical-address-phone-number" id="ref-for-physical-address-phone-number①">phone number</a>.</p>
+       <p class="note" role="note"><span class="marker">NOTE:</span> To maintain users' privacy,
+ implementers need to be mindful
+ that a contact address’s associated phone number
+ might be different or the same from that of the end user’s.
+ As such,
+ implementers need to take care
+ to not provide the end user’s phone number without the end user’s consent.</p>
+      <li data-md>
+       <p>If <var>redactList</var> doesn’t <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain⑨">contain</a> "city",
+ set <var>details</var>["city"] to the user-provided <a data-link-type="dfn" href="#physical-address-city" id="ref-for-physical-address-city①">city</a>.</p>
+      <li data-md>
+       <p>If <var>redactList</var> doesn’t <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain①⓪">contain</a> "dependentLocality",
+ set <var>details</var>["dependentLocality"] to the user-provided <a data-link-type="dfn" href="#physical-address-dependent-locality" id="ref-for-physical-address-dependent-locality①">dependent locality</a>.</p>
+      <li data-md>
+       <p>If <var>redactList</var> doesn’t <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain①①">contain</a> "organization",
+ set <var>details</var>["organization"] to the user-provided recipient <a data-link-type="dfn" href="#physical-address-organization" id="ref-for-physical-address-organization①">organization</a>.</p>
+      <li data-md>
+       <p>If <var>redactList</var> doesn’t <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain①②">contain</a> "postalCode",
+ set <var>details</var>["postalCode"] to the user-provided <a data-link-type="dfn" href="#physical-address-postal-code" id="ref-for-physical-address-postal-code①">postal code</a>.
+ Optionally, redact part of <var>details</var>["postalCode"].</p>
+       <p class="note" role="note"><span class="marker">NOTE:</span> <a data-link-type="dfn" href="#physical-address-postal-code" id="ref-for-physical-address-postal-code②">Postal codes</a> in certain countries can be so specific
+ as to uniquely identify an individual.
+ This being a privacy concern,
+ some user agents only return the part of a postal code
+ that they deem sufficient for the application’s needs.
+ This varies across countries and regions,
+ and so the choice to redact part,
+ or all,
+ of the postal code is left to the discretion of implementers
+ in the interest of protecting users' privacy.</p>
+      <li data-md>
+       <p>If <var>redactList</var> doesn’t <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain①③">contain</a> "recipient",
+ set <var>details</var>["recipient"] to the user-provided <a data-link-type="dfn" href="#physical-address-recipient" id="ref-for-physical-address-recipient①">recipient</a> of the contact information.</p>
+      <li data-md>
+       <p>If <var>redactList</var> doesn’t <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain①④">contain</a> "region",
+ set <var>details</var>["region"] to the user-provided <a data-link-type="dfn" href="#physical-address-region" id="ref-for-physical-address-region①">region</a>.</p>
+       <p class="note" role="note"><span class="marker">NOTE:</span> In some countries (e.g., Belgium)
+ it is uncommon for users to include a <a data-link-type="dfn" href="#physical-address-region" id="ref-for-physical-address-region②">region</a> as part of a <a data-link-type="dfn" href="#physical-address" id="ref-for-physical-address③">physical address</a> (even if all the regions of a country are part of <a data-link-type="biblio" href="#biblio-iso3166-2" title="ISO 3166: Codes for the representation of names of countries and their subdivisions – Part 2: Country subdivision code.">[ISO3166-2]</a>).
+ As such,
+ when the user agent knows that the user is inputting the address
+ for a particular country,
+ it might not provide a field for the user to input a <a data-link-type="dfn" href="#physical-address-region" id="ref-for-physical-address-region③">region</a>.
+ In such cases,
+ the user agent returns an empty string for both <code class="idl"><a data-link-type="idl" href="#contactaddress" id="ref-for-contactaddress⑥">ContactAddress</a></code>'s <code class="idl"><a data-link-type="idl" href="#dom-contactaddress-region" id="ref-for-dom-contactaddress-region①">region</a></code> attribute - but the address can still serve its intended purpose
+ (e.g., be valid for communication or service delivery).</p>
+      <li data-md>
+       <p>If <var>redactList</var> doesn’t <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-contain" id="ref-for-list-contain①⑤">contain</a> "sortingCode",
+ set <var>details</var>["sortingCode"] to the user-provided <a data-link-type="dfn" href="#physical-address-sorting-code" id="ref-for-physical-address-sorting-code①">sorting code</a>.</p>
+      <li data-md>
+       <p>Return a newly created <code class="idl"><a data-link-type="idl" href="#contactaddress" id="ref-for-contactaddress⑦">ContactAddress</a></code> whose attribute’s value’s match those in <var>details</var>.</p>
+     </ol>
+    </div>
+    <h2 class="heading settled" data-level="9" id="acknowledgments"><span class="secno">9. </span><span class="content">Acknowledgments</span><a class="self-link" href="#acknowledgments"></a></h2>
     <p>There has been multiple earlier attempts to standardize a Contacts API for the web and this
 API strives to learn from this rich history. Earlier attempts include Mozilla’s <a href="https://wiki.mozilla.org/WebAPI/ContactsAPI">Contacts API</a>, <a href="https://lists.w3.org/Archives/Public/public-device-apis/2009Apr/att-0001/contacts.html">Contacts API</a> W3C Member submission and standardization efforts by W3C Working Groups: <a href="https://www.w3.org/TR/2010/WD-contacts-api-20100121/">Contacts API</a>, <a href="https://www.w3.org/TR/2014/NOTE-contacts-api-20140114/">Pick Contacts Intent</a>, and <a href="https://www.w3.org/TR/2015/NOTE-contacts-manager-api-20150602/">Contacts Manager API</a>.
 The Contact Picker API differs in its approach to privacy, which was the main emphasis of the API
@@ -1281,6 +1374,7 @@ sections of the earlier attempts.</p>
      <li><a href="#dom-contactaddress-country">attribute for ContactAddress</a><span>, in § 6.3</span>
      <li><a href="#physical-address-country">dfn for physical address</a><span>, in § 5.1</span>
     </ul>
+   <li><a href="#contactsmanager-create-a-contactaddress-from-user-provided-input">create a ContactAddress from user-provided input</a><span>, in § 8</span>
    <li><a href="#physical-address-dependent-locality">dependent locality</a><span>, in § 5.1</span>
    <li><a href="#dom-contactaddress-dependentlocality">dependentLocality</a><span>, in § 6.3</span>
    <li><a href="#dom-contactproperty-email">"email"</a><span>, in § 6.2</span>
@@ -1370,6 +1464,7 @@ sections of the earlier attempts.</p>
      <li><span class="dfn-paneled" id="16d07e10">for each</span>
      <li><span class="dfn-paneled" id="5afbefcd">item</span>
      <li><span class="dfn-paneled" id="649608b9">list</span>
+     <li><span class="dfn-paneled" id="3fca5a9e">map</span>
     </ul>
    <li>
     <a data-link-type="biblio">[MIMESNIFF]</a> defines the following terms:
@@ -1419,6 +1514,8 @@ sections of the earlier attempts.</p>
    <dd><a href="https://www.itu.int/rec/dologin_pub.asp?lang=e&amp;id=T-REC-E.164-201011-I!!PDF-E&amp;type=items"><cite>The international public telecommunication numbering plan</cite></a>. November 2010. Recommendation. URL: <a href="https://www.itu.int/rec/dologin_pub.asp?lang=e&amp;id=T-REC-E.164-201011-I!!PDF-E&amp;type=items">https://www.itu.int/rec/dologin_pub.asp?lang=e&amp;id=T-REC-E.164-201011-I!!PDF-E&amp;type=items</a>
    <dt id="biblio-iso3166-1">[ISO3166-1]
    <dd><a href="https://www.iso.org/standard/72482.html"><cite>Codes for the representation of names of countries and their subdivisions — Part 1: Country code</cite></a>. August 2020. Published. URL: <a href="https://www.iso.org/standard/72482.html">https://www.iso.org/standard/72482.html</a>
+   <dt id="biblio-iso3166-2">[ISO3166-2]
+   <dd><a href="https://www.iso.org/standard/72483.html"><cite>ISO 3166: Codes for the representation of names of countries and their subdivisions – Part 2: Country subdivision code.</cite></a>. August 2020. Published. URL: <a href="https://www.iso.org/standard/72483.html">https://www.iso.org/standard/72483.html</a>
    <dt id="biblio-mimesniff">[MIMESNIFF]
    <dd>Gordon P. Hemsley. <a href="https://mimesniff.spec.whatwg.org/"><cite>MIME Sniffing Standard</cite></a>. Living Standard. URL: <a href="https://mimesniff.spec.whatwg.org/">https://mimesniff.spec.whatwg.org/</a>
   </dl>
@@ -1794,11 +1891,12 @@ window.dfnpanelData['47fe679e'] = {"dfnID": "47fe679e", "url": "https://html.spe
 window.dfnpanelData['f4d8f1e1'] = {"dfnID": "f4d8f1e1", "url": "https://html.spec.whatwg.org/multipage/input.html#valid-e-mail-address", "dfnText": "valid email address", "refSections": [{"refs": [{"id": "ref-for-valid-e-mail-address"}], "title": "5.2. User contact"}], "external": true};
 window.dfnpanelData['53275e46'] = {"dfnID": "53275e46", "url": "https://infra.spec.whatwg.org/#list-append", "dfnText": "append", "refSections": [{"refs": [{"id": "ref-for-list-append"}], "title": "6.4.2. select()"}], "external": true};
 window.dfnpanelData['36858240'] = {"dfnID": "36858240", "url": "https://infra.spec.whatwg.org/#boolean", "dfnText": "boolean", "refSections": [{"refs": [{"id": "ref-for-boolean"}], "title": "7. Contact Picker"}], "external": true};
-window.dfnpanelData['ae8def21'] = {"dfnID": "ae8def21", "url": "https://infra.spec.whatwg.org/#list-contain", "dfnText": "contain", "refSections": [{"refs": [{"id": "ref-for-list-contain"}, {"id": "ref-for-list-contain\u2460"}, {"id": "ref-for-list-contain\u2461"}, {"id": "ref-for-list-contain\u2462"}, {"id": "ref-for-list-contain\u2463"}, {"id": "ref-for-list-contain\u2464"}], "title": "6.4.2. select()"}], "external": true};
-window.dfnpanelData['03afaf9c'] = {"dfnID": "03afaf9c", "url": "https://infra.spec.whatwg.org/#list-empty", "dfnText": "empty", "refSections": [{"refs": [{"id": "ref-for-list-empty"}], "title": "6.4.2. select()"}], "external": true};
+window.dfnpanelData['ae8def21'] = {"dfnID": "ae8def21", "url": "https://infra.spec.whatwg.org/#list-contain", "dfnText": "contain", "refSections": [{"refs": [{"id": "ref-for-list-contain"}, {"id": "ref-for-list-contain\u2460"}, {"id": "ref-for-list-contain\u2461"}, {"id": "ref-for-list-contain\u2462"}, {"id": "ref-for-list-contain\u2463"}, {"id": "ref-for-list-contain\u2464"}], "title": "6.4.2. select()"}, {"refs": [{"id": "ref-for-list-contain\u2465"}, {"id": "ref-for-list-contain\u2466"}, {"id": "ref-for-list-contain\u2467"}, {"id": "ref-for-list-contain\u2468"}, {"id": "ref-for-list-contain\u2460\u24ea"}, {"id": "ref-for-list-contain\u2460\u2460"}, {"id": "ref-for-list-contain\u2460\u2461"}, {"id": "ref-for-list-contain\u2460\u2462"}, {"id": "ref-for-list-contain\u2460\u2463"}, {"id": "ref-for-list-contain\u2460\u2464"}], "title": "8. Creating a ContactAddress from user-provided input"}], "external": true};
+window.dfnpanelData['03afaf9c'] = {"dfnID": "03afaf9c", "url": "https://infra.spec.whatwg.org/#list-empty", "dfnText": "empty", "refSections": [{"refs": [{"id": "ref-for-list-empty"}], "title": "6.4.2. select()"}, {"refs": [{"id": "ref-for-list-empty\u2460"}], "title": "8. Creating a ContactAddress from user-provided input"}], "external": true};
 window.dfnpanelData['16d07e10'] = {"dfnID": "16d07e10", "url": "https://infra.spec.whatwg.org/#list-iterate", "dfnText": "for each", "refSections": [{"refs": [{"id": "ref-for-list-iterate"}, {"id": "ref-for-list-iterate\u2460"}], "title": "6.4.2. select()"}], "external": true};
 window.dfnpanelData['5afbefcd'] = {"dfnID": "5afbefcd", "url": "https://infra.spec.whatwg.org/#list-item", "dfnText": "item", "refSections": [{"refs": [{"id": "ref-for-list-item"}, {"id": "ref-for-list-item\u2460"}, {"id": "ref-for-list-item\u2461"}, {"id": "ref-for-list-item\u2462"}, {"id": "ref-for-list-item\u2463"}], "title": "5.2. User contact"}], "external": true};
-window.dfnpanelData['649608b9'] = {"dfnID": "649608b9", "url": "https://infra.spec.whatwg.org/#list", "dfnText": "list", "refSections": [{"refs": [{"id": "ref-for-list"}], "title": "5.1. Physical address"}, {"refs": [{"id": "ref-for-list\u2460"}, {"id": "ref-for-list\u2461"}, {"id": "ref-for-list\u2462"}, {"id": "ref-for-list\u2463"}, {"id": "ref-for-list\u2464"}], "title": "5.2. User contact"}, {"refs": [{"id": "ref-for-list\u2465"}, {"id": "ref-for-list\u2466"}], "title": "5.3. Contacts source"}, {"refs": [{"id": "ref-for-list\u2467"}], "title": "6.4.2. select()"}, {"refs": [{"id": "ref-for-list\u2468"}, {"id": "ref-for-list\u2460\u24ea"}, {"id": "ref-for-list\u2460\u2460"}], "title": "7. Contact Picker"}], "external": true};
+window.dfnpanelData['649608b9'] = {"dfnID": "649608b9", "url": "https://infra.spec.whatwg.org/#list", "dfnText": "list", "refSections": [{"refs": [{"id": "ref-for-list"}], "title": "5.1. Physical address"}, {"refs": [{"id": "ref-for-list\u2460"}, {"id": "ref-for-list\u2461"}, {"id": "ref-for-list\u2462"}, {"id": "ref-for-list\u2463"}, {"id": "ref-for-list\u2464"}], "title": "5.2. User contact"}, {"refs": [{"id": "ref-for-list\u2465"}, {"id": "ref-for-list\u2466"}], "title": "5.3. Contacts source"}, {"refs": [{"id": "ref-for-list\u2467"}], "title": "6.4.2. select()"}, {"refs": [{"id": "ref-for-list\u2468"}, {"id": "ref-for-list\u2460\u24ea"}, {"id": "ref-for-list\u2460\u2460"}], "title": "7. Contact Picker"}, {"refs": [{"id": "ref-for-list\u2460\u2461"}, {"id": "ref-for-list\u2460\u2462"}, {"id": "ref-for-list\u2460\u2463"}, {"id": "ref-for-list\u2460\u2464"}], "title": "8. Creating a ContactAddress from user-provided input"}], "external": true};
+window.dfnpanelData['3fca5a9e'] = {"dfnID": "3fca5a9e", "url": "https://infra.spec.whatwg.org/#ordered-map", "dfnText": "map", "refSections": [{"refs": [{"id": "ref-for-ordered-map"}], "title": "8. Creating a ContactAddress from user-provided input"}], "external": true};
 window.dfnpanelData['01ce2efd'] = {"dfnID": "01ce2efd", "url": "https://mimesniff.spec.whatwg.org/#image-mime-type", "dfnText": "image mime type", "refSections": [{"refs": [{"id": "ref-for-image-mime-type"}], "title": "5.2. User contact"}], "external": true};
 window.dfnpanelData['dca2de17'] = {"dfnID": "dca2de17", "url": "https://webidl.spec.whatwg.org/#idl-DOMException", "dfnText": "DOMException", "refSections": [{"refs": [{"id": "ref-for-idl-DOMException"}, {"id": "ref-for-idl-DOMException\u2460"}, {"id": "ref-for-idl-DOMException\u2461"}, {"id": "ref-for-idl-DOMException\u2462"}], "title": "6.4.2. select()"}], "external": true};
 window.dfnpanelData['8855a9aa'] = {"dfnID": "8855a9aa", "url": "https://webidl.spec.whatwg.org/#idl-DOMString", "dfnText": "DOMString", "refSections": [{"refs": [{"id": "ref-for-idl-DOMString"}, {"id": "ref-for-idl-DOMString\u2460"}, {"id": "ref-for-idl-DOMString\u2461"}, {"id": "ref-for-idl-DOMString\u2462"}, {"id": "ref-for-idl-DOMString\u2463"}, {"id": "ref-for-idl-DOMString\u2464"}, {"id": "ref-for-idl-DOMString\u2465"}, {"id": "ref-for-idl-DOMString\u2466"}, {"id": "ref-for-idl-DOMString\u2467"}, {"id": "ref-for-idl-DOMString\u2468"}], "title": "5.1. Physical address"}, {"refs": [{"id": "ref-for-idl-DOMString\u2460\u24ea"}, {"id": "ref-for-idl-DOMString\u2460\u2460"}, {"id": "ref-for-idl-DOMString\u2460\u2461"}], "title": "5.2. User contact"}, {"refs": [{"id": "ref-for-idl-DOMString\u2460\u2462"}, {"id": "ref-for-idl-DOMString\u2460\u2463"}, {"id": "ref-for-idl-DOMString\u2460\u2464"}, {"id": "ref-for-idl-DOMString\u2460\u2465"}, {"id": "ref-for-idl-DOMString\u2460\u2466"}, {"id": "ref-for-idl-DOMString\u2460\u2467"}, {"id": "ref-for-idl-DOMString\u2460\u2468"}, {"id": "ref-for-idl-DOMString\u2461\u24ea"}, {"id": "ref-for-idl-DOMString\u2461\u2460"}, {"id": "ref-for-idl-DOMString\u2461\u2461"}], "title": "6.3. ContactAddress"}, {"refs": [{"id": "ref-for-idl-DOMString\u2461\u2462"}, {"id": "ref-for-idl-DOMString\u2461\u2463"}, {"id": "ref-for-idl-DOMString\u2461\u2464"}], "title": "6.4. ContactsManager"}, {"refs": [{"id": "ref-for-idl-DOMString\u2461\u2465"}], "title": "7. Contact Picker"}], "external": true};
@@ -1820,17 +1918,17 @@ window.dfnpanelData['9cce47fd'] = {"dfnID": "9cce47fd", "url": "https://webidl.s
 window.dfnpanelData['4013a022'] = {"dfnID": "4013a022", "url": "https://webidl.spec.whatwg.org/#this", "dfnText": "this", "refSections": [{"refs": [{"id": "ref-for-this"}], "title": "4. Realms"}, {"refs": [{"id": "ref-for-this\u2460"}], "title": "5. Infrastructure"}, {"refs": [{"id": "ref-for-this\u2461"}], "title": "6.1. Extensions to Navigator"}, {"refs": [{"id": "ref-for-this\u2462"}, {"id": "ref-for-this\u2463"}, {"id": "ref-for-this\u2464"}, {"id": "ref-for-this\u2465"}, {"id": "ref-for-this\u2466"}, {"id": "ref-for-this\u2467"}, {"id": "ref-for-this\u2468"}, {"id": "ref-for-this\u2460\u24ea"}, {"id": "ref-for-this\u2460\u2460"}, {"id": "ref-for-this\u2460\u2461"}], "title": "6.3. ContactAddress"}, {"refs": [{"id": "ref-for-this\u2460\u2462"}], "title": "6.4.2. select()"}], "external": true};
 window.dfnpanelData['contact-picker-task-source'] = {"dfnID": "contact-picker-task-source", "url": "#contact-picker-task-source", "dfnText": "contact picker task source", "refSections": [{"refs": [{"id": "ref-for-contact-picker-task-source"}], "title": "5. Infrastructure"}], "external": false};
 window.dfnpanelData['queue-a-contact-picker-task'] = {"dfnID": "queue-a-contact-picker-task", "url": "#queue-a-contact-picker-task", "dfnText": "queue a contact picker task", "refSections": [{"refs": [{"id": "ref-for-queue-a-contact-picker-task"}, {"id": "ref-for-queue-a-contact-picker-task\u2460"}], "title": "6.4.2. select()"}], "external": false};
-window.dfnpanelData['physical-address'] = {"dfnID": "physical-address", "url": "#physical-address", "dfnText": "physical address", "refSections": [{"refs": [{"id": "ref-for-physical-address"}], "title": "5.2. User contact"}, {"refs": [{"id": "ref-for-physical-address\u2460"}, {"id": "ref-for-physical-address\u2461"}], "title": "6.3. ContactAddress"}], "external": false};
-window.dfnpanelData['physical-address-country'] = {"dfnID": "physical-address-country", "url": "#physical-address-country", "dfnText": "country", "refSections": [{"refs": [{"id": "ref-for-physical-address-country"}], "title": "6.3. ContactAddress"}], "external": false};
+window.dfnpanelData['physical-address'] = {"dfnID": "physical-address", "url": "#physical-address", "dfnText": "physical address", "refSections": [{"refs": [{"id": "ref-for-physical-address"}], "title": "5.2. User contact"}, {"refs": [{"id": "ref-for-physical-address\u2460"}, {"id": "ref-for-physical-address\u2461"}], "title": "6.3. ContactAddress"}, {"refs": [{"id": "ref-for-physical-address\u2462"}], "title": "8. Creating a ContactAddress from user-provided input"}], "external": false};
+window.dfnpanelData['physical-address-country'] = {"dfnID": "physical-address-country", "url": "#physical-address-country", "dfnText": "country", "refSections": [{"refs": [{"id": "ref-for-physical-address-country"}], "title": "6.3. ContactAddress"}, {"refs": [{"id": "ref-for-physical-address-country\u2460"}], "title": "8. Creating a ContactAddress from user-provided input"}], "external": false};
 window.dfnpanelData['physical-address-address-line'] = {"dfnID": "physical-address-address-line", "url": "#physical-address-address-line", "dfnText": "address line", "refSections": [{"refs": [{"id": "ref-for-physical-address-address-line"}], "title": "6.3. ContactAddress"}], "external": false};
-window.dfnpanelData['physical-address-region'] = {"dfnID": "physical-address-region", "url": "#physical-address-region", "dfnText": "region", "refSections": [{"refs": [{"id": "ref-for-physical-address-region"}], "title": "6.3. ContactAddress"}], "external": false};
-window.dfnpanelData['physical-address-city'] = {"dfnID": "physical-address-city", "url": "#physical-address-city", "dfnText": "city", "refSections": [{"refs": [{"id": "ref-for-physical-address-city"}], "title": "6.3. ContactAddress"}], "external": false};
-window.dfnpanelData['physical-address-dependent-locality'] = {"dfnID": "physical-address-dependent-locality", "url": "#physical-address-dependent-locality", "dfnText": "dependent locality", "refSections": [{"refs": [{"id": "ref-for-physical-address-dependent-locality"}], "title": "6.3. ContactAddress"}], "external": false};
-window.dfnpanelData['physical-address-postal-code'] = {"dfnID": "physical-address-postal-code", "url": "#physical-address-postal-code", "dfnText": "postal code", "refSections": [{"refs": [{"id": "ref-for-physical-address-postal-code"}], "title": "6.3. ContactAddress"}], "external": false};
-window.dfnpanelData['physical-address-sorting-code'] = {"dfnID": "physical-address-sorting-code", "url": "#physical-address-sorting-code", "dfnText": "sorting code", "refSections": [{"refs": [{"id": "ref-for-physical-address-sorting-code"}], "title": "6.3. ContactAddress"}], "external": false};
-window.dfnpanelData['physical-address-organization'] = {"dfnID": "physical-address-organization", "url": "#physical-address-organization", "dfnText": "organization", "refSections": [{"refs": [{"id": "ref-for-physical-address-organization"}], "title": "6.3. ContactAddress"}], "external": false};
-window.dfnpanelData['physical-address-recipient'] = {"dfnID": "physical-address-recipient", "url": "#physical-address-recipient", "dfnText": "recipient", "refSections": [{"refs": [{"id": "ref-for-physical-address-recipient"}], "title": "6.3. ContactAddress"}], "external": false};
-window.dfnpanelData['physical-address-phone-number'] = {"dfnID": "physical-address-phone-number", "url": "#physical-address-phone-number", "dfnText": "phone number", "refSections": [{"refs": [{"id": "ref-for-physical-address-phone-number"}], "title": "6.3. ContactAddress"}], "external": false};
+window.dfnpanelData['physical-address-region'] = {"dfnID": "physical-address-region", "url": "#physical-address-region", "dfnText": "region", "refSections": [{"refs": [{"id": "ref-for-physical-address-region"}], "title": "6.3. ContactAddress"}, {"refs": [{"id": "ref-for-physical-address-region\u2460"}, {"id": "ref-for-physical-address-region\u2461"}, {"id": "ref-for-physical-address-region\u2462"}], "title": "8. Creating a ContactAddress from user-provided input"}], "external": false};
+window.dfnpanelData['physical-address-city'] = {"dfnID": "physical-address-city", "url": "#physical-address-city", "dfnText": "city", "refSections": [{"refs": [{"id": "ref-for-physical-address-city"}], "title": "6.3. ContactAddress"}, {"refs": [{"id": "ref-for-physical-address-city\u2460"}], "title": "8. Creating a ContactAddress from user-provided input"}], "external": false};
+window.dfnpanelData['physical-address-dependent-locality'] = {"dfnID": "physical-address-dependent-locality", "url": "#physical-address-dependent-locality", "dfnText": "dependent locality", "refSections": [{"refs": [{"id": "ref-for-physical-address-dependent-locality"}], "title": "6.3. ContactAddress"}, {"refs": [{"id": "ref-for-physical-address-dependent-locality\u2460"}], "title": "8. Creating a ContactAddress from user-provided input"}], "external": false};
+window.dfnpanelData['physical-address-postal-code'] = {"dfnID": "physical-address-postal-code", "url": "#physical-address-postal-code", "dfnText": "postal code", "refSections": [{"refs": [{"id": "ref-for-physical-address-postal-code"}], "title": "6.3. ContactAddress"}, {"refs": [{"id": "ref-for-physical-address-postal-code\u2460"}, {"id": "ref-for-physical-address-postal-code\u2461"}], "title": "8. Creating a ContactAddress from user-provided input"}], "external": false};
+window.dfnpanelData['physical-address-sorting-code'] = {"dfnID": "physical-address-sorting-code", "url": "#physical-address-sorting-code", "dfnText": "sorting code", "refSections": [{"refs": [{"id": "ref-for-physical-address-sorting-code"}], "title": "6.3. ContactAddress"}, {"refs": [{"id": "ref-for-physical-address-sorting-code\u2460"}], "title": "8. Creating a ContactAddress from user-provided input"}], "external": false};
+window.dfnpanelData['physical-address-organization'] = {"dfnID": "physical-address-organization", "url": "#physical-address-organization", "dfnText": "organization", "refSections": [{"refs": [{"id": "ref-for-physical-address-organization"}], "title": "6.3. ContactAddress"}, {"refs": [{"id": "ref-for-physical-address-organization\u2460"}], "title": "8. Creating a ContactAddress from user-provided input"}], "external": false};
+window.dfnpanelData['physical-address-recipient'] = {"dfnID": "physical-address-recipient", "url": "#physical-address-recipient", "dfnText": "recipient", "refSections": [{"refs": [{"id": "ref-for-physical-address-recipient"}], "title": "6.3. ContactAddress"}, {"refs": [{"id": "ref-for-physical-address-recipient\u2460"}], "title": "8. Creating a ContactAddress from user-provided input"}], "external": false};
+window.dfnpanelData['physical-address-phone-number'] = {"dfnID": "physical-address-phone-number", "url": "#physical-address-phone-number", "dfnText": "phone number", "refSections": [{"refs": [{"id": "ref-for-physical-address-phone-number"}], "title": "6.3. ContactAddress"}, {"refs": [{"id": "ref-for-physical-address-phone-number\u2460"}], "title": "8. Creating a ContactAddress from user-provided input"}], "external": false};
 window.dfnpanelData['user-contact'] = {"dfnID": "user-contact", "url": "#user-contact", "dfnText": "user contact", "refSections": [{"refs": [{"id": "ref-for-user-contact"}], "title": "5.2. User contact"}, {"refs": [{"id": "ref-for-user-contact\u2460"}], "title": "5.3. Contacts source"}, {"refs": [{"id": "ref-for-user-contact\u2461"}, {"id": "ref-for-user-contact\u2462"}, {"id": "ref-for-user-contact\u2463"}, {"id": "ref-for-user-contact\u2464"}, {"id": "ref-for-user-contact\u2465"}, {"id": "ref-for-user-contact\u2466"}], "title": "6.2. ContactProperty"}, {"refs": [{"id": "ref-for-user-contact\u2467"}, {"id": "ref-for-user-contact\u2468"}, {"id": "ref-for-user-contact\u2460\u24ea"}], "title": "7. Contact Picker"}], "external": false};
 window.dfnpanelData['user-contact-names'] = {"dfnID": "user-contact-names", "url": "#user-contact-names", "dfnText": "names", "refSections": [{"refs": [{"id": "ref-for-user-contact-names"}], "title": "6.2. ContactProperty"}, {"refs": [{"id": "ref-for-user-contact-names\u2460"}], "title": "6.4.2. select()"}], "external": false};
 window.dfnpanelData['user-contact-emails'] = {"dfnID": "user-contact-emails", "url": "#user-contact-emails", "dfnText": "emails", "refSections": [{"refs": [{"id": "ref-for-user-contact-emails"}], "title": "6.2. ContactProperty"}, {"refs": [{"id": "ref-for-user-contact-emails\u2460"}], "title": "6.4.2. select()"}], "external": false};
@@ -1845,7 +1943,7 @@ window.dfnpanelData['dom-navigator-contacts'] = {"dfnID": "dom-navigator-contact
 window.dfnpanelData['contact-picker-is-showing-flag'] = {"dfnID": "contact-picker-is-showing-flag", "url": "#contact-picker-is-showing-flag", "dfnText": "contact picker is showing flag", "refSections": [{"refs": [{"id": "ref-for-contact-picker-is-showing-flag"}, {"id": "ref-for-contact-picker-is-showing-flag\u2460"}, {"id": "ref-for-contact-picker-is-showing-flag\u2461"}, {"id": "ref-for-contact-picker-is-showing-flag\u2462"}], "title": "6.4.2. select()"}], "external": false};
 window.dfnpanelData['enumdef-contactproperty'] = {"dfnID": "enumdef-contactproperty", "url": "#enumdef-contactproperty", "dfnText": "ContactProperty", "refSections": [{"refs": [{"id": "ref-for-enumdef-contactproperty"}], "title": "5.3. Contacts source"}, {"refs": [{"id": "ref-for-enumdef-contactproperty\u2460"}, {"id": "ref-for-enumdef-contactproperty\u2461"}], "title": "6.2. ContactProperty"}, {"refs": [{"id": "ref-for-enumdef-contactproperty\u2462"}, {"id": "ref-for-enumdef-contactproperty\u2463"}], "title": "6.4. ContactsManager"}], "external": false};
 window.dfnpanelData['available'] = {"dfnID": "available", "url": "#available", "dfnText": "available", "refSections": [{"refs": [{"id": "ref-for-available"}], "title": "5.3. Contacts source"}], "external": false};
-window.dfnpanelData['contactaddress'] = {"dfnID": "contactaddress", "url": "#contactaddress", "dfnText": "ContactAddress", "refSections": [{"refs": [{"id": "ref-for-contactaddress"}], "title": "5.2. User contact"}, {"refs": [{"id": "ref-for-contactaddress\u2460"}, {"id": "ref-for-contactaddress\u2461"}, {"id": "ref-for-contactaddress\u2462"}], "title": "6.3. ContactAddress"}, {"refs": [{"id": "ref-for-contactaddress\u2463"}], "title": "6.4. ContactsManager"}], "external": false};
+window.dfnpanelData['contactaddress'] = {"dfnID": "contactaddress", "url": "#contactaddress", "dfnText": "ContactAddress", "refSections": [{"refs": [{"id": "ref-for-contactaddress"}], "title": "5.2. User contact"}, {"refs": [{"id": "ref-for-contactaddress\u2460"}, {"id": "ref-for-contactaddress\u2461"}, {"id": "ref-for-contactaddress\u2462"}], "title": "6.3. ContactAddress"}, {"refs": [{"id": "ref-for-contactaddress\u2463"}], "title": "6.4. ContactsManager"}, {"refs": [{"id": "ref-for-contactaddress\u2464"}, {"id": "ref-for-contactaddress\u2465"}, {"id": "ref-for-contactaddress\u2466"}], "title": "8. Creating a ContactAddress from user-provided input"}], "external": false};
 window.dfnpanelData['contactaddress-address'] = {"dfnID": "contactaddress-address", "url": "#contactaddress-address", "dfnText": "address", "refSections": [{"refs": [{"id": "ref-for-contactaddress-address"}, {"id": "ref-for-contactaddress-address\u2460"}, {"id": "ref-for-contactaddress-address\u2461"}, {"id": "ref-for-contactaddress-address\u2462"}, {"id": "ref-for-contactaddress-address\u2463"}, {"id": "ref-for-contactaddress-address\u2464"}, {"id": "ref-for-contactaddress-address\u2465"}, {"id": "ref-for-contactaddress-address\u2466"}, {"id": "ref-for-contactaddress-address\u2467"}, {"id": "ref-for-contactaddress-address\u2468"}], "title": "6.3. ContactAddress"}], "external": false};
 window.dfnpanelData['dom-contactaddress-city'] = {"dfnID": "dom-contactaddress-city", "url": "#dom-contactaddress-city", "dfnText": "city", "refSections": [{"refs": [{"id": "ref-for-dom-contactaddress-city"}], "title": "6.3. ContactAddress"}], "external": false};
 window.dfnpanelData['dom-contactaddress-country'] = {"dfnID": "dom-contactaddress-country", "url": "#dom-contactaddress-country", "dfnText": "country", "refSections": [{"refs": [{"id": "ref-for-dom-contactaddress-country"}], "title": "6.3. ContactAddress"}], "external": false};
@@ -1854,7 +1952,7 @@ window.dfnpanelData['dom-contactaddress-organization'] = {"dfnID": "dom-contacta
 window.dfnpanelData['dom-contactaddress-phone'] = {"dfnID": "dom-contactaddress-phone", "url": "#dom-contactaddress-phone", "dfnText": "phone", "refSections": [{"refs": [{"id": "ref-for-dom-contactaddress-phone"}], "title": "6.3. ContactAddress"}], "external": false};
 window.dfnpanelData['dom-contactaddress-postalcode'] = {"dfnID": "dom-contactaddress-postalcode", "url": "#dom-contactaddress-postalcode", "dfnText": "postalCode", "refSections": [{"refs": [{"id": "ref-for-dom-contactaddress-postalcode"}], "title": "6.3. ContactAddress"}], "external": false};
 window.dfnpanelData['dom-contactaddress-recipient'] = {"dfnID": "dom-contactaddress-recipient", "url": "#dom-contactaddress-recipient", "dfnText": "recipient", "refSections": [{"refs": [{"id": "ref-for-dom-contactaddress-recipient"}], "title": "6.3. ContactAddress"}], "external": false};
-window.dfnpanelData['dom-contactaddress-region'] = {"dfnID": "dom-contactaddress-region", "url": "#dom-contactaddress-region", "dfnText": "region", "refSections": [{"refs": [{"id": "ref-for-dom-contactaddress-region"}], "title": "6.3. ContactAddress"}], "external": false};
+window.dfnpanelData['dom-contactaddress-region'] = {"dfnID": "dom-contactaddress-region", "url": "#dom-contactaddress-region", "dfnText": "region", "refSections": [{"refs": [{"id": "ref-for-dom-contactaddress-region"}], "title": "6.3. ContactAddress"}, {"refs": [{"id": "ref-for-dom-contactaddress-region\u2460"}], "title": "8. Creating a ContactAddress from user-provided input"}], "external": false};
 window.dfnpanelData['dom-contactaddress-sortingcode'] = {"dfnID": "dom-contactaddress-sortingcode", "url": "#dom-contactaddress-sortingcode", "dfnText": "sortingCode", "refSections": [{"refs": [{"id": "ref-for-dom-contactaddress-sortingcode"}], "title": "6.3. ContactAddress"}], "external": false};
 window.dfnpanelData['dom-contactaddress-addressline'] = {"dfnID": "dom-contactaddress-addressline", "url": "#dom-contactaddress-addressline", "dfnText": "addressLine", "refSections": [{"refs": [{"id": "ref-for-dom-contactaddress-addressline"}], "title": "6.3. ContactAddress"}], "external": false};
 window.dfnpanelData['dictdef-contactinfo'] = {"dfnID": "dictdef-contactinfo", "url": "#dictdef-contactinfo", "dfnText": "ContactInfo", "refSections": [{"refs": [{"id": "ref-for-dictdef-contactinfo"}], "title": "6.4. ContactsManager"}, {"refs": [{"id": "ref-for-dictdef-contactinfo\u2460"}], "title": "6.4.2. select()"}], "external": false};
