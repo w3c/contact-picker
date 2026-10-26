@@ -392,7 +392,7 @@ interface ContactsManager {
   1. Set |navigable|'s [=contact picker is showing flag=].
   1. Let |promise| be [=a new promise=].
   1. Run the following steps [=in parallel=]:
-    1. Let |selectedContacts| be be the result of [=launching a contact picker=] with |options|'
+    1. Let |selectedContacts| be the result of [=launching a contact picker=] with |options|'
        `multiple` member and |properties|. If this fails, then:
       1. [=Queue a contact picker task=] to run these steps:
         1. [=Reject=] |promise| an {{InvalidStateError}} {{DOMException}}.
